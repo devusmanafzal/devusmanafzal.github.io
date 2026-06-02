@@ -1,60 +1,9 @@
 /* ============================================================
-   Career OS by Zero2Grow — interactions
+   Zero2Grow — shared site interactions
+   Used across Home, Programs, Courses, About, Contact
    ============================================================ */
 (function () {
   "use strict";
-
-  /* ---------- 8-week journey data ---------- */
-  var WEEKS = [
-    {
-      n: 1, color: "var(--brand)", theme: "Clarity & Direction",
-      desc: "Map your strengths, values, and priorities so every later decision has a reference point. No more guessing where to start.",
-      output: "North Star Document",
-      quote: "I understand myself and my path forward."
-    },
-    {
-      n: 2, color: "var(--cyan)", theme: "Personal Brand",
-      desc: "Define what you want to be known for and turn it into a story that lands in seconds — on a page, in a room, online.",
-      output: "Personal Brand One-Pager",
-      quote: "I can clearly explain what I bring."
-    },
-    {
-      n: 3, color: "var(--coral)", theme: "Professional Communication",
-      desc: "Structure ideas and messages so they're clear and confident. Templates you reuse for emails, updates, and tough conversations.",
-      output: "Executive Communication Kit",
-      quote: "I communicate clearly and confidently."
-    },
-    {
-      n: 4, color: "var(--lime-deep)", theme: "AI Foundations",
-      desc: "Learn real prompting and verification — then apply AI to actual work, not toy examples. Build your own working library.",
-      output: "Personal Prompt Playbook",
-      quote: "I can use AI effectively in real work."
-    },
-    {
-      n: 5, color: "var(--amber)", theme: "Productivity & Workflows",
-      desc: "Turn repetitive tasks into repeatable systems. Wire AI into workflows you'll actually keep using after the program ends.",
-      output: "2–5 AI Workflows",
-      quote: "I work smarter, not harder."
-    },
-    {
-      n: 6, color: "var(--brand)", theme: "Leadership & Influence",
-      desc: "Practice feedback, hard conversations, and high-stakes moments in a safe space — so you're ready when they happen for real.",
-      output: "Leadership Scenario Pack",
-      quote: "I handle situations with confidence."
-    },
-    {
-      n: 7, color: "var(--cyan)", theme: "Opportunities & Visibility",
-      desc: "Build a concrete plan to create opportunities, raise your visibility, and put yourself in the path of the right projects.",
-      output: "Opportunity Plan",
-      quote: "I know how to create opportunities."
-    },
-    {
-      n: 8, color: "var(--coral)", theme: "Capstone",
-      desc: "Bring it all together into one real project that proves what you can do — your portfolio centerpiece and the spine of your system.",
-      output: "Capstone Project",
-      quote: "I can show what I'm capable of."
-    }
-  ];
 
   /* ---------- Helpers ---------- */
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
@@ -80,7 +29,6 @@
       navToggle.classList.toggle("is-open", open);
       navToggle.setAttribute("aria-expanded", String(open));
     });
-    // close menu when a link is tapped
     $all("a", navLinks).forEach(function (a) {
       a.addEventListener("click", function () {
         navLinks.classList.remove("is-open");
@@ -143,41 +91,6 @@
     }
   }
 
-  /* ---------- Journey tabs ---------- */
-  var panel = $("#journeyPanel");
-  var tabs = $all(".wtab");
-
-  function renderWeek(i) {
-    var w = WEEKS[i];
-    if (!w || !panel) return;
-    panel.innerHTML =
-      '<div class="jp" style="--jp-c:' + w.color + '">' +
-        '<div class="jp__badge" style="background:' + w.color + '">' +
-          '<small>WEEK</small><b>' + w.n + '</b>' +
-        '</div>' +
-        '<div class="jp__body">' +
-          '<h3 class="jp__theme">' + w.theme + '</h3>' +
-          '<p class="jp__desc">' + w.desc + '</p>' +
-          '<div class="jp__out"><span>Output</span><strong>' + w.output + '</strong></div>' +
-          '<p class="jp__quote">&ldquo;' + w.quote + '&rdquo;</p>' +
-        '</div>' +
-      '</div>';
-  }
-
-  tabs.forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      tabs.forEach(function (t) {
-        t.classList.remove("is-active");
-        t.setAttribute("aria-selected", "false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-selected", "true");
-      renderWeek(parseInt(tab.getAttribute("data-week"), 10));
-    });
-  });
-  // initial panel
-  if (tabs.length) renderWeek(0);
-
   /* ---------- Back to top ---------- */
   var toTop = $("#toTop");
   function toggleBackToTop() {
@@ -190,11 +103,12 @@
     });
   }
 
-  /* ---------- Form validation ---------- */
-  var form = $("#applyForm");
+  /* ---------- Contact form validation ---------- */
+  var form = $("#contactForm");
   var note = $("#formNote");
 
   function setError(name, msg) {
+    if (!form) return;
     var field = $('[name="' + name + '"]', form);
     if (!field) return;
     var wrap = field.closest(".field");
@@ -214,6 +128,7 @@
 
       var name = $("#name").value.trim();
       var email = $("#email").value.trim();
+      var message = $("#message") ? $("#message").value.trim() : "x";
       var ok = true;
 
       if (!name) { setError("name", "Please enter your name."); ok = false; }
@@ -223,19 +138,21 @@
       else if (!isEmail(email)) { setError("email", "That doesn't look like a valid email."); ok = false; }
       else setError("email", "");
 
+      if (!message) { setError("message", "Please add a short message."); ok = false; }
+      else setError("message", "");
+
       if (!ok) {
         if (note) { note.textContent = "Please fix the highlighted fields."; note.className = "form__note is-err"; }
         return;
       }
 
       if (note) {
-        note.textContent = "Thanks, " + name.split(" ")[0] + "! Your application is in — we'll be in touch about the next cohort.";
+        note.textContent = "Thanks, " + name.split(" ")[0] + "! Your message is on its way — we'll reply within two business days.";
         note.className = "form__note is-ok";
       }
       form.reset();
     });
 
-    // clear errors as the user types
     $all("input, select, textarea", form).forEach(function (el) {
       el.addEventListener("input", function () {
         var wrap = el.closest(".field");

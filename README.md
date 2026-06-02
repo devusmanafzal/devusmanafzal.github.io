@@ -1,10 +1,10 @@
-# Career OS by Zero2Grow — Promotional Website
+# Zero2Grow — Company Website
 
-A self-contained, interactive single-page site to promote the **Career OS** program. Built with plain HTML, CSS, and JavaScript — no build step, no dependencies. Open it anywhere.
+A multi-page marketing site for **Zero2Grow**, built with plain HTML, CSS, and JavaScript — no build step, no dependencies. It shares the same brand design system and theme as the Career OS single-page site.
 
 ## Run it
 
-Just open `index.html` in a browser. For the cleanest experience (and so relative paths resolve everywhere), serve the folder:
+Open `index.html` in a browser. For clean relative paths, serve the folder:
 
 ```bash
 # from inside this folder
@@ -12,15 +12,29 @@ python3 -m http.server 8080
 # then visit http://localhost:8080
 ```
 
+## Pages
+
+| Page | File | What's on it |
+|------|------|--------------|
+| Home | `index.html` | Hero with animated stats, feature highlights, programs preview, CTA band |
+| Programs | `programs.html` | **Z2G Career OS** (flagship, now enrolling) + Founder OS, Leadership OS, AI Studio (coming soon), plus an FAQ |
+| Courses | `courses.html` | Six standalone short courses |
+| About | `about.html` | Mission split, stats strip, team, and company timeline |
+| Contact | `contact.html` | Contact details + a validated contact form |
+
 ## Folder structure
 
 ```
-zero2grow-website/
-├── index.html            # All page markup
+zero2grow-site/
+├── index.html
+├── programs.html
+├── courses.html
+├── about.html
+├── contact.html
 ├── css/
-│   └── styles.css        # Brand design system + responsive layout
+│   └── styles.css        # Shared brand design system + responsive layout
 ├── js/
-│   └── main.js           # Nav, scroll reveal, counters, week tabs, form
+│   └── main.js           # Nav, scroll reveal, stat counters, contact form
 ├── assets/
 │   └── favicon.svg       # Z²G monogram
 └── README.md
@@ -28,19 +42,18 @@ zero2grow-website/
 
 ## What's interactive
 
-- Sticky nav that solidifies on scroll, with a mobile hamburger menu
+- Sticky nav that solidifies on scroll, with a mobile hamburger menu and per-page active link
 - Scroll-reveal animations (IntersectionObserver)
-- Animated hero stat counters
-- Clickable 8-week journey explorer (tabs swap the detail panel)
-- Expandable FAQ accordion
-- Client-side application form with inline validation
+- Animated hero stat counters on the home page
+- Expandable FAQ accordion on the Programs page
+- Client-side contact form with inline validation
 - Back-to-top button
 
 ## Make it yours
 
 - **Colors & fonts:** edit the `:root` tokens at the top of `css/styles.css`.
-- **Curriculum content:** edit the `WEEKS` array in `js/main.js`.
-- **Copy:** edit directly in `index.html`.
-- **Form:** currently validates and confirms on the client. To collect real submissions, point the `<form>` at your endpoint (Formspree, a serverless function, etc.) in `index.html` / `js/main.js`.
+- **Copy & content:** edit directly in each `.html` page.
+- **Programs:** Z2G Career OS is the live flagship; the other three are placeholders ready to fill in.
+- **Form:** the contact form validates and confirms on the client. To collect real submissions, point the `<form>` at your endpoint (Formspree, a serverless function, etc.).
 
-Contact: hello@zero2grow.io · Cohort lead: Usman Afzal
+Contact: hello@zero2grow.io
