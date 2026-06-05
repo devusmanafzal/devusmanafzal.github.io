@@ -14,7 +14,7 @@
     },
     {
       n: 2, color: "var(--cyan)", theme: "Personal Brand",
-      desc: "Define what you want to be known for and turn it into a story that lands in seconds — on a page, in a room, online.",
+      desc: "Define what you want to be known for and turn it into a story that lands in seconds on a page, in a room, online.",
       output: "Personal Brand One-Pager",
       quote: "I can clearly explain what I bring."
     },
@@ -26,7 +26,7 @@
     },
     {
       n: 4, color: "var(--lime-deep)", theme: "AI Foundations",
-      desc: "Learn real prompting and verification — then apply AI to actual work, not toy examples. Build your own working library.",
+      desc: "Learn real prompting and verification then apply AI to actual work, not toy examples. Build your own working library.",
       output: "Personal Prompt Playbook",
       quote: "I can use AI effectively in real work."
     },
