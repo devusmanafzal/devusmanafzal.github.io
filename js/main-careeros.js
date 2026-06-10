@@ -56,6 +56,24 @@
     }
   ];
 
+  var PROBLEMS = [
+    {
+      accent: "var(--coral)",
+      title: "I don't know where to start",
+      desc: "Goals shift. Advice is generic. There's no clear path forward."
+    },
+    {
+      accent: "var(--amber)",
+      title: "I can't stay consistent",
+      desc: "Effort comes in bursts. Without a system, momentum dies."
+    },
+    {
+      accent: "var(--brand)",
+      title: "I can't explain my value",
+      desc: "The skills are there but the story that communicates them is missing."
+    }
+  ];
+
   /* ---------- Helpers ---------- */
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
@@ -177,6 +195,46 @@
   });
   // initial panel
   if (tabs.length) renderWeek(0);
+
+  /* ---------- Problem tabs ---------- */
+  var problemPanel = $("#problemPanel");
+  var problemTabs = $all(".ptab");
+
+  function renderProblem(i) {
+    var p = PROBLEMS[i];
+    if (!p || !problemPanel) return;
+    problemPanel.style.setProperty("--problem-accent", p.accent || "var(--coral)");
+    problemPanel.innerHTML =
+      '<div class="pp">' +
+        '<span class="pp__icon">?</span>' +
+        '<div>' +
+          '<h3>' + p.title + '</h3>' +
+          '<p>' + p.desc + '</p>' +
+        '</div>' +
+      '</div>';
+  }
+
+  problemTabs.forEach(function (tab, idx) {
+    tab.addEventListener("click", function () {
+      problemTabs.forEach(function (t) {
+        t.classList.remove("is-active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+      renderProblem(parseInt(tab.getAttribute("data-problem"), 10));
+    });
+
+    tab.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      e.preventDefault();
+      var dir = e.key === "ArrowRight" ? 1 : -1;
+      var next = (idx + dir + problemTabs.length) % problemTabs.length;
+      problemTabs[next].focus();
+      problemTabs[next].click();
+    });
+  });
+  if (problemTabs.length) renderProblem(0);
 
   /* ---------- Back to top ---------- */
   var toTop = $("#toTop");

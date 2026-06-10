@@ -1,0 +1,77 @@
+<svg width="2400" height="1350" viewBox="0 0 2400 1350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract constellation path background">
+  <defs>
+    <radialGradient id="bgMain" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1200 120) rotate(90) scale(960 1600)">
+      <stop offset="0" stop-color="#1B2460"/>
+      <stop offset="0.38" stop-color="#0F1A4B"/>
+      <stop offset="1" stop-color="#0A132F"/>
+    </radialGradient>
+    <radialGradient id="violetGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 230) rotate(90) scale(360 620)">
+      <stop offset="0" stop-color="#4F46E5" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#4F46E5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="limeGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 1080) rotate(70) scale(240 600)">
+      <stop offset="0" stop-color="#A3E635" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#A3E635" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1950 940) rotate(120) scale(220 520)">
+      <stop offset="0" stop-color="#06B6D4" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pathLine" x1="300" y1="1160" x2="1920" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06B6D4" stop-opacity="0.18"/>
+      <stop offset="0.45" stop-color="#4F46E5" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#A3E635" stop-opacity="0.45"/>
+    </linearGradient>
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <filter id="nodeBlur" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.8"/>
+    </filter>
+  </defs>
+
+  <rect width="2400" height="1350" fill="url(#bgMain)"/>
+  <rect width="2400" height="1350" fill="url(#violetGlow)"/>
+  <rect width="2400" height="1350" fill="url(#limeGlow)"/>
+  <rect width="2400" height="1350" fill="url(#cyanGlow)"/>
+
+  <path d="M280 1150C560 980 770 920 990 770C1210 620 1420 500 1670 360C1760 310 1850 280 1940 250" stroke="url(#pathLine)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#softBlur)"/>
+  <path d="M310 1170C560 1010 760 930 1000 790C1240 650 1450 530 1700 370" stroke="url(#pathLine)" stroke-opacity="0.5" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+
+  <g opacity="0.72">
+    <circle cx="380" cy="1088" r="6" fill="#06B6D4"/>
+    <circle cx="510" cy="1008" r="5" fill="#4F46E5"/>
+    <circle cx="690" cy="950" r="5.5" fill="#4F46E5"/>
+    <circle cx="880" cy="860" r="4.5" fill="#06B6D4"/>
+    <circle cx="1030" cy="764" r="5.5" fill="#4F46E5"/>
+    <circle cx="1220" cy="650" r="5" fill="#4F46E5"/>
+    <circle cx="1410" cy="538" r="4.5" fill="#06B6D4"/>
+    <circle cx="1615" cy="422" r="5" fill="#4F46E5"/>
+    <circle cx="1788" cy="322" r="5.5" fill="#A3E635"/>
+    <circle cx="1918" cy="256" r="6" fill="#A3E635"/>
+  </g>
+
+  <g opacity="0.55" filter="url(#nodeBlur)">
+    <circle cx="380" cy="1088" r="11" fill="#06B6D4"/>
+    <circle cx="690" cy="950" r="10" fill="#4F46E5"/>
+    <circle cx="1030" cy="764" r="11" fill="#4F46E5"/>
+    <circle cx="1410" cy="538" r="9" fill="#06B6D4"/>
+    <circle cx="1788" cy="322" r="11" fill="#A3E635"/>
+    <circle cx="1918" cy="256" r="12" fill="#A3E635"/>
+  </g>
+
+  <g opacity="0.2">
+    <circle cx="220" cy="230" r="2" fill="#C7D2FE"/>
+    <circle cx="420" cy="300" r="1.8" fill="#C7D2FE"/>
+    <circle cx="650" cy="190" r="2" fill="#93C5FD"/>
+    <circle cx="830" cy="340" r="1.6" fill="#C7D2FE"/>
+    <circle cx="1120" cy="140" r="1.8" fill="#93C5FD"/>
+    <circle cx="1360" cy="190" r="2" fill="#C7D2FE"/>
+    <circle cx="1550" cy="140" r="1.5" fill="#93C5FD"/>
+    <circle cx="2050" cy="220" r="1.6" fill="#C7D2FE"/>
+    <circle cx="2250" cy="300" r="1.8" fill="#93C5FD"/>
+    <circle cx="280" cy="760" r="1.6" fill="#93C5FD"/>
+    <circle cx="2080" cy="930" r="1.8" fill="#93C5FD"/>
+    <circle cx="2240" cy="1040" r="1.6" fill="#C7D2FE"/>
+  </g>
+</svg>

@@ -128,6 +128,7 @@
 
       var name = $("#name").value.trim();
       var email = $("#email").value.trim();
+      var topic = $("#topic") ? $("#topic").value.trim() : "";
       var message = $("#message") ? $("#message").value.trim() : "x";
       var ok = true;
 
@@ -146,10 +147,24 @@
         return;
       }
 
+      var subject = topic ? "Contact form: " + topic : "Contact form inquiry";
+      var body = [
+        "Name: " + name,
+        "Email: " + email,
+        "",
+        "Message:",
+        message
+      ].join("\n");
+      var mailto = "mailto:usman.afzal.ms@live.com"
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
+
       if (note) {
-        note.textContent = "Thanks, " + name.split(" ")[0] + "! Your message is on its way — we'll reply within two business days.";
+        note.textContent = "Opening your email app with your message draft...";
         note.className = "form__note is-ok";
       }
+
+      window.location.href = mailto;
       form.reset();
     });
 

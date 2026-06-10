@@ -24,8 +24,9 @@
         <!-- <a href="#program">Program</a>
         < a href="#journey">Journey</a>
         <a href="#outcomes">Outcomes</a>
-        <a href="#institutes">For Institutes</a>
-        <a href="#faq">FAQ</a> -->
+        <a href="#institutes">For Institutes</a> -->
+        <a href="#pricing"">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="#apply" class="btn btn--sm btn--lime">Apply</a>
       </nav>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -67,22 +68,13 @@
     <div class="container">
       <p class="eyebrow eyebrow--coral reveal">Does this sound familiar?</p>
       <h2 class="section__title reveal">You're not stuck.<br />You're just unsystematic.</h2>
-      <div class="grid grid--3">
-        <article class="pain reveal">
-          <span class="pain__q">?</span>
-          <h3>I don't know where to start</h3>
-          <p>Goals shift. Advice is generic. There's no clear path forward.</p>
-        </article>
-        <article class="pain reveal">
-          <span class="pain__q">?</span>
-          <h3>I can't stay consistent</h3>
-          <p>Effort comes in bursts. Without a system, momentum dies.</p>
-        </article>
-        <article class="pain reveal">
-          <span class="pain__q">?</span>
-          <h3>I can't explain my value</h3>
-          <p>The skills are there but the story that communicates them is missing.</p>
-        </article>
+      <div class="problem-tabs reveal">
+        <div class="problem-tabs__list" role="tablist" aria-label="Common growth blockers">
+          <button class="ptab is-active" role="tab" aria-selected="true" data-problem="0">Start</button>
+          <button class="ptab" role="tab" aria-selected="false" data-problem="1">Consistency</button>
+          <button class="ptab" role="tab" aria-selected="false" data-problem="2">Value</button>
+        </div>
+        <article class="problem-tabs__panel" id="problemPanel" role="tabpanel" aria-live="polite"></article>
       </div>
     </div>
   </section>
@@ -161,7 +153,7 @@
     </div>
   </section>
 
-  <!-- ============ OUTCOMES ============ -->
+  <!-- ============ OUTCOMES ============
   <section class="section section--paper" id="outcomes">
     <div class="container">
       <p class="eyebrow reveal">What you walk away with</p>
@@ -180,6 +172,7 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- ============ WHY DIFFERENT ============ -->
   <section class="section section--paper section--tight" id="different">
@@ -210,7 +203,7 @@
     </div>
   </section>
 
-  <!-- ============ FOR INSTITUTES ============ -->
+  <!-- ============ FOR INSTITUTES ============
   <section class="section section--ink" id="institutes">
     <div class="container">
       <div class="split">
@@ -232,11 +225,12 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- ============ PRICING ============ -->
-  <section class="section section--paper" id="pricing">
+  <section class="section section--ink" id="pricing">
     <div class="container">
-      <p class="eyebrow reveal">Pricing</p>
+      <p class="eyebrow eyebrow--lime reveal">Pricing</p>
       <h2 class="section__title reveal">Choose your starting point.</h2>
       <p class="lede lede--center reveal">The best value for most learners is the Cohort plan: guided delivery, weekly accountability, and full outcomes support.</p>
 
