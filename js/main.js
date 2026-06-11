@@ -177,4 +177,67 @@
       });
     });
   }
+
+  /* ---------- Dynamic courses from CSV ---------- */
+  function parseCSV(text) {
+    var rows = text.trim().split(/\r?\n/);
+    if (!rows.length) return [];
+
+    var headers = rows[0].split(",").map(function (h) { return h.trim(); });
+    return rows.slice(1).filter(Boolean).map(function (row) {
+      var cols = row.split(",").map(function (c) { return c.trim(); });
+      var item = {};
+      headers.forEach(function (h, i) { item[h] = cols[i] || ""; });
+      return item;
+    });
+  }
+
+  function renderCourses(courses) {
+    var grid = $("#coursesGrid");
+    if (!grid) return;
+
+    var countText = $("#coursesCountText");
+    if (countText) {
+      countText.textContent =
+        courses.length + " focused courses drawn from our programs. Take one, take a few - every course ends with something you've actually made.";
+    }
+
+    var cards = courses.map(function (course) {
+      var colorVar = "var(--" + (course.color || "brand") + ")";
+      return ""
+        + '<article class="course reveal is-in">'
+        + '  <div class="course__top">'
+        + '    <span class="course__dot" style="--c:' + colorVar + '"></span>'
+        + '    <span class="course__cat">' + (course.category || "") + '</span>'
+        + "  </div>"
+        + "  <h3>" + (course.title || "") + "</h3>"
+        + "  <p>" + (course.description || "") + "</p>"
+        + '  <div class="course__foot">'
+        + '    <span><b>' + (course.lessons || "") + '</b> lessons</span>'
+        + '    <span><b>' + (course.duration || "") + "</b> total</span>"
+        + "  </div>"
+        + "</article>";
+    }).join("");
+
+    grid.innerHTML = cards;
+  }
+
+  function initDynamicCourses() {
+    if (!$("#coursesGrid")) return;
+
+    fetch("assets/courses.csv", { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Could not load courses.csv");
+        return res.text();
+      })
+      .then(function (text) {
+        renderCourses(parseCSV(text));
+      })
+      .catch(function () {
+        var countText = $("#coursesCountText");
+        if (countText) countText.textContent = "Courses are temporarily unavailable.";
+      });
+  }
+
+  initDynamicCourses();
 })();
