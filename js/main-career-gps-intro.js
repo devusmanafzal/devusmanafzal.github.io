@@ -38,6 +38,6 @@
       /* Ignore storage write issues and continue with navigation. */
     }
 
-    window.location.href = "career-gps-dashboard.html?view=questions";
+    window.location.href = "careergps.html?view=questions";
   });
 })();

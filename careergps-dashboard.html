@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career GPS Dashboard — Zero2Grow</title>
+  <meta name="description" content="Your Career GPS dashboard with category scores, strengths, focus areas, and next-step recommendation." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles-career-gps.css" />
+</head>
+<body class="gps-page">
+
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html" aria-label="Zero2Grow home">
+        <span class="brand__mark">Z²G</span>
+        <span class="brand__word">ZERO<span class="accent">2</span>GROW</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="courses.html">Courses</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="programs.html" class="btn btn--sm btn--lime">Explore programs</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="gps-section gps-results" id="results" hidden>
+      <div class="container">
+        <div class="gps-section__head reveal is-in">
+          <p class="eyebrow">Results Dashboard</p>
+          <h1 class="gps-section__title">Your Career GPS result is ready.</h1>
+          <p class="gps-section__lede">This is your starting point: a score, a stage, your strongest areas, and the few things most worth improving next.</p>
+        </div>
+
+        <div class="gps-results__grid">
+          <article class="gps-card gps-score-card reveal is-in">
+            <p class="gps-card__eyebrow">Career GPS Score</p>
+            <div class="gps-score-card__value" id="gpsOverallScore">0 / 100</div>
+            <p class="gps-score-card__stage" id="gpsOverallStage">Building Foundation</p>
+            <p class="gps-score-card__message" id="gpsOverallMessage"></p>
+          </article>
+
+          <article class="gps-card gps-chart-card reveal is-in">
+            <div class="gps-card__head">
+              <p class="gps-card__eyebrow">Category scores</p>
+              <p class="gps-card__meta">Bar view</p>
+            </div>
+            <div class="gps-bars" id="gpsScoreBars"></div>
+          </article>
+
+          <article class="gps-card gps-list-card reveal is-in">
+            <p class="gps-card__eyebrow">Your current strengths</p>
+            <ul class="gps-list" id="gpsStrengths"></ul>
+          </article>
+
+          <article class="gps-card gps-list-card reveal is-in">
+            <p class="gps-card__eyebrow">Your recommended focus areas</p>
+            <ul class="gps-list" id="gpsFocus"></ul>
+          </article>
+
+          <article class="gps-card gps-next-card reveal is-in">
+            <p class="gps-card__eyebrow">Next step recommendation</p>
+            <div id="gpsRecommendation"></div>
+          </article>
+
+          <article class="gps-snapshot reveal is-in" id="gpsSnapshot">
+            <div class="gps-snapshot__head">
+              <div>
+                <p class="gps-card__eyebrow">Career GPS Snapshot</p>
+                <h2 id="gpsSnapshotTitle">Snapshot summary</h2>
+              </div>
+              <button type="button" class="btn btn--ghost gps-print-hide" data-print-snapshot>Print / Save Snapshot</button>
+            </div>
+
+            <div class="gps-snapshot__meta">
+              <div>
+                <span>Name</span>
+                <strong id="gpsSnapshotName">Optional</strong>
+              </div>
+              <div>
+                <span>Date</span>
+                <strong id="gpsSnapshotDate">Today</strong>
+              </div>
+              <div>
+                <span>Overall score</span>
+                <strong id="gpsSnapshotScore">0 / 100</strong>
+              </div>
+              <div>
+                <span>Stage</span>
+                <strong id="gpsSnapshotStage">Building Foundation</strong>
+              </div>
+            </div>
+
+            <div class="gps-snapshot__scores" id="gpsSnapshotScores"></div>
+
+            <div class="gps-snapshot__split">
+              <div>
+                <p class="gps-snapshot__label">Top strengths</p>
+                <ul class="gps-list" id="gpsSnapshotStrengths"></ul>
+              </div>
+              <div>
+                <p class="gps-snapshot__label">Growth focus</p>
+                <ul class="gps-list" id="gpsSnapshotFocus"></ul>
+              </div>
+            </div>
+
+            <div class="gps-snapshot__footer">
+              <div>
+                <p class="gps-snapshot__label">Recommended next move</p>
+                <p id="gpsSnapshotRecommendation"></p>
+              </div>
+              <div>
+                <p class="gps-snapshot__label">Reflection prompt</p>
+                <p id="gpsSnapshotReflection">Based on your Career GPS result, what is one area you want to improve in the next 30 days?</p>
+              </div>
+            </div>
+
+            <div class="gps-snapshot__cta gps-print-hide">
+              <a href="contact.html" class="btn btn--lime">Create My NorthStar</a>
+              <a href="careeros.html" class="btn btn--ghost">Explore the Career OS Program</a>
+              <a href="careergps.html?view=questions" class="btn btn--ghost">Retake Assessment</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gps-section" id="gpsNoResult" hidden>
+      <div class="container">
+        <div class="gps-card" style="max-width:780px;margin:0 auto;">
+          <p class="eyebrow">Dashboard unavailable</p>
+          <h2 class="gps-section__title" style="font-size:clamp(28px,4vw,40px);">Complete your assessment first.</h2>
+          <p class="gps-section__lede">We could not find a submitted snapshot in this browser session yet.</p>
+          <div class="gps-hero__actions" style="margin-top:20px;">
+            <a href="careergps.html?view=questions" class="btn btn--lime">Go to Assessment</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <span class="brand__mark">Z²G</span>
+            <span class="brand__word">ZERO<span class="accent">2</span>GROW</span>
+          </div>
+          <p class="footer__tag">Your operating system for growth in the AI era. Hands-on programs that turn ambition into capability.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Programs</h4>
+          <a href="programs.html">Z2G Career OS</a>
+          <a href="programs.html">Founder OS</a>
+          <a href="programs.html">Leadership OS</a>
+          <a href="programs.html">AI Studio</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="about.html">About us</a>
+          <a href="courses.html">Courses</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer__col">
+          <h4>Tools</h4>
+          <a href="careergps.html">Career GPS Assessment</a>
+          <a href="careergps-dashboard.html">Career GPS Dashboard</a>
+          <a href="careeros.html">Career OS</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© <span id="year">2026</span> Zero2Grow. All rights reserved.</p>
+        <p class="footer__meta">Made for people who refuse to plateau.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="to-top" id="toTop" aria-label="Back to top">↑</a>
+
+  <script src="js/main.js"></script>
+  <script src="js/main-career-gps-dashboard.js"></script>
+</body>
+</html>

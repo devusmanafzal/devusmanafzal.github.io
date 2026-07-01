@@ -38,6 +38,49 @@
     });
   }
 
+  /* ---------- Sticky-nav hash offset ---------- */
+  function getAnchorOffset() {
+    return nav ? nav.getBoundingClientRect().height + 16 : 16;
+  }
+
+  function scrollToHashTarget(hash, behavior) {
+    if (!hash || hash === "#") return false;
+
+    var id = decodeURIComponent(hash.slice(1));
+    if (!id) return false;
+
+    var target = document.getElementById(id);
+    if (!target) return false;
+
+    var top = target.getBoundingClientRect().top + window.scrollY - getAnchorOffset();
+    window.scrollTo({ top: Math.max(0, top), behavior: behavior || "auto" });
+    return true;
+  }
+
+  $all('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      var href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+
+      e.preventDefault();
+      scrollToHashTarget(href, "smooth");
+
+      if (window.location.hash === href) history.replaceState(null, "", href);
+      else history.pushState(null, "", href);
+    });
+  });
+
+  window.addEventListener("hashchange", function () {
+    scrollToHashTarget(window.location.hash, "auto");
+  });
+
+  window.addEventListener("load", function () {
+    if (!window.location.hash) return;
+    window.setTimeout(function () {
+      scrollToHashTarget(window.location.hash, "auto");
+    }, 0);
+  });
+
   /* ---------- Scroll reveal ---------- */
   var revealEls = $all(".reveal");
   if ("IntersectionObserver" in window && revealEls.length) {

@@ -354,6 +354,7 @@ main {
 .gps-flow-intro {
   position: relative;
   padding: 84px 0 88px;
+  scroll-margin-top: 94px;
 }
 
 .gps-flow-intro__card {
@@ -883,6 +884,74 @@ body.gps-page--questions .gps-step-controls {
   transform: none;
 }
 
+.gps-submit-confirm {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(18, 30, 44, .14);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .45s var(--ease), visibility .45s var(--ease);
+}
+
+.gps-submit-confirm.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gps-submit-confirm__dialog {
+  width: min(540px, 100%);
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 28px 64px -36px rgba(20, 32, 51, .45);
+  padding: 24px;
+  transform: translateY(14px) scale(.985);
+  opacity: 0;
+  transition: transform .5s var(--ease), opacity .5s var(--ease);
+}
+
+.gps-submit-confirm.is-visible .gps-submit-confirm__dialog {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.gps-submit-confirm__eyebrow {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted-hi);
+  font-weight: 700;
+}
+
+.gps-submit-confirm__dialog h3 {
+  margin-top: 8px;
+  font-size: clamp(22px, 3.2vw, 30px);
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.gps-submit-confirm__dialog p {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.gps-submit-confirm__actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.gps-submit-confirm__actions .btn {
+  min-width: 140px;
+}
+
 .gps-option input:focus-visible + label {
   box-shadow: 0 0 0 4px rgba(109, 145, 166, .18);
 }
@@ -1165,7 +1234,7 @@ body.gps-page--questions .gps-step-controls {
   .gps-hero__copy {
     display: flex;
     flex-direction: column;
-    min-height: calc(100svh - 132px);
+    min-height: auto;
   }
 
   .gps-section {
@@ -1193,6 +1262,7 @@ body.gps-page--questions .gps-step-controls {
   .gps-flow-intro {
     padding-top: 10px;
     padding-bottom: 18px;
+    scroll-margin-top: 84px;
   }
 
   .gps-flow-intro__card {
@@ -1276,9 +1346,15 @@ body.gps-page--questions .gps-step-controls {
     margin-top: 12px;
   }
 
+  .gps-measures-label {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: .12em;
+  }
+
   .gps-hero__actions {
-    margin-top: auto;
-    padding-top: 16px;
+    margin-top: 18px;
+    padding-top: 0;
     gap: 10px;
   }
 
@@ -1334,8 +1410,14 @@ body.gps-page--questions .gps-step-controls {
   }
 
   .gps-signal-list--hero li {
-    padding: 7px 10px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .gps-signal-list--hero {
+    gap: 7px;
+    margin-top: 10px;
+    margin-bottom: 6px;
   }
 
   .gps-signal-list li::after {
@@ -1541,6 +1623,31 @@ body.gps-page--questions .gps-step-controls {
   .gps-arrow-btn {
     width: 50px;
     height: 50px;
+  }
+
+  .gps-submit-confirm__dialog {
+    border-radius: 18px;
+    padding: 16px;
+  }
+
+  .gps-submit-confirm__dialog h3 {
+    font-size: 23px;
+  }
+
+  .gps-submit-confirm__actions {
+    flex-direction: column;
+  }
+
+  .gps-submit-confirm__actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gps-submit-confirm,
+  .gps-submit-confirm__dialog {
+    transition: none;
   }
 }
 

@@ -95,6 +95,7 @@
   var params = new URLSearchParams(window.location.search);
   var questionView = params.get("view") === "questions";
   var profileStorageKey = "careerGpsProfile";
+  var resultStorageKey = "careerGpsLatestResults";
 
   var state = {
     step: 0,
@@ -116,24 +117,15 @@
   var questionNextBtn = $("#gpsQuestionNext");
   var stepBackBtn = $("#gpsStepBack");
   var stepNextBtn = $("#gpsStepNext");
-  var resultsSection = $("#results");
-  var snapshotNameInput = $("#snapshotName");
-  var overallScore = $("#gpsOverallScore");
-  var overallStage = $("#gpsOverallStage");
-  var overallMessage = $("#gpsOverallMessage");
-  var scoreBars = $("#gpsScoreBars");
-  var strengthsList = $("#gpsStrengths");
-  var focusList = $("#gpsFocus");
-  var recommendation = $("#gpsRecommendation");
-  var snapshotTitle = $("#gpsSnapshotTitle");
-  var snapshotName = $("#gpsSnapshotName");
-  var snapshotDate = $("#gpsSnapshotDate");
-  var snapshotScore = $("#gpsSnapshotScore");
-  var snapshotStage = $("#gpsSnapshotStage");
-  var snapshotScores = $("#gpsSnapshotScores");
-  var snapshotStrengths = $("#gpsSnapshotStrengths");
-  var snapshotFocus = $("#gpsSnapshotFocus");
-  var snapshotRecommendation = $("#gpsSnapshotRecommendation");
+  var profileName = "";
+  var submitDialogState = {
+    root: null,
+    panel: null,
+    cancelBtn: null,
+    proceedBtn: null,
+    resolver: null,
+    handleEsc: null
+  };
 
   if (questionView) {
     document.body.classList.add("gps-page--questions");
@@ -143,9 +135,7 @@
     var savedProfile = sessionStorage.getItem(profileStorageKey);
     if (savedProfile) {
       var parsedProfile = JSON.parse(savedProfile);
-      if (snapshotNameInput && parsedProfile.name) {
-        snapshotNameInput.value = parsedProfile.name;
-      }
+      if (parsedProfile.name) profileName = parsedProfile.name;
     }
   } catch (err) {
     /* Ignore storage read issues and keep working without prefill. */
@@ -307,10 +297,6 @@
         applySliderVisuals(input, selectedValue);
         updateTickState(input.name, selectedValue);
         syncControls();
-        if (state.results) {
-          state.results = computeResults();
-          renderResults(state.results);
-        }
       };
       input.addEventListener("input", updateValue);
       input.addEventListener("change", updateValue);
@@ -401,7 +387,7 @@
     });
 
     var stage = getStage(overall);
-    var nameValue = snapshotNameInput ? snapshotNameInput.value.trim() : "";
+    var nameValue = profileName;
     var dateValue = state.resultDate || new Date();
     var lowest = ranked[ranked.length - 1];
 
@@ -418,57 +404,109 @@
     };
   }
 
-  function renderBarList(target, items) {
-    if (!target) return;
-    target.innerHTML = items.map(function (item) {
-      return '' +
-        '<div class="gps-bar">' +
-          '<div class="gps-bar__top"><span>' + item.short + '</span><strong>' + item.score + '/100</strong></div>' +
-          '<div class="gps-bar__track"><div class="gps-bar__fill" style="width:' + item.score + '%"></div></div>' +
-        '</div>';
-    }).join("");
-  }
-
-  function renderNameList(target, items) {
-    if (!target) return;
-    target.innerHTML = items.map(function (item) {
-      return '<li>' + item.title + '</li>';
-    }).join("");
-  }
-
-  function renderResults(results, options) {
-    if (!resultsSection) return;
-    var shouldScroll = !options || options.scroll !== false;
-
-    resultsSection.hidden = false;
-    if (shouldScroll) {
-      resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    overallScore.textContent = results.overall + " / 100";
-    overallStage.textContent = results.stage.label;
-    overallMessage.textContent = results.stage.message;
-    renderBarList(scoreBars, results.scores);
-    renderNameList(strengthsList, results.strengths);
-    renderNameList(focusList, results.focus);
-    recommendation.textContent = results.recommendation;
-
-    snapshotTitle.textContent = results.title;
-    snapshotName.textContent = results.name || "Optional";
-    snapshotDate.textContent = results.date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-    snapshotScore.textContent = results.overall + " / 100";
-    snapshotStage.textContent = results.stage.label;
-    renderBarList(snapshotScores, results.scores);
-    renderNameList(snapshotStrengths, results.strengths);
-    renderNameList(snapshotFocus, results.focus);
-    snapshotRecommendation.textContent = results.recommendation;
+  function serializeResults(results) {
+    return {
+      name: results.name,
+      date: results.date.toISOString(),
+      overall: results.overall,
+      stage: results.stage,
+      scores: results.scores,
+      strengths: results.strengths,
+      focus: results.focus,
+      recommendation: results.recommendation,
+      title: results.title
+    };
   }
 
   function finishAssessment() {
     if (!stepComplete(state.step)) return;
-    state.resultDate = new Date();
-    state.results = computeResults();
-    renderResults(state.results);
+    openSubmitDialog(function (confirmed) {
+      if (!confirmed) return;
+
+      state.resultDate = new Date();
+      state.results = computeResults();
+
+      try {
+        sessionStorage.setItem(resultStorageKey, JSON.stringify(serializeResults(state.results)));
+      } catch (err) {
+        window.alert("We could not save your snapshot locally. Please allow browser storage and try again.");
+        return;
+      }
+
+      window.location.href = "careergps-dashboard.html";
+    });
+  }
+
+  function ensureSubmitDialog() {
+    if (submitDialogState.root) return;
+
+    var root = document.createElement("div");
+    root.className = "gps-submit-confirm";
+    root.setAttribute("hidden", "");
+    root.innerHTML = '' +
+      '<div class="gps-submit-confirm__dialog" role="dialog" aria-modal="true" aria-labelledby="gpsSubmitConfirmTitle" aria-describedby="gpsSubmitConfirmBody">' +
+        '<p class="gps-submit-confirm__eyebrow">Final step</p>' +
+        '<h3 id="gpsSubmitConfirmTitle">Submit assessment and open your dashboard?</h3>' +
+        '<p id="gpsSubmitConfirmBody">Your answers will be saved in this browser session, then your Career GPS Dashboard will open.</p>' +
+        '<div class="gps-submit-confirm__actions">' +
+          '<button type="button" class="btn btn--ghost gps-submit-confirm__cancel">Not yet</button>' +
+          '<button type="button" class="btn btn--lime gps-submit-confirm__proceed">Continue</button>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(root);
+
+    submitDialogState.root = root;
+    submitDialogState.panel = $(".gps-submit-confirm__dialog", root);
+    submitDialogState.cancelBtn = $(".gps-submit-confirm__cancel", root);
+    submitDialogState.proceedBtn = $(".gps-submit-confirm__proceed", root);
+
+    var resolveDialog = function (decision) {
+      if (!submitDialogState.resolver) return;
+
+      var callback = submitDialogState.resolver;
+      submitDialogState.resolver = null;
+
+      root.classList.remove("is-visible");
+      window.setTimeout(function () {
+        root.setAttribute("hidden", "");
+        document.removeEventListener("keydown", submitDialogState.handleEsc);
+        callback(decision);
+      }, 220);
+    };
+
+    submitDialogState.cancelBtn.addEventListener("click", function () {
+      resolveDialog(false);
+    });
+
+    submitDialogState.proceedBtn.addEventListener("click", function () {
+      resolveDialog(true);
+    });
+
+    root.addEventListener("click", function (event) {
+      if (event.target === root) {
+        resolveDialog(false);
+      }
+    });
+
+    submitDialogState.handleEsc = function (event) {
+      if (event.key === "Escape") {
+        resolveDialog(false);
+      }
+    };
+  }
+
+  function openSubmitDialog(onDecision) {
+    ensureSubmitDialog();
+    submitDialogState.resolver = onDecision;
+    submitDialogState.root.removeAttribute("hidden");
+
+    window.requestAnimationFrame(function () {
+      submitDialogState.root.classList.add("is-visible");
+      submitDialogState.proceedBtn.focus();
+    });
+
+    document.addEventListener("keydown", submitDialogState.handleEsc);
   }
 
   if (questionBackBtn) {
@@ -527,23 +565,21 @@
 
   $all("[data-print-snapshot]").forEach(function (button) {
     button.addEventListener("click", function () {
-      if (!state.results) {
-        state.resultDate = new Date();
-        state.results = computeResults();
-        renderResults(state.results);
+      var savedResults = null;
+      try {
+        savedResults = sessionStorage.getItem(resultStorageKey);
+      } catch (err) {
+        savedResults = null;
       }
-      window.print();
+
+      if (!savedResults) {
+        window.alert("Complete and submit the assessment first to view your dashboard snapshot.");
+        return;
+      }
+
+      window.location.href = "careergps-dashboard.html";
     });
   });
-
-  if (snapshotNameInput) {
-    snapshotNameInput.addEventListener("input", function () {
-      if (state.results) {
-        state.results = computeResults();
-        renderResults(state.results, { scroll: false });
-      }
-    });
-  }
 
   renderStep();
 })();
