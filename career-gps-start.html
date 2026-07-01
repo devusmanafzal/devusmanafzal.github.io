@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career GPS Assessment Flow — Zero2Grow</title>
+  <meta name="description" content="Prepare for the Career GPS assessment. Review the flow, optionally add your details, and begin the guided questions." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles-career-gps.css" />
+</head>
+<body class="gps-page gps-page--intro-flow">
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html" aria-label="Zero2Grow home">
+        <span class="brand__mark">Z²G</span>
+        <span class="brand__word">ZERO<span class="accent">2</span>GROW</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="programs.html">Programs</a>
+        <a href="courses.html">Courses</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="programs.html" class="btn btn--sm btn--lime">Explore programs</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="gps-flow-intro">
+      <div class="gps-hero__glow gps-hero__glow--1"></div>
+      <div class="gps-hero__glow gps-hero__glow--2"></div>
+      <div class="container">
+        <div class="gps-flow-intro__card reveal">
+          <div class="gps-flow-intro__copy">
+            <p class="eyebrow">Assessment Flow</p>
+            <h1 class="gps-section__title">Take a quick pause before you begin.</h1>
+            <p class="gps-section__lede">You will move through six focused stages, one question at a time. Add your details if you want your final snapshot to feel more personal.</p>
+          </div>
+
+          <div class="gps-flow-intro__grid">
+            <div class="gps-flow-intro__panel">
+              <p class="gps-flow-intro__label">What to expect</p>
+              <ul class="gps-flow-list">
+                <li>6 growth stages</li>
+                <li>3 questions in each stage</li>
+                <li>Real-time score and summary at the end</li>
+              </ul>
+
+              <div class="gps-flow-signals">
+                <span>Direction</span>
+                <span>Confidence</span>
+                <span>Visibility</span>
+                <span>Communication</span>
+                <span>AI Readiness</span>
+                <span>Productivity</span>
+              </div>
+            </div>
+
+            <form class="gps-flow-form gps-flow-intro__panel" id="gpsIntroForm">
+              <p class="gps-flow-intro__label">Optional details</p>
+              <div class="gps-field">
+                <label for="introName">Your name <span class="gps-muted">optional</span></label>
+                <input type="text" id="introName" name="introName" placeholder="Your name" autocomplete="name" />
+              </div>
+              <div class="gps-field">
+                <label for="introEmail">Email address <span class="gps-muted">optional</span></label>
+                <input type="email" id="introEmail" name="introEmail" placeholder="you@example.com" autocomplete="email" />
+              </div>
+              <button type="submit" class="btn btn--lime gps-flow-form__submit">Let's Start</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">
+            <span class="brand__mark">Z²G</span>
+            <span class="brand__word">ZERO<span class="accent">2</span>GROW</span>
+          </div>
+          <p class="footer__tag">Your operating system for growth in the AI era. Hands-on programs that turn ambition into capability.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Programs</h4>
+          <a href="programs.html">Z2G Career OS</a>
+          <a href="programs.html">Founder OS</a>
+          <a href="programs.html">Leadership OS</a>
+          <a href="programs.html">AI Studio</a>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <a href="about.html">About us</a>
+          <a href="courses.html">Courses</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer__col">
+          <h4>Tools</h4>
+          <a href="career-gps-dashboard.html">Career GPS Dashboard</a>
+          <a href="careeros.html">Career OS</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© <span id="year">2026</span> Zero2Grow. All rights reserved.</p>
+        <p class="footer__meta">Made for people who refuse to plateau.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="to-top" id="toTop" aria-label="Back to top">↑</a>
+  <script src="js/main.js"></script>
+  <script src="js/main-career-gps-intro.js"></script>
+</body>
+</html>
