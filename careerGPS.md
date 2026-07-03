@@ -146,36 +146,43 @@ Questions:
 * I manage my time and energy intentionally.
 * I use routines or workflows to reduce repeated effort.
 
-Use a 1–5 rating scale:
+Use a 1-5 rating scale:
 
-1. Strongly disagree
-2. Disagree
-3. Neutral
-4. Agree
-5. Strongly agree
+1. No
+2. Rarely
+3. Sometimes
+4. Often
+5. Consistently
 
 ***
 
 # Scoring Logic
 
-Calculate a score for each category:
+Calculate a score for each dimension:
 
 * Direction
-* Confidence
-* Personal Brand & Visibility
-* Professional Communication
-* AI Readiness
-* Productivity & Consistency
+* Visibility
+* Capability
+* Amplification
 
-Each category should be scored from 0 to 100.
+Each dimension is scored from 0 to 100.
 
-Example logic:
+Dimension score formula:
 
-* Average the 1–5 answers in each category
-* Convert to percentage  
-  Formula: `(average score / 5) * 100`
+`(average question score / 5) * 100`
 
-Also calculate an overall **Career GPS Score** as the average of all category scores.
+Overall Career GPS Score formula:
+
+`(Direction + Visibility + Capability + Amplification) / 4`
+
+Example:
+
+* Direction = 80
+* Visibility = 65
+* Capability = 75
+* Amplification = 60
+
+Career GPS Score = 70
 
 ***
 
@@ -191,14 +198,15 @@ Display:
 
 Add a short interpretation:
 
-* 0–40: Early Exploration
-* 41–60: Building Foundation
-* 61–80: Growth Ready
-* 81–100: Momentum Builder
+* 0-49: Explorer
+* 50-64: Builder
+* 65-79: Momentum Builder
+* 80-89: Amplifier
+* 90-100: Catalyst
 
 Example message:
 
-**You are in the Growth Ready stage. You already have a foundation to build on, and your next step is to focus on visibility, consistency, and practical AI usage.**
+**You are in the Momentum Builder stage. You have direction and momentum, and your next step is making your strengths more visible and amplifying your impact.**
 
 ***
 
@@ -212,14 +220,12 @@ Shows overall Career GPS Score.
 
 ## 2. Radar Chart or Bar Chart
 
-Shows the six category scores:
+Shows the four dimension scores:
 
 * Direction
-* Confidence
 * Visibility
-* Communication
-* AI Readiness
-* Productivity
+* Capability
+* Amplification
 
 If radar chart is difficult, use horizontal progress bars.
 

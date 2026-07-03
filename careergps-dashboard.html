@@ -39,99 +39,101 @@
       <div class="container">
         <div class="gps-section__head reveal is-in">
           <p class="eyebrow">Results Dashboard</p>
-          <h1 class="gps-section__title">Your Career GPS result is ready.</h1>
+          <h1 class="gps-section__title">Your Career GPS Snapshot</h1>
           <p class="gps-section__lede">This is your starting point: a score, a stage, your strongest areas, and the few things most worth improving next.</p>
         </div>
 
+        <div class="gps-top-meta reveal is-in" aria-label="Snapshot identity">
+          <p class="gps-top-meta__item"><span>Name</span><strong id="gpsTopName">Optional</strong></p>
+          <p class="gps-top-meta__item"><span>Date</span><strong id="gpsTopDate">Today</strong></p>
+        </div>
+
         <div class="gps-results__grid">
-          <article class="gps-card gps-score-card reveal is-in">
-            <p class="gps-card__eyebrow">Career GPS Score</p>
-            <div class="gps-score-card__value" id="gpsOverallScore">0 / 100</div>
-            <p class="gps-score-card__stage" id="gpsOverallStage">Building Foundation</p>
-            <p class="gps-score-card__message" id="gpsOverallMessage"></p>
+          <article class="gps-card gps-position-card reveal is-in">
+            <div class="gps-position-card__head">
+              <p class="gps-card__eyebrow gps-position-card__title">📍 Your Career GPS Position</p>
+              <div class="gps-position-card__actions gps-print-hide" aria-label="Position card actions">
+                <button type="button" class="gps-action-btn gps-action-btn--primary" data-print-snapshot>
+                  <span class="gps-action-btn__icon" aria-hidden="true">🖨️</span>
+                  <span>Save Snapshot</span>
+                </button>
+                <a href="careergps.html?view=questions" class="gps-action-btn">
+                  <span class="gps-action-btn__icon" aria-hidden="true">↻</span>
+                  <span>Retake Assessment</span>
+                </a>
+              </div>
+            </div>
+            <div class="gps-position-card__body">
+              <div class="gps-position-card__media" aria-hidden="true">
+                <div class="gps-position-card__icon" id="gpsPositionIcon">🧭</div>
+              </div>
+              <div class="gps-position-card__status" aria-live="polite">
+                <p class="gps-position-card__meta">You are a</p>
+                <h2 class="gps-position-card__band" id="gpsPositionBand">Explorer</h2>
+              </div>
+            </div>
+            <p class="gps-position-card__description" id="gpsPositionDescription">You are exploring possibilities and building clarity about your future.</p>
+            <div class="gps-position-card__focus-line">
+              <p class="gps-position-card__focus-title">You are good at:</p>
+              <div class="gps-position-card__focus" id="gpsPositionFocus"></div>
+            </div>
           </article>
+
+          <div class="gps-mini-row reveal is-in">
+            <article class="gps-card gps-mini-card gps-mini-score-ring">
+              <p class="gps-card__eyebrow">GPS Score</p>
+              <div class="gps-mini-ring-wrap">
+                <div class="gps-mini-ring" aria-hidden="true">
+                  <svg viewBox="0 0 120 120" role="presentation" focusable="false">
+                    <circle class="gps-mini-ring__track" cx="60" cy="60" r="52"></circle>
+                    <circle class="gps-mini-ring__progress" id="gpsMiniRingProgress" cx="60" cy="60" r="52"></circle>
+                  </svg>
+                  <div class="gps-mini-ring__value" id="gpsMiniRingValue">0</div>
+                </div>
+                <div class="gps-mini-info" id="gpsMiniInfoWrap">
+                  <button type="button" class="gps-mini-info__btn" id="gpsMiniInfoBtn" aria-label="Show dimension breakdown" aria-expanded="false">i</button>
+                  <div class="gps-mini-info__panel" id="gpsMiniInfoPanel" role="dialog" aria-label="Dimension Breakdown" hidden>
+                    <div class="gps-mini-info__list" id="gpsMiniScoreInfoList"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="gps-card gps-mini-card gps-mini-focus-card">
+              <p class="gps-card__eyebrow">Next Focus</p>
+              <ul class="gps-mini-focus-list" id="gpsMiniRecommendedFocus">
+                <li>Focus Area 1</li>
+                <li>Focus Area 2</li>
+              </ul>
+            </article>
+          </div>
 
           <article class="gps-card gps-chart-card reveal is-in">
             <div class="gps-card__head">
-              <p class="gps-card__eyebrow">Category scores</p>
-              <p class="gps-card__meta">Bar view</p>
+              <p class="gps-card__eyebrow">Dimension scores</p>
             </div>
             <div class="gps-bars" id="gpsScoreBars"></div>
           </article>
 
-          <article class="gps-card gps-list-card reveal is-in">
-            <p class="gps-card__eyebrow">Your current strengths</p>
-            <ul class="gps-list" id="gpsStrengths"></ul>
-          </article>
-
-          <article class="gps-card gps-list-card reveal is-in">
-            <p class="gps-card__eyebrow">Your recommended focus areas</p>
-            <ul class="gps-list" id="gpsFocus"></ul>
-          </article>
-
           <article class="gps-card gps-next-card reveal is-in">
-            <p class="gps-card__eyebrow">Next step recommendation</p>
+            <div class="gps-next-card__head">
+              <span class="gps-next-card__icon" id="gpsRecommendationIcon" aria-hidden="true">🚀</span>
+              <p class="gps-card__eyebrow">Next step recommendation</p>
+            </div>
             <div id="gpsRecommendation"></div>
           </article>
 
-          <article class="gps-snapshot reveal is-in" id="gpsSnapshot">
-            <div class="gps-snapshot__head">
-              <div>
-                <p class="gps-card__eyebrow">Career GPS Snapshot</p>
-                <h2 id="gpsSnapshotTitle">Snapshot summary</h2>
-              </div>
-              <button type="button" class="btn btn--ghost gps-print-hide" data-print-snapshot>Print / Save Snapshot</button>
-            </div>
+        </div>
 
-            <div class="gps-snapshot__meta">
-              <div>
-                <span>Name</span>
-                <strong id="gpsSnapshotName">Optional</strong>
-              </div>
-              <div>
-                <span>Date</span>
-                <strong id="gpsSnapshotDate">Today</strong>
-              </div>
-              <div>
-                <span>Overall score</span>
-                <strong id="gpsSnapshotScore">0 / 100</strong>
-              </div>
-              <div>
-                <span>Stage</span>
-                <strong id="gpsSnapshotStage">Building Foundation</strong>
-              </div>
-            </div>
-
-            <div class="gps-snapshot__scores" id="gpsSnapshotScores"></div>
-
-            <div class="gps-snapshot__split">
-              <div>
-                <p class="gps-snapshot__label">Top strengths</p>
-                <ul class="gps-list" id="gpsSnapshotStrengths"></ul>
-              </div>
-              <div>
-                <p class="gps-snapshot__label">Growth focus</p>
-                <ul class="gps-list" id="gpsSnapshotFocus"></ul>
-              </div>
-            </div>
-
-            <div class="gps-snapshot__footer">
-              <div>
-                <p class="gps-snapshot__label">Recommended next move</p>
-                <p id="gpsSnapshotRecommendation"></p>
-              </div>
-              <div>
-                <p class="gps-snapshot__label">Reflection prompt</p>
-                <p id="gpsSnapshotReflection">Based on your Career GPS result, what is one area you want to improve in the next 30 days?</p>
-              </div>
-            </div>
-
-            <div class="gps-snapshot__cta gps-print-hide">
-              <a href="contact.html" class="btn btn--lime">Create My NorthStar</a>
-              <a href="careeros.html" class="btn btn--ghost">Explore the Career OS Program</a>
-              <a href="careergps.html?view=questions" class="btn btn--ghost">Retake Assessment</a>
-            </div>
-          </article>
+        <div class="gps-bottom-tools gps-print-hide reveal is-in" aria-label="Bottom quick actions">
+          <button type="button" class="gps-action-btn gps-action-btn--primary" data-print-snapshot>
+            <span class="gps-action-btn__icon" aria-hidden="true">🖨️</span>
+            <span>Save Snapshot</span>
+          </button>
+          <a href="careergps.html?view=questions" class="gps-action-btn">
+            <span class="gps-action-btn__icon" aria-hidden="true">↻</span>
+            <span>Retake Assessment</span>
+          </a>
         </div>
       </div>
     </section>

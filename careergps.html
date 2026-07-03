@@ -42,19 +42,20 @@
         <div class="gps-hero__copy reveal">
           <p class="eyebrow">Career GPS Assessment</p>
           <h1 class="gps-hero__title">Know where you are today, so you can choose where to go next.</h1>
-          <p class="gps-hero__lede">A calm self-assessment that turns six growth areas into a practical dashboard with clear insight, a score, and a next step.</p>
+          <p class="gps-hero__lede">A calm self-assessment that turns four growth stages into a practical dashboard with clear insight, a score, and a next step.</p>
+          <div class="gps-hero__map-wrap" aria-hidden="true">
+            <img src="assets/career-gps-map.svg" class="gps-hero__map" alt="" decoding="async" />
+          </div>
           <p class="gps-measures-label">What it measures</p>
           <ul class="gps-signal-list gps-signal-list--hero" aria-label="Assessment categories">
             <li>Direction</li>
-            <li>Confidence</li>
             <li>Visibility</li>
-            <li>Communication</li>
-            <li>AI Readiness</li>
-            <li>Productivity</li>
+            <li>Capability</li>
+            <li>Amplification</li>
           </ul>
           <div class="gps-hero__actions">
             <a href="#gpsFlowIntro" class="btn btn--lime" id="startAssessment">Start Assessment</a>
-            <button type="button" class="btn btn--ghost" data-print-snapshot>Save Snapshot</button>
+
           </div>
           <p class="gps-hero__note">Takes a few minutes. No right or wrong answers.</p>
         </div>
@@ -69,39 +70,38 @@
           <div class="gps-flow-intro__copy">
             <p class="eyebrow">Assessment Flow</p>
             <h2 class="gps-section__title">Take a quick pause before you begin.</h2>
-            <p class="gps-section__lede">You will move through six focused stages, one question at a time. Add your details if you want your final snapshot to feel more personal.</p>
+            <p class="gps-section__lede">You will move through four focused stages, one question at a time. Add your details if you want your final snapshot to feel more personal.</p>
           </div>
 
           <div class="gps-flow-intro__grid">
             <div class="gps-flow-intro__panel">
               <p class="gps-flow-intro__label">What to expect</p>
               <ul class="gps-flow-list">
-                <li>6 growth stages</li>
-                <li>3 questions in each stage</li>
+                <li>4 growth stages</li>
+                <li>3-4 questions in each stage</li>
                 <li>Real-time score and summary at the end</li>
               </ul>
 
               <div class="gps-flow-signals">
                 <span>Direction</span>
-                <span>Confidence</span>
                 <span>Visibility</span>
-                <span>Communication</span>
-                <span>AI Readiness</span>
-                <span>Productivity</span>
+                <span>Capability</span>
+                <span>Amplification</span>
               </div>
             </div>
 
-            <form class="gps-flow-form gps-flow-intro__panel" id="gpsIntroForm">
-              <p class="gps-flow-intro__label">Optional details</p>
+            <form class="gps-flow-form gps-flow-intro__panel gps-flow-intro__panel--highlight" id="gpsIntroForm">
+              <p class="gps-flow-intro__label">Make it personal</p>
+              <p class="gps-flow-intro__sublabel">Add your name so your final snapshot feels like it was made for you — not just anyone.</p>
               <div class="gps-field">
                 <label for="introName">Your name <span class="gps-muted">optional</span></label>
-                <input type="text" id="introName" name="introName" placeholder="Your name" autocomplete="name" />
+                <input type="text" id="introName" name="introName" placeholder="e.g. Alex" autocomplete="name" />
               </div>
               <div class="gps-field">
                 <label for="introEmail">Email address <span class="gps-muted">optional</span></label>
                 <input type="email" id="introEmail" name="introEmail" placeholder="you@example.com" autocomplete="email" />
               </div>
-              <button type="submit" class="btn btn--lime gps-flow-form__submit">Let's Start</button>
+              <button type="submit" class="btn btn--lime gps-flow-form__submit">Let's Start &rarr;</button>
             </form>
           </div>
         </div>
@@ -122,11 +122,10 @@
 
           <div class="gps-assessment__meta">
             <div>
-              <p class="gps-kicker" id="gpsCurrentKicker">Stage 1 of 6</p>
+              <p class="gps-kicker" id="gpsCurrentKicker">Stage 1 of 4</p>
               <h3 id="gpsStepTitle">Direction</h3>
-              <p id="gpsStepDescription">Clarity of goals and where you are headed next.</p>
+              <p id="gpsStepDescription">Can I make intentional decisions about my future?</p>
             </div>
-            <div class="gps-count" id="gpsStepCount">Only 2 more to go</div>
           </div>
 
           <div id="gpsQuestionDeck"></div>
@@ -135,6 +134,7 @@
             <button type="button" class="gps-arrow-btn" id="gpsQuestionBack" aria-label="Previous question">&larr;</button>
             <button type="button" class="gps-arrow-btn" id="gpsQuestionNext" aria-label="Next question">&rarr;</button>
           </div>
+          <p class="gps-stage-hint" id="gpsStageHint" aria-live="polite"></p>
         </div>
 
         <div class="gps-step-controls" aria-label="Stage navigation">

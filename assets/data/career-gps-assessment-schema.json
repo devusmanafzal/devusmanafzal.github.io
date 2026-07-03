@@ -1,0 +1,385 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageType": "assessment-product",
+  "id": "career-gps",
+  "slug": "career-gps",
+  "name": "Career GPS Assessment",
+  "version": "1.0.0",
+  "description": "Reusable 4-step assessment package for Career GPS with landing, intro, assessment, and dashboard result flow.",
+  "routes": {
+    "landing": "careergps.html",
+    "questions": "careergps.html?view=questions",
+    "results": "careergps-dashboard.html"
+  },
+  "storage": {
+    "namespace": "career-gps",
+    "profileKey": "careerGpsProfile",
+    "resultKey": "careerGpsLatestResults"
+  },
+  "meta": {
+    "estimatedMinutes": 6,
+    "category": "career-readiness",
+    "audience": [
+      "students",
+      "early-career-professionals",
+      "career-switchers"
+    ],
+    "tags": [
+      "career",
+      "assessment",
+      "ai-readiness",
+      "productivity",
+      "confidence"
+    ]
+  },
+  "steps": [
+    {
+      "id": "step-1-landing",
+      "order": 1,
+      "type": "landing",
+      "title": "Know where you are today, so you can choose where to go next.",
+      "eyebrow": "Career GPS Assessment",
+      "lede": "A calm self-assessment that turns four growth stages into a practical dashboard with clear insight, a score, and a next step.",
+      "measuresLabel": "What it measures",
+      "measures": [
+        "Direction",
+        "Visibility",
+        "Capability",
+        "Amplification"
+      ],
+      "note": "Takes a few minutes. No right or wrong answers.",
+      "actions": [
+        {
+          "id": "start-assessment",
+          "label": "Start Assessment",
+          "kind": "anchor",
+          "target": "#gpsFlowIntro"
+        }
+      ]
+    },
+    {
+      "id": "step-2-intro-input",
+      "order": 2,
+      "type": "intro-input",
+      "title": "Take a quick pause before you begin.",
+      "eyebrow": "Assessment Flow",
+      "lede": "You will move through four focused stages, one question at a time. Add your details if you want your final snapshot to feel more personal.",
+      "expectationsLabel": "What to expect",
+      "expectations": [
+        "4 growth stages",
+        "3 questions in each stage",
+        "Real-time score and summary at the end"
+      ],
+      "signals": [
+        "Direction",
+        "Visibility",
+        "Capability",
+        "Amplification"
+      ],
+      "form": {
+        "id": "gpsIntroForm",
+        "submitLabel": "Let's Start",
+        "redirectTo": "careergps.html?view=questions",
+        "fields": [
+          {
+            "id": "introName",
+            "name": "name",
+            "type": "text",
+            "label": "Your name",
+            "placeholder": "e.g. Alex",
+            "required": false,
+            "autocomplete": "name"
+          },
+          {
+            "id": "introEmail",
+            "name": "email",
+            "type": "email",
+            "label": "Email address",
+            "placeholder": "you@example.com",
+            "required": false,
+            "autocomplete": "email"
+          }
+        ]
+      }
+    },
+    {
+      "id": "step-3-assessment",
+      "order": 3,
+      "type": "assessment",
+      "title": "Answer honestly. The dashboard does the rest.",
+      "eyebrow": "Assessment Flow",
+      "lede": "Move through the steps at your pace and submit when every question is complete.",
+      "navigation": {
+        "kickerTemplate": "Stage {{current}} of {{total}}",
+        "questionBackAriaLabel": "Previous question",
+        "questionNextAriaLabel": "Next question",
+        "stepBackLabel": "Previous Stage",
+        "stepNextLabel": "Next Stage",
+        "stepSubmitLabel": "Submit"
+      },
+      "submitConfirmation": {
+        "eyebrow": "Final step",
+        "title": "Submit assessment and open your dashboard?",
+        "body": "Your answers will be saved in this browser session, then your Career GPS Dashboard will open.",
+        "cancelLabel": "Not yet",
+        "proceedLabel": "Continue"
+      },
+      "model": {
+        "scale": {
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "axisLowLabel": "Lower",
+          "axisHighLabel": "Higher",
+          "labels": {
+            "1": "Strongly disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly agree"
+          }
+        },
+        "sections": [
+          {
+            "id": "direction",
+            "title": "Direction",
+            "shortTitle": "Direction",
+            "description": "Can I make intentional decisions about my future?",
+            "questions": [
+              {
+                "id": "direction-q1",
+                "text": "I have a clear direction for what I want to work toward in the next 12 months."
+              },
+              {
+                "id": "direction-q2",
+                "text": "I make choices that align with my longer-term goals."
+              },
+              {
+                "id": "direction-q3",
+                "text": "I regularly review my priorities before committing time and effort."
+              }
+            ]
+          },
+          {
+            "id": "visibility",
+            "title": "Visibility",
+            "shortTitle": "Visibility",
+            "description": "Can others understand and recognize my value?",
+            "questions": [
+              {
+                "id": "visibility-q1",
+                "text": "I can clearly explain the value I bring in one minute or less."
+              },
+              {
+                "id": "visibility-q2",
+                "text": "My profile, portfolio, or public presence reflects my strengths and direction."
+              },
+              {
+                "id": "visibility-q3",
+                "text": "People around me can recognize what I am good at and what I am building toward."
+              }
+            ]
+          },
+          {
+            "id": "capability",
+            "title": "Capability",
+            "shortTitle": "Capability",
+            "description": "Can I consistently turn effort into results?",
+            "questions": [
+              {
+                "id": "capability-q1",
+                "text": "I consistently follow through on important tasks and commitments."
+              },
+              {
+                "id": "capability-q2",
+                "text": "I can communicate my ideas clearly in writing or speaking when needed."
+              },
+              {
+                "id": "capability-q3",
+                "text": "I have practical systems that help me turn plans into measurable progress."
+              }
+            ]
+          },
+          {
+            "id": "amplification",
+            "title": "Amplification",
+            "shortTitle": "Amplification",
+            "description": "Can I use AI and technology to multiply my impact?",
+            "questions": [
+              {
+                "id": "amplification-q1",
+                "text": "I use AI or digital tools to improve the quality and speed of my work."
+              },
+              {
+                "id": "amplification-q2",
+                "text": "I can choose the right technology for different tasks and goals."
+              },
+              {
+                "id": "amplification-q3",
+                "text": "I review and improve technology-assisted outputs before I use or share them."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "step-4-results-dashboard",
+      "order": 4,
+      "type": "results-dashboard",
+      "title": "Your Career GPS result is ready.",
+      "eyebrow": "Results Dashboard",
+      "lede": "This is your starting point: a score, a stage, your strongest areas, and the few things most worth improving next.",
+      "cards": {
+        "scoreCardEyebrow": "Career GPS Score",
+        "categoryScoresEyebrow": "Dimension scores",
+        "categoryScoresMeta": "Bar view",
+        "strengthsEyebrow": "Your current strengths",
+        "focusEyebrow": "Your recommended focus areas",
+        "nextStepEyebrow": "Next step recommendation"
+      },
+      "snapshot": {
+        "eyebrow": "Career GPS Snapshot",
+        "defaultTitle": "Snapshot summary",
+        "printLabel": "Print / Save Snapshot",
+        "labels": {
+          "name": "Name",
+          "date": "Date",
+          "overallScore": "Overall score",
+          "stage": "Stage"
+        },
+        "defaults": {
+          "name": "Optional",
+          "date": "Today",
+          "overallScore": "0 / 100",
+          "stage": "Building Foundation"
+        },
+        "sections": {
+          "topStrengths": "Top strengths",
+          "growthFocus": "Growth focus",
+          "recommendedMove": "Recommended next move",
+          "reflectionPromptLabel": "Reflection prompt",
+          "reflectionPrompt": "Based on your Career GPS result, what is one area you want to improve in the next 30 days?"
+        },
+        "actions": [
+          {
+            "id": "snapshot-create-northstar",
+            "label": "Create My NorthStar",
+            "href": "contact.html",
+            "variant": "lime"
+          },
+          {
+            "id": "snapshot-explore-program",
+            "label": "Explore the Career OS Program",
+            "href": "careeros.html",
+            "variant": "ghost"
+          },
+          {
+            "id": "snapshot-retake",
+            "label": "Retake Assessment",
+            "href": "careergps.html?view=questions",
+            "variant": "ghost"
+          }
+        ]
+      },
+      "emptyState": {
+        "eyebrow": "Dashboard unavailable",
+        "title": "Complete your assessment first.",
+        "lede": "We could not find a submitted snapshot in this browser session yet.",
+        "action": {
+          "label": "Go to Assessment",
+          "href": "careergps.html?view=questions"
+        }
+      }
+    }
+  ],
+  "scoring": {
+    "categoryFormula": "(average_question_score / 5) * 100",
+    "overallFormula": "(direction + visibility + capability + amplification) / 4",
+    "stages": [
+      {
+        "min": 0,
+        "max": 49,
+        "label": "Explorer",
+        "message": "You are exploring possibilities and building clarity about your future. Primary focus: Direction and Consistency.",
+        "primaryFocus": [
+          "Direction",
+          "Consistency"
+        ]
+      },
+      {
+        "min": 50,
+        "max": 64,
+        "label": "Builder",
+        "message": "You have begun taking intentional action and are building foundations for growth. Primary focus: Execution and Visibility.",
+        "primaryFocus": [
+          "Execution",
+          "Visibility"
+        ]
+      },
+      {
+        "min": 65,
+        "max": 79,
+        "label": "Momentum Builder",
+        "message": "You have direction and momentum. The next step is making your strengths more visible and amplifying your impact. Primary focus: Visibility and AI leverage.",
+        "primaryFocus": [
+          "Visibility",
+          "AI leverage"
+        ]
+      },
+      {
+        "min": 80,
+        "max": 89,
+        "label": "Amplifier",
+        "message": "You are intentionally using your strengths, systems, and AI to increase your impact. Primary focus: Scaling influence and Creating opportunities.",
+        "primaryFocus": [
+          "Scaling influence",
+          "Creating opportunities"
+        ]
+      },
+      {
+        "min": 90,
+        "max": 100,
+        "label": "Catalyst",
+        "message": "You consistently create opportunities, execute effectively, and help others grow. Primary focus: Leadership and Multiplying impact.",
+        "primaryFocus": [
+          "Leadership",
+          "Multiplying impact"
+        ]
+      }
+    ],
+    "recommendationsBySection": {
+      "direction": "Write down one clear 12-month direction and name the three capabilities that would move you toward it fastest.",
+      "visibility": "Sharpen how you communicate your value. Create a one-line value statement and update one public profile this week.",
+      "capability": "Pick one weekly system that improves execution, then track your progress for the next 30 days.",
+      "amplification": "Use AI and technology intentionally for one recurring workflow, and document a repeatable process you can improve over time."
+    },
+    "defaultRecommendation": "Pick one area to improve this month, then turn it into a small weekly habit.",
+    "resultShape": {
+      "titleTemplate": "{{name}}'s Career GPS Snapshot",
+      "fallbackTitle": "Career GPS Snapshot",
+      "topStrengthsCount": 2,
+      "focusAreasCount": 2,
+      "dateFormat": {
+        "year": "numeric",
+        "month": "short",
+        "day": "numeric"
+      }
+    }
+  },
+  "validation": {
+    "requiredStepTypes": [
+      "landing",
+      "intro-input",
+      "assessment",
+      "results-dashboard"
+    ],
+    "rules": [
+      "step_orders_must_be_unique_and_sequential",
+      "section_ids_must_be_unique",
+      "stage_ranges_must_cover_0_to_100_without_gaps",
+      "recommendation_fallback_required",
+      "routes_and_storage_keys_required"
+    ]
+  }
+}

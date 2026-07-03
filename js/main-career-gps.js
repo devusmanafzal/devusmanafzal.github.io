@@ -9,85 +9,98 @@
       id: "direction",
       title: "Direction",
       short: "Direction",
-      description: "Clarity of goals and the path you are choosing next.",
+      description: "Can I make intentional decisions about my future?",
       questions: [
-        "I have a clear idea of what I want to work toward in the next 12 months.",
-        "I know which skills or capabilities I need to develop.",
-        "I can describe what success looks like for me right now."
-      ]
-    },
-    {
-      id: "confidence",
-      title: "Confidence",
-      short: "Confidence",
-      description: "Self-belief, momentum, and the ability to act without perfect certainty.",
-      questions: [
-        "I feel confident talking about my strengths.",
-        "I take action even when I do not have everything figured out.",
-        "I can handle uncertainty without getting completely stuck."
+        "I have written down goals for the next 12 months.",
+        "I know which skills will have the biggest impact on my future goals.",
+        "I regularly review my goals and priorities.",
+        "I can clearly explain what I am currently working toward and why it matters."
       ]
     },
     {
       id: "visibility",
-      title: "Personal Brand & Visibility",
+      title: "Visibility",
       short: "Visibility",
-      description: "How clearly you communicate your value to other people.",
+      description: "Can others understand and recognize my value?",
       questions: [
-        "I can clearly explain what I am good at.",
-        "My online or professional profile reflects my strengths.",
-        "People around me understand the value I bring."
+        "I can explain the value I bring in one minute or less.",
+        "My online profile reflects my strengths, interests, and aspirations.",
+        "People often recognize me for specific strengths or expertise.",
+        "I actively share my work, learning, or ideas with others."
       ]
     },
     {
-      id: "communication",
-      title: "Professional Communication",
-      short: "Communication",
-      description: "Clarity and confidence in writing, speaking, and presenting ideas.",
+      id: "capability",
+      title: "Capability",
+      short: "Capability",
+      description: "Can I consistently turn effort into results?",
       questions: [
-        "I can explain my ideas clearly.",
-        "I can write professional messages with confidence.",
-        "I can structure my thoughts when presenting or speaking."
+        "I plan my week before it starts.",
+        "I have a reliable system for tracking priorities and commitments.",
+        "I consistently complete important tasks and follow through on commitments.",
+        "I use routines, templates, or workflows to reduce repeated effort."
       ]
     },
     {
-      id: "aiReadiness",
-      title: "AI Readiness",
-      short: "AI Readiness",
-      description: "Confidence using AI practically for learning, planning, writing, and work.",
+      id: "amplification",
+      title: "Amplification",
+      short: "Amplification",
+      description: "Can I use AI and technology to multiply my impact?",
       questions: [
-        "I already use AI tools for learning, writing, planning, or work.",
-        "I know how to write useful prompts.",
-        "I know how to review and improve AI-generated outputs."
-      ]
-    },
-    {
-      id: "productivity",
-      title: "Productivity & Consistency",
-      short: "Productivity",
-      description: "Habits, systems, and execution that help you follow through.",
-      questions: [
-        "I have a system for planning my work or studies.",
-        "I follow through consistently on important tasks.",
-        "I manage my time and energy intentionally."
+        "I use AI tools regularly to support my work, studies, or learning.",
+        "I know how to improve an AI response when the first answer is not useful.",
+        "I verify important AI-generated information before using it.",
+        "I have at least one AI-assisted workflow that saves me meaningful time."
       ]
     }
   ];
 
   var STAGES = [
-    { min: 0, max: 40, label: "Early Exploration", message: "You are still shaping direction. Your next gain will come from narrowing choices and naming what matters most." },
-    { min: 41, max: 60, label: "Building Foundation", message: "You have some momentum. The most useful next move is to make your habits and communication more deliberate." },
-    { min: 61, max: 80, label: "Growth Ready", message: "You already have a strong base to build on. Focus on visibility, consistency, and practical AI use to unlock the next level." },
-    { min: 81, max: 100, label: "Momentum Builder", message: "You are operating with strong readiness. Keep refining the system and turning your strengths into visible opportunities." }
+    {
+      min: 0,
+      max: 49,
+      label: "Explorer",
+      message: "You are exploring possibilities and building clarity about your future.",
+      primaryFocus: ["Direction", "Consistency"]
+    },
+    {
+      min: 50,
+      max: 64,
+      label: "Builder",
+      message: "You have begun taking intentional action and are building foundations for growth.",
+      primaryFocus: ["Execution", "Visibility"]
+    },
+    {
+      min: 65,
+      max: 79,
+      label: "Momentum Builder",
+      message: "You have direction and momentum. The next step is making your strengths more visible and amplifying your impact.",
+      primaryFocus: ["Visibility", "AI leverage"]
+    },
+    {
+      min: 80,
+      max: 89,
+      label: "Amplifier",
+      message: "You are intentionally using your strengths, systems, and AI to increase your impact.",
+      primaryFocus: ["Scaling influence", "Creating opportunities"]
+    },
+    {
+      min: 90,
+      max: 100,
+      label: "Catalyst",
+      message: "You consistently create opportunities, execute effectively, and help others grow.",
+      primaryFocus: ["Leadership", "Multiplying impact"]
+    }
   ];
 
   var RECOMMENDATIONS = {
-    visibility: "Focus on making your value more visible. Start by writing a one-sentence personal brand statement and updating your profile summary.",
-    aiReadiness: "Start using AI for one practical task every week, such as planning, writing, summarizing, or learning.",
-    productivity: "Build a simple weekly planning routine and turn repeated tasks into reusable workflows.",
     direction: "Write down one clear 12-month direction and name the three capabilities that would move you toward it fastest.",
-    confidence: "Pick one strength story and practice saying it out loud, then take one small action before you feel fully ready.",
-    communication: "Use one repeatable communication structure for emails, updates, and speaking: context, point, ask."
+    visibility: "Sharpen how you communicate your value. Create a one-line value statement and update one public profile this week.",
+    capability: "Pick one weekly system that improves execution, then track your progress for the next 30 days.",
+    amplification: "Use AI and technology intentionally for one recurring workflow, and document a repeatable process you can improve over time."
   };
+
+  var MAX_QUESTION_SCORE = 5;
 
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
@@ -101,6 +114,7 @@
     step: 0,
     question: 0,
     answers: {},
+    lastQuestionConfirm: {},
     resultDate: null,
     results: null
   };
@@ -112,7 +126,7 @@
   var stepTitle = $("#gpsStepTitle");
   var currentKicker = $("#gpsCurrentKicker");
   var stepDesc = $("#gpsStepDescription");
-  var stepCount = $("#gpsStepCount");
+  var stageHint = $("#gpsStageHint");
   var questionBackBtn = $("#gpsQuestionBack");
   var questionNextBtn = $("#gpsQuestionNext");
   var stepBackBtn = $("#gpsStepBack");
@@ -143,13 +157,13 @@
 
   function scoreLabel(value) {
     var labels = {
-      1: "Strongly disagree",
-      2: "Disagree",
-      3: "Neutral",
-      4: "Agree",
-      5: "Strongly agree"
+      1: "No",
+      2: "Rarely",
+      3: "Sometimes",
+      4: "Often",
+      5: "Consistently"
     };
-    return labels[value] || "Neutral";
+    return labels[value] || "Sometimes";
   }
 
   function getAnswer(qid) {
@@ -168,10 +182,16 @@
     return Object.prototype.hasOwnProperty.call(state.answers, qid);
   }
 
-  function getStageNudge(remainingQuestions) {
-    if (remainingQuestions <= 0) return "Stage complete. Keep the streak going.";
-    if (remainingQuestions === 1) return "Final push. 1 more to unlock next stage.";
-    return "Great start. " + remainingQuestions + " to reach the next stage.";
+  function currentStepKey() {
+    return SECTIONS[state.step].id;
+  }
+
+  function hasLastQuestionConfirm() {
+    return Boolean(state.lastQuestionConfirm[currentStepKey()]);
+  }
+
+  function setLastQuestionConfirm(value) {
+    state.lastQuestionConfirm[currentStepKey()] = Boolean(value);
   }
 
   function renderStepper() {
@@ -211,7 +231,7 @@
   function renderQuestion(section, questionText, questionIndex) {
     var qid = section.id + "-" + questionIndex;
     var selected = getAnswer(qid);
-    if (!state.answers[qid]) {
+    if (!Object.prototype.hasOwnProperty.call(state.answers, qid)) {
       state.answers[qid] = selected;
     }
 
@@ -234,7 +254,7 @@
             '<span class="gps-slider__tick" data-value="5">5</span>' +
           '</div>' +
         '</div>' +
-        '<div class="gps-scale-labels"><span>Lower</span><span class="gps-scale-current" id="' + qid + '-label">' + scoreLabel(selected) + '</span><span>Higher</span></div>' +
+        '<div class="gps-scale-labels"><span>' + scoreLabel(1) + '</span><span class="gps-scale-current" id="' + qid + '-label">' + scoreLabel(selected) + '</span><span>' + scoreLabel(5) + '</span></div>' +
       '</article>';
   }
 
@@ -285,6 +305,18 @@
     if (mode) button.classList.add(mode);
   }
 
+  function emphasizeStepNext() {
+    if (!stepNextBtn || stepNextBtn.disabled) return;
+    stepNextBtn.classList.add("is-stage-attention");
+    window.setTimeout(function () {
+      if (stepNextBtn) stepNextBtn.classList.remove("is-stage-attention");
+    }, 1250);
+  }
+
+  function averageToPercent(averageScore) {
+    return Math.round((averageScore / MAX_QUESTION_SCORE) * 100);
+  }
+
   function bindQuestionInputs() {
     $all('input[type="range"]', questionDeck).forEach(function (input) {
       var updateValue = function () {
@@ -312,14 +344,16 @@
     if (state.question < 0) state.question = 0;
     if (state.question >= section.questions.length) state.question = section.questions.length - 1;
 
+    if (state.question < section.questions.length - 1) {
+      setLastQuestionConfirm(false);
+    }
+
     renderStepper();
     if (currentKicker) {
       currentKicker.textContent = "Stage " + (state.step + 1) + " of " + SECTIONS.length;
     }
     if (stepTitle) stepTitle.textContent = section.title;
     if (stepDesc) stepDesc.textContent = section.description;
-    var remainingQuestions = section.questions.length - (state.question + 1);
-    if (stepCount) stepCount.textContent = getStageNudge(remainingQuestions);
     if (progressFill) progressFill.style.width = (((state.step + 1) / SECTIONS.length) * 100) + "%";
 
     questionDeck.innerHTML = '<div class="gps-question-grid">' + renderQuestion(section, section.questions[state.question], state.question) + '</div>';
@@ -332,6 +366,7 @@
     var section = SECTIONS[state.step];
     var onFirstQuestion = state.step === 0 && state.question === 0;
     var onLastQuestionInStep = state.question === section.questions.length - 1;
+    var stageAdvanceConfirmed = hasLastQuestionConfirm();
     var complete = stepComplete(state.step);
     var questionReadyMode = state.question >= section.questions.length - 2 ? "is-cta-ready" : "is-cta-pulse";
     var stageReadyMode = state.step >= SECTIONS.length - 2 ? "is-cta-ready" : "is-cta-pulse";
@@ -340,14 +375,24 @@
       questionBackBtn.disabled = onFirstQuestion;
     }
     if (questionNextBtn) {
-      questionNextBtn.disabled = !currentQuestionComplete() || onLastQuestionInStep;
-      setCtaState(questionNextBtn, questionNextBtn.disabled ? "" : questionReadyMode);
+      var questionCanAdvance = currentQuestionComplete() && (!onLastQuestionInStep || !stageAdvanceConfirmed);
+      questionNextBtn.disabled = !questionCanAdvance;
+      setCtaState(questionNextBtn, questionNextBtn.disabled ? "" : (onLastQuestionInStep ? "is-cta-pulse" : questionReadyMode));
+    }
+    if (stageHint) {
+      if (onLastQuestionInStep && stageAdvanceConfirmed) {
+        stageHint.textContent = "All done here — click Next Stage below to continue.";
+        stageHint.classList.add("is-visible");
+      } else {
+        stageHint.textContent = "";
+        stageHint.classList.remove("is-visible");
+      }
     }
     if (stepBackBtn) {
       stepBackBtn.disabled = state.step === 0 || !complete;
     }
     if (stepNextBtn) {
-      stepNextBtn.disabled = !complete;
+      stepNextBtn.disabled = !complete || (onLastQuestionInStep && !stageAdvanceConfirmed);
       stepNextBtn.textContent = state.step === SECTIONS.length - 1 ? "Submit" : "Next Stage";
       setCtaState(stepNextBtn, stepNextBtn.disabled ? "" : stageReadyMode);
     }
@@ -358,13 +403,13 @@
       return sum + getAnswer(section.id + "-" + questionIndex);
     }, 0);
     var average = total / section.questions.length;
-    return Math.round((average / 5) * 100);
+    return averageToPercent(average);
   }
 
   function getStage(score) {
     return STAGES.find(function (stage) {
       return score >= stage.min && score <= stage.max;
-    }) || STAGES[1];
+    }) || STAGES[0];
   }
 
   function computeResults() {
@@ -529,7 +574,14 @@
 
       var isLastQuestionInStep = state.question === SECTIONS[state.step].questions.length - 1;
 
-      if (isLastQuestionInStep) return;
+      if (isLastQuestionInStep) {
+        if (!hasLastQuestionConfirm()) {
+          setLastQuestionConfirm(true);
+          syncControls();
+          emphasizeStepNext();
+        }
+        return;
+      }
 
       state.question += 1;
       renderStep();
