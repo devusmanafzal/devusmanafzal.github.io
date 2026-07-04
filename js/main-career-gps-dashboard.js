@@ -768,7 +768,7 @@
       modeItem.removeAttribute("hidden");
     }
 
-    effectiveModeBadge.textContent = sampleMode ? "Sample (No API)" : "Live API";
+    effectiveModeBadge.textContent = sampleMode ? "Sample (No API)" : "Live Logic (No API)";
   }
 
   bindMiniInfoInteractions();

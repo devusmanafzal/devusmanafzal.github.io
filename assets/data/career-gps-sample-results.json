@@ -128,6 +128,345 @@
       "Resist over-planning without action; a simple system used consistently beats a perfect unused one"
     ]
   },
+  "guidanceTemplates": {
+    "default": {
+      "priorities": [
+        "Strengthen {{focusArea1}} with one repeatable weekly habit",
+        "Increase visibility by sharing one practical update each week",
+        "Use your {{strength1}} momentum to stay consistent for 30 days"
+      ],
+      "plan30Days": [
+        {
+          "week": "Week 1",
+          "actions": [
+            "Define one measurable goal for {{focusArea1}} this month",
+            "Block two focused sessions on your calendar for high-impact work",
+            "Write a one-line clarity statement about your next step: {{nextStep}}"
+          ]
+        },
+        {
+          "week": "Week 2",
+          "actions": [
+            "Build one simple checklist workflow for a recurring task",
+            "Apply that workflow at least twice this week",
+            "Share one short progress update to improve visibility"
+          ]
+        },
+        {
+          "week": "Week 3",
+          "actions": [
+            "Review what worked and remove one source of friction",
+            "Improve one output related to {{focusArea2}} using your new workflow",
+            "Ask one peer or mentor for feedback on your execution"
+          ]
+        },
+        {
+          "week": "Week 4",
+          "actions": [
+            "Measure your consistency over the month and note one improvement",
+            "Document your best process so it is reusable next month",
+            "Set your next 30-day focus starting with {{focusArea1}}"
+          ]
+        }
+      ],
+      "recommendedCourses": [
+        "Learning How to Learn (Coursera)",
+        "Work Smarter with Digital Tools (LinkedIn Learning)",
+        "Prompt Design for Practical AI Workflows (any trusted platform)",
+        "Personal Branding Basics for Early Professionals (LinkedIn Learning)"
+      ],
+      "motivationTips": [
+        "Consistency beats intensity when building career momentum.",
+        "You already have strength in {{strength1}}; use it as your anchor.",
+        "Small weekly wins compound into visible progress faster than expected."
+      ],
+      "cautionFlags": [
+        "Do not overload yourself with too many new habits at once.",
+        "Avoid passive planning; every week should include clear action.",
+        "Review outcomes weekly so effort turns into measurable progress."
+      ]
+    },
+    "Explorer": {
+      "priorities": [
+        "Clarify one concrete 12-month direction",
+        "Create a weekly planning ritual you can sustain",
+        "Build confidence by completing small visible actions"
+      ],
+      "plan30Days": [
+        {
+          "week": "Week 1",
+          "actions": [
+            "List three career paths or roles you are curious about",
+            "Pick one and define why it matters to you",
+            "Block 30 minutes weekly for focused reflection"
+          ]
+        },
+        {
+          "week": "Week 2",
+          "actions": [
+            "Identify two skills needed for your chosen direction",
+            "Start one short learning plan for the first skill",
+            "Write one progress note and keep it visible"
+          ]
+        },
+        {
+          "week": "Week 3",
+          "actions": [
+            "Share one idea or learning publicly",
+            "Practice a one-minute introduction about your focus",
+            "Refine your weekly routine based on what felt easiest"
+          ]
+        },
+        {
+          "week": "Week 4",
+          "actions": [
+            "Review your month and identify your highest-value habit",
+            "Set next-month goals tied to {{focusArea1}}",
+            "Commit to one repeatable workflow"
+          ]
+        }
+      ],
+      "recommendedCourses": [
+        "Career Exploration Essentials (LinkedIn Learning)",
+        "Goal Setting and Execution (Coursera)",
+        "Confidence in Professional Communication (Udemy)"
+      ],
+      "motivationTips": [
+        "Clarity emerges through action, not overthinking.",
+        "One completed step gives more confidence than ten plans.",
+        "You are building foundations that will compound quickly."
+      ],
+      "cautionFlags": [
+        "Avoid comparing your beginning to someone else’s middle.",
+        "Do not wait for perfect certainty before taking action.",
+        "Keep goals narrow so momentum can build."
+      ]
+    },
+    "Builder": {
+      "priorities": [
+        "Improve execution quality in {{focusArea1}}",
+        "Increase visibility of your weekly output",
+        "Convert effort into repeatable systems"
+      ],
+      "plan30Days": [
+        {
+          "week": "Week 1",
+          "actions": [
+            "Set one execution metric for this month",
+            "Create a weekly planning template",
+            "Complete one task using your template"
+          ]
+        },
+        {
+          "week": "Week 2",
+          "actions": [
+            "Improve your output quality with one feedback loop",
+            "Publish one progress summary",
+            "Refine your process based on friction points"
+          ]
+        },
+        {
+          "week": "Week 3",
+          "actions": [
+            "Apply your process to a second recurring task",
+            "Measure time saved or quality improved",
+            "Strengthen one area in {{focusArea2}}"
+          ]
+        },
+        {
+          "week": "Week 4",
+          "actions": [
+            "Document your final workflow",
+            "Set your next 30-day objective",
+            "Keep one simple review ritual every week"
+          ]
+        }
+      ],
+      "recommendedCourses": [
+        "Time Management Fundamentals (LinkedIn Learning)",
+        "Execution and Accountability (Coursera)",
+        "Practical Prompting for Work (Udemy)"
+      ],
+      "motivationTips": [
+        "Structure creates freedom.",
+        "Your consistency is already improving; protect it.",
+        "Visible progress attracts better opportunities."
+      ],
+      "cautionFlags": [
+        "Do not optimize tools before habits are stable.",
+        "Avoid hiding progress; visibility drives accountability.",
+        "Keep your workflow lightweight and sustainable."
+      ]
+    },
+    "Momentum Builder": {
+      "priorities": [
+        "Scale your strengths into visible outcomes",
+        "Raise consistency in {{focusArea1}}",
+        "Use AI intentionally to multiply output quality"
+      ],
+      "plan30Days": [
+        {
+          "week": "Week 1",
+          "actions": [
+            "Define one leverage workflow using AI support",
+            "Set clear weekly deliverables",
+            "Share your weekly plan with a trusted accountability partner"
+          ]
+        },
+        {
+          "week": "Week 2",
+          "actions": [
+            "Run your AI workflow at least three times",
+            "Capture a before/after quality comparison",
+            "Publish one public insight from your work"
+          ]
+        },
+        {
+          "week": "Week 3",
+          "actions": [
+            "Improve prompts and verification steps",
+            "Strengthen one communication artifact (profile, post, or pitch)",
+            "Review which actions produce the highest impact"
+          ]
+        },
+        {
+          "week": "Week 4",
+          "actions": [
+            "Codify your best process into a reusable template",
+            "Choose next month’s growth edge around {{focusArea1}}",
+            "Plan one visible milestone for the next 30 days"
+          ]
+        }
+      ],
+      "recommendedCourses": [
+        "Personal Brand Strategy (LinkedIn Learning)",
+        "Prompt Engineering for Productivity (Coursera)",
+        "Strategic Communication Essentials (Udemy)"
+      ],
+      "motivationTips": [
+        "Momentum grows when systems and visibility work together.",
+        "You are closer than you think to compounding results.",
+        "Refinement, not reinvention, is your advantage now."
+      ],
+      "cautionFlags": [
+        "Avoid over-committing to too many initiatives.",
+        "Do not skip verification when using AI-assisted outputs.",
+        "Protect deep-work time from constant context switching."
+      ]
+    },
+    "Amplifier": {
+      "priorities": [
+        "Translate strong execution into broader influence",
+        "Improve strategic visibility around high-value work",
+        "Mentor or collaborate to multiply impact"
+      ],
+      "plan30Days": [
+        {
+          "week": "Week 1",
+          "actions": [
+            "Choose one high-impact project to amplify",
+            "Define success metrics and influence goals",
+            "Align your weekly schedule to strategic priorities"
+          ]
+        },
+        {
+          "week": "Week 2",
+          "actions": [
+            "Share one meaningful output with your network",
+            "Improve one system that unlocks scale",
+            "Use AI to accelerate research or synthesis workflow"
+          ]
+        },
+        {
+          "week": "Week 3",
+          "actions": [
+            "Gather feedback from a senior peer",
+            "Refine positioning and communication narrative",
+            "Coach one teammate or peer on a process"
+          ]
+        },
+        {
+          "week": "Week 4",
+          "actions": [
+            "Review influence outcomes and process gains",
+            "Set next cycle goals around strategic leverage",
+            "Create one playbook artifact others can reuse"
+          ]
+        }
+      ],
+      "recommendedCourses": [
+        "Strategic Leadership Communication (Coursera)",
+        "Influence Without Authority (LinkedIn Learning)",
+        "Advanced AI Workflows for Professionals (Udemy)"
+      ],
+      "motivationTips": [
+        "Your next leap comes from leverage, not volume.",
+        "Scale what already works before adding complexity.",
+        "Influence grows when value is consistently visible."
+      ],
+      "cautionFlags": [
+        "Avoid taking on low-leverage tasks by default.",
+        "Do not confuse activity with strategic progress.",
+        "Keep systems simple enough for others to adopt."
+      ]
+    },
+    "Catalyst": {
+      "priorities": [
+        "Sustain high performance while protecting focus",
+        "Multiply impact by enabling others",
+        "Design long-term systems for scalable growth"
+      ],
+      "plan30Days": [
+        {
+          "week": "Week 1",
+          "actions": [
+            "Audit your current systems for scalability",
+            "Select one strategic initiative to lead",
+            "Define how you will measure multiplier impact"
+          ]
+        },
+        {
+          "week": "Week 2",
+          "actions": [
+            "Delegate one repeatable workflow with clear standards",
+            "Mentor one person on your execution framework",
+            "Publish one high-value thought piece or framework"
+          ]
+        },
+        {
+          "week": "Week 3",
+          "actions": [
+            "Use AI to accelerate strategic analysis or decision prep",
+            "Refine your leadership communication cadence",
+            "Document one system-level improvement"
+          ]
+        },
+        {
+          "week": "Week 4",
+          "actions": [
+            "Evaluate impact created through others",
+            "Set next-quarter leverage priorities",
+            "Lock in one governance routine to sustain quality"
+          ]
+        }
+      ],
+      "recommendedCourses": [
+        "Systems Thinking for Leaders (Coursera)",
+        "Executive Communication Presence (LinkedIn Learning)",
+        "AI Strategy for Decision Makers (Udemy)"
+      ],
+      "motivationTips": [
+        "Your biggest advantage is building systems others can run.",
+        "Leadership scale comes from clarity and repeatability.",
+        "Compounding impact is the result of deliberate design."
+      ],
+      "cautionFlags": [
+        "Avoid becoming the bottleneck for high-value work.",
+        "Do not sacrifice strategic thinking for operational urgency.",
+        "Keep quality controls visible as you delegate more."
+      ]
+    }
+  },
   "aiGuidanceDebug": {
     "timestamp": "2026-07-04T14:45:10.000Z",
     "endpoint": "https://careergps-chat-api-f9eebkgqc9fvb4dn.canadacentral-01.azurewebsites.net/api/chat",

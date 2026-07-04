@@ -224,7 +224,7 @@
   }
 
   function renderAssessmentModeBadges() {
-    var modeText = appSettings.dataMode === "sample" ? "Sample (No API)" : "Live API";
+    var modeText = appSettings.dataMode === "sample" ? "Sample (No API)" : "Live Logic (No API)";
     if (assessmentModeBadge) assessmentModeBadge.textContent = modeText;
     if (assessmentModeBadgeIntro) assessmentModeBadgeIntro.textContent = modeText;
   }
@@ -777,150 +777,128 @@
     };
   }
 
-  function requestGuidance(payload) {
-    if (isSampleDataMode()) {
-      return fetch("assets/data/career-gps-sample-results.json", {
-        cache: "no-store"
-      }).then(function (response) {
-        if (!response.ok) {
-          throw new Error("Sample guidance file could not be loaded");
-        }
-        return response.json();
-      }).then(function (sample) {
-        return {
-          status: "generated",
-          guidance: sample && sample.aiGuidance ? sample.aiGuidance : null,
-          debug: {
-            timestamp: new Date().toISOString(),
-            endpoint: "sample-local",
-            mode: "sample",
-            requestBody: payload,
-            responseStatus: 200,
-            responseBody: sample && sample.aiGuidance ? sample.aiGuidance : {},
-            latencyMs: 0,
-            error: null
-          }
-        };
-      }).catch(function (error) {
-        return {
-          status: "skipped",
-          reason: error && error.message ? error.message : "Sample guidance mode is enabled",
-          debug: {
-            timestamp: new Date().toISOString(),
-            endpoint: "sample-local",
-            mode: "sample",
-            requestBody: payload,
-            responseStatus: null,
-            responseBody: null,
-            latencyMs: null,
-            error: error && error.message ? error.message : "Sample guidance mode is enabled"
-          }
-        };
+  function applyGuidanceTokens(value, tokens) {
+    if (typeof value === "string") {
+      return value.replace(/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g, function (_, key) {
+        return Object.prototype.hasOwnProperty.call(tokens, key) ? tokens[key] : "";
       });
     }
 
-    var endpoint = getGuidanceEndpoint();
-    if (!endpoint) {
-      return Promise.resolve({
-        status: "skipped",
-        reason: "No guidance endpoint configured",
-        debug: {
-          timestamp: new Date().toISOString(),
-          endpoint: "",
-          mode: "none",
-          requestBody: null,
-          responseStatus: null,
-          responseBody: null,
-          error: "No guidance endpoint configured"
-        }
+    if (Array.isArray(value)) {
+      return value.map(function (item) {
+        return applyGuidanceTokens(item, tokens);
       });
     }
 
-    var requestEnvelope = buildGuidanceRequest(endpoint, payload);
-    var startedAt = Date.now();
-    var debugRecord = {
-      timestamp: new Date().toISOString(),
-      endpoint: endpoint,
-      mode: requestEnvelope.mode,
-      requestBody: requestEnvelope.body,
-      responseStatus: null,
-      responseBody: null,
-      latencyMs: null,
-      error: null
+    if (value && typeof value === "object") {
+      return Object.keys(value).reduce(function (acc, key) {
+        acc[key] = applyGuidanceTokens(value[key], tokens);
+        return acc;
+      }, {});
+    }
+
+    return value;
+  }
+
+  function buildGuidanceTokens(payload) {
+    var assessment = payload && payload.assessment ? payload.assessment : {};
+    var stage = assessment.stage || {};
+    var focusAreas = Array.isArray(assessment.focusAreas) ? assessment.focusAreas : [];
+    var strengths = Array.isArray(assessment.strengths) ? assessment.strengths : [];
+
+    return {
+      stageLabel: String(stage.label || "Explorer"),
+      focusArea1: String(focusAreas[0] || "Visibility"),
+      focusArea2: String(focusAreas[1] || focusAreas[0] || "Capability"),
+      strength1: String(strengths[0] || "Direction"),
+      strength2: String(strengths[1] || strengths[0] || "Amplification"),
+      nextStep: String(assessment.nextStepRecommendation || "Pick one area to improve this month, then turn it into a small weekly habit.")
     };
+  }
 
-    setDevApiDebug({
-      timestamp: new Date().toISOString(),
-      endpoint: endpoint,
-      mode: requestEnvelope.mode,
-      body: requestEnvelope.body
-    });
+  function selectLocalGuidance(sampleData, payload) {
+    var stageLabel = payload && payload.assessment && payload.assessment.stage ? payload.assessment.stage.label : "";
+    var templates = sampleData && sampleData.guidanceTemplates && typeof sampleData.guidanceTemplates === "object"
+      ? sampleData.guidanceTemplates
+      : null;
 
-    var timeoutHandle = null;
-    var controller = typeof AbortController === "function" ? new AbortController() : null;
-    if (controller) {
-      timeoutHandle = window.setTimeout(function () {
-        controller.abort();
-      }, guidanceTimeoutMs);
+    var selected = null;
+    if (templates) {
+      selected = templates[stageLabel] || templates.default || null;
     }
+    if (!selected && sampleData && sampleData.aiGuidance) {
+      selected = sampleData.aiGuidance;
+    }
+    if (!selected) return null;
 
-    return fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(requestEnvelope.body),
-      signal: controller ? controller.signal : undefined
+    var hydrated = applyGuidanceTokens(selected, buildGuidanceTokens(payload));
+    return normalizeGuidanceResponse(hydrated);
+  }
+
+  function requestGuidance(payload) {
+    var startedAt = Date.now();
+    var localMode = isSampleDataMode() ? "sample" : "local-logic";
+
+    return fetch("assets/data/career-gps-sample-results.json", {
+      cache: "no-store"
     }).then(function (response) {
-      return response.text().then(function (bodyText) {
-        var parsedBody = {};
-        if (bodyText) {
-          try {
-            parsedBody = JSON.parse(bodyText);
-          } catch (err) {
-            parsedBody = { reply: bodyText };
-          }
-        }
+      if (!response.ok) {
+        throw new Error("Local guidance file could not be loaded");
+      }
+      return response.json();
+    }).then(function (sampleData) {
+      var guidance = isSampleDataMode()
+        ? normalizeGuidanceResponse(sampleData && sampleData.aiGuidance)
+        : selectLocalGuidance(sampleData, payload);
 
-        if (!response.ok) {
-          var providerMessage = parsedBody && (parsedBody.error || parsedBody.detail);
-          throw new Error(providerMessage || ("Guidance service request failed with status " + response.status));
-        }
+      if (!guidance) {
+        throw new Error("Local guidance templates are missing or invalid");
+      }
 
-        var normalizedGuidance = parseGuidanceFromResponse(parsedBody);
-        if (!normalizedGuidance) {
-          throw new Error("Guidance service response did not match expected format");
-        }
-
-        var completedAt = Date.now();
-        debugRecord.responseStatus = response.status;
-        debugRecord.responseBody = parsedBody;
-        debugRecord.latencyMs = completedAt - startedAt;
-
-        setDevApiDebug({
-          timestamp: new Date().toISOString(),
-          endpoint: endpoint,
-          mode: requestEnvelope.mode,
-          body: requestEnvelope.body,
-          responseStatus: response.status,
-          latencyMs: completedAt - startedAt,
-          responsePreview: parsedBody
-        });
-
-        return {
-          status: "generated",
-          guidance: normalizedGuidance,
-          latencyMs: completedAt - startedAt,
-          debug: debugRecord
-        };
-      });
-    }).catch(function (error) {
-      debugRecord.error = error && error.message ? error.message : "Guidance request failed";
-      setDevApiDebug({
+      var completedAt = Date.now();
+      var debugRecord = {
         timestamp: new Date().toISOString(),
-        endpoint: endpoint,
-        mode: requestEnvelope.mode,
-        body: requestEnvelope.body,
+        endpoint: "local-guidance",
+        mode: localMode,
+        requestBody: payload,
+        responseStatus: 200,
+        responseBody: guidance,
+        latencyMs: completedAt - startedAt,
+        error: null
+      };
+
+      setDevApiDebug({
+        timestamp: debugRecord.timestamp,
+        endpoint: "local-guidance",
+        mode: localMode,
+        body: payload,
+        responsePreview: guidance,
+        latencyMs: debugRecord.latencyMs
+      });
+
+      return {
+        status: "generated",
+        guidance: guidance,
+        latencyMs: debugRecord.latencyMs,
+        debug: debugRecord
+      };
+    }).catch(function (error) {
+      var debugRecord = {
+        timestamp: new Date().toISOString(),
+        endpoint: "local-guidance",
+        mode: localMode,
+        requestBody: payload,
+        responseStatus: null,
+        responseBody: null,
+        latencyMs: null,
+        error: error && error.message ? error.message : "Local guidance generation failed"
+      };
+
+      setDevApiDebug({
+        timestamp: debugRecord.timestamp,
+        endpoint: "local-guidance",
+        mode: localMode,
+        body: payload,
         error: debugRecord.error
       });
 
@@ -929,9 +907,6 @@
         message: debugRecord.error,
         debug: debugRecord
       };
-    }).then(function (result) {
-      if (timeoutHandle) window.clearTimeout(timeoutHandle);
-      return result;
     });
   }
 
@@ -1019,11 +994,11 @@
     }
 
     return {
-      title: "Building your personalized AI roadmap...",
+      title: "Building your personalized Career GPS roadmap...",
       detail: [
         "Analyzing your responses across all four dimensions.",
-        "Generating focused priorities and a 30-day action plan.",
-        "Finalizing guidance so your dashboard opens ready to use."
+        "Generating focused priorities and a 30-day action plan from your local logic templates.",
+        "Finalizing your guidance so the dashboard opens ready to use."
       ]
     };
   }

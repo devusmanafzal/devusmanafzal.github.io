@@ -3,13 +3,13 @@
    ------------------------------------------------------------
    Edit defaults below or set localStorage key `careerGpsSettings`.
    Example localStorage JSON:
-   {"dataMode":"sample","showDebug":true,"showModeBadge":true}
+    {"dataMode":"live","showDebug":true,"showModeBadge":true}
    ============================================================ */
 (function () {
   "use strict";
 
   var defaults = {
-    dataMode: "sample",     // "live" or "sample"
+    dataMode: "live",     // "live" uses local stage templates; "sample" uses fixed demo output
     showDebug: false,      // true shows debug panels and debug payloads
     showModeBadge: false   // true shows "Mode" badge on dashboard
   };
