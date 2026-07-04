@@ -1801,6 +1801,81 @@ body.gps-page--questions .gps-step-controls {
   box-shadow: 0 10px 20px -16px rgba(20, 32, 51, .45);
 }
 
+.gps-ai-guidance {
+  display: grid;
+  gap: 14px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(109, 145, 166, .24);
+}
+
+.gps-ai-guidance__group {
+  display: grid;
+  gap: 8px;
+}
+
+.gps-ai-guidance__group h3 {
+  margin: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #5f6f83;
+}
+
+.gps-ai-guidance__group ol,
+.gps-ai-guidance__group ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 7px;
+  color: #3f4f62;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.gps-ai-guidance__group li {
+  margin: 0;
+}
+
+.gps-ai-guidance__status {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(109, 145, 166, .24);
+  background: rgba(250, 253, 255, .8);
+  color: #5b6877;
+  font-size: 14px;
+  line-height: 1.42;
+}
+
+.gps-ai-guidance__debug {
+  margin-top: 10px;
+  border: 1px dashed rgba(109, 145, 166, .4);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(247, 251, 255, .65);
+}
+
+.gps-ai-guidance__debug summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: #4f6074;
+  font-weight: 700;
+}
+
+.gps-ai-guidance__debug pre {
+  margin: 10px 0 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(109, 145, 166, .24);
+  background: #f7fbff;
+  white-space: pre-wrap;
+  max-height: 280px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.38;
+}
+
 .gps-snapshot {
   grid-column: 1 / -1;
   border-radius: 28px;

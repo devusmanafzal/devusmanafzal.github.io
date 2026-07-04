@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>DeepSeek Chat</h2>
+
+<input id="message" />
+<button onclick="sendMessage()">Ask</button>
+
+<div id="response"></div>
+
+<script>
+
+async function sendMessage() {
+
+    const message =
+        document.getElementById("message").value;
+
+    const result =
+        await fetch(
+          "https://careergps-chat-api-f9eebkgqc9fvb4dn.canadacentral-01.azurewebsites.net/api/chat",
+          {
+              method: "POST",
+              headers: {
+                  "Content-Type":
+                  "application/json"
+              },
+              body: JSON.stringify({
+                  message
+              })
+          }
+        );
+
+    const data = await result.json();
+
+    document.getElementById("response")
+      .innerText = data.reply;
+}
+
+</script>
+
+</body>
+</html>

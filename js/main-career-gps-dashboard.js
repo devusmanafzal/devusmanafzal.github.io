@@ -35,6 +35,16 @@
   var focusList = $("#gpsFocus");
   var recommendation = $("#gpsRecommendation");
   var recommendationIcon = $("#gpsRecommendationIcon");
+  var aiGuidanceStatus = $("#gpsAiGuidanceStatus");
+  var aiGuidanceWrap = $("#gpsAiGuidance");
+  var aiPriorities = $("#gpsAiPriorities");
+  var aiPlan = $("#gpsAiPlan");
+  var aiCourses = $("#gpsAiCourses");
+  var aiTips = $("#gpsAiTips");
+  var aiCautionWrap = $("#gpsAiCautionWrap");
+  var aiCautions = $("#gpsAiCautions");
+  var aiDebugPanel = $("#gpsAiDebugPanel");
+  var aiDebugContent = $("#gpsAiDebugContent");
   var topName = $("#gpsTopName");
   var topDate = $("#gpsTopDate");
   var snapshotTitle = $("#gpsSnapshotTitle");
@@ -226,6 +236,169 @@
     }).join("");
   }
 
+  function setStatusMessage(message) {
+    if (!aiGuidanceStatus) return;
+
+    if (!message) {
+      aiGuidanceStatus.hidden = true;
+      aiGuidanceStatus.textContent = "";
+      return;
+    }
+
+    aiGuidanceStatus.hidden = false;
+    aiGuidanceStatus.textContent = message;
+  }
+
+  function clearList(target) {
+    if (!target) return;
+    while (target.firstChild) {
+      target.removeChild(target.firstChild);
+    }
+  }
+
+  function renderTextList(target, items, ordered) {
+    if (!target) return;
+    clearList(target);
+
+    (items || []).forEach(function (text) {
+      var item = document.createElement("li");
+      item.textContent = text;
+      target.appendChild(item);
+    });
+
+    if (ordered) {
+      target.setAttribute("start", "1");
+    }
+  }
+
+  function normalizeTextList(items, maxItems, maxLen) {
+    if (!Array.isArray(items)) return [];
+    return items.slice(0, maxItems).map(function (item) {
+      var text = String(item == null ? "" : item).trim();
+      if (!text) return "";
+      return text.slice(0, maxLen);
+    }).filter(Boolean);
+  }
+
+  function normalizePlan(items) {
+    if (!Array.isArray(items)) return [];
+
+    return items.slice(0, 4).map(function (item, index) {
+      if (!item || typeof item !== "object") return null;
+
+      var weekLabel = String(item.week || ("Week " + (index + 1))).trim().slice(0, 36);
+      var actions = normalizeTextList(item.actions, 4, 170);
+      if (!actions.length && item.action) {
+        actions = normalizeTextList([item.action], 1, 170);
+      }
+
+      if (!actions.length) return null;
+      return {
+        week: weekLabel,
+        actions: actions
+      };
+    }).filter(Boolean);
+  }
+
+  function normalizeGuidance(guidance) {
+    if (!guidance || typeof guidance !== "object") return null;
+
+    var normalized = {
+      priorities: normalizeTextList(guidance.priorities, 3, 160),
+      plan30Days: normalizePlan(guidance.plan30Days),
+      recommendedCourses: normalizeTextList(guidance.recommendedCourses, 5, 130),
+      motivationTips: normalizeTextList(guidance.motivationTips, 4, 170),
+      cautionFlags: normalizeTextList(guidance.cautionFlags, 3, 170)
+    };
+
+    if (!normalized.priorities.length && !normalized.plan30Days.length && !normalized.recommendedCourses.length && !normalized.motivationTips.length) {
+      return null;
+    }
+
+    return normalized;
+  }
+
+  function renderPlan(target, plan) {
+    if (!target) return;
+    clearList(target);
+
+    plan.forEach(function (item) {
+      var li = document.createElement("li");
+      var week = document.createElement("strong");
+      week.textContent = item.week + ": ";
+      li.appendChild(week);
+
+      var text = document.createElement("span");
+      text.textContent = item.actions.join(" ");
+      li.appendChild(text);
+
+      target.appendChild(li);
+    });
+  }
+
+  function renderAiGuidance(results) {
+    if (!aiGuidanceWrap) return;
+
+    var normalized = normalizeGuidance(results && results.aiGuidance);
+    if (!normalized) {
+      aiGuidanceWrap.hidden = true;
+      clearList(aiPriorities);
+      clearList(aiPlan);
+      clearList(aiCourses);
+      clearList(aiTips);
+      clearList(aiCautions);
+      if (aiCautionWrap) aiCautionWrap.hidden = true;
+
+      if (results && results.aiGuidanceStatus === "error") {
+        setStatusMessage("Personalized AI guidance is unavailable right now, but your core recommendation is ready.");
+      } else {
+        setStatusMessage("");
+      }
+      return;
+    }
+
+    setStatusMessage("");
+    aiGuidanceWrap.hidden = false;
+    renderTextList(aiPriorities, normalized.priorities, true);
+    renderPlan(aiPlan, normalized.plan30Days);
+    renderTextList(aiCourses, normalized.recommendedCourses, false);
+    renderTextList(aiTips, normalized.motivationTips, false);
+
+    if (aiCautionWrap) {
+      aiCautionWrap.hidden = !normalized.cautionFlags.length;
+      if (!aiCautionWrap.hidden) {
+        renderTextList(aiCautions, normalized.cautionFlags, false);
+      }
+    }
+  }
+
+  function renderAiDebug(results) {
+    if (!aiDebugPanel || !aiDebugContent) return;
+
+    var debugData = results && results.aiGuidanceDebug;
+    var status = results && results.aiGuidanceStatus;
+    var errorText = results && (results.aiGuidanceError || results.aiGuidanceReason);
+
+    if (!debugData && !status) {
+      aiDebugPanel.hidden = true;
+      aiDebugContent.textContent = "";
+      return;
+    }
+
+    aiDebugPanel.hidden = false;
+
+    if (!debugData) {
+      aiDebugContent.textContent = "No request debug payload was captured.\nStatus: " + (status || "unknown") + (errorText ? ("\nMessage: " + errorText) : "");
+      return;
+    }
+
+    try {
+      aiDebugContent.textContent = JSON.stringify(debugData, null, 2);
+    } catch (err) {
+      aiDebugContent.textContent = "Could not render debug payload.";
+    }
+  }
+
   function showNoResult() {
     if (resultsSection) resultsSection.hidden = true;
     if (noResultSection) noResultSection.hidden = false;
@@ -263,8 +436,11 @@
     renderBarList(scoreBars, results.scores);
     renderNameList(strengthsList, results.strengths);
     renderNameList(focusList, results.focus);
-    if (recommendation) recommendation.textContent = results.recommendation;
-    if (recommendationIcon) recommendationIcon.textContent = pickRecommendationIcon(results.recommendation);
+    var recommendationText = results.recommendation || "Pick one area to improve this month, then turn it into a small weekly habit.";
+    if (recommendation) recommendation.textContent = recommendationText;
+    if (recommendationIcon) recommendationIcon.textContent = pickRecommendationIcon(recommendationText);
+    renderAiGuidance(results);
+    renderAiDebug(results);
 
     if (snapshotTitle) snapshotTitle.textContent = results.title;
     if (snapshotName) snapshotName.textContent = results.name || "Optional";
@@ -287,7 +463,7 @@
     renderBarList(snapshotScores, results.scores);
     renderNameList(snapshotStrengths, results.strengths);
     renderNameList(snapshotFocus, results.focus);
-    if (snapshotRecommendation) snapshotRecommendation.textContent = results.recommendation;
+    if (snapshotRecommendation) snapshotRecommendation.textContent = recommendationText;
   }
 
   function loadResults() {

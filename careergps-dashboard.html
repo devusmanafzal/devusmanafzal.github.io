@@ -121,6 +121,33 @@
               <p class="gps-card__eyebrow">Next step recommendation</p>
             </div>
             <div id="gpsRecommendation"></div>
+            <p class="gps-ai-guidance__status" id="gpsAiGuidanceStatus" hidden></p>
+            <section class="gps-ai-guidance" id="gpsAiGuidance" hidden>
+              <div class="gps-ai-guidance__group">
+                <h3>Top priorities</h3>
+                <ol id="gpsAiPriorities"></ol>
+              </div>
+              <div class="gps-ai-guidance__group">
+                <h3>30-day plan</h3>
+                <ul id="gpsAiPlan"></ul>
+              </div>
+              <div class="gps-ai-guidance__group">
+                <h3>Recommended courses</h3>
+                <ul id="gpsAiCourses"></ul>
+              </div>
+              <div class="gps-ai-guidance__group">
+                <h3>Motivation tips</h3>
+                <ul id="gpsAiTips"></ul>
+              </div>
+              <div class="gps-ai-guidance__group" id="gpsAiCautionWrap" hidden>
+                <h3>Caution flags</h3>
+                <ul id="gpsAiCautions"></ul>
+              </div>
+            </section>
+            <details class="gps-ai-guidance__debug" id="gpsAiDebugPanel" hidden>
+              <summary>DEV: API request/response debug</summary>
+              <pre id="gpsAiDebugContent"></pre>
+            </details>
           </article>
 
         </div>

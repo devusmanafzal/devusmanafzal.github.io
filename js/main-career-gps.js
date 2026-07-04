@@ -109,6 +109,18 @@
   var questionView = params.get("view") === "questions";
   var profileStorageKey = "careerGpsProfile";
   var resultStorageKey = "careerGpsLatestResults";
+  var guidanceTimeoutMs = 12000;
+  var guidanceEndpointMeta = $('meta[name="career-gps-guidance-endpoint"]');
+  var guidanceEndpoint = guidanceEndpointMeta ? (guidanceEndpointMeta.getAttribute("content") || "").trim() : "";
+  var isDevMode = (
+    params.get("dev") === "1" ||
+    params.get("debug") === "1" ||
+    params.get("aiDebug") === "1" ||
+    (typeof window !== "undefined" && window.CAREER_GPS_DEV_DEBUG === true) ||
+    /(^localhost$|^127\.0\.0\.1$|\.local$)/i.test(window.location.hostname || "")
+  );
+  var devApiDebugPanel = null;
+  var devApiDebugContent = null;
 
   var state = {
     step: 0,
@@ -154,6 +166,8 @@
   } catch (err) {
     /* Ignore storage read issues and keep working without prefill. */
   }
+
+  initDevApiDebug();
 
   function scoreLabel(value) {
     var labels = {
@@ -449,6 +463,395 @@
     };
   }
 
+  function getGuidanceEndpoint() {
+    if (typeof window !== "undefined" && typeof window.CAREER_GPS_GUIDANCE_ENDPOINT === "string") {
+      var override = window.CAREER_GPS_GUIDANCE_ENDPOINT.trim();
+      if (override) return override;
+    }
+    return guidanceEndpoint;
+  }
+
+  function safeJson(value) {
+    try {
+      return JSON.stringify(value, null, 2);
+    } catch (err) {
+      return "{\n  \"error\": \"Could not stringify debug payload\"\n}";
+    }
+  }
+
+  function ensureDevApiDebugPanel() {
+    if (!isDevMode || devApiDebugPanel) return;
+
+    var panel = document.createElement("details");
+    panel.className = "gps-dev-api";
+    panel.open = true;
+    panel.innerHTML = '' +
+      '<summary style="cursor:pointer;font-weight:700;">DEV API Debug</summary>' +
+      '<p style="margin:8px 0 6px;color:#5b6877;font-size:13px;">Outgoing payload preview for guidance request.</p>' +
+      '<pre id="gpsDevApiContent" style="margin:0;padding:10px;border:1px solid #d7e2ed;border-radius:10px;background:#f7fbff;white-space:pre-wrap;max-height:280px;overflow:auto;font-size:12px;line-height:1.38;"></pre>';
+
+    var assessmentContainer = $("#assessment .container");
+    var stepControls = $(".gps-step-controls");
+    if (assessmentContainer) {
+      if (stepControls && stepControls.parentNode === assessmentContainer) {
+        assessmentContainer.insertBefore(panel, stepControls);
+      } else {
+        assessmentContainer.appendChild(panel);
+      }
+      devApiDebugPanel = panel;
+      devApiDebugContent = $("#gpsDevApiContent", panel);
+    }
+  }
+
+  function setDevApiDebug(data) {
+    if (!isDevMode) return;
+    ensureDevApiDebugPanel();
+    if (!devApiDebugContent) return;
+    devApiDebugContent.textContent = safeJson(data);
+  }
+
+  function initDevApiDebug() {
+    if (!isDevMode) return;
+
+    var endpoint = getGuidanceEndpoint();
+    setDevApiDebug({
+      timestamp: new Date().toISOString(),
+      status: "Debug mode enabled",
+      endpointConfigured: Boolean(endpoint),
+      endpoint: endpoint || "(not configured)",
+      note: "Panel is active. Submit assessment to see outbound request and response preview."
+    });
+  }
+
+  function isChatEndpoint(endpoint) {
+    if (!endpoint) return false;
+    return endpoint.toLowerCase().indexOf("/api/chat") !== -1;
+  }
+
+  function buildScoreMap(scores) {
+    return (scores || []).reduce(function (acc, item) {
+      if (item && item.id) acc[item.id] = item.score;
+      return acc;
+    }, {});
+  }
+
+  function buildAnswerSignals() {
+    var signals = [];
+
+    SECTIONS.forEach(function (section) {
+      section.questions.forEach(function (question, questionIndex) {
+        var key = section.id + "-" + questionIndex;
+        var score = getAnswer(key);
+        signals.push({
+          key: key,
+          section: section.id,
+          sectionTitle: section.title,
+          question: question,
+          score: score
+        });
+      });
+    });
+
+    return signals;
+  }
+
+  function buildGuidancePayload(results) {
+    return {
+      version: "v1",
+      assessment: {
+        overallScore: results.overall,
+        stage: {
+          label: results.stage && results.stage.label,
+          message: results.stage && results.stage.message
+        },
+        capabilityScores: buildScoreMap(results.scores),
+        strengths: (results.strengths || []).map(function (item) { return item.title; }),
+        focusAreas: (results.focus || []).map(function (item) { return item.title; }),
+        nextStepRecommendation: results.recommendation,
+        answerSignals: buildAnswerSignals()
+      },
+      responseContract: {
+        jsonOnly: true,
+        keys: ["priorities", "plan30Days", "recommendedCourses", "motivationTips", "cautionFlags"],
+        prioritiesCount: 3,
+        planWeekCount: 4,
+        courseCountRange: [3, 5]
+      }
+    };
+  }
+
+  function buildPromptTemplate(payload) {
+    var systemInstruction = [
+      "You are CareerGPS Coach.",
+      "Generate personalized career guidance using ONLY the assessment input provided.",
+      "Do not invent personal history, experience, or achievements.",
+      "Return strict JSON only, with no markdown and no extra keys.",
+      "Required JSON schema:",
+      "{",
+      "  \"priorities\": [string, string, string],",
+      "  \"plan30Days\": [{\"week\": string, \"actions\": [string]}],",
+      "  \"recommendedCourses\": [string],",
+      "  \"motivationTips\": [string],",
+      "  \"cautionFlags\": [string]",
+      "}",
+      "Keep recommendations concise and practical.",
+      "Focus strongly on lowest-scoring capabilities while preserving strengths."
+    ].join("\n");
+
+    var userInstruction = [
+      "Use this CareerGPS assessment data:",
+      safeJson(payload.assessment),
+      "",
+      "Output contract:",
+      safeJson(payload.responseContract)
+    ].join("\n");
+
+    return {
+      systemInstruction: systemInstruction,
+      userInstruction: userInstruction,
+      message: systemInstruction + "\n\n" + userInstruction
+    };
+  }
+
+  function sanitizeTextList(items, maxItems, maxLength) {
+    if (!Array.isArray(items)) return [];
+
+    return items.slice(0, maxItems).map(function (item) {
+      var text = String(item == null ? "" : item).trim();
+      if (!text) return "";
+      return text.slice(0, maxLength);
+    }).filter(Boolean);
+  }
+
+  function sanitizePlan(items) {
+    if (!Array.isArray(items)) return [];
+
+    return items.slice(0, 4).map(function (item, index) {
+      if (!item || typeof item !== "object") return null;
+
+      var week = String(item.week || ("Week " + (index + 1))).trim().slice(0, 36);
+      var actions = sanitizeTextList(item.actions, 4, 180);
+      if (!actions.length && item.action) {
+        actions = sanitizeTextList([item.action], 1, 180);
+      }
+
+      if (!actions.length) return null;
+      return { week: week, actions: actions };
+    }).filter(Boolean);
+  }
+
+  function normalizeGuidanceResponse(raw) {
+    var source = raw;
+    if (raw && typeof raw === "object" && raw.guidance && typeof raw.guidance === "object") {
+      source = raw.guidance;
+    }
+    if (!source || typeof source !== "object") return null;
+
+    var normalized = {
+      priorities: sanitizeTextList(source.priorities, 3, 160),
+      plan30Days: sanitizePlan(source.plan30Days),
+      recommendedCourses: sanitizeTextList(source.recommendedCourses, 5, 120),
+      motivationTips: sanitizeTextList(source.motivationTips, 4, 160),
+      cautionFlags: sanitizeTextList(source.cautionFlags, 3, 160)
+    };
+
+    if (!normalized.priorities.length && !normalized.plan30Days.length && !normalized.recommendedCourses.length && !normalized.motivationTips.length) {
+      return null;
+    }
+
+    return normalized;
+  }
+
+  function extractJsonObjectText(text) {
+    if (!text || typeof text !== "string") return null;
+
+    var fencedMatch = text.match(/```json\s*([\s\S]*?)\s*```/i);
+    if (fencedMatch && fencedMatch[1]) {
+      return fencedMatch[1].trim();
+    }
+
+    var start = text.indexOf("{");
+    var end = text.lastIndexOf("}");
+    if (start === -1 || end === -1 || end <= start) return null;
+    return text.slice(start, end + 1).trim();
+  }
+
+  function parseGuidanceFromResponse(parsedBody) {
+    var direct = normalizeGuidanceResponse(parsedBody);
+    if (direct) return direct;
+
+    var textCandidate = "";
+    if (parsedBody && typeof parsedBody.reply === "string") {
+      textCandidate = parsedBody.reply;
+    } else if (parsedBody && typeof parsedBody.message === "string") {
+      textCandidate = parsedBody.message;
+    }
+
+    if (!textCandidate) return null;
+    var jsonText = extractJsonObjectText(textCandidate);
+    if (!jsonText) return null;
+
+    try {
+      var parsedJson = JSON.parse(jsonText);
+      return normalizeGuidanceResponse(parsedJson);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function buildGuidanceRequest(endpoint, payload) {
+    var prompt = buildPromptTemplate(payload);
+
+    if (isChatEndpoint(endpoint)) {
+      return {
+        mode: "chat",
+        body: {
+          message: prompt.message
+        }
+      };
+    }
+
+    return {
+      mode: "json",
+      body: payload
+    };
+  }
+
+  function requestGuidance(payload) {
+    var endpoint = getGuidanceEndpoint();
+    if (!endpoint) {
+      return Promise.resolve({
+        status: "skipped",
+        reason: "No guidance endpoint configured",
+        debug: {
+          timestamp: new Date().toISOString(),
+          endpoint: "",
+          mode: "none",
+          requestBody: null,
+          responseStatus: null,
+          responseBody: null,
+          error: "No guidance endpoint configured"
+        }
+      });
+    }
+
+    var requestEnvelope = buildGuidanceRequest(endpoint, payload);
+    var startedAt = Date.now();
+    var debugRecord = {
+      timestamp: new Date().toISOString(),
+      endpoint: endpoint,
+      mode: requestEnvelope.mode,
+      requestBody: requestEnvelope.body,
+      responseStatus: null,
+      responseBody: null,
+      latencyMs: null,
+      error: null
+    };
+
+    setDevApiDebug({
+      timestamp: new Date().toISOString(),
+      endpoint: endpoint,
+      mode: requestEnvelope.mode,
+      body: requestEnvelope.body
+    });
+
+    var timeoutHandle = null;
+    var controller = typeof AbortController === "function" ? new AbortController() : null;
+    if (controller) {
+      timeoutHandle = window.setTimeout(function () {
+        controller.abort();
+      }, guidanceTimeoutMs);
+    }
+
+    return fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestEnvelope.body),
+      signal: controller ? controller.signal : undefined
+    }).then(function (response) {
+      return response.text().then(function (bodyText) {
+        var parsedBody = {};
+        if (bodyText) {
+          try {
+            parsedBody = JSON.parse(bodyText);
+          } catch (err) {
+            parsedBody = { reply: bodyText };
+          }
+        }
+
+        if (!response.ok) {
+          var providerMessage = parsedBody && (parsedBody.error || parsedBody.detail);
+          throw new Error(providerMessage || ("Guidance service request failed with status " + response.status));
+        }
+
+        var normalizedGuidance = parseGuidanceFromResponse(parsedBody);
+        if (!normalizedGuidance) {
+          throw new Error("Guidance service response did not match expected format");
+        }
+
+        var completedAt = Date.now();
+        debugRecord.responseStatus = response.status;
+        debugRecord.responseBody = parsedBody;
+        debugRecord.latencyMs = completedAt - startedAt;
+
+        setDevApiDebug({
+          timestamp: new Date().toISOString(),
+          endpoint: endpoint,
+          mode: requestEnvelope.mode,
+          body: requestEnvelope.body,
+          responseStatus: response.status,
+          latencyMs: completedAt - startedAt,
+          responsePreview: parsedBody
+        });
+
+        return {
+          status: "generated",
+          guidance: normalizedGuidance,
+          latencyMs: completedAt - startedAt,
+          debug: debugRecord
+        };
+      });
+    }).catch(function (error) {
+      debugRecord.error = error && error.message ? error.message : "Guidance request failed";
+      setDevApiDebug({
+        timestamp: new Date().toISOString(),
+        endpoint: endpoint,
+        mode: requestEnvelope.mode,
+        body: requestEnvelope.body,
+        error: debugRecord.error
+      });
+
+      return {
+        status: "error",
+        message: debugRecord.error,
+        debug: debugRecord
+      };
+    }).then(function (result) {
+      if (timeoutHandle) window.clearTimeout(timeoutHandle);
+      return result;
+    });
+  }
+
+  function applyGuidanceMetadata(serializedResults, guidanceResult) {
+    serializedResults.aiGuidanceStatus = guidanceResult.status;
+    serializedResults.aiGuidanceUpdatedAt = new Date().toISOString();
+    serializedResults.aiGuidanceDebug = guidanceResult.debug || null;
+
+    if (guidanceResult.status === "generated") {
+      serializedResults.aiGuidance = guidanceResult.guidance;
+    }
+
+    if (guidanceResult.status === "error") {
+      serializedResults.aiGuidanceError = guidanceResult.message;
+    }
+
+    if (guidanceResult.status === "skipped") {
+      serializedResults.aiGuidanceReason = guidanceResult.reason;
+    }
+  }
+
   function serializeResults(results) {
     return {
       name: results.name,
@@ -471,14 +874,26 @@
       state.resultDate = new Date();
       state.results = computeResults();
 
-      try {
-        sessionStorage.setItem(resultStorageKey, JSON.stringify(serializeResults(state.results)));
-      } catch (err) {
-        window.alert("We could not save your snapshot locally. Please allow browser storage and try again.");
-        return;
+      if (stageHint) {
+        stageHint.textContent = "Preparing your personalized guidance and dashboard...";
+        stageHint.classList.add("is-visible");
       }
 
-      window.location.href = "careergps-dashboard.html";
+      var serializedResults = serializeResults(state.results);
+      var payload = buildGuidancePayload(state.results);
+
+      requestGuidance(payload).then(function (guidanceResult) {
+        applyGuidanceMetadata(serializedResults, guidanceResult);
+
+        try {
+          sessionStorage.setItem(resultStorageKey, JSON.stringify(serializedResults));
+        } catch (err) {
+          window.alert("We could not save your snapshot locally. Please allow browser storage and try again.");
+          return;
+        }
+
+        window.location.href = isDevMode ? "careergps-dashboard.html?debug=1" : "careergps-dashboard.html";
+      });
     });
   }
 
