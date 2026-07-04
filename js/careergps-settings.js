@@ -9,9 +9,9 @@
   "use strict";
 
   var defaults = {
-    dataMode: "live",     // "live" or "sample"
-    showDebug: true,      // true shows debug panels and debug payloads
-    showModeBadge: true   // true shows "Mode" badge on dashboard
+    dataMode: "sample",     // "live" or "sample"
+    showDebug: false,      // true shows debug panels and debug payloads
+    showModeBadge: false   // true shows "Mode" badge on dashboard
   };
 
   function normalizeDataMode(value) {
