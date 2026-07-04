@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/styles-career-gps.css" />
 </head>
@@ -46,6 +47,7 @@
         <div class="gps-top-meta reveal is-in" aria-label="Snapshot identity">
           <p class="gps-top-meta__item"><span>Name</span><strong id="gpsTopName">Optional</strong></p>
           <p class="gps-top-meta__item"><span>Date</span><strong id="gpsTopDate">Today</strong></p>
+          <p class="gps-top-meta__item gps-top-meta__item--mode" hidden><span>Mode</span><strong id="gpsModeBadge">Live API</strong></p>
         </div>
 
         <div class="gps-results__grid">
@@ -108,6 +110,11 @@
             </article>
           </div>
 
+          <figure class="gps-inline-tip" id="gpsInlineTip" hidden>
+            <blockquote class="gps-inline-tip__text" id="gpsInlineTipText"></blockquote>
+            <figcaption class="gps-inline-tip__source" id="gpsInlineTipSource">CareerGPS Coach</figcaption>
+          </figure>
+
           <article class="gps-card gps-chart-card reveal is-in">
             <div class="gps-card__head">
               <p class="gps-card__eyebrow">Dimension scores</p>
@@ -122,34 +129,57 @@
             </div>
             <div id="gpsRecommendation"></div>
             <p class="gps-ai-guidance__status" id="gpsAiGuidanceStatus" hidden></p>
-            <section class="gps-ai-guidance" id="gpsAiGuidance" hidden>
-              <div class="gps-ai-guidance__group">
-                <h3>Top priorities</h3>
-                <ol id="gpsAiPriorities"></ol>
-              </div>
-              <div class="gps-ai-guidance__group">
-                <h3>30-day plan</h3>
-                <ul id="gpsAiPlan"></ul>
-              </div>
-              <div class="gps-ai-guidance__group">
-                <h3>Recommended courses</h3>
-                <ul id="gpsAiCourses"></ul>
-              </div>
-              <div class="gps-ai-guidance__group">
-                <h3>Motivation tips</h3>
-                <ul id="gpsAiTips"></ul>
-              </div>
-              <div class="gps-ai-guidance__group" id="gpsAiCautionWrap" hidden>
-                <h3>Caution flags</h3>
-                <ul id="gpsAiCautions"></ul>
-              </div>
-            </section>
-            <details class="gps-ai-guidance__debug" id="gpsAiDebugPanel" hidden>
-              <summary>DEV: API request/response debug</summary>
-              <pre id="gpsAiDebugContent"></pre>
-            </details>
           </article>
 
+          <article class="gps-card gps-ai-card reveal is-in" id="gpsAiPrioritiesCard" hidden>
+            <div class="gps-card__head">
+              <p class="gps-card__eyebrow">AI priorities</p>
+            </div>
+            <ol class="gps-ai-list" id="gpsAiPriorities"></ol>
+          </article>
+
+          <figure class="gps-inline-tip" id="gpsInlineTipSecondary" hidden>
+            <blockquote class="gps-inline-tip__text" id="gpsInlineTipSecondaryText"></blockquote>
+            <figcaption class="gps-inline-tip__source" id="gpsInlineTipSecondarySource">CareerGPS Coach</figcaption>
+          </figure>
+
+          <article class="gps-card gps-ai-card reveal is-in" id="gpsAiPlanCard" hidden>
+            <div class="gps-card__head">
+              <p class="gps-card__eyebrow">AI 30-day plan</p>
+            </div>
+            <div class="gps-plan-carousel" id="gpsAiPlanCarousel" hidden>
+              <div class="gps-plan-carousel__viewport">
+                <ul class="gps-plan-carousel__track" id="gpsAiPlanTrack"></ul>
+              </div>
+              <div class="gps-plan-carousel__controls">
+                <button type="button" class="gps-plan-carousel__btn" id="gpsAiPlanPrev" aria-label="Previous week">&larr;</button>
+                <div class="gps-plan-carousel__dots" id="gpsAiPlanDots" aria-label="Plan weeks"></div>
+                <button type="button" class="gps-plan-carousel__btn" id="gpsAiPlanNext" aria-label="Next week">&rarr;</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="gps-card gps-ai-card reveal is-in" id="gpsAiCoursesCard" hidden>
+            <div class="gps-card__head">
+              <p class="gps-card__eyebrow">AI recommended courses</p>
+            </div>
+            <ul class="gps-ai-list" id="gpsAiCourses"></ul>
+          </article>
+
+          <article class="gps-card gps-ai-card reveal is-in" id="gpsAiCautionsCard" hidden>
+            <div class="gps-card__head">
+              <p class="gps-card__eyebrow">AI caution flags</p>
+            </div>
+            <ul class="gps-ai-list" id="gpsAiCautions"></ul>
+          </article>
+
+        </div>
+
+        <div class="gps-ai-debug-wrap" id="gpsAiDebugWrap" hidden>
+          <details class="gps-ai-guidance__debug" id="gpsAiDebugPanel">
+            <summary>DEV: API request/response debug</summary>
+            <pre id="gpsAiDebugContent"></pre>
+          </details>
         </div>
 
         <div class="gps-bottom-tools gps-print-hide reveal is-in" aria-label="Bottom quick actions">
@@ -219,6 +249,7 @@
   <a href="#" class="to-top" id="toTop" aria-label="Back to top">↑</a>
 
   <script src="js/main.js"></script>
+  <script src="js/careergps-settings.js"></script>
   <script src="js/main-career-gps-dashboard.js"></script>
 </body>
 </html>

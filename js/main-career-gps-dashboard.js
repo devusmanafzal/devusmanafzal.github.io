@@ -5,8 +5,26 @@
   "use strict";
 
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function getAppSettings() {
+    if (typeof window === "undefined" || !window.CAREER_GPS_SETTINGS || typeof window.CAREER_GPS_SETTINGS !== "object") {
+      return {
+        dataMode: "live",
+        showDebug: false,
+        showModeBadge: false
+      };
+    }
+
+    return {
+      dataMode: window.CAREER_GPS_SETTINGS.dataMode === "sample" ? "sample" : "live",
+      showDebug: window.CAREER_GPS_SETTINGS.showDebug === true,
+      showModeBadge: window.CAREER_GPS_SETTINGS.showModeBadge === true
+    };
+  }
+  var pageQuery = new URLSearchParams(window.location.search);
+  var appSettings = getAppSettings();
 
   var resultStorageKey = "careerGpsLatestResults";
+  var dataModeStorageKey = "careerGpsDataMode";
   var resultsSection = $("#results");
   var noResultSection = $("#gpsNoResult");
 
@@ -36,17 +54,30 @@
   var recommendation = $("#gpsRecommendation");
   var recommendationIcon = $("#gpsRecommendationIcon");
   var aiGuidanceStatus = $("#gpsAiGuidanceStatus");
-  var aiGuidanceWrap = $("#gpsAiGuidance");
+  var inlineTip = $("#gpsInlineTip");
+  var inlineTipText = $("#gpsInlineTipText");
+  var inlineTipSource = $("#gpsInlineTipSource");
+  var inlineTipSecondary = $("#gpsInlineTipSecondary");
+  var inlineTipSecondaryText = $("#gpsInlineTipSecondaryText");
+  var inlineTipSecondarySource = $("#gpsInlineTipSecondarySource");
+  var aiPrioritiesCard = $("#gpsAiPrioritiesCard");
+  var aiPlanCard = $("#gpsAiPlanCard");
+  var aiCoursesCard = $("#gpsAiCoursesCard");
+  var aiCautionsCard = $("#gpsAiCautionsCard");
   var aiPriorities = $("#gpsAiPriorities");
-  var aiPlan = $("#gpsAiPlan");
+  var aiPlanCarousel = $("#gpsAiPlanCarousel");
+  var aiPlanTrack = $("#gpsAiPlanTrack");
+  var aiPlanPrev = $("#gpsAiPlanPrev");
+  var aiPlanNext = $("#gpsAiPlanNext");
+  var aiPlanDots = $("#gpsAiPlanDots");
   var aiCourses = $("#gpsAiCourses");
-  var aiTips = $("#gpsAiTips");
-  var aiCautionWrap = $("#gpsAiCautionWrap");
   var aiCautions = $("#gpsAiCautions");
+  var aiDebugWrap = $("#gpsAiDebugWrap");
   var aiDebugPanel = $("#gpsAiDebugPanel");
   var aiDebugContent = $("#gpsAiDebugContent");
   var topName = $("#gpsTopName");
   var topDate = $("#gpsTopDate");
+  var modeBadge = $("#gpsModeBadge");
   var snapshotTitle = $("#gpsSnapshotTitle");
   var snapshotName = $("#gpsSnapshotName");
   var snapshotDate = $("#gpsSnapshotDate");
@@ -56,6 +87,9 @@
   var snapshotStrengths = $("#gpsSnapshotStrengths");
   var snapshotFocus = $("#gpsSnapshotFocus");
   var snapshotRecommendation = $("#gpsSnapshotRecommendation");
+  var planSlideIndex = 0;
+  var planSlideCount = 0;
+  var planCarouselBound = false;
 
   function getStageVisual(label) {
     var visuals = {
@@ -271,6 +305,107 @@
     }
   }
 
+  function renderPriorities(target, items) {
+    if (!target) return;
+    clearList(target);
+
+    var icons = ["🌟", "🚀", "🎯"];
+
+    (items || []).forEach(function (text, index) {
+      var item = document.createElement("li");
+      item.className = "gps-priority-item";
+
+      var icon = document.createElement("span");
+      icon.className = "gps-priority-item__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = icons[index % icons.length];
+
+      var copy = document.createElement("span");
+      copy.className = "gps-priority-item__text";
+      copy.textContent = text;
+
+      item.appendChild(icon);
+      item.appendChild(copy);
+      target.appendChild(item);
+    });
+  }
+
+  function renderCourses(target, items) {
+    if (!target) return;
+    clearList(target);
+
+    (items || []).forEach(function (text) {
+      var item = document.createElement("li");
+      item.className = "gps-priority-item";
+
+      var icon = document.createElement("span");
+      icon.className = "gps-priority-item__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = "📘";
+
+      var copy = document.createElement("span");
+      copy.className = "gps-priority-item__text";
+      copy.textContent = text;
+
+      item.appendChild(icon);
+      item.appendChild(copy);
+      target.appendChild(item);
+    });
+  }
+
+  function renderCautions(target, items) {
+    if (!target) return;
+    clearList(target);
+
+    (items || []).forEach(function (text) {
+      var item = document.createElement("li");
+      item.className = "gps-priority-item";
+
+      var icon = document.createElement("span");
+      icon.className = "gps-priority-item__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = "⚠️";
+
+      var copy = document.createElement("span");
+      copy.className = "gps-priority-item__text";
+      copy.textContent = text;
+
+      item.appendChild(icon);
+      item.appendChild(copy);
+      target.appendChild(item);
+    });
+  }
+
+  function renderInlineTip(items) {
+    if (!inlineTip || !inlineTipText) return;
+    var firstTip = Array.isArray(items) && items.length ? items[0] : "";
+
+    if (!firstTip) {
+      inlineTip.hidden = true;
+      inlineTipText.textContent = "";
+      return;
+    }
+
+    inlineTip.hidden = false;
+    inlineTipText.textContent = firstTip;
+    if (inlineTipSource) inlineTipSource.textContent = "CareerGPS Coach";
+  }
+
+  function renderInlineTipSecondary(items) {
+    if (!inlineTipSecondary || !inlineTipSecondaryText) return;
+    var secondTip = Array.isArray(items) && items.length > 1 ? items[1] : "";
+
+    if (!secondTip) {
+      inlineTipSecondary.hidden = true;
+      inlineTipSecondaryText.textContent = "";
+      return;
+    }
+
+    inlineTipSecondary.hidden = false;
+    inlineTipSecondaryText.textContent = secondTip;
+    if (inlineTipSecondarySource) inlineTipSecondarySource.textContent = "CareerGPS Coach";
+  }
+
   function normalizeTextList(items, maxItems, maxLen) {
     if (!Array.isArray(items)) return [];
     return items.slice(0, maxItems).map(function (item) {
@@ -320,34 +455,114 @@
 
   function renderPlan(target, plan) {
     if (!target) return;
-    clearList(target);
 
-    plan.forEach(function (item) {
-      var li = document.createElement("li");
-      var week = document.createElement("strong");
-      week.textContent = item.week + ": ";
-      li.appendChild(week);
+    var actionIcons = ["🚀", "✨", "🎯", "✅"];
 
-      var text = document.createElement("span");
-      text.textContent = item.actions.join(" ");
-      li.appendChild(text);
+    target.innerHTML = plan.map(function (item) {
+      var actions = (item.actions || []).map(function (action, actionIndex) {
+        var icon = actionIcons[actionIndex % actionIcons.length];
+        return ''
+          + '<li class="gps-plan-week__action">'
+          + '  <span class="gps-plan-week__icon" aria-hidden="true">' + icon + '</span>'
+          + '  <span>' + action + '</span>'
+          + '</li>';
+      }).join("");
 
-      target.appendChild(li);
-    });
+      return ''
+        + '<li class="gps-plan-carousel__slide">'
+        + '  <article class="gps-plan-week">'
+        + '    <h4>' + item.week + '</h4>'
+        + '    <ul>' + actions + '</ul>'
+        + '  </article>'
+        + '</li>';
+    }).join("");
+
+    planSlideCount = plan.length;
+    planSlideIndex = 0;
+    renderPlanDots(plan.length);
+    updatePlanCarouselPosition();
+  }
+
+  function renderPlanDots(count) {
+    if (!aiPlanDots) return;
+
+    aiPlanDots.innerHTML = "";
+    for (var index = 0; index < count; index += 1) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "gps-plan-carousel__dot" + (index === planSlideIndex ? " is-active" : "");
+      dot.setAttribute("aria-label", "Go to " + ("Week " + (index + 1)));
+      dot.setAttribute("data-plan-index", String(index));
+      aiPlanDots.appendChild(dot);
+    }
+  }
+
+  function setPlanSlide(index) {
+    if (!planSlideCount) return;
+    planSlideIndex = Math.max(0, Math.min(planSlideCount - 1, index));
+    updatePlanCarouselPosition();
+  }
+
+  function updatePlanCarouselPosition() {
+    if (!aiPlanTrack) return;
+
+    aiPlanTrack.style.transform = "translateX(" + (-planSlideIndex * 100) + "%)";
+
+    if (aiPlanPrev) aiPlanPrev.disabled = planSlideIndex <= 0;
+    if (aiPlanNext) aiPlanNext.disabled = planSlideIndex >= planSlideCount - 1;
+
+    if (aiPlanDots) {
+      aiPlanDots.querySelectorAll(".gps-plan-carousel__dot").forEach(function (dot, idx) {
+        dot.classList.toggle("is-active", idx === planSlideIndex);
+      });
+    }
+  }
+
+  function bindPlanCarouselControls() {
+    if (planCarouselBound) return;
+    planCarouselBound = true;
+
+    if (aiPlanPrev) {
+      aiPlanPrev.addEventListener("click", function () {
+        setPlanSlide(planSlideIndex - 1);
+      });
+    }
+
+    if (aiPlanNext) {
+      aiPlanNext.addEventListener("click", function () {
+        setPlanSlide(planSlideIndex + 1);
+      });
+    }
+
+    if (aiPlanDots) {
+      aiPlanDots.addEventListener("click", function (event) {
+        var target = event.target;
+        if (!target || !target.getAttribute) return;
+        var indexValue = target.getAttribute("data-plan-index");
+        if (indexValue == null) return;
+        setPlanSlide(parseInt(indexValue, 10));
+      });
+    }
   }
 
   function renderAiGuidance(results) {
-    if (!aiGuidanceWrap) return;
+    if (!aiPrioritiesCard || !aiPlanCard || !aiCoursesCard || !aiCautionsCard) return;
 
     var normalized = normalizeGuidance(results && results.aiGuidance);
     if (!normalized) {
-      aiGuidanceWrap.hidden = true;
+      aiPrioritiesCard.hidden = true;
+      aiPlanCard.hidden = true;
+      aiCoursesCard.hidden = true;
+      aiCautionsCard.hidden = true;
+      if (inlineTip) inlineTip.hidden = true;
+      if (inlineTipSecondary) inlineTipSecondary.hidden = true;
+      if (aiPlanCarousel) aiPlanCarousel.hidden = true;
       clearList(aiPriorities);
-      clearList(aiPlan);
+      if (aiPlanTrack) aiPlanTrack.innerHTML = "";
       clearList(aiCourses);
-      clearList(aiTips);
+      if (inlineTipText) inlineTipText.textContent = "";
+      if (inlineTipSecondaryText) inlineTipSecondaryText.textContent = "";
       clearList(aiCautions);
-      if (aiCautionWrap) aiCautionWrap.hidden = true;
 
       if (results && results.aiGuidanceStatus === "error") {
         setStatusMessage("Personalized AI guidance is unavailable right now, but your core recommendation is ready.");
@@ -358,33 +573,48 @@
     }
 
     setStatusMessage("");
-    aiGuidanceWrap.hidden = false;
-    renderTextList(aiPriorities, normalized.priorities, true);
-    renderPlan(aiPlan, normalized.plan30Days);
-    renderTextList(aiCourses, normalized.recommendedCourses, false);
-    renderTextList(aiTips, normalized.motivationTips, false);
+    aiPrioritiesCard.hidden = !normalized.priorities.length;
+    aiPlanCard.hidden = !normalized.plan30Days.length;
+    aiCoursesCard.hidden = !normalized.recommendedCourses.length;
+    aiCautionsCard.hidden = !normalized.cautionFlags.length;
+    if (aiPlanCarousel) aiPlanCarousel.hidden = !normalized.plan30Days.length;
 
-    if (aiCautionWrap) {
-      aiCautionWrap.hidden = !normalized.cautionFlags.length;
-      if (!aiCautionWrap.hidden) {
-        renderTextList(aiCautions, normalized.cautionFlags, false);
-      }
-    }
+    renderPriorities(aiPriorities, normalized.priorities);
+    renderPlan(aiPlanTrack, normalized.plan30Days);
+    renderCourses(aiCourses, normalized.recommendedCourses);
+    renderInlineTip(normalized.motivationTips);
+    renderInlineTipSecondary(normalized.motivationTips);
+    renderCautions(aiCautions, normalized.cautionFlags);
+    bindPlanCarouselControls();
   }
 
   function renderAiDebug(results) {
-    if (!aiDebugPanel || !aiDebugContent) return;
+    if (!aiDebugWrap || !aiDebugPanel || !aiDebugContent) return;
+
+    if (!appSettings.showDebug) {
+      aiDebugWrap.hidden = true;
+      aiDebugPanel.hidden = true;
+      aiDebugContent.textContent = "";
+      return;
+    }
 
     var debugData = results && results.aiGuidanceDebug;
     var status = results && results.aiGuidanceStatus;
     var errorText = results && (results.aiGuidanceError || results.aiGuidanceReason);
 
     if (!debugData && !status) {
-      aiDebugPanel.hidden = true;
-      aiDebugContent.textContent = "";
+      aiDebugWrap.hidden = false;
+      aiDebugPanel.hidden = false;
+      aiDebugPanel.open = true;
+      aiDebugContent.textContent = [
+        "Debug mode is ON.",
+        "No debug payload found in the current snapshot.",
+        "Retake and submit the assessment again to capture a fresh API request/response payload."
+      ].join("\n");
       return;
     }
 
+    aiDebugWrap.hidden = false;
     aiDebugPanel.hidden = false;
 
     if (!debugData) {
@@ -476,13 +706,82 @@
     }
   }
 
-  var results = loadResults();
-  bindMiniInfoInteractions();
-  if (!results) {
-    showNoResult();
-  } else {
-    renderResults(results);
+  function shouldUseSampleResults() {
+    return appSettings.dataMode === "sample";
   }
+
+  function loadSampleResults() {
+    return fetch("assets/data/career-gps-sample-results.json", {
+      cache: "no-store"
+    }).then(function (response) {
+      if (!response.ok) {
+        throw new Error("Sample data could not be loaded");
+      }
+      return response.json();
+    });
+  }
+
+  function resolveResults() {
+    var sessionResults = loadResults();
+    if (sessionResults) {
+      return Promise.resolve(sessionResults);
+    }
+
+    if (shouldUseSampleResults()) {
+      return loadSampleResults().catch(function () {
+        return null;
+      });
+    }
+
+    return Promise.resolve(null);
+  }
+
+  function renderModeBadge() {
+    var topMeta = $(".gps-top-meta");
+    var effectiveModeBadge = modeBadge;
+    var modeItem = effectiveModeBadge ? effectiveModeBadge.closest(".gps-top-meta__item") : null;
+
+    if (!effectiveModeBadge && topMeta) {
+      var item = document.createElement("p");
+      item.className = "gps-top-meta__item gps-top-meta__item--mode";
+      item.hidden = true;
+      item.innerHTML = '<span>Mode</span><strong id="gpsModeBadge">Live API</strong>';
+      topMeta.appendChild(item);
+      effectiveModeBadge = $("#gpsModeBadge", item);
+      modeItem = item;
+    }
+
+    if (!appSettings.showModeBadge) {
+      if (modeItem) {
+        modeItem.hidden = true;
+        modeItem.setAttribute("hidden", "");
+      }
+      return;
+    }
+
+    if (!effectiveModeBadge) return;
+
+    var sampleMode = appSettings.dataMode === "sample";
+
+    if (modeItem) {
+      modeItem.hidden = false;
+      modeItem.removeAttribute("hidden");
+    }
+
+    effectiveModeBadge.textContent = sampleMode ? "Sample (No API)" : "Live API";
+  }
+
+  bindMiniInfoInteractions();
+  renderModeBadge();
+  resolveResults().then(function (results) {
+    if (!results) {
+      showNoResult();
+    } else {
+      renderResults(results);
+    }
+  }).catch(function () {
+    showNoResult();
+  });
 
   document.querySelectorAll("[data-print-snapshot]").forEach(function (button) {
     button.addEventListener("click", function () {

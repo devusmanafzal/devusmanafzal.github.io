@@ -105,20 +105,32 @@
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $all(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
 
+  function getAppSettings() {
+    if (typeof window === "undefined" || !window.CAREER_GPS_SETTINGS || typeof window.CAREER_GPS_SETTINGS !== "object") {
+      return {
+        dataMode: "live",
+        showDebug: false,
+        showModeBadge: false
+      };
+    }
+
+    return {
+      dataMode: window.CAREER_GPS_SETTINGS.dataMode === "sample" ? "sample" : "live",
+      showDebug: window.CAREER_GPS_SETTINGS.showDebug === true,
+      showModeBadge: window.CAREER_GPS_SETTINGS.showModeBadge === true
+    };
+  }
+
   var params = new URLSearchParams(window.location.search);
+  var appSettings = getAppSettings();
   var questionView = params.get("view") === "questions";
   var profileStorageKey = "careerGpsProfile";
   var resultStorageKey = "careerGpsLatestResults";
+  var dataModeStorageKey = "careerGpsDataMode";
   var guidanceTimeoutMs = 12000;
   var guidanceEndpointMeta = $('meta[name="career-gps-guidance-endpoint"]');
   var guidanceEndpoint = guidanceEndpointMeta ? (guidanceEndpointMeta.getAttribute("content") || "").trim() : "";
-  var isDevMode = (
-    params.get("dev") === "1" ||
-    params.get("debug") === "1" ||
-    params.get("aiDebug") === "1" ||
-    (typeof window !== "undefined" && window.CAREER_GPS_DEV_DEBUG === true) ||
-    /(^localhost$|^127\.0\.0\.1$|\.local$)/i.test(window.location.hostname || "")
-  );
+  var isDevMode = appSettings.showDebug;
   var devApiDebugPanel = null;
   var devApiDebugContent = null;
 
@@ -143,6 +155,9 @@
   var questionNextBtn = $("#gpsQuestionNext");
   var stepBackBtn = $("#gpsStepBack");
   var stepNextBtn = $("#gpsStepNext");
+  var dataModeButtons = $all("[data-gps-data-mode]");
+  var assessmentModeBadge = $("#gpsAssessmentModeBadge");
+  var assessmentModeBadgeIntro = $("#gpsAssessmentModeBadgeIntro");
   var profileName = "";
   var submitDialogState = {
     root: null,
@@ -152,6 +167,17 @@
     resolver: null,
     handleEsc: null
   };
+  var submitLoadingState = {
+    root: null,
+    title: null,
+    detail: null,
+    timer: null,
+    hideTimer: null,
+    messages: [],
+    index: 0,
+    shownAt: 0
+  };
+  var submitLoadingMinVisibleMs = 1800;
 
   if (questionView) {
     document.body.classList.add("gps-page--questions");
@@ -168,6 +194,40 @@
   }
 
   initDevApiDebug();
+
+  function getStoredDataMode() {
+    return appSettings.dataMode === "sample" ? "sample" : "live";
+  }
+
+  function isSampleDataMode() {
+    return getStoredDataMode() === "sample";
+  }
+
+  function setStoredDataMode(mode) {
+    var safeMode = mode === "sample" ? "sample" : "live";
+    try {
+      sessionStorage.setItem(dataModeStorageKey, safeMode);
+    } catch (err) {
+      /* Keep UI state even if storage is blocked. */
+    }
+
+    dataModeButtons.forEach(function (button) {
+      var modeValue = button.getAttribute("data-gps-data-mode") === "sample" ? "sample" : "live";
+      var isActive = modeValue === safeMode;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  function bindDataModeToggle() {
+    setStoredDataMode(getStoredDataMode());
+  }
+
+  function renderAssessmentModeBadges() {
+    var modeText = appSettings.dataMode === "sample" ? "Sample (No API)" : "Live API";
+    if (assessmentModeBadge) assessmentModeBadge.textContent = modeText;
+    if (assessmentModeBadgeIntro) assessmentModeBadgeIntro.textContent = modeText;
+  }
 
   function scoreLabel(value) {
     var labels = {
@@ -718,6 +778,47 @@
   }
 
   function requestGuidance(payload) {
+    if (isSampleDataMode()) {
+      return fetch("assets/data/career-gps-sample-results.json", {
+        cache: "no-store"
+      }).then(function (response) {
+        if (!response.ok) {
+          throw new Error("Sample guidance file could not be loaded");
+        }
+        return response.json();
+      }).then(function (sample) {
+        return {
+          status: "generated",
+          guidance: sample && sample.aiGuidance ? sample.aiGuidance : null,
+          debug: {
+            timestamp: new Date().toISOString(),
+            endpoint: "sample-local",
+            mode: "sample",
+            requestBody: payload,
+            responseStatus: 200,
+            responseBody: sample && sample.aiGuidance ? sample.aiGuidance : {},
+            latencyMs: 0,
+            error: null
+          }
+        };
+      }).catch(function (error) {
+        return {
+          status: "skipped",
+          reason: error && error.message ? error.message : "Sample guidance mode is enabled",
+          debug: {
+            timestamp: new Date().toISOString(),
+            endpoint: "sample-local",
+            mode: "sample",
+            requestBody: payload,
+            responseStatus: null,
+            responseBody: null,
+            latencyMs: null,
+            error: error && error.message ? error.message : "Sample guidance mode is enabled"
+          }
+        };
+      });
+    }
+
     var endpoint = getGuidanceEndpoint();
     if (!endpoint) {
       return Promise.resolve({
@@ -837,7 +938,7 @@
   function applyGuidanceMetadata(serializedResults, guidanceResult) {
     serializedResults.aiGuidanceStatus = guidanceResult.status;
     serializedResults.aiGuidanceUpdatedAt = new Date().toISOString();
-    serializedResults.aiGuidanceDebug = guidanceResult.debug || null;
+    serializedResults.aiGuidanceDebug = isDevMode ? (guidanceResult.debug || null) : null;
 
     if (guidanceResult.status === "generated") {
       serializedResults.aiGuidance = guidanceResult.guidance;
@@ -875,9 +976,11 @@
       state.results = computeResults();
 
       if (stageHint) {
-        stageHint.textContent = "Preparing your personalized guidance and dashboard...";
+        stageHint.textContent = isSampleDataMode() ? "Preparing dashboard using sample AI response (API disabled)..." : "Preparing your personalized guidance and dashboard...";
         stageHint.classList.add("is-visible");
       }
+
+      showSubmitLoadingOverlay();
 
       var serializedResults = serializeResults(state.results);
       var payload = buildGuidancePayload(state.results);
@@ -888,13 +991,148 @@
         try {
           sessionStorage.setItem(resultStorageKey, JSON.stringify(serializedResults));
         } catch (err) {
+          hideSubmitLoadingOverlay();
           window.alert("We could not save your snapshot locally. Please allow browser storage and try again.");
           return;
         }
 
-        window.location.href = isDevMode ? "careergps-dashboard.html?debug=1" : "careergps-dashboard.html";
+        finishLoadingAndContinue(function () {
+          window.location.href = "careergps-dashboard.html";
+        });
+      }).catch(function () {
+        hideSubmitLoadingOverlay();
+        window.alert("Something went wrong while preparing your dashboard. Please try again.");
       });
     });
+  }
+
+  function getSubmitLoadingMessages() {
+    if (isSampleDataMode()) {
+      return {
+        title: "Preparing your sample Career GPS snapshot...",
+        detail: [
+          "Building your score view and recommendation.",
+          "Arranging your AI sample priorities and 30-day plan.",
+          "Almost there. Opening your dashboard next."
+        ]
+      };
+    }
+
+    return {
+      title: "Building your personalized AI roadmap...",
+      detail: [
+        "Analyzing your responses across all four dimensions.",
+        "Generating focused priorities and a 30-day action plan.",
+        "Finalizing guidance so your dashboard opens ready to use."
+      ]
+    };
+  }
+
+  function ensureSubmitLoadingOverlay() {
+    if (submitLoadingState.root) return;
+
+    var root = document.createElement("div");
+    root.className = "gps-submit-loading";
+    root.setAttribute("hidden", "");
+    root.innerHTML = ''
+      + '<div class="gps-submit-loading__panel" role="status" aria-live="polite" aria-atomic="true">'
+      + '  <p class="gps-submit-loading__eyebrow">Career GPS</p>'
+      + '  <h3 class="gps-submit-loading__title" id="gpsSubmitLoadingTitle">Preparing your dashboard...</h3>'
+      + '  <p class="gps-submit-loading__detail" id="gpsSubmitLoadingDetail">Please wait while we process your results.</p>'
+      + '  <div class="gps-submit-loading__pulse" aria-hidden="true"></div>'
+      + '  <div class="gps-submit-loading__dots" aria-hidden="true"><span></span><span></span><span></span></div>'
+      + '</div>';
+
+    document.body.appendChild(root);
+
+    submitLoadingState.root = root;
+    submitLoadingState.title = $("#gpsSubmitLoadingTitle", root);
+    submitLoadingState.detail = $("#gpsSubmitLoadingDetail", root);
+  }
+
+  function showSubmitLoadingOverlay() {
+    ensureSubmitLoadingOverlay();
+    if (!submitLoadingState.root) return;
+
+    if (submitLoadingState.hideTimer) {
+      window.clearTimeout(submitLoadingState.hideTimer);
+      submitLoadingState.hideTimer = null;
+    }
+
+    if (submitLoadingState.timer) {
+      window.clearInterval(submitLoadingState.timer);
+      submitLoadingState.timer = null;
+    }
+
+    var content = getSubmitLoadingMessages();
+    submitLoadingState.messages = content.detail || [];
+    submitLoadingState.index = 0;
+
+    if (submitLoadingState.title) {
+      submitLoadingState.title.textContent = content.title;
+    }
+
+    if (submitLoadingState.detail) {
+      submitLoadingState.detail.textContent = submitLoadingState.messages[0] || "Preparing your dashboard...";
+    }
+
+    if (submitLoadingState.messages.length > 1) {
+      submitLoadingState.timer = window.setInterval(function () {
+        submitLoadingState.index = (submitLoadingState.index + 1) % submitLoadingState.messages.length;
+        if (submitLoadingState.detail) {
+          submitLoadingState.detail.classList.remove("is-swap");
+          // Force reflow to restart CSS animation for each message cycle.
+          void submitLoadingState.detail.offsetWidth;
+          submitLoadingState.detail.classList.add("is-swap");
+          submitLoadingState.detail.textContent = submitLoadingState.messages[submitLoadingState.index];
+        }
+      }, 1200);
+    }
+
+    submitLoadingState.root.removeAttribute("hidden");
+    window.requestAnimationFrame(function () {
+      if (submitLoadingState.root) {
+        submitLoadingState.root.classList.add("is-visible");
+      }
+    });
+
+    submitLoadingState.shownAt = Date.now();
+
+    document.body.classList.add("gps-screen-locked");
+  }
+
+  function finishLoadingAndContinue(next) {
+    if (typeof next !== "function") return;
+
+    var elapsed = submitLoadingState.shownAt ? (Date.now() - submitLoadingState.shownAt) : submitLoadingMinVisibleMs;
+    var waitMs = Math.max(0, submitLoadingMinVisibleMs - elapsed);
+
+    if (submitLoadingState.detail) {
+      submitLoadingState.detail.classList.remove("is-swap");
+      submitLoadingState.detail.textContent = "Done. Opening your dashboard...";
+    }
+
+    window.setTimeout(function () {
+      next();
+    }, waitMs);
+  }
+
+  function hideSubmitLoadingOverlay() {
+    if (!submitLoadingState.root) return;
+
+    if (submitLoadingState.timer) {
+      window.clearInterval(submitLoadingState.timer);
+      submitLoadingState.timer = null;
+    }
+
+    submitLoadingState.root.classList.remove("is-visible");
+    document.body.classList.remove("gps-screen-locked");
+
+    submitLoadingState.hideTimer = window.setTimeout(function () {
+      if (submitLoadingState.root) {
+        submitLoadingState.root.setAttribute("hidden", "");
+      }
+    }, 220);
   }
 
   function ensureSubmitDialog() {
@@ -1049,4 +1287,6 @@
   });
 
   renderStep();
+  bindDataModeToggle();
+  renderAssessmentModeBadges();
 })();

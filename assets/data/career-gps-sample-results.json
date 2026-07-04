@@ -1,0 +1,145 @@
+{
+  "name": "Demo User",
+  "date": "2026-07-04T14:45:00.000Z",
+  "overall": 68,
+  "stage": {
+    "min": 50,
+    "max": 64,
+    "label": "Builder",
+    "message": "You have begun taking intentional action and are building foundations for growth.",
+    "primaryFocus": [
+      "Execution",
+      "Visibility"
+    ]
+  },
+  "scores": [
+    {
+      "id": "direction",
+      "title": "Direction",
+      "short": "Direction",
+      "score": 72
+    },
+    {
+      "id": "visibility",
+      "title": "Visibility",
+      "short": "Visibility",
+      "score": 55
+    },
+    {
+      "id": "capability",
+      "title": "Capability",
+      "short": "Capability",
+      "score": 61
+    },
+    {
+      "id": "amplification",
+      "title": "Amplification",
+      "short": "Amplification",
+      "score": 64
+    }
+  ],
+  "strengths": [
+    {
+      "id": "direction",
+      "title": "Direction",
+      "short": "Direction",
+      "score": 72
+    },
+    {
+      "id": "amplification",
+      "title": "Amplification",
+      "short": "Amplification",
+      "score": 64
+    }
+  ],
+  "focus": [
+    {
+      "id": "visibility",
+      "title": "Visibility",
+      "short": "Visibility",
+      "score": 55
+    },
+    {
+      "id": "capability",
+      "title": "Capability",
+      "short": "Capability",
+      "score": 61
+    }
+  ],
+  "recommendation": "Sharpen how you communicate your value. Create a one-line value statement and update one public profile this week.",
+  "title": "Career GPS Sample Snapshot",
+  "aiGuidanceStatus": "generated",
+  "aiGuidanceUpdatedAt": "2026-07-04T14:45:10.000Z",
+  "aiGuidance": {
+    "priorities": [
+      "Build one repeatable AI-assisted workflow to save time weekly",
+      "Establish a simple weekly planning and task-tracking routine",
+      "Create a basic personal pitch and update one online profile"
+    ],
+    "plan30Days": [
+      {
+        "week": "Week 1",
+        "actions": [
+          "Choose one recurring task and use an AI tool to assist it at least twice",
+          "Write a 3-sentence personal pitch explaining what you are working toward",
+          "Block 15 minutes on Sunday to list 3 priorities for the week ahead"
+        ]
+      },
+      {
+        "week": "Week 2",
+        "actions": [
+          "Document the steps of your AI-assisted workflow in a simple checklist",
+          "Update your LinkedIn headline and summary using your personal pitch",
+          "Review last week's priorities and adjust this week's list before Monday"
+        ]
+      },
+      {
+        "week": "Week 3",
+        "actions": [
+          "Test improving an AI response by refining your prompt at least 3 times",
+          "Share one insight or piece of work publicly on LinkedIn or a group chat",
+          "Create a basic template for a recurring task you do every week"
+        ]
+      },
+      {
+        "week": "Week 4",
+        "actions": [
+          "Verify AI-generated information for one important task before using it",
+          "Ask one trusted person what strengths they associate with you",
+          "Reflect on which workflow saved the most time and plan to repeat it"
+        ]
+      }
+    ],
+    "recommendedCourses": [
+      "AI for Everyone by Andrew Ng (Coursera)",
+      "Getting Things Done: The Art of Stress-Free Productivity (LinkedIn Learning)",
+      "Prompt Engineering for ChatGPT (Vanderbilt University, Coursera)",
+      "Personal Branding: Crafting Your Professional Story (LinkedIn Learning)"
+    ],
+    "motivationTips": [
+      "Small consistent actions build capability faster than occasional big efforts",
+      "Your direction and visibility strengths give you a head start; use them to fuel new habits",
+      "Documenting one workflow now will compound into hours saved every month",
+      "Sharing your learning publicly attracts opportunities aligned with your goals"
+    ],
+    "cautionFlags": [
+      "Avoid adopting multiple new tools at once; master one AI workflow first",
+      "Do not rely on AI outputs without verification, especially for important decisions",
+      "Resist over-planning without action; a simple system used consistently beats a perfect unused one"
+    ]
+  },
+  "aiGuidanceDebug": {
+    "timestamp": "2026-07-04T14:45:10.000Z",
+    "endpoint": "https://careergps-chat-api-f9eebkgqc9fvb4dn.canadacentral-01.azurewebsites.net/api/chat",
+    "mode": "chat",
+    "requestBody": {
+      "message": "(sample)"
+    },
+    "responseStatus": 200,
+    "responseBody": {
+      "reply": "{\"priorities\":[\"...\"]}"
+    },
+    "latencyMs": 930,
+    "error": null
+  }
+}
