@@ -9,8 +9,8 @@
   "use strict";
 
   var defaults = {
-    dataMode: "sample",     // "live" or "sample"
-    showDebug: false,      // true shows debug panels and debug payloads
+    dataMode: "live",     // "live" or "sample"
+    showDebug: true,      // true shows debug panels and debug payloads
     showModeBadge: true   // true shows "Mode" badge on dashboard
   };
 
