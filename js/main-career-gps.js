@@ -109,6 +109,7 @@
     if (typeof window === "undefined" || !window.CAREER_GPS_SETTINGS || typeof window.CAREER_GPS_SETTINGS !== "object") {
       return {
         dataMode: "live",
+        useLiveApi: false,
         showDebug: false,
         showModeBadge: false
       };
@@ -116,6 +117,7 @@
 
     return {
       dataMode: window.CAREER_GPS_SETTINGS.dataMode === "sample" ? "sample" : "live",
+      useLiveApi: window.CAREER_GPS_SETTINGS.useLiveApi === true,
       showDebug: window.CAREER_GPS_SETTINGS.showDebug === true,
       showModeBadge: window.CAREER_GPS_SETTINGS.showModeBadge === true
     };
@@ -224,7 +226,12 @@
   }
 
   function renderAssessmentModeBadges() {
-    var modeText = appSettings.dataMode === "sample" ? "Sample (No API)" : "Live Logic (No API)";
+    var modeText = "Live Logic (No API)";
+    if (appSettings.dataMode === "sample") {
+      modeText = "Sample (No API)";
+    } else if (appSettings.useLiveApi) {
+      modeText = "Live API";
+    }
     if (assessmentModeBadge) assessmentModeBadge.textContent = modeText;
     if (assessmentModeBadgeIntro) assessmentModeBadgeIntro.textContent = modeText;
   }
@@ -646,6 +653,10 @@
       "Generate personalized career guidance using ONLY the assessment input provided.",
       "Do not invent personal history, experience, or achievements.",
       "Return strict JSON only, with no markdown and no extra keys.",
+      "Different users in the same stage must still receive different guidance based on capabilityScores and focusAreas.",
+      "Treat focusAreas[0] as the primary weakness and focusAreas[1] as the secondary weakness.",
+      "Priority #1 and Week 1 actions must directly target focusAreas[0].",
+      "At least one recommendation and one caution must reference capability gaps implied by capabilityScores.",
       "Required JSON schema:",
       "{",
       "  \"priorities\": [string, string, string],",
@@ -835,9 +846,8 @@
     return normalizeGuidanceResponse(hydrated);
   }
 
-  function requestGuidance(payload) {
+  function requestLocalGuidance(payload, modeLabel) {
     var startedAt = Date.now();
-    var localMode = isSampleDataMode() ? "sample" : "local-logic";
 
     return fetch("assets/data/career-gps-sample-results.json", {
       cache: "no-store"
@@ -859,7 +869,7 @@
       var debugRecord = {
         timestamp: new Date().toISOString(),
         endpoint: "local-guidance",
-        mode: localMode,
+        mode: modeLabel,
         requestBody: payload,
         responseStatus: 200,
         responseBody: guidance,
@@ -870,7 +880,7 @@
       setDevApiDebug({
         timestamp: debugRecord.timestamp,
         endpoint: "local-guidance",
-        mode: localMode,
+        mode: modeLabel,
         body: payload,
         responsePreview: guidance,
         latencyMs: debugRecord.latencyMs
@@ -882,30 +892,164 @@
         latencyMs: debugRecord.latencyMs,
         debug: debugRecord
       };
-    }).catch(function (error) {
-      var debugRecord = {
-        timestamp: new Date().toISOString(),
-        endpoint: "local-guidance",
-        mode: localMode,
-        requestBody: payload,
-        responseStatus: null,
-        responseBody: null,
-        latencyMs: null,
-        error: error && error.message ? error.message : "Local guidance generation failed"
-      };
+    });
+  }
 
-      setDevApiDebug({
-        timestamp: debugRecord.timestamp,
-        endpoint: "local-guidance",
-        mode: localMode,
-        body: payload,
-        error: debugRecord.error
+  function requestRemoteGuidance(payload) {
+    var endpoint = getGuidanceEndpoint();
+    if (!endpoint) {
+      return Promise.reject(new Error("No guidance endpoint configured"));
+    }
+
+    var requestEnvelope = buildGuidanceRequest(endpoint, payload);
+    var startedAt = Date.now();
+    var debugRecord = {
+      timestamp: new Date().toISOString(),
+      endpoint: endpoint,
+      mode: requestEnvelope.mode,
+      requestBody: requestEnvelope.body,
+      responseStatus: null,
+      responseBody: null,
+      latencyMs: null,
+      error: null
+    };
+
+    setDevApiDebug({
+      timestamp: new Date().toISOString(),
+      endpoint: endpoint,
+      mode: requestEnvelope.mode,
+      body: requestEnvelope.body
+    });
+
+    var timeoutHandle = null;
+    var controller = typeof AbortController === "function" ? new AbortController() : null;
+    if (controller) {
+      timeoutHandle = window.setTimeout(function () {
+        controller.abort();
+      }, guidanceTimeoutMs);
+    }
+
+    return fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestEnvelope.body),
+      signal: controller ? controller.signal : undefined
+    }).then(function (response) {
+      return response.text().then(function (bodyText) {
+        var parsedBody = {};
+        if (bodyText) {
+          try {
+            parsedBody = JSON.parse(bodyText);
+          } catch (err) {
+            parsedBody = { reply: bodyText };
+          }
+        }
+
+        if (!response.ok) {
+          var providerMessage = parsedBody && (parsedBody.error || parsedBody.detail);
+          throw new Error(providerMessage || ("Guidance service request failed with status " + response.status));
+        }
+
+        var normalizedGuidance = parseGuidanceFromResponse(parsedBody);
+        if (!normalizedGuidance) {
+          throw new Error("Guidance service response did not match expected format");
+        }
+
+        var completedAt = Date.now();
+        debugRecord.responseStatus = response.status;
+        debugRecord.responseBody = parsedBody;
+        debugRecord.latencyMs = completedAt - startedAt;
+
+        setDevApiDebug({
+          timestamp: new Date().toISOString(),
+          endpoint: endpoint,
+          mode: requestEnvelope.mode,
+          body: requestEnvelope.body,
+          responseStatus: response.status,
+          latencyMs: completedAt - startedAt,
+          responsePreview: parsedBody
+        });
+
+        return {
+          status: "generated",
+          guidance: normalizedGuidance,
+          latencyMs: completedAt - startedAt,
+          debug: debugRecord
+        };
       });
+    }).then(function (result) {
+      if (timeoutHandle) window.clearTimeout(timeoutHandle);
+      return result;
+    }).catch(function (error) {
+      if (timeoutHandle) window.clearTimeout(timeoutHandle);
+      throw error;
+    });
+  }
 
+  function requestGuidance(payload) {
+    if (isSampleDataMode()) {
+      return requestLocalGuidance(payload, "sample").catch(function (error) {
+        var debugRecord = {
+          timestamp: new Date().toISOString(),
+          endpoint: "local-guidance",
+          mode: "sample",
+          requestBody: payload,
+          responseStatus: null,
+          responseBody: null,
+          latencyMs: null,
+          error: error && error.message ? error.message : "Sample guidance generation failed"
+        };
+
+        return {
+          status: "error",
+          message: debugRecord.error,
+          debug: debugRecord
+        };
+      });
+    }
+
+    if (appSettings.useLiveApi) {
+      return requestRemoteGuidance(payload).catch(function (apiError) {
+        return requestLocalGuidance(payload, "local-fallback").then(function (fallback) {
+          if (!fallback.debug) fallback.debug = {};
+          fallback.debug.fallbackReason = apiError && apiError.message ? apiError.message : "Live API unavailable";
+          fallback.debug.mode = "local-fallback";
+          return fallback;
+        }).catch(function () {
+          return {
+            status: "error",
+            message: apiError && apiError.message ? apiError.message : "Guidance request failed",
+            debug: {
+              timestamp: new Date().toISOString(),
+              endpoint: getGuidanceEndpoint() || "",
+              mode: "api",
+              requestBody: payload,
+              responseStatus: null,
+              responseBody: null,
+              latencyMs: null,
+              error: apiError && apiError.message ? apiError.message : "Guidance request failed"
+            }
+          };
+        });
+      });
+    }
+
+    return requestLocalGuidance(payload, "local-logic").catch(function (error) {
       return {
         status: "error",
-        message: debugRecord.error,
-        debug: debugRecord
+        message: error && error.message ? error.message : "Local guidance generation failed",
+        debug: {
+          timestamp: new Date().toISOString(),
+          endpoint: "local-guidance",
+          mode: "local-logic",
+          requestBody: payload,
+          responseStatus: null,
+          responseBody: null,
+          latencyMs: null,
+          error: error && error.message ? error.message : "Local guidance generation failed"
+        }
       };
     });
   }
@@ -951,7 +1095,13 @@
       state.results = computeResults();
 
       if (stageHint) {
-        stageHint.textContent = isSampleDataMode() ? "Preparing dashboard using sample AI response (API disabled)..." : "Preparing your personalized guidance and dashboard...";
+        if (isSampleDataMode()) {
+          stageHint.textContent = "Preparing dashboard using sample guidance (API disabled)...";
+        } else if (appSettings.useLiveApi) {
+          stageHint.textContent = "Preparing your personalized guidance using live API...";
+        } else {
+          stageHint.textContent = "Preparing your personalized guidance using local logic...";
+        }
         stageHint.classList.add("is-visible");
       }
 
@@ -989,6 +1139,17 @@
           "Building your score view and recommendation.",
           "Arranging your AI sample priorities and 30-day plan.",
           "Almost there. Opening your dashboard next."
+        ]
+      };
+    }
+
+    if (appSettings.useLiveApi) {
+      return {
+        title: "Building your personalized AI roadmap...",
+        detail: [
+          "Analyzing your responses across all four dimensions.",
+          "Generating focused priorities and a 30-day action plan.",
+          "Finalizing guidance from the live API for your dashboard."
         ]
       };
     }

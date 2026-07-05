@@ -3,13 +3,14 @@
    ------------------------------------------------------------
    Edit defaults below or set localStorage key `careerGpsSettings`.
    Example localStorage JSON:
-    {"dataMode":"live","showDebug":true,"showModeBadge":true}
+    {"dataMode":"live","useLiveApi":true,"showDebug":true,"showModeBadge":true}
    ============================================================ */
 (function () {
   "use strict";
 
   var defaults = {
     dataMode: "live",     // "live" uses local stage templates; "sample" uses fixed demo output
+    useLiveApi: true,      // true calls the configured guidance endpoint when dataMode is "live"
     showDebug: false,      // true shows debug panels and debug payloads
     showModeBadge: false   // true shows "Mode" badge on dashboard
   };
@@ -29,6 +30,7 @@
   function sanitize(input) {
     var safe = Object.assign({}, defaults, input || {});
     safe.dataMode = normalizeDataMode(safe.dataMode);
+    safe.useLiveApi = toBool(safe.useLiveApi, defaults.useLiveApi);
     safe.showDebug = toBool(safe.showDebug, defaults.showDebug);
     safe.showModeBadge = toBool(safe.showModeBadge, defaults.showModeBadge);
     return safe;

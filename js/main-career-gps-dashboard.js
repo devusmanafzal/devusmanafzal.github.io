@@ -9,6 +9,7 @@
     if (typeof window === "undefined" || !window.CAREER_GPS_SETTINGS || typeof window.CAREER_GPS_SETTINGS !== "object") {
       return {
         dataMode: "live",
+        useLiveApi: false,
         showDebug: false,
         showModeBadge: false
       };
@@ -16,6 +17,7 @@
 
     return {
       dataMode: window.CAREER_GPS_SETTINGS.dataMode === "sample" ? "sample" : "live",
+      useLiveApi: window.CAREER_GPS_SETTINGS.useLiveApi === true,
       showDebug: window.CAREER_GPS_SETTINGS.showDebug === true,
       showModeBadge: window.CAREER_GPS_SETTINGS.showModeBadge === true
     };
@@ -768,7 +770,9 @@
       modeItem.removeAttribute("hidden");
     }
 
-    effectiveModeBadge.textContent = sampleMode ? "Sample (No API)" : "Live Logic (No API)";
+    effectiveModeBadge.textContent = sampleMode
+      ? "Sample (No API)"
+      : (appSettings.useLiveApi ? "Live API" : "Live Logic (No API)");
   }
 
   bindMiniInfoInteractions();
