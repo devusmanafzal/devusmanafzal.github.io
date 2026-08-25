@@ -1,0 +1,60 @@
+{
+  "images": [
+    {
+      "file": "images/executive-collaboration.jpg",
+      "scene": "The Promptathon Was Only the Beginning",
+      "creator": "fauxels",
+      "source": "https://www.pexels.com/photo/people-sitting-at-the-table-with-laptop-3184291/",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/"
+    },
+    {
+      "file": "images/evolution/1950s-mainframe.jpg",
+      "scene": "Technology Evolution - 1950s Mainframes",
+      "creator": "Wolfgang Stief",
+      "source": "https://commons.wikimedia.org/wiki/File:IBM_705_tube_computer_(1).jpg",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "file": "images/evolution/1980s-personal-computer.jpg",
+      "scene": "Technology Evolution - 1980s Personal Computers",
+      "creator": "Rama and Musee Bolo",
+      "source": "https://commons.wikimedia.org/wiki/File:IBM_PC-IMG_7271.jpg",
+      "license": "CC BY-SA 2.0 FR",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/fr/"
+    },
+    {
+      "file": "images/evolution/1990s-internet.jpg",
+      "scene": "Technology Evolution - 1990s Internet",
+      "creator": "Coolcaesar",
+      "source": "https://commons.wikimedia.org/wiki/File:First_Web_Server.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "file": "images/evolution/2000s-mobile.jpg",
+      "scene": "Technology Evolution - 2000s Mobile",
+      "creator": "Michael Brandtner",
+      "source": "https://commons.wikimedia.org/wiki/File:Nokia_3310_blue.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+    },
+    {
+      "file": "images/evolution/2010s-cloud.jpg",
+      "scene": "Technology Evolution - 2010s Cloud",
+      "creator": "Carl Lender",
+      "source": "https://commons.wikimedia.org/wiki/File:Datacenter_Server_Racks_(22370909788).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "file": "images/evolution/2020-digital-workplace.jpg",
+      "scene": "Technology Evolution - 2020 Digital Workplace",
+      "creator": "Bill Smith",
+      "source": "https://commons.wikimedia.org/wiki/File:Office_360_(49805354138).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    }
+  ]
+}
