@@ -27,6 +27,7 @@ The event landing opens the experience. The speaker introduction follows the fir
 | --- | --- | --- | ---: |
 | P0 | WorkScape Circle landing | Supplied 4K event artwork, full-bleed cinematic zoom and light sweep | Pre-show |
 | 1 | From Copilots to Digital Colleagues | Collaboration image under a cinematic title treatment | 45 sec |
+| V0 | Scout introduction | Configured full-screen `scout-intro.mp4` immediately after physical scene 2 | As media |
 | 2 | The Prompting Was Only the Beginning | TED-style centered statement shifts left as the Sandvik speaker image appears | 60 sec |
 | P1 | Speaker introduction | Large transparent portrait, particle field, editorial name treatment | 20 sec |
 | 3 | Three Years That Changed Knowledge Work | Three-step build: centered glowing statement, integrated 1950-2026 evolution, then preserved standalone timeline | 70 sec |
@@ -39,10 +40,10 @@ The event landing opens the experience. The speaker introduction follows the fir
 | 7 | From Model Selection to Model Orchestration | Human choice -> platform routing -> model collaboration | 75 sec |
 | 8 | The Microsoft AI Stack | Strategic layered architecture; factual, restrained, no logos or sales language | 90 sec |
 | 9 | AI Was the Easy Part | Technology acceleration visibly outruns organization, governance, and culture | 60 sec |
+| V1 | Configured video interlude | Physical scene 13; full-screen playback controlled by `presentation.config.js` | As media |
 | 10 | Govern What AI Sees, Does, Decides and Uses | Four governance domains form a controlled system | 80 sec |
 | 11 | The Economics of Intelligence | Software -> Cloud -> AI and License -> Consumption -> Reasoning | 90 sec |
 | 12 | The New Organizational Chart | Humans and digital colleagues reorganize into a hybrid workforce | 80 sec |
-| V1 | Video interlude | Supplied `open-the-door.mp4`, full-bleed, automatic playback | As media |
 | 13 | Work Without Work | Physical labor -> digital work -> cognitive automation; judgment becomes more valuable | 70 sec |
 | 14 | Five Questions for the Agentic Era | One question revealed at a time; final discussion hold | 2-3 min |
 | E1 | Thank You | Large presenter portrait with a restrained animated constellation | Closing |
@@ -197,6 +198,43 @@ window.PRESENTATION_CONFIG = {
 - URL override: add `?palette=workscape` or `?palette=keynote`.
 - Live preview: press `T` during the presentation to switch palettes without changing scenes.
 
+## Configurable Video Before Scene 13
+
+The optional full-screen video is inserted as physical presentation scene 13. Configure whether it renders and how it is framed in `presentation.config.js`:
+
+```js
+videoBeforeScene13: {
+	enabled: true,
+	src: "assets/videos/open-the-door-X.mp4",
+	fit: "cover", // "cover" or "contain"
+	muted: false,
+	loop: false,
+	caption: ""
+}
+```
+
+- Set `enabled: false` to remove the video scene entirely; navigation, counters, and progress recalculate automatically.
+- `src` accepts another local browser-compatible video path for reuse in a different session.
+- The video starts when its scene is entered, pauses and resets when leaving, and `M` toggles mute.
+- Run through the local HTTP server for reliable large-file streaming and seeking.
+
+## Configurable Scout Intro After Scene 2
+
+The Scout introduction uses the same full-screen renderer and is inserted immediately after physical scene 2:
+
+```js
+scoutIntroAfterScene2: {
+	enabled: true,
+	src: "assets/videos/scout-intro.mp4",
+	fit: "cover",
+	muted: false,
+	loop: false,
+	caption: ""
+}
+```
+
+Set `enabled: false` to remove it. Scene numbering and progress recalculate automatically.
+
 ## Controls
 
 - `ArrowRight`, `ArrowDown`, `PageDown`, or `Space`: next scene/build.
@@ -212,7 +250,7 @@ window.PRESENTATION_CONFIG = {
 - `assets/images/work_circle_landing.jpg`: WorkScape Circle event artwork supplied by the presenter.
 - `assets/images/intro_usman_01.png`: transparent speaker portrait supplied by the presenter.
 - `assets/images/executive-collaboration.jpg`: Pexels image by fauxels; details in `assets/credits.json`.
-- `assets/videos/open-the-door.mp4`: presenter-supplied video interlude.
+- `assets/videos/open-the-door-X.mp4`: configured presenter-supplied video interlude before physical scene 13.
 
 All external media sources must remain recorded in `assets/credits.json` and summarized in `assets/README.md`.
 
@@ -249,7 +287,7 @@ All external media sources must remain recorded in `assets/credits.json` and sum
 - Corrected timeline vertical fit.
 - Added and browser-tested full-bleed local video playback.
 - Created this plan before full fourteen-topic implementation.
-- Implemented a twenty-screen sequence: pre-show, fourteen narrative topics, a manual autonomous-work follow-on, one video interlude, and two ending scenes.
+- Implemented a twenty-one-screen sequence when both configured videos are enabled, including the Scout intro after scene 2 and the existing video before scene 13.
 - Added direct scene review links using `?scene=1` through `?scene=17`.
 - Browser-validated the five-shift, architecture, governance, economics, and leadership-question scenes in a non-16:9 viewport.
 - Made the event landing full-bleed with a stronger cinematic zoom, color reveal, and light sweep.
@@ -267,4 +305,6 @@ All external media sources must remain recorded in `assets/credits.json` and sum
 - Increased agentic milestone scale progressively on the same rail: Chatbots and Copilots at 19vh, Agents at 22vh, and Digital Colleagues as the dominant 25vh endpoint.
 - Anchored every differently sized agentic circle by its center to the shared timeline rail so all milestones remain precisely aligned.
 - Added a manual scene immediately after scene 5 titled “The Journey Toward Autonomous Work”; it removes the 1950-2020 history entirely and retains only the four milestone circles on a clean rail.
+- Moved the video interlude to physical scene 13 and made rendering, source, fit, audio, loop, and caption behavior configurable in `presentation.config.js`.
+- Added a separately configurable full-screen Scout intro immediately after physical scene 2 using `assets/videos/scout-intro.mp4`.
 - Simplified the compressed state to one main rail, reduced the history mosaic, and added concise internal nodes: ChatGPT/Copilot Chat for Chatbots; Word/Excel/Teams/Outlook monograms for Copilots; Researcher/Analyst/Prompt Coach for Agents; Digital Colleagues remains intentionally open.

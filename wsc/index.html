@@ -1517,6 +1517,7 @@
       transition: opacity 600ms ease 800ms, transform 600ms ease 800ms;
     }
     .scene-video[data-state="active"] .video-caption { opacity: .82; transform: translateY(0); }
+    .video-caption:empty { display: none; }
 
     .scene-four .scene-content { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; align-items: center; }
     .scene-four h2 { font-size: clamp(2.8rem, 5.8vw, 6.8rem); }
@@ -1971,6 +1972,10 @@
           <p class="scene-subtitle">Preparing for a workforce of humans and agents.</p>
         </div>
       </section>
+      <section class="scene scene-video" data-video-config="scoutIntroAfterScene2" data-state="future" aria-hidden="true">
+        <video preload="none" playsinline aria-label="Scout introduction video"></video>
+        <p class="video-caption"></p>
+      </section>
       <section class="scene scene-photo sandvik" data-state="future" aria-hidden="true">
         <img class="scene-photo-image" src="assets/images/sandvik_usman.png" alt="Usman Afzal presenting at Sandvik">
         <div class="sandvik-ted-line" aria-hidden="true">The Prompting was only <span class="accent">the beginning.</span></div>
@@ -2110,6 +2115,10 @@
           </div>
         </div>
       </section>
+      <section class="scene scene-video" data-video-config="videoBeforeScene13" data-state="future" aria-hidden="true">
+        <video preload="none" playsinline aria-label="Configured presentation video"></video>
+        <p class="video-caption"></p>
+      </section>
       <section class="scene scene-governance" data-state="future" aria-hidden="true">
         <div class="scene-content">
           <div>
@@ -2143,10 +2152,6 @@
             <div class="org-human">Human</div><div class="org-agent">Research</div><div class="org-agent">HR</div><div class="org-agent">Marketing</div><div class="org-agent">Operations</div><div class="org-agent">Finance</div>
           </div>
         </div>
-      </section>
-      <section class="scene scene-video" data-state="future" aria-hidden="true">
-        <video src="assets/videos/open-the-door.mp4" preload="none" playsinline aria-label="Open the door video"></video>
-        <p class="video-caption">Full-span video scene / press M to mute or unmute</p>
       </section>
       <section class="scene scene-work" data-state="future" aria-hidden="true">
         <div class="scene-content">
@@ -2183,9 +2188,9 @@
     </div>
     <button class="tap-zone prev" type="button" aria-label="Previous scene"></button>
     <button class="tap-zone next" type="button" aria-label="Next scene"></button>
-    <div class="scene-count" aria-live="polite">01 / 20</div>
+    <div class="scene-count" aria-live="polite">01 / 21</div>
     <div class="control-hint">Arrow keys / Space / F fullscreen / T palette</div>
-    <div class="progress-track"><div class="progress-fill" style="width:5%"></div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:4.7619%"></div></div>
   </main>
 
   <main class="page" hidden>
@@ -2329,6 +2334,25 @@
 
   <script>
     document.documentElement.setAttribute("data-theme", "dark");
+
+    document.querySelectorAll("[data-video-config]").forEach((scene) => {
+      const configKey = scene.dataset.videoConfig;
+      const settings = window.PRESENTATION_CONFIG?.[configKey];
+      if (settings?.enabled === false) {
+        scene.remove();
+        return;
+      }
+      const video = scene.querySelector("video");
+      const caption = scene.querySelector(".video-caption");
+      const fallbackSource = configKey === "scoutIntroAfterScene2"
+        ? "assets/videos/scout-intro.mp4"
+        : "assets/videos/open-the-door-X.mp4";
+      video.src = settings?.src || fallbackSource;
+      video.style.objectFit = settings?.fit === "contain" ? "contain" : "cover";
+      video.muted = Boolean(settings?.muted);
+      video.loop = Boolean(settings?.loop);
+      caption.textContent = settings?.caption || "";
+    });
 
     const scenes = [...document.querySelectorAll(".scene")];
     const sceneCount = document.querySelector(".scene-count");
