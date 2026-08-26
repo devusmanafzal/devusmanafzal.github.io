@@ -37,6 +37,8 @@
       --cp-danger: #dc2626;
       --cp-warning: #f59e0b;
       --cp-link: #0078d4;
+      --cp-linkedin: #4da6ff;
+      --cp-autopilot: #f59e0b;
       --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
       --cp-overlay: rgba(255, 255, 255, 0.8);
       --cp-panel: rgba(255, 255, 255, 0.86);
@@ -87,6 +89,7 @@
       --cp-success: #96b15a;
       --cp-warning: #cdd365;
       --cp-link: #bdc997;
+      --cp-autopilot: #e7eab6;
       --cp-overlay: rgba(17, 18, 16, 0.9);
       --cp-panel: rgba(29, 31, 27, 0.8);
       --cp-panel-strong: rgba(17, 18, 16, 0.96);
@@ -576,6 +579,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .model-orbit-track, .model-provider-content { animation: none !important; }
     }
 
     /* Cinematic keynote prototype */
@@ -638,10 +642,17 @@
       visibility: hidden;
       transform: translate3d(-12vw, 0, 0) scale(1.7);
     }
+    .scene[data-disabled="true"] { display: none; }
     .scene-content { position: relative; z-index: 4; width: min(100%, 92rem); margin: auto; }
     .scene-kicker {
-      margin: 0 0 clamp(1.25rem, 2.2vh, 2rem);
-      color: var(--cp-accent);
+      display: inline-flex;
+      width: max-content;
+      margin: 0 0 clamp(.55rem, 1.1vh, .85rem) !important;
+      padding: .42rem .68rem .38rem;
+      border-radius: .22rem;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      box-shadow: 0 0 1.4rem var(--cp-accent-soft);
       font-size: clamp(1rem, 1.35vw, 1.45rem);
       font-weight: 650;
       line-height: 1.15;
@@ -745,6 +756,49 @@
       transition: opacity 700ms ease 1200ms, transform 700ms ease 1200ms;
     }
     .scene-event[data-state="active"] .event-prompt { opacity: .82; transform: translate(-50%, 0); }
+
+    .scene-audience-guide { padding: clamp(2.5rem, 5vw, 6rem); }
+    .scene-audience-guide .scene-content {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(20rem, .9fr) minmax(14rem, .58fr) minmax(13rem, .48fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .audience-guide-copy { position: relative; z-index: 2; }
+    .audience-guide-copy h2 { max-width: 8ch; font-size: clamp(3rem, 6.2vw, 7rem); }
+    .audience-guide-copy .scene-subtitle { max-width: 28rem; }
+    .audience-guide-prompt { margin-top: clamp(1.5rem, 3vh, 2.5rem); color: var(--cp-accent); font-size: clamp(.85rem, 1.25vw, 1.15rem); font-weight: 700; }
+    .audience-guide-phone {
+      position: relative;
+      justify-self: center;
+      width: min(24vw, 16.5rem);
+      aspect-ratio: 390 / 650;
+      overflow: hidden;
+      border: 1px solid var(--cp-border-strong);
+      border-radius: 1.6rem;
+      background: var(--cp-surface);
+      box-shadow: 0 0 0 .45rem var(--cp-sheen), var(--cp-shadow);
+      opacity: 0;
+      transform: translateY(3rem) rotate(3deg) scale(.9);
+      transition: opacity 800ms ease 350ms, transform 1400ms cubic-bezier(.16, 1, .3, 1) 350ms;
+    }
+    .audience-guide-phone::before { position: absolute; left: 50%; top: .45rem; z-index: 2; width: 28%; height: .28rem; border-radius: 999px; background: var(--cp-border-strong); content: ""; transform: translateX(-50%); }
+    .audience-guide-phone img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .audience-guide-qr {
+      justify-self: center;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(2rem) scale(.86);
+      transition: opacity 750ms ease 850ms, transform 1300ms cubic-bezier(.16, 1, .3, 1) 850ms;
+    }
+    .audience-guide-qr img { display: block; width: min(19vw, 14rem); aspect-ratio: 1; padding: .55rem; background: white; box-shadow: 0 0 2rem var(--cp-accent-soft); }
+    .audience-guide-qr strong { margin-top: 1rem; color: var(--cp-text); font-size: clamp(.9rem, 1.25vw, 1.15rem); }
+    .audience-guide-qr span { max-width: 18rem; margin-top: .4rem; color: var(--cp-text-muted); font-size: clamp(.62rem, .82vw, .8rem); line-height: 1.35; overflow-wrap: anywhere; }
+    .scene-audience-guide[data-state="active"] .audience-guide-phone,
+    .scene-audience-guide[data-state="active"] .audience-guide-qr { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
 
     .scene-speaker { padding: 0; }
     .speaker-stage {
@@ -984,6 +1038,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
+      z-index: 10;
       width: max-content;
       max-width: 92vw !important;
       margin: 0 !important;
@@ -992,7 +1047,9 @@
       white-space: nowrap;
       transform: translate(-50%, -50%);
       transition: left 1200ms cubic-bezier(.16, 1, .3, 1), top 1200ms cubic-bezier(.16, 1, .3, 1), transform 1200ms cubic-bezier(.16, 1, .3, 1), font-size 1200ms cubic-bezier(.16, 1, .3, 1), text-shadow 700ms ease;
+      will-change: transform;
     }
+    .journey-title.flip-moving { transition: none !important; }
     .scene-three[data-state="active"][data-build="0"] .journey-title {
       animation: journey-title-glow 2200ms ease-in-out infinite alternate;
     }
@@ -1027,7 +1084,7 @@
       opacity: 1;
       visibility: visible;
       transform: scale(1);
-      transition-delay: 0s;
+      transition-delay: .55s;
     }
     .evo-stage {
       position: absolute;
@@ -1065,8 +1122,7 @@
     }
     .evo-era {
       position: relative;
-      display: grid;
-      grid-template-rows: minmax(5.5rem, 17vh) auto;
+      display: block;
       min-width: 0;
       margin: 0;
       opacity: 0;
@@ -1086,14 +1142,15 @@
       transform: translateX(-50%);
     }
     .evo-era img {
+      display: block;
       width: 100%;
-      height: 100%;
+      height: clamp(6.5rem, 17vh, 10rem);
       object-fit: cover;
       border: 1px solid var(--cp-border);
       filter: grayscale(.45) contrast(1.08) brightness(.72);
     }
     .evo-era:nth-child(4) img { object-position: center 37%; }
-    .evo-era figcaption { display: grid; gap: .2rem; padding: .75rem .35rem 1rem; text-align: center; }
+    .evo-era figcaption { position: relative; z-index: 2; display: grid; gap: .2rem; padding: .75rem .35rem 1rem; background: var(--cp-surface); text-align: center; }
     .evo-era strong { color: var(--cp-accent); font-size: clamp(.72rem, 1vw, 1rem); }
     .evo-era span { color: var(--cp-text-soft); font-size: clamp(.62rem, .82vw, .82rem); line-height: 1.15; }
     .scene-three[data-state="active"][data-build="1"] .evo-era { animation: evo-era-arrive 620ms cubic-bezier(.16, 1, .3, 1) both; }
@@ -1116,22 +1173,27 @@
     .scene-three[data-state="active"][data-build="1"] .evo-tracer {
       animation: evo-tracer-run 7.35s cubic-bezier(.25, .55, .72, .98) .15s both, evo-tracer-compress 2.2s cubic-bezier(.16, 1, .3, 1) 8.1s forwards;
     }
-    .evo-history-label {
-      position: absolute;
-      left: 5vw;
-      top: calc(30% + min(8.5vw, 7rem));
-      z-index: 4;
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-    .evo-history-label strong { color: var(--cp-text-soft); font-size: clamp(.72rem, 1vw, 1rem); font-weight: 650; }
-    .scene-three[data-state="active"][data-build="1"] .evo-history-label { animation: evo-label-arrive 700ms ease 9.65s both; }
-    .evo-summary {
+    .evo-history-cluster {
       position: absolute;
       left: 5vw;
       top: 30%;
       z-index: 5;
       width: min(12vw, 10rem);
+    }
+    .evo-history-label {
+      position: relative;
+      z-index: 6;
+      width: 100%;
+      margin-top: .7rem;
+      opacity: 0;
+      text-align: center;
+      transform: translateY(1rem);
+    }
+    .evo-history-label strong { display: block; color: var(--cp-text); font-size: clamp(.76rem, 1.05vw, 1.05rem); font-weight: 700; white-space: nowrap; }
+    .scene-three[data-state="active"][data-build="1"] .evo-history-label { animation: evo-label-arrive 700ms ease 9.65s both; }
+    .evo-summary {
+      position: relative;
+      width: 100%;
       aspect-ratio: 16 / 10;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1212,6 +1274,24 @@
     .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(2) { animation-delay: 10.75s; }
     .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(3) { animation-delay: 11.5s; }
     .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(4) { animation-delay: 12.35s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-history { animation-delay: 8.75s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era figcaption,
+    .scene-three[data-state="active"][data-build="1"] .evo-era::after { animation-delay: 8.65s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era:nth-child(1) { animation-delay: .9s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era:nth-child(2) { animation-delay: 2.1s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era:nth-child(3) { animation-delay: 3.3s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era:nth-child(4) { animation-delay: 4.5s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era:nth-child(5) { animation-delay: 5.7s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-era:nth-child(6) { animation-delay: 6.9s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-tracer { animation-delay: .8s, 8.75s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-summary { animation-delay: 9.85s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-history-branch { animation-delay: 10.1s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-history-label { animation-delay: 10.3s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-agentic { animation-delay: 10.35s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(1) { animation-delay: 10.75s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(2) { animation-delay: 11.4s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(3) { animation-delay: 12.15s; }
+    .scene-three[data-state="active"][data-build="1"] .evo-agent:nth-child(4) { animation-delay: 13s; }
     @keyframes evo-era-arrive { to { opacity: 1; transform: translateX(0) scale(1); } }
     @keyframes evo-tracer-run { to { width: 90vw; } }
     @keyframes evo-history-compress { from { width: 100%; opacity: 1; transform: scale(1); } to { width: 18%; opacity: 0; transform: translateX(-2vw) scale(.72); } }
@@ -1223,69 +1303,6 @@
     @keyframes evo-detail-retire { to { opacity: 0; } }
     @keyframes evo-summary-arrive { to { opacity: 1; transform: translateX(0) scale(1); } }
     @keyframes evo-branch-draw { to { opacity: 1; transform: scaleY(1); } }
-    .scene-autonomous .scene-content { position: relative; width: 100%; height: 100%; }
-    .autonomous-title {
-      position: absolute;
-      left: 0;
-      top: 12%;
-      max-width: 92vw !important;
-      margin: 0 !important;
-      font-size: clamp(1.8rem, 3.5vw, 4rem) !important;
-      line-height: 1 !important;
-      opacity: 0;
-      transform: translateY(1.5rem);
-      transition: opacity 700ms ease 200ms, transform 1000ms cubic-bezier(.16, 1, .3, 1) 200ms;
-    }
-    .autonomous-rail {
-      position: absolute;
-      left: 5vw;
-      right: 5vw;
-      top: 62%;
-      height: 3px;
-      background: var(--cp-accent);
-      box-shadow: 0 0 1.2rem var(--cp-accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 1500ms cubic-bezier(.16, 1, .3, 1) 450ms;
-    }
-    .autonomous-circles {
-      position: absolute;
-      left: 5vw;
-      right: 5vw;
-      top: 62%;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: clamp(1rem, 2vw, 2.5rem);
-      align-items: center;
-      transform: translateY(-50%);
-    }
-    .autonomous-circle {
-      position: relative;
-      display: grid;
-      place-items: center;
-      justify-self: center;
-      width: var(--autonomous-size);
-      aspect-ratio: 1;
-      border: 1px solid var(--cp-border-strong);
-      border-radius: 50%;
-      background: var(--cp-surface);
-      color: var(--cp-text-soft);
-      font-size: var(--autonomous-font);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(3rem) scale(.55);
-      transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
-    }
-    .autonomous-circle::after { position: absolute; inset: 12%; border: 1px solid var(--cp-border); border-radius: 50%; content: ""; }
-    .autonomous-circle small { position: absolute; top: calc(100% + .55rem); color: var(--cp-accent); font-size: .62em; font-weight: 700; }
-    .autonomous-circle:nth-child(1),
-    .autonomous-circle:nth-child(2) { --autonomous-size: min(100%, 19vh); --autonomous-font: clamp(.76rem, 1.2vw, 1.1rem); transition-delay: 600ms; }
-    .autonomous-circle:nth-child(2) { transition-delay: 800ms; }
-    .autonomous-circle:nth-child(3) { --autonomous-size: min(100%, 22vh); --autonomous-font: clamp(.84rem, 1.35vw, 1.25rem); transition-delay: 1000ms; }
-    .autonomous-circle:nth-child(4) { --autonomous-size: min(100%, 25vh); --autonomous-font: clamp(.9rem, 1.5vw, 1.4rem); border-color: var(--cp-accent); box-shadow: 0 0 0 1vw var(--cp-accent-soft); transition-delay: 1200ms; }
-    .scene-autonomous[data-state="active"] .autonomous-title { opacity: 1; transform: translateY(0); }
-    .scene-autonomous[data-state="active"] .autonomous-rail { transform: scaleX(1); }
-    .scene-autonomous[data-state="active"] .autonomous-circle { opacity: 1; transform: translateY(0) scale(1); }
     .history-phase,
     .future-phase { position: absolute; inset: 0; }
     .history-phase {
@@ -1518,49 +1535,106 @@
     }
     .scene-video[data-state="active"] .video-caption { opacity: .82; transform: translateY(0); }
     .video-caption:empty { display: none; }
+    .video-play-control {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 40;
+      width: clamp(4rem, 7vw, 6rem);
+      aspect-ratio: 1;
+      border: 1px solid var(--cp-border-strong);
+      border-radius: 50%;
+      background: var(--cp-panel-strong);
+      color: var(--cp-text);
+      box-shadow: var(--cp-shadow);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(.8);
+      transition: opacity 300ms ease, transform 500ms cubic-bezier(.16, 1, .3, 1);
+    }
+    .video-play-control::before {
+      display: block;
+      width: 0;
+      height: 0;
+      margin: auto;
+      border-top: .7rem solid transparent;
+      border-bottom: .7rem solid transparent;
+      border-left: 1.05rem solid var(--cp-accent);
+      content: "";
+      transform: translateX(.12rem);
+    }
+    .scene-video[data-needs-play="true"] .video-play-control {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .scene-video[data-needs-play="true"] video { pointer-events: none; }
+    .scene-video video { cursor: pointer; }
 
-    .scene-four .scene-content { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; align-items: center; }
+    .scene-four .scene-content { display: grid; grid-template-columns: .76fr 1.24fr; gap: 5vw; align-items: center; }
     .scene-four h2 { font-size: clamp(2.8rem, 5.8vw, 6.8rem); }
     .orchestra {
       position: relative;
-      width: min(46vw, 42rem);
+      width: min(49vw, 43rem);
       aspect-ratio: 1;
-      transform: rotate(-8deg);
+      isolation: isolate;
+      transform: translateY(-1rem);
     }
-    .orbit-line {
+    .model-orbit {
       position: absolute;
-      inset: var(--orbit-inset);
+      left: 50%;
+      top: 50%;
+      width: var(--orbit-size);
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+    }
+    .model-orbit::before {
+      position: absolute;
+      inset: 0;
       border: 1px solid var(--cp-border-strong);
       border-radius: 50%;
+      content: "";
       opacity: 0;
-      transform: scale(.4) rotate(25deg);
+      transform: scale(.55) rotate(var(--orbit-rotation));
       transition: opacity 600ms ease, transform 1300ms cubic-bezier(.16, 1, .3, 1);
     }
-    .orbit-line:nth-child(1) { --orbit-inset: 0%; }
-    .orbit-line:nth-child(2) { --orbit-inset: 17%; transition-delay: 160ms; }
-    .orbit-line:nth-child(3) { --orbit-inset: 34%; transition-delay: 320ms; border-color: var(--cp-accent); }
-    .scene-four[data-state="active"] .orbit-line { opacity: 1; transform: scale(1) rotate(0); }
-    .intelligence {
+    .model-orbit.outer { --orbit-size: 88%; --orbit-rotation: -14deg; --orbit-duration: 100s; --orbit-direction: normal; --counter-direction: reverse; }
+    .model-orbit.middle { --orbit-size: 63%; --orbit-rotation: 18deg; --orbit-duration: 125s; --orbit-direction: reverse; --counter-direction: normal; transition-delay: 120ms; }
+    .model-orbit.inner { --orbit-size: 38%; --orbit-rotation: -20deg; --orbit-duration: 82s; --orbit-direction: normal; --counter-direction: reverse; }
+    .model-orbit.middle::before { transition-delay: 120ms; }
+    .model-orbit.inner::before { border-color: var(--cp-accent); transition-delay: 240ms; }
+    .scene-four[data-state="active"] .model-orbit::before { opacity: .52; transform: scale(1) rotate(0); }
+    .model-orbit-track { position: absolute; inset: 0; animation: model-orbit-spin var(--orbit-duration) linear infinite var(--orbit-direction); }
+    .model-core,
+    .model-provider {
       position: absolute;
-      display: grid;
-      place-items: center;
-      width: clamp(4.5rem, 8vw, 8rem);
-      aspect-ratio: 1;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       border: 1px solid var(--cp-border-strong);
       border-radius: 50%;
       background: var(--cp-surface);
-      color: var(--cp-text-soft);
-      font-size: clamp(.62rem, 1vw, .9rem);
+      text-align: center;
       opacity: 0;
-      transform: scale(.3);
+      transform: translate(-50%, -50%) scale(.3);
       transition: opacity 500ms ease, transform 800ms cubic-bezier(.16, 1, .3, 1);
     }
-    .intelligence:nth-of-type(4) { left: 39%; top: 39%; color: var(--cp-accent); border-color: var(--cp-accent); transition-delay: 350ms; }
-    .intelligence:nth-of-type(5) { left: 3%; top: 38%; transition-delay: 550ms; }
-    .intelligence:nth-of-type(6) { right: 2%; top: 20%; transition-delay: 700ms; }
-    .intelligence:nth-of-type(7) { right: 12%; bottom: 9%; transition-delay: 850ms; }
-    .intelligence:nth-of-type(8) { left: 12%; bottom: 7%; transition-delay: 1000ms; }
-    .scene-four[data-state="active"] .intelligence { opacity: 1; transform: scale(1); }
+    .model-core { left: 50%; top: 50%; width: clamp(6.2rem, 8.6vw, 7.8rem); aspect-ratio: 1; border: 1px solid var(--cp-accent); box-shadow: 0 0 0 .5rem var(--cp-accent-soft), 0 0 1.8rem var(--cp-highlight); transition-delay: 180ms; }
+    .model-core strong { color: var(--cp-accent); font-size: clamp(.68rem, 1vw, .92rem); font-weight: 650; }
+    .model-core span { max-width: 11ch; margin-top: .3rem; color: var(--cp-text-muted); font-size: clamp(.42rem, .57vw, .56rem); line-height: 1.08; text-transform: uppercase; }
+    .model-provider { left: var(--node-x); top: var(--node-y); width: clamp(4.25rem, 5.9vw, 5.35rem); aspect-ratio: 1; box-shadow: 0 0 0 .22rem var(--cp-sheen), 0 0 .8rem rgba(0, 0, 0, .35); transition-delay: var(--node-delay); }
+    .model-provider.copilot { border-color: var(--cp-accent); box-shadow: 0 0 0 .28rem var(--cp-accent-soft), 0 0 1.2rem var(--cp-highlight); }
+    .model-provider-content { display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; padding: .48rem; animation: model-orbit-spin var(--orbit-duration) linear infinite var(--counter-direction); }
+    .model-provider img { width: 31%; height: 31%; margin-bottom: .28rem; object-fit: contain; filter: invert(1); }
+    .model-provider.copilot img { width: 36%; height: 36%; filter: none; }
+    .model-provider strong { color: var(--cp-text); font-size: clamp(.47rem, .65vw, .64rem); line-height: 1; }
+    .model-provider span { margin-top: .17rem; color: var(--cp-text-muted); font-size: clamp(.37rem, .5vw, .49rem); line-height: 1; }
+    .scene-four[data-state="active"] .model-core,
+    .scene-four[data-state="active"] .model-provider { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    @keyframes model-orbit-spin { to { transform: rotate(1turn); } }
 
     .scene-shifts .scene-content,
     .scene-orchestration .scene-content,
@@ -1569,88 +1643,194 @@
     .scene-org .scene-content,
     .scene-questions .scene-content { width: 100%; }
     .compact-title { font-size: clamp(2.5rem, 5.4vw, 6rem) !important; }
-    .shift-list {
-      display: grid;
-      gap: clamp(.35rem, 1vh, .8rem);
-      margin-top: clamp(2rem, 5vh, 4rem);
+    .scene-shifts { padding: clamp(2rem, 4vw, 4.5rem); }
+    .scene-shifts .scene-content { position: relative; height: 100%; }
+    .mountain-title {
+      position: absolute;
+      left: 0;
+      top: 8%;
+      z-index: 8;
+      width: max-content;
+      max-width: 92vw !important;
+      margin: 0 !important;
+      font-size: clamp(1.8rem, 3.5vw, 4rem) !important;
+      line-height: 1 !important;
+      white-space: nowrap;
     }
-    .shift-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 2vw;
-      align-items: center;
-      min-height: clamp(2.8rem, 7vh, 4.7rem);
-      padding: 0 1.25rem;
-      border-top: 1px solid var(--cp-border);
-      color: var(--cp-text-muted);
-      font-size: clamp(.9rem, 1.8vw, 1.8rem);
+    .mountain-journey {
+      position: absolute;
+      inset: 17% 0 0;
+      overflow: visible;
+      isolation: isolate;
+    }
+    .mountain-back,
+    .mountain-mid,
+    .mountain-front {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 100%, 0 83%, 12% 75%, 22% 79%, 35% 61%, 45% 69%, 58% 45%, 67% 55%, 79% 28%, 87% 39%, 100% 7%, 100% 100%);
+    }
+    .mountain-back { background: color-mix(in srgb, var(--cp-accent) 16%, var(--cp-border)); opacity: .62; transform: translate(2%, 2%) scale(.99); filter: drop-shadow(0 -2px 8px var(--cp-accent-soft)); }
+    .mountain-mid { background: linear-gradient(145deg, color-mix(in srgb, var(--cp-accent) 12%, var(--cp-border-strong)), var(--cp-surface-soft) 72%); opacity: .82; transform: translateY(5%); filter: drop-shadow(0 -1px 5px var(--cp-sheen)); }
+    .mountain-front { background: linear-gradient(150deg, color-mix(in srgb, var(--cp-text-muted) 34%, var(--cp-surface-soft)), var(--cp-surface) 72%); opacity: 1; transform: translateY(10%); filter: drop-shadow(0 -1px 4px var(--cp-border-strong)); }
+    .mountain-contours {
+      position: absolute;
+      inset: 20% 0 0;
+      z-index: 2;
+      background: repeating-linear-gradient(165deg, transparent 0 2.7rem, color-mix(in srgb, var(--cp-text-muted) 34%, transparent) 2.75rem 2.82rem);
+      clip-path: polygon(0 100%, 0 83%, 12% 75%, 22% 79%, 35% 61%, 45% 69%, 58% 45%, 67% 55%, 79% 28%, 87% 39%, 100% 7%, 100% 100%);
+      opacity: .9;
+    }
+    .climb-route {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .climb-route path.base { fill: none; stroke: var(--cp-border-strong); stroke-width: 2; stroke-dasharray: 4 8; opacity: .6; }
+    .climb-route path.progress { fill: none; stroke: var(--cp-accent); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 9px var(--cp-accent)); stroke-dasharray: 1200; stroke-dashoffset: 1200; }
+    .scene-shifts[data-state="active"] .climb-route path.progress { animation: climb-route-draw 3800ms cubic-bezier(.3, .1, .25, 1) 300ms forwards; }
+    .climb-stage {
+      position: absolute;
+      left: var(--route-x);
+      top: var(--route-y);
+      z-index: 6;
+      width: 0;
+      height: 0;
       opacity: 0;
-      transform: translateX(-4vw);
-      transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
+      transform: translateY(1.5rem) scale(.86);
+      transition: opacity 500ms ease, transform 800ms cubic-bezier(.16, 1, .3, 1);
     }
-    .shift-row span:last-child { color: var(--cp-text); text-align: right; }
-    .shift-row b { color: var(--cp-accent); font-weight: 400; }
-    .shift-row:nth-child(1) { transition-delay: 150ms; }
-    .shift-row:nth-child(2) { transition-delay: 300ms; }
-    .shift-row:nth-child(3) { transition-delay: 450ms; }
-    .shift-row:nth-child(4) { transition-delay: 600ms; }
-    .shift-row:nth-child(5) { transition-delay: 750ms; }
-    .scene-shifts[data-state="active"] .shift-row { opacity: 1; transform: translateX(0); }
+    .climb-dot { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: clamp(3.5rem, 5vw, 4.3rem); aspect-ratio: 1; border: 2px solid var(--cp-border-strong); border-radius: 50%; background: var(--cp-surface); color: var(--cp-accent); font-size: clamp(.85rem, 1.15vw, 1.1rem); font-weight: 750; box-shadow: 0 0 0 .65rem var(--cp-sheen), 0 0 1.2rem var(--cp-highlight); transform: translate(-50%, -50%); }
+    .climb-copy { position: absolute; display: grid; gap: .22rem; width: max-content; max-width: 15rem; padding: .55rem .7rem; border-radius: .45rem; background: var(--cp-overlay); }
+    .climb-copy strong { color: var(--cp-text); font-size: clamp(1.05rem, 1.75vw, 1.7rem); line-height: 1; }
+    .climb-copy span { color: var(--cp-text-muted); font-size: clamp(.72rem, .95vw, .95rem); }
+    .milestone-products { display: flex; gap: .5rem; margin-top: .55rem; }
+    .milestone-product {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .38rem .65rem .38rem .4rem;
+      border: 1px solid var(--cp-border-strong);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      color: var(--cp-text-soft);
+      font-size: clamp(.7rem, .9vw, .9rem);
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .milestone-product img { width: 1.55rem; height: 1.55rem; object-fit: contain; }
+    .climb-stage.stage-1 { --route-x: 5.83%; --route-y: 90.77%; }
+    .climb-stage.stage-2 { --route-x: 20.83%; --route-y: 73.08%; }
+    .climb-stage.stage-3 { --route-x: 52.5%; --route-y: 40.77%; }
+    .climb-stage.stage-6 { --route-x: 95%; --route-y: 7.69%; }
+    .climb-stage.stage-1 .climb-copy { left: 0; bottom: 3.35rem; transform: translateX(-34%); }
+    .climb-stage.stage-1 .milestone-products { justify-content: center; }
+    .climb-stage.stage-2 .climb-copy { left: 3.5rem; top: .8rem; }
+    .climb-stage.stage-3 .climb-copy { right: 3.8rem; bottom: .8rem; width: 15rem; text-align: right; }
+    .climb-stage.stage-3 .milestone-products { justify-content: flex-end; }
+    .climb-stage.stage-6 .climb-copy { right: 3.8rem; top: .8rem; width: 13rem; text-align: right; }
+    .climb-stage.stage-6 .milestone-products { justify-content: center; }
+    .climb-stage.stage-6 .climb-dot { width: clamp(4.4rem, 6vw, 5.2rem); border-color: var(--cp-accent); background: var(--cp-accent); color: var(--cp-accent-fg); box-shadow: 0 0 0 .9rem var(--cp-accent-soft), 0 0 2.5rem var(--cp-highlight); }
+    .scene-shifts[data-state="active"] .climb-stage { opacity: 1; transform: translateY(0) scale(1); }
+    .scene-shifts[data-state="active"] .climb-stage.stage-1 { transition-delay: 650ms; }
+    .scene-shifts[data-state="active"] .climb-stage.stage-2 { transition-delay: 1450ms; }
+    .scene-shifts[data-state="active"] .climb-stage.stage-3 { transition-delay: 2250ms; }
+    .scene-shifts[data-state="active"] .climb-stage.stage-6 { transition-delay: 3050ms; }
+    @keyframes climb-route-draw { to { stroke-dashoffset: 0; } }
 
     .scene-multimodal .scene-content { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; align-items: center; }
-    .sense-system { position: relative; width: min(48vw, 42rem); aspect-ratio: 1; }
-    .sense-core,
-    .sense-node {
-      position: absolute;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--cp-border-strong);
-      border-radius: 50%;
-      background: var(--cp-surface);
-      opacity: 0;
-      transform: scale(.2);
-      transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
-    }
-    .sense-core { inset: 34%; z-index: 3; border-color: var(--cp-accent); color: var(--cp-accent); font-weight: 700; }
-    .sense-node { width: 18%; aspect-ratio: 1; color: var(--cp-text-soft); font-size: clamp(.55rem, 1vw, .9rem); }
-    .sense-node::before {
+    .sense-system { position: relative; width: min(48vw, 42rem); aspect-ratio: 1; isolation: isolate; }
+    .sense-system::before,
+    .sense-system::after {
       position: absolute;
       left: 50%;
       top: 50%;
       z-index: -1;
-      width: var(--sense-line, 190%);
-      height: 1px;
-      background: var(--cp-border-strong);
+      aspect-ratio: 1;
+      border: 1px solid var(--cp-border);
+      border-radius: 50%;
       content: "";
-      transform: rotate(var(--sense-angle)) scaleX(0);
-      transform-origin: left;
-      transition: transform 900ms ease 600ms;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.55);
+      transition: opacity 700ms ease, transform 1400ms cubic-bezier(.16, 1, .3, 1);
     }
-    .sense-node:nth-child(2) { left: 41%; top: 0; --sense-angle: 90deg; transition-delay: 180ms; }
-    .sense-node:nth-child(3) { right: 4%; top: 20%; --sense-angle: 145deg; transition-delay: 300ms; }
-    .sense-node:nth-child(4) { right: 3%; bottom: 19%; --sense-angle: 205deg; transition-delay: 420ms; }
-    .sense-node:nth-child(5) { left: 41%; bottom: 0; --sense-angle: 270deg; transition-delay: 540ms; }
-    .sense-node:nth-child(6) { left: 3%; bottom: 19%; --sense-angle: 335deg; transition-delay: 660ms; }
-    .sense-node:nth-child(7) { left: 4%; top: 20%; --sense-angle: 25deg; transition-delay: 780ms; }
+    .sense-system::before { width: 84%; }
+    .sense-system::after { width: 48%; border-color: var(--cp-accent); transition-delay: 130ms; }
+    .scene-multimodal[data-state="active"] .sense-system::before,
+    .scene-multimodal[data-state="active"] .sense-system::after { opacity: .48; transform: translate(-50%, -50%) scale(1); }
+    .sense-lines { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: visible; }
+    .sense-lines line { stroke: var(--cp-accent); stroke-width: 1.5; stroke-dasharray: 360; stroke-dashoffset: 360; opacity: .8; filter: drop-shadow(0 0 5px var(--cp-accent)); }
+    .sense-lines circle { fill: var(--cp-accent); opacity: 0; filter: drop-shadow(0 0 5px var(--cp-accent)); }
+    .scene-multimodal[data-state="active"] .sense-lines line { animation: sense-line-draw 850ms cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: var(--line-delay); }
+    .scene-multimodal[data-state="active"] .sense-lines circle { animation: sense-point-in 400ms ease 1050ms forwards; }
+    .sense-core,
+    .sense-node {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--cp-border-strong);
+      border-radius: 50%;
+      background: var(--cp-surface);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.2);
+      transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
+    }
+    .sense-core { left: 50%; top: 50%; z-index: 3; width: 27%; aspect-ratio: 1; border: 2px solid var(--cp-accent); background: radial-gradient(circle at 50% 35%, var(--cp-highlight), var(--cp-surface) 68%); box-shadow: 0 0 0 .65rem var(--cp-accent-soft), 0 0 2.6rem var(--cp-highlight); transition-delay: 160ms; }
+    .sense-core img { width: 44%; height: 44%; object-fit: contain; }
+    .sense-core strong { margin-top: .38rem; color: var(--cp-text); font-size: clamp(.58rem, .82vw, .8rem); line-height: 1.05; }
+    .sense-core span { margin-top: .18rem; color: var(--cp-accent); font-size: clamp(.44rem, .6vw, .58rem); text-transform: uppercase; }
+    .sense-node { left: var(--node-x); top: var(--node-y); width: 18%; aspect-ratio: 1; padding: .6rem; box-shadow: 0 0 0 .3rem var(--cp-sheen), 0 0 1.1rem rgba(0, 0, 0, .4); transition-delay: var(--node-delay); }
+    .sense-node img { width: 34%; height: 34%; margin-bottom: .42rem; object-fit: contain; filter: invert(86%) sepia(8%) saturate(393%) hue-rotate(32deg) brightness(93%); }
+    .sense-node strong { color: var(--cp-text); font-size: clamp(.56rem, .82vw, .78rem); line-height: 1; }
     .scene-multimodal[data-state="active"] .sense-core,
-    .scene-multimodal[data-state="active"] .sense-node { opacity: 1; transform: scale(1); }
-    .scene-multimodal[data-state="active"] .sense-node::before { transform: rotate(var(--sense-angle)) scaleX(1); }
+    .scene-multimodal[data-state="active"] .sense-node { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    @keyframes sense-line-draw { to { stroke-dashoffset: 0; } }
+    @keyframes sense-point-in { to { opacity: 1; } }
 
+    .scene-orchestration .scene-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .orchestration-heading { width: max-content; max-width: 92vw; text-align: left; }
+    .scene-orchestration h2 {
+      width: max-content;
+      max-width: 92vw;
+      margin: 0 auto !important;
+      font-size: clamp(1.8rem, 3.45vw, 4.2rem) !important;
+      line-height: 1 !important;
+      white-space: nowrap;
+    }
     .orchestration-flow {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 3vw;
-      margin-top: clamp(3rem, 8vh, 7rem);
+      gap: clamp(1.25rem, 2.4vw, 2.5rem);
+      width: min(78vw, 60rem);
+      margin-top: clamp(3.5rem, 8vh, 5.5rem);
     }
     .orchestration-step {
       position: relative;
-      min-height: clamp(11rem, 27vh, 18rem);
-      padding: 1.5rem;
+      min-height: clamp(8rem, 18vh, 11rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
       border-top: 3px solid var(--cp-border-strong);
       background: var(--cp-sheen);
       opacity: 0;
-      transform: translateY(4vh);
-      transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
+      text-align: center;
+      transform: translateY(5vh) scale(.94);
+      transition: opacity 900ms ease, transform 1500ms cubic-bezier(.16, 1, .3, 1);
     }
     .orchestration-step::after {
       position: absolute;
@@ -1663,13 +1843,12 @@
     }
     .orchestration-step:last-child { border-color: var(--cp-accent); }
     .orchestration-step:last-child::after { content: ""; }
-    .orchestration-step:nth-child(1) { transition-delay: 160ms; }
-    .orchestration-step:nth-child(2) { transition-delay: 420ms; }
-    .orchestration-step:nth-child(3) { transition-delay: 680ms; }
-    .scene-orchestration[data-state="active"] .orchestration-step { opacity: 1; transform: translateY(0); }
-    .step-index { color: var(--cp-accent); font-size: .72rem; font-weight: 700; }
-    .orchestration-step strong { display: block; margin-top: 2rem; font-size: clamp(1.2rem, 2.4vw, 2.5rem); line-height: 1; }
-    .orchestration-step p { margin-top: 1rem; color: var(--cp-text-muted); font-size: clamp(.75rem, 1.2vw, 1.05rem); }
+    .orchestration-step:nth-child(1) { transition-delay: 350ms; }
+    .orchestration-step:nth-child(2) { transition-delay: 950ms; }
+    .orchestration-step:nth-child(3) { transition-delay: 1550ms; }
+    .scene-orchestration[data-state="active"] .orchestration-step { opacity: 1; transform: translateY(0) scale(1); }
+    .orchestration-step strong { display: block; font-size: clamp(1.05rem, 1.8vw, 1.75rem); line-height: 1; }
+    .orchestration-step p { max-width: 22ch; margin-top: .75rem; color: var(--cp-text-muted); font-size: clamp(.7rem, 1vw, .95rem); line-height: 1.35; }
 
     .stack-diagram { display: grid; gap: .5rem; margin-top: clamp(2rem, 4vh, 3.5rem); }
     .stack-layer {
@@ -1695,6 +1874,154 @@
     .stack-layer strong { color: var(--cp-text); font-size: clamp(.8rem, 1.3vw, 1.2rem); }
     .stack-layer span { color: var(--cp-text-muted); font-size: clamp(.72rem, 1.2vw, 1.05rem); }
 
+    .scene-ms-approach { align-items: start; padding: clamp(3rem, 7vw, 8rem); }
+    .scene-ms-approach .scene-content { width: 100%; display: grid; grid-template-rows: auto auto auto; row-gap: clamp(1rem, 1.8vh, 1.35rem); margin: 1.75rem auto 0; }
+    .ms-approach-heading { min-height: 7.9rem; }
+    .ms-approach-heading h2 { width: max-content; max-width: 92vw; font-size: clamp(2.5rem, 5.4vw, 6rem); line-height: .91; white-space: nowrap; }
+    .ms-approach-heading .approach-main,
+    .ms-approach-heading .approach-with { display: block; white-space: nowrap; }
+    .ms-approach-heading h2.flip-moving { transition: none !important; }
+    .scene-ms-approach[data-build="0"] .scene-content { position: relative; display: block; height: calc(100vh - 2 * clamp(3rem, 7vw, 8rem)); margin: 0 auto; }
+    .scene-ms-approach[data-build="0"] .ms-approach-heading { position: absolute; inset: 0; z-index: 5; min-height: 0; }
+    .scene-ms-approach[data-build="0"] .ms-approach-heading .scene-kicker { opacity: 0; visibility: hidden; }
+    .scene-ms-approach[data-build="0"] .ms-approach-heading h2 { position: absolute; left: 50%; top: 50%; width: max-content; max-width: 92vw; font-size: clamp(1.8rem, 4.2vw, 5rem); line-height: 1; white-space: nowrap; transform: translate(-50%, -50%); }
+    .scene-ms-approach[data-build="0"] .ms-approach-heading .approach-main,
+    .scene-ms-approach[data-build="0"] .ms-approach-heading .approach-main { display: inline; }
+    .scene-ms-approach[data-build="0"] .ms-approach-heading .approach-with { display: inline; }
+    .scene-ms-approach[data-build="0"] .ms-approach-map,
+    .scene-ms-approach[data-build="0"] .ms-approach-product { opacity: 0; visibility: hidden; pointer-events: none; }
+    .scene-ms-approach .ms-approach-map { gap: .28rem; padding: .38rem; }
+    .scene-ms-approach .ms-approach-map { justify-self: center; width: 92%; opacity: 0; transform: translateY(1rem); transition: opacity 700ms ease 500ms, transform 1100ms cubic-bezier(.16, 1, .3, 1) 500ms; }
+    .scene-ms-approach .ms-approach-map { margin-top: .5rem; }
+    .scene-ms-approach .ms-approach-product { margin-top: .55rem; }
+    .scene-ms-approach .ms-approach-band { min-height: 1.5rem; font-size: clamp(.58rem, .85vw, .8rem); }
+    .scene-ms-approach .ms-approach-mode { min-height: clamp(3.2rem, 7.5vh, 4rem); gap: .18rem; padding: .4rem; }
+    .scene-ms-approach .ms-approach-mode strong { font-size: clamp(.78rem, 1.25vw, 1.15rem); }
+    .scene-ms-approach .ms-approach-mode span { font-size: clamp(.5rem, .68vw, .65rem); }
+    .scene-ms-approach .ms-approach-intent { font-size: clamp(.48rem, .62vw, .6rem); }
+    .scene-ms-approach .ms-approach-product { width: 100%; height: clamp(11.5rem, 28vh, 15rem); }
+    .ms-approach-map { position: relative; display: grid; gap: .38rem; padding: .5rem; border: 1px solid var(--cp-border); background: var(--cp-panel); box-shadow: var(--cp-shadow); }
+    .ms-approach-bands, .ms-approach-modes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .55rem; }
+    .ms-approach-band { display: grid; place-items: center; min-height: 1.8rem; border: 1px solid var(--band-color); background: color-mix(in srgb, var(--band-color) 30%, var(--cp-surface)); color: var(--cp-text); font-size: clamp(.68rem, 1.05vw, 1rem); font-weight: 750; box-shadow: inset 0 0 1.2rem color-mix(in srgb, var(--band-color) 12%, transparent); opacity: 0; transform: translateY(-.75rem); transition: opacity 600ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1); }
+    .ms-approach-band.assistants { --band-color: var(--cp-linkedin); grid-column: 1; }
+    .ms-approach-band.delegates { --band-color: var(--cp-accent); grid-column: 2 / 4; transition-delay: 420ms; }
+    .ms-approach-band.autopilots { --band-color: var(--cp-autopilot); grid-column: 4; transition-delay: 840ms; }
+    .ms-approach-mode { min-height: clamp(4.2rem, 10.5vh, 5.5rem); display: grid; place-items: center; align-content: center; gap: .28rem; padding: .6rem; border: 1px solid color-mix(in srgb, var(--mode-color, var(--cp-border-strong)) 72%, var(--cp-border)); border-top-width: 3px; background: color-mix(in srgb, var(--mode-color) 7%, var(--cp-surface-soft)); box-shadow: inset 0 0 1rem color-mix(in srgb, var(--mode-color) 5%, transparent); text-align: center; opacity: 0; transform: translateY(1.2rem) scale(.96); transition: opacity 700ms ease, transform 1100ms cubic-bezier(.16, 1, .3, 1); }
+    .ms-approach-mode:nth-child(1) { --mode-color: var(--cp-linkedin); transition-delay: 180ms; }
+    .ms-approach-mode:nth-child(2) { --mode-color: var(--cp-accent); transition-delay: 540ms; }
+    .ms-approach-mode:nth-child(3) { --mode-color: var(--cp-accent); transition-delay: 720ms; }
+    .ms-approach-mode:nth-child(4) { --mode-color: var(--cp-autopilot); transition-delay: 1020ms; }
+    .ms-approach-mode strong { color: var(--cp-text); font-size: clamp(1rem, 1.8vw, 1.65rem); line-height: 1; }
+    .ms-approach-mode span { color: var(--cp-text-muted); font-size: clamp(.62rem, .9vw, .85rem); line-height: 1.2; }
+    .ms-approach-intent { display: grid; grid-template-columns: 1fr 2.25fr; gap: 1rem; align-items: center; padding: .05rem .5rem .1rem; color: var(--cp-text-soft); font-size: clamp(.54rem, .72vw, .68rem); font-style: italic; text-align: center; }
+    .ms-approach-intent span { position: relative; padding-top: .55rem; }
+    .ms-approach-intent span::before { position: absolute; left: 4%; right: 4%; top: 0; height: 1px; background: linear-gradient(90deg, var(--cp-link), var(--cp-accent), var(--cp-warning)); content: ""; transform: scaleX(0); transition: transform 1400ms cubic-bezier(.16, 1, .3, 1) 1100ms; }
+    .ms-approach-product { position: relative; justify-self: center; width: 98%; height: clamp(14rem, 40vh, 21rem); margin: 0; overflow: hidden; background: transparent; opacity: 0; transform: translateY(2rem) scale(.98); transition: opacity 800ms ease 1350ms, transform 1400ms cubic-bezier(.16, 1, .3, 1) 1350ms; }
+    .ms-approach-product img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center top; }
+    .scene-ms-approach[data-state="active"][data-build="1"] .ms-approach-band,
+    .scene-ms-approach[data-state="active"][data-build="1"] .ms-approach-mode { opacity: 1; transform: translateY(0) scale(1); }
+    .scene-ms-approach[data-state="active"][data-build="1"] .ms-approach-map { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scene-ms-approach[data-state="active"][data-build="1"] .ms-approach-intent span::before { transform: scaleX(1); }
+    .scene-ms-approach[data-state="active"][data-build="1"] .ms-approach-product { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+    .scene-ai-architecture .ms-approach-heading h2 { max-width: none; }
+    .scene-ai-architecture[data-build="0"] .ai-architecture { opacity: 0; visibility: hidden; pointer-events: none; }
+    .ai-architecture { position: relative; width: 94%; height: clamp(22rem, 55vh, 31rem); justify-self: center; margin-top: .8rem; opacity: 0; transform: translateY(2rem) scale(.97); transition: opacity 850ms ease 450ms, transform 1500ms cubic-bezier(.16, 1, .3, 1) 450ms; }
+    .architecture-trust { position: absolute; left: 2%; right: 2%; top: 0; display: flex; align-items: center; gap: 1rem; color: var(--cp-linkedin); font-size: clamp(.72rem, 1.05vw, 1rem); font-weight: 750; }
+    .architecture-trust::before, .architecture-trust::after { height: 1px; flex: 1; background: linear-gradient(90deg, var(--cp-linkedin), var(--cp-accent)); content: ""; }
+    .architecture-trust::before { transform: scaleX(-1); }
+    .architecture-trust span { color: var(--cp-accent); }
+    .architecture-frame { position: absolute; inset: 2.3rem 0 1rem; display: grid; grid-template-columns: 1fr 2.55fr 1fr; gap: .7rem; padding: 1.2rem; border: 1px solid var(--cp-linkedin); border-radius: 1rem; background: linear-gradient(120deg, color-mix(in srgb, var(--cp-linkedin) 10%, var(--cp-panel)), color-mix(in srgb, var(--cp-accent) 10%, var(--cp-panel))); box-shadow: var(--cp-shadow); }
+    .architecture-column { display: grid; gap: .65rem; }
+    .architecture-side { place-items: center; align-content: center; grid-auto-flow: row; grid-template-columns: 1fr; grid-auto-rows: max-content; gap: .5rem; padding: 1rem; border: 1px solid var(--cp-border); border-radius: .8rem; background: var(--cp-surface); text-align: center; opacity: 0; transform: translateX(-1.5rem); transition: opacity 650ms ease 650ms, transform 1000ms cubic-bezier(.16, 1, .3, 1) 650ms; }
+    .architecture-side.agent { transform: translateX(1.5rem); transition-delay: 850ms; }
+    .architecture-side img, .architecture-tile img { width: clamp(2rem, 3vw, 3rem); height: clamp(2rem, 3vw, 3rem); object-fit: contain; margin-bottom: .5rem; }
+    .architecture-side img { margin: 0 auto; }
+    .architecture-side strong { display: block; width: 100%; }
+    .architecture-logo { display: block; width: clamp(2rem, 3vw, 3rem); height: clamp(2rem, 3vw, 3rem); margin-bottom: .5rem; }
+    .github-copilot-mark { background: linear-gradient(145deg, #35d5ff 0%, #3578ff 34%, #7652f7 66%, #a84de2 100%); filter: drop-shadow(0 0 .55rem rgba(86, 112, 255, .55)); -webkit-mask: url("assets/logos-and-icons/github-copilot-color.svg") center / contain no-repeat; mask: url("assets/logos-and-icons/github-copilot-color.svg") center / contain no-repeat; }
+    .architecture-side strong, .architecture-tile strong { color: var(--cp-text); font-size: clamp(.72rem, 1vw, .96rem); line-height: 1.15; }
+    .architecture-center { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr .72fr; gap: .65rem; }
+    .architecture-tile { display: grid; place-items: center; align-content: center; padding: .6rem; border: 1px solid var(--cp-border); border-radius: .75rem; background: var(--cp-surface); text-align: center; opacity: 0; transform: translateY(1rem) scale(.96); transition: opacity 650ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1); }
+    .architecture-tile.studio { grid-column: 1; transition-delay: 750ms; }
+    .architecture-tile.github { grid-column: 2; transition-delay: 900ms; }
+    .architecture-tile.fabric { grid-column: 1; transition-delay: 1050ms; }
+    .architecture-tile.foundry { grid-column: 2; transition-delay: 1200ms; }
+    .architecture-tile.azure { grid-column: 1 / 3; transition-delay: 1350ms; }
+    .architecture-iq { position: absolute; left: 50%; top: 42%; z-index: 4; display: grid; place-items: center; width: clamp(8rem, 13vw, 11.5rem); aspect-ratio: 1; padding: 1rem; border: 1px solid var(--cp-border-strong); border-radius: 50%; background: radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--cp-linkedin) 22%, var(--cp-surface)), color-mix(in srgb, var(--cp-accent) 18%, var(--cp-surface))); color: var(--cp-text); text-align: center; box-shadow: 0 0 2rem var(--cp-highlight); opacity: 0; transform: translate(-50%, -50%) scale(.55); transition: opacity 750ms ease 1450ms, transform 1300ms cubic-bezier(.16, 1, .3, 1) 1450ms; }
+    .architecture-iq strong { font-size: clamp(1rem, 1.7vw, 1.5rem); }
+    .architecture-iq span { margin-top: .35rem; color: var(--cp-text-soft); font-size: clamp(.56rem, .82vw, .78rem); line-height: 1.35; }
+    .architecture-security { position: absolute; left: 50%; bottom: -.05rem; z-index: 5; padding: .4rem 1.6rem; border: 1px solid var(--cp-linkedin); border-radius: .45rem; background: var(--cp-surface); color: var(--cp-text); font-size: clamp(.7rem, .95vw, .9rem); font-weight: 750; opacity: 0; transform: translate(-50%, 1rem); transition: opacity 650ms ease 1750ms, transform 900ms cubic-bezier(.16, 1, .3, 1) 1750ms; }
+    .scene-ai-architecture[data-state="active"][data-build="1"] .ai-architecture { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .scene-ai-architecture[data-state="active"][data-build="1"] .architecture-side,
+    .scene-ai-architecture[data-state="active"][data-build="1"] .architecture-tile { opacity: 1; transform: translate(0) scale(1); }
+    .scene-ai-architecture[data-state="active"][data-build="1"] .architecture-iq { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .scene-ai-architecture[data-state="active"][data-build="1"] .architecture-security { opacity: 1; transform: translate(-50%, 0); }
+
+    .scene-copilot-strategy { align-items: start; padding: clamp(3rem, 7vw, 8rem); }
+    .scene-copilot-strategy .scene-content { width: 100%; display: grid; gap: clamp(.75rem, 1.35vh, 1rem); margin: 1.75rem auto 0; }
+    .copilot-strategy-heading { min-height: 7.9rem; }
+    .copilot-strategy-heading h2 { max-width: 14ch; font-size: clamp(2.5rem, 5.4vw, 6rem); line-height: .91; }
+    .strategy-title-main, .strategy-title-with { display: block; white-space: nowrap; }
+    .copilot-strategy-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.65rem, 1.35vw, 1.15rem); margin-top: clamp(.65rem, 1.4vh, 1rem); }
+    .strategy-pillar {
+      --pillar-color: var(--cp-accent);
+      position: relative;
+      min-height: clamp(8.4rem, 20vh, 11rem);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr;
+      gap: .55rem .8rem;
+      padding: .8rem .9rem;
+      border: 1px solid color-mix(in srgb, var(--pillar-color) 62%, var(--cp-border));
+      border-top-width: 3px;
+      background: color-mix(in srgb, var(--pillar-color) 7%, var(--cp-panel));
+      box-shadow: inset 0 0 1.8rem color-mix(in srgb, var(--pillar-color) 5%, transparent);
+      opacity: 0;
+      transform: translateY(1.5rem) scale(.96);
+      transition: opacity 750ms ease, transform 1200ms cubic-bezier(.16, 1, .3, 1);
+    }
+    .strategy-pillar:nth-child(1) { --pillar-color: var(--cp-linkedin); transition-delay: 180ms; }
+    .strategy-pillar:nth-child(2) { --pillar-color: var(--cp-accent); transition-delay: 480ms; }
+    .strategy-pillar:nth-child(3) { --pillar-color: var(--cp-autopilot); transition-delay: 780ms; }
+    .strategy-index { display: grid; place-items: center; width: 2.35rem; aspect-ratio: 1; border-radius: 50%; background: var(--pillar-color); color: var(--cp-accent-fg); font-size: 1rem; font-weight: 800; box-shadow: 0 0 1rem color-mix(in srgb, var(--pillar-color) 28%, transparent); }
+    .strategy-pillar:nth-child(3) .strategy-index { color: var(--cp-surface); }
+    .strategy-pillar-head { position: relative; align-self: center; min-width: 0; padding-right: 4rem; }
+    .strategy-icon { display: block; width: 3.15rem; aspect-ratio: 1; background: var(--pillar-color); opacity: .84; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; -webkit-mask-size: contain; mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
+    .strategy-pillar-head .strategy-icon { position: absolute; right: .1rem; top: 50%; transform: translateY(-50%); }
+    .strategy-icon.multi-model { -webkit-mask-image: url("assets/logos-and-icons/strategy-multi-model.svg"); mask-image: url("assets/logos-and-icons/strategy-multi-model.svg"); }
+    .strategy-icon.multi-harness { -webkit-mask-image: url("assets/logos-and-icons/strategy-multi-harness.svg"); mask-image: url("assets/logos-and-icons/strategy-multi-harness.svg"); }
+    .strategy-icon.platform { -webkit-mask-image: url("assets/logos-and-icons/strategy-platform.svg"); mask-image: url("assets/logos-and-icons/strategy-platform.svg"); }
+    .strategy-icon.secure { -webkit-mask-image: url("assets/logos-and-icons/strategy-secure.svg"); mask-image: url("assets/logos-and-icons/strategy-secure.svg"); }
+    .strategy-pillar-head strong { display: block; color: var(--cp-text); font-size: clamp(1rem, 1.7vw, 1.55rem); line-height: 1; }
+    .strategy-pillar-head span { display: block; margin-top: .3rem; color: var(--pillar-color); font-size: clamp(.6rem, .8vw, .76rem); font-weight: 650; }
+    .strategy-pillar ul { grid-column: 1 / -1; display: grid; gap: .3rem; margin: 0; padding-left: 1.15rem; color: var(--cp-text-soft); font-size: clamp(.58rem, .82vw, .78rem); line-height: 1.3; }
+    .strategy-foundation {
+      --pillar-color: var(--cp-accent);
+      display: grid;
+      grid-template-columns: auto minmax(17rem, .72fr) 1.28fr;
+      gap: .8rem 1rem;
+      align-items: center;
+      padding: .7rem 1rem;
+      border: 1px solid var(--cp-border-strong);
+      border-top: 3px solid var(--cp-accent);
+      background: var(--cp-panel);
+      opacity: 0;
+      transform: translateY(1.5rem);
+      margin-top: .65rem;
+      transition: opacity 750ms ease 1050ms, transform 1200ms cubic-bezier(.16, 1, .3, 1) 1050ms;
+    }
+    .strategy-foundation-copy { position: static; padding-right: 4rem; }
+    .strategy-foundation .strategy-icon { position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%); }
+    .strategy-foundation-copy strong { display: block; color: var(--cp-text); font-size: clamp(1rem, 1.7vw, 1.55rem); line-height: 1.05; }
+    .strategy-foundation-copy span { display: block; margin-top: .3rem; color: var(--cp-accent); font-size: clamp(.58rem, .78vw, .74rem); font-weight: 650; }
+    .strategy-foundation ul { display: grid; gap: .25rem; margin: 0; padding-left: 1.15rem; color: var(--cp-text-soft); font-size: clamp(.56rem, .76vw, .74rem); line-height: 1.25; }
+    .strategy-thesis { padding: .65rem 1rem; border: 1px solid var(--cp-border-strong); border-left: 4px solid var(--cp-linkedin); border-right: 4px solid var(--cp-accent); border-radius: .7rem; background: linear-gradient(90deg, color-mix(in srgb, var(--cp-linkedin) 22%, var(--cp-surface)), color-mix(in srgb, var(--cp-accent) 22%, var(--cp-surface))); color: var(--cp-text); box-shadow: 0 .35rem 1rem rgba(0, 0, 0, .2); font-size: clamp(.8rem, 1.3vw, 1.2rem); font-weight: 650; text-align: center; opacity: 0; transform: translateY(1rem); transition: opacity 700ms ease 1450ms, transform 1000ms cubic-bezier(.16, 1, .3, 1) 1450ms; }
+    .scene-copilot-strategy[data-state="active"] .strategy-pillar,
+    .scene-copilot-strategy[data-state="active"] .strategy-foundation,
+    .scene-copilot-strategy[data-state="active"] .strategy-thesis { opacity: 1; transform: translateY(0) scale(1); }
+
+
     .scene-adaptation .scene-content { width: 100%; }
     .race { display: grid; gap: 3rem; margin-top: clamp(3rem, 9vh, 7rem); }
     .race-lane { position: relative; }
@@ -1708,7 +2035,7 @@
     .scene-adaptation[data-state="active"] .race-lane:last-child .race-progress { width: 43%; }
 
     .scene-governance .scene-content { display: grid; grid-template-columns: .95fr 1.05fr; gap: 7vw; align-items: center; }
-    .govern-system { position: relative; width: min(46vw, 40rem); aspect-ratio: 1; }
+    .govern-system { position: relative; width: min(43vw, 37rem); aspect-ratio: 1; isolation: isolate; transform: translateY(-2.2rem); }
     .govern-domain {
       position: absolute;
       inset: var(--domain-inset);
@@ -1726,8 +2053,23 @@
     .govern-domain:nth-child(1) { --domain-inset: 0%; transition-delay: 100ms; }
     .govern-domain:nth-child(2) { --domain-inset: 13%; transition-delay: 250ms; }
     .govern-domain:nth-child(3) { --domain-inset: 27%; transition-delay: 400ms; }
-    .govern-domain:nth-child(4) { --domain-inset: 41%; place-items: center; padding: 0; border-color: var(--cp-accent); color: var(--cp-accent); transition-delay: 550ms; }
+    .govern-domain:nth-child(4) { --domain-inset: 38%; place-items: center; padding: 0; border-color: var(--cp-accent); color: var(--cp-accent); transition-delay: 550ms; }
+    .govern-domain:nth-child(4) span { display: grid; gap: .2rem; place-items: center; }
+    .govern-domain:nth-child(4) small { color: var(--cp-text-soft); font-size: .72em; font-weight: 650; text-transform: none; }
     .scene-governance[data-state="active"] .govern-domain { opacity: 1; transform: scale(1); }
+    .govern-agent-ring { position: absolute; inset: -6%; z-index: -1; border: 2px solid var(--cp-accent); border-radius: 50%; background: radial-gradient(circle, transparent 58%, var(--cp-accent-soft) 100%); opacity: 0; transform: scale(.72); transition: opacity 750ms ease 1450ms, transform 1500ms cubic-bezier(.16, 1, .3, 1) 1450ms; }
+    .govern-agent-badge { position: absolute; left: 50%; bottom: -2.8rem; display: flex; align-items: center; gap: .55rem; min-width: 8.5rem; padding: .45rem .75rem; border: 1px solid var(--cp-accent); border-radius: 999px; background: var(--cp-panel-strong); color: var(--cp-text); box-shadow: var(--cp-shadow); transform: translateX(-50%); }
+    .govern-agent-badge img { width: 2rem; height: 2rem; object-fit: contain; }
+    .govern-agent-badge strong { font-size: clamp(.65rem, .9vw, .85rem); white-space: nowrap; }
+    .govern-product { position: absolute; left: var(--product-x); top: var(--product-y); z-index: 4; display: flex; width: clamp(3.8rem, 5.5vw, 4.8rem); aspect-ratio: 1; flex-direction: column; align-items: center; justify-content: center; padding: .45rem; border: 1px solid var(--cp-border-strong); border-radius: 50%; background: var(--cp-panel-strong); box-shadow: 0 0 0 .28rem var(--cp-sheen), 0 0 1rem rgba(0,0,0,.3); text-align: center; opacity: 0; transform: translate(-50%, -50%) scale(.45); transition: opacity 550ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1); transition-delay: var(--product-delay); }
+    .govern-product img, .govern-product .govern-product-icon { display: block; width: 42%; height: 42%; margin: 0 0 .28rem; object-fit: contain; }
+    .govern-product strong { max-width: 9ch; color: var(--cp-text); font-size: clamp(.42rem, .58vw, .58rem); line-height: 1.05; }
+    .govern-product.github .github-copilot-mark { filter: drop-shadow(0 0 .35rem rgba(86,112,255,.45)); }
+    .govern-model { position: absolute; left: var(--model-x); top: var(--model-y); z-index: 6; display: grid; place-items: center; width: clamp(1.35rem, 2vw, 1.8rem); aspect-ratio: 1; border: 1px solid var(--cp-border-strong); border-radius: 50%; background: var(--cp-panel-strong); box-shadow: 0 0 .55rem var(--cp-accent-soft); opacity: 0; transform: translate(-50%, -50%) scale(.4); transition: opacity 450ms ease, transform 800ms cubic-bezier(.16, 1, .3, 1); transition-delay: var(--model-delay); }
+    .govern-model img { width: 58%; height: 58%; object-fit: contain; filter: invert(1); }
+    .scene-governance[data-state="active"] .govern-agent-ring { opacity: .72; transform: scale(1); }
+    .scene-governance[data-state="active"] .govern-product { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .scene-governance[data-state="active"] .govern-model { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
     .economy-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: clamp(3rem, 8vh, 6rem); background: var(--cp-border); }
     .economy-era { position: relative; min-height: clamp(15rem, 35vh, 23rem); padding: 1.5rem; background: var(--cp-surface); opacity: 0; transition: opacity 600ms ease; }
@@ -1739,30 +2081,95 @@
     .economy-era > span { display: block; margin-top: .5rem; color: var(--cp-accent); font-size: clamp(.8rem, 1.3vw, 1.2rem); }
     .economy-era p { position: absolute; left: 1.5rem; bottom: 1.5rem; max-width: 18ch; color: var(--cp-text-muted); font-size: clamp(.7rem, 1.1vw, 1rem); line-height: 1.45; }
 
-    .scene-org .scene-content { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; align-items: center; }
-    .org-system { position: relative; width: min(50vw, 45rem); aspect-ratio: 1.15; }
-    .org-human,
-    .org-agent {
+    .scene-org { padding: clamp(2rem, 5vw, 6rem); }
+    .scene-org .scene-content { width: 100%; height: 100%; display: grid; grid-template-columns: minmax(18rem, .62fr) minmax(38rem, 1.38fr); gap: clamp(2.5rem, 5vw, 6rem); align-items: center; }
+    .org-heading { align-self: center; }
+    .org-heading h2 { max-width: 9ch; font-size: clamp(3rem, 5.5vw, 6.4rem); line-height: .9; }
+    .org-heading .scene-subtitle { max-width: 25rem; margin-top: clamp(1.75rem, 3.5vh, 3rem) !important; text-align: left; }
+    .keynote-org { position: relative; min-height: 0; height: 100%; display: grid; grid-template-rows: minmax(0, 1fr) auto; place-items: center; gap: .65rem; isolation: isolate; }
+    .keynote-org::before {
       position: absolute;
+      z-index: -1;
+      width: min(45vw, 44rem);
+      aspect-ratio: 1;
+      border: 1px solid var(--cp-border);
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--cp-accent-soft) 0%, transparent 62%);
+      content: "";
+      opacity: 0;
+      transform: scale(.72);
+      transition: opacity 900ms ease, transform 1600ms cubic-bezier(.16, 1, .3, 1);
+    }
+    .scene-org[data-state="active"] .keynote-org::before { opacity: .5; transform: scale(1); }
+    .keynote-org-tree { width: min(54vw, 52rem); min-height: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .keynote-person { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; opacity: 0; transform: translateY(1.2rem) scale(.82); transition: opacity 500ms ease, transform 850ms cubic-bezier(.16, 1, .3, 1); }
+    .keynote-portrait { width: clamp(3.5rem, 4.8vw, 5rem); aspect-ratio: 1; margin-bottom: .42rem; overflow: hidden; border: 2px solid var(--cp-border-strong); border-radius: 50%; background: var(--cp-surface-soft); box-shadow: 0 0 0 .35rem var(--cp-sheen); }
+    .keynote-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .keynote-person.ai .keynote-portrait { border-color: var(--cp-accent); box-shadow: 0 0 0 .35rem var(--cp-accent-soft), 0 0 1.4rem var(--cp-highlight); }
+    .keynote-person.you .keynote-portrait { width: clamp(4.3rem, 5.8vw, 5.8rem); border: 3px solid var(--cp-text); }
+    .keynote-name { color: var(--cp-text); font-size: clamp(.76rem, 1.08vw, 1.05rem); font-weight: 650; }
+    .keynote-role { margin-top: .2rem; color: var(--cp-text-muted); font-size: clamp(.62rem, .84vw, .84rem); }
+    .org-tag { display: inline-block; margin-left: .25rem; padding: .05rem .35rem; border: 1px solid var(--cp-border); border-radius: .3rem; color: var(--cp-text-muted); font-size: .62em; font-weight: 700; vertical-align: .08rem; }
+    .org-tag.ai { border-color: transparent; background: var(--cp-accent-soft); color: var(--cp-accent); }
+    .org-connector { width: 2px; height: clamp(.65rem, 1.5vh, 1.25rem); background: linear-gradient(var(--cp-accent), var(--cp-border-strong)); box-shadow: 0 0 .6rem var(--cp-accent-soft); opacity: 0; transform: scaleY(0); transform-origin: top; transition: opacity 400ms ease, transform 650ms ease; }
+    .org-connector.wide { width: 82%; max-width: 52rem; height: 2px; background: linear-gradient(90deg, transparent, var(--cp-accent), var(--cp-border-strong), var(--cp-accent), transparent); transform: scaleX(0); transform-origin: center; }
+    .org-ai-row { width: 100%; max-width: 52rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.8rem, 2vw, 2rem); }
+    .org-ai-row .keynote-person::before { position: absolute; left: 50%; bottom: 100%; width: 2px; height: clamp(.65rem, 1.5vh, 1.25rem); background: linear-gradient(var(--cp-accent), var(--cp-border-strong)); box-shadow: 0 0 .5rem var(--cp-accent-soft); content: ""; opacity: 0; transform: scaleY(0); transform-origin: top; transition: opacity 400ms ease, transform 650ms ease; }
+    .org-humans { width: 100%; max-width: 52rem; margin-top: clamp(.7rem, 1.6vh, 1.25rem); padding-top: clamp(.7rem, 1.6vh, 1.1rem); border-top: 1px dashed var(--cp-border-strong); opacity: 0; transition: opacity 700ms ease 1400ms; }
+    .org-humans-label { margin-bottom: .65rem; color: var(--cp-text-soft); font-size: clamp(.55rem, .72vw, .72rem); text-align: center; text-transform: uppercase; }
+    .org-humans-row { display: flex; justify-content: center; gap: clamp(3rem, 9vw, 8rem); }
+    .org-humans .keynote-portrait { width: clamp(3rem, 3.8vw, 4rem); filter: saturate(.72); }
+    .scene-org[data-state="active"] .keynote-person { opacity: 1; transform: translateY(0) scale(1); }
+    .scene-org[data-state="active"] .keynote-person.you { transition-delay: 150ms; }
+    .scene-org[data-state="active"] .keynote-person.emma { transition-delay: 450ms; }
+    .scene-org[data-state="active"] .org-connector { opacity: 1; transform: scaleY(1); transition-delay: 350ms; }
+    .scene-org[data-state="active"] .org-connector.wide { transform: scaleX(1); transition-delay: 700ms; }
+    .scene-org[data-state="active"] .org-ai-row .keynote-person { transition-delay: 900ms; }
+    .scene-org[data-state="active"] .org-ai-row .keynote-person::before { opacity: 1; transform: scaleY(1); transition-delay: 750ms; }
+    .scene-org[data-state="active"] .org-humans { opacity: 1; }
+    .scene-org[data-state="active"] .org-humans .keynote-person { transition-delay: 1500ms; }
+    .desk-launch {
+      position: relative;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      min-height: 2.8rem;
+      padding: .7rem .8rem .7rem 1.15rem;
+      border: 1px solid var(--cp-accent);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+      font-weight: 650;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: opacity 600ms ease 1700ms, transform 800ms cubic-bezier(.16, 1, .3, 1) 1700ms, background 220ms ease, color 220ms ease;
+    }
+    .desk-launch:hover { background: var(--cp-accent); color: var(--cp-accent-fg); }
+    .desk-launch-icon { display: grid; place-items: center; width: 1.7rem; aspect-ratio: 1; border-radius: 50%; background: var(--cp-accent); color: var(--cp-accent-fg); font-size: 1rem; transition: transform 300ms ease; }
+    .desk-launch:hover .desk-launch-icon { background: var(--cp-accent-fg); color: var(--cp-accent); transform: translateX(.18rem); }
+    .scene-org[data-state="active"] .desk-launch { opacity: 1; transform: translateY(0); }
+
+    .page-morph {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
       display: grid;
       place-items: center;
-      border: 1px solid var(--cp-border-strong);
-      border-radius: 50%;
       background: var(--cp-surface);
-      opacity: 0;
-      transform: scale(.25);
-      transition: opacity 500ms ease, transform 900ms cubic-bezier(.16, 1, .3, 1);
+      clip-path: circle(0 at var(--morph-x, 75%) var(--morph-y, 75%));
+      pointer-events: none;
     }
-    .org-human { left: 36%; top: 32%; width: 28%; aspect-ratio: 1; z-index: 3; border-color: var(--cp-accent); color: var(--cp-text); font-size: clamp(.8rem, 1.4vw, 1.3rem); }
-    .org-agent { width: 18%; aspect-ratio: 1; color: var(--cp-text-muted); font-size: clamp(.5rem, .9vw, .8rem); }
-    .org-agent::before { position: absolute; left: 50%; top: 50%; z-index: -1; width: 240%; height: 1px; background: var(--cp-border-strong); content: ""; transform-origin: left; }
-    .org-agent:nth-child(2) { left: 4%; top: 7%; transition-delay: 250ms; }
-    .org-agent:nth-child(3) { right: 3%; top: 7%; transition-delay: 400ms; }
-    .org-agent:nth-child(4) { right: 0; bottom: 6%; transition-delay: 550ms; }
-    .org-agent:nth-child(5) { left: 2%; bottom: 6%; transition-delay: 700ms; }
-    .org-agent:nth-child(6) { left: 41%; bottom: 0; transition-delay: 850ms; }
-    .scene-org[data-state="active"] .org-human,
-    .scene-org[data-state="active"] .org-agent { opacity: 1; transform: scale(1); }
+    .page-morph-mark { color: var(--cp-accent); font-size: clamp(1rem, 2vw, 1.6rem); font-weight: 750; opacity: 0; transform: scale(.8); }
+    .page-morph.cover { animation: morph-cover 760ms cubic-bezier(.7, 0, .2, 1) forwards; }
+    .page-morph.cover .page-morph-mark { animation: morph-mark-in 380ms ease 300ms forwards; }
+    .page-morph.reveal { clip-path: circle(150% at var(--morph-x, 75%) var(--morph-y, 75%)); animation: morph-reveal 760ms cubic-bezier(.7, 0, .2, 1) forwards; }
+    .page-morph.reveal .page-morph-mark { animation: morph-mark-out 420ms ease forwards; }
+    @keyframes morph-cover { to { clip-path: circle(150% at var(--morph-x, 75%) var(--morph-y, 75%)); } }
+    @keyframes morph-reveal { to { clip-path: circle(0 at var(--morph-x, 75%) var(--morph-y, 75%)); } }
+    @keyframes morph-mark-in { to { opacity: 1; transform: scale(1); } }
+    @keyframes morph-mark-out { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(.8); } }
 
     .scene-work { text-align: center; }
     .scene-work .scene-content { display: grid; justify-items: center; }
@@ -1793,6 +2200,28 @@
     .leadership-question:nth-child(4) { transition-delay: 600ms; }
     .leadership-question:nth-child(5) { transition-delay: 750ms; }
     .scene-questions[data-state="active"] .leadership-question { opacity: 1; transform: translateX(0); }
+
+    .scene-agent-challenge { text-align: center; }
+    .scene-agent-challenge .scene-content { width: 100%; display: grid; justify-items: center; }
+    .challenge-question { max-width: 22ch !important; font-size: clamp(2.2rem, 4.6vw, 5.3rem) !important; line-height: .98 !important; }
+    .challenge-question .challenge-setup { display: block; color: var(--cp-text); font-size: .62em; font-weight: 520; line-height: 1.15; }
+    .challenge-question .challenge-pivot { display: block; margin-top: .45em; color: var(--cp-text); }
+    .challenge-question .accent { text-shadow: 0 0 1.5rem var(--cp-accent-soft); }
+    .challenge-instruction { margin-top: clamp(1.2rem, 2.6vh, 2rem) !important; color: var(--cp-text-muted); font-size: clamp(.72rem, 1vw, .95rem); opacity: 0; transform: translateY(.75rem); transition: opacity 700ms ease 500ms, transform 900ms cubic-bezier(.16, 1, .3, 1) 500ms; }
+    .challenge-horizon { position: relative; width: min(86vw, 70rem); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.6rem, 1.5vw, 1.4rem); margin-top: clamp(2.5rem, 7vh, 5rem); padding-top: 1.5rem; }
+    .challenge-horizon::before { position: absolute; left: 8%; right: 8%; top: 2.55rem; height: 1px; background: var(--cp-border-strong); content: ""; }
+    .challenge-signal { position: absolute; left: 8%; top: calc(2.55rem - 2px); width: 0; height: 4px; background: linear-gradient(90deg, var(--cp-linkedin), var(--cp-accent), var(--cp-autopilot)); box-shadow: 0 0 1rem var(--cp-highlight); transition: width 2400ms cubic-bezier(.16, 1, .3, 1) 750ms; }
+    .challenge-choice { --choice-color: var(--cp-accent); position: relative; z-index: 2; display: grid; justify-items: center; gap: .8rem; color: var(--cp-text-soft); opacity: 0; transform: translateY(1.5rem); transition: opacity 650ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1); transition-delay: var(--choice-delay); }
+    .challenge-choice:nth-child(2) { --choice-color: var(--cp-linkedin); --choice-delay: 850ms; }
+    .challenge-choice:nth-child(3) { --choice-color: var(--cp-accent); --choice-delay: 1100ms; }
+    .challenge-choice:nth-child(4) { --choice-color: var(--cp-autopilot); --choice-delay: 1350ms; }
+    .challenge-choice:nth-child(5) { --choice-color: var(--cp-text-soft); --choice-delay: 1600ms; }
+    .challenge-choice:nth-child(6) { --choice-color: var(--cp-warning); --choice-delay: 1850ms; }
+    .challenge-node { display: grid; place-items: center; width: clamp(3.4rem, 5vw, 4.8rem); aspect-ratio: 1; border: 1px solid var(--choice-color); border-radius: 50%; background: var(--cp-panel-strong); color: var(--choice-color); box-shadow: 0 0 0 .32rem var(--cp-sheen), 0 0 1.2rem color-mix(in srgb, var(--choice-color) 18%, transparent); font-size: clamp(.72rem, 1vw, .95rem); font-weight: 800; }
+    .challenge-choice strong { color: var(--cp-text); font-size: clamp(.72rem, 1.1vw, 1rem); line-height: 1.05; }
+    .scene-agent-challenge[data-state="active"] .challenge-instruction,
+    .scene-agent-challenge[data-state="active"] .challenge-choice { opacity: 1; transform: translateY(0); }
+    .scene-agent-challenge[data-state="active"] .challenge-signal { width: 84%; }
 
     .scene-thanks { padding: 0; }
     .thanks-copy {
@@ -1855,32 +2284,66 @@
     .thanks-ring::after { inset: 29%; }
     .scene-thanks[data-state="active"] .thanks-ring { opacity: .48; transform: translateY(-50%) scale(1); }
 
-    .scene-event-ending {
-      padding: 0;
-      background-color: var(--cp-surface);
-    }
-    .ending-image {
+    .scene-thanks-event { background: var(--cp-surface); }
+    .thanks-event-background {
       position: absolute;
       inset: 0;
+      z-index: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
-      filter: brightness(.72) saturate(.86);
-      transform: scale(1.1);
-      transition: transform 8500ms cubic-bezier(.16, 1, .3, 1), filter 1800ms ease;
+      filter: brightness(.5) saturate(.86) contrast(1.08);
+      transform: scale(1.07);
+      transition: filter 1800ms ease, transform 8500ms cubic-bezier(.16, 1, .3, 1);
     }
-    .scene-event-ending[data-state="active"] .ending-image {
-      filter: brightness(1) saturate(1);
-      transform: scale(1);
-    }
-    .scene-event-ending::after {
+    .scene-thanks-event::after {
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, var(--cp-overlay) 0%, transparent 18% 88%);
+      z-index: 1;
+      background: linear-gradient(90deg, var(--cp-overlay) 0%, color-mix(in srgb, var(--cp-overlay) 72%, transparent) 40%, transparent 72%), linear-gradient(0deg, var(--cp-overlay) 0%, transparent 28% 78%);
       content: "";
-      opacity: .18;
+      opacity: .82;
     }
+    .scene-thanks-event .thanks-ring { z-index: 2; }
+    .scene-thanks-event .thanks-copy { left: clamp(2rem, 3vw, 3rem); top: 65%; }
+    .scene-thanks-event .thanks-copy h2 { max-width: none; font-size: clamp(3.5rem, 5.4vw, 7rem); line-height: .88; white-space: nowrap; text-shadow: 0 3px 1.5rem var(--cp-surface); }
+    .scene-thanks-event .thanks-copy p {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding: .55rem .8rem;
+      border-left: 3px solid var(--cp-accent);
+      background: var(--cp-overlay);
+      color: var(--cp-text);
+      font-size: clamp(.9rem, 1.35vw, 1.25rem);
+      font-weight: 600;
+      text-shadow: 0 2px 1rem var(--cp-surface);
+    }
+    .closing-qr-links { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; margin-top: 1.25rem; }
+    .closing-qr-item {
+      --qr-color: var(--cp-accent);
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .65rem;
+      align-items: center;
+      width: clamp(13rem, 22vw, 16rem);
+      padding: .5rem .65rem .5rem .5rem;
+      border: 1px solid color-mix(in srgb, var(--qr-color) 76%, var(--cp-border));
+      border-radius: .35rem;
+      background: var(--cp-panel-strong);
+      box-shadow: 0 0 1.4rem color-mix(in srgb, var(--qr-color) 18%, transparent);
+    }
+    .closing-qr-item.linkedin { --qr-color: var(--cp-linkedin); }
+    .closing-qr-item::before { position: absolute; left: -.12rem; top: 16%; bottom: 16%; width: .22rem; border-radius: 999px; background: var(--qr-color); content: ""; }
+    .closing-qr-code { position: relative; width: clamp(4.5rem, 6vw, 5.5rem); aspect-ratio: 1; }
+    .closing-qr-code img { display: block; width: 100%; height: 100%; padding: .25rem; background: white; }
+    .linkedin-mark { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 25%; aspect-ratio: 1; border: .18rem solid white; border-radius: .18rem; background: var(--cp-linkedin); color: white; font-family: Arial, sans-serif; font-size: clamp(.55rem, .8vw, .78rem); font-weight: 800; line-height: 1; transform: translate(-50%, -50%); }
+    .closing-qr-copy { display: grid; gap: .25rem; }
+    .closing-qr-copy strong { color: var(--cp-text); font-size: clamp(.62rem, .78vw, .78rem); line-height: 1.05; }
+    .closing-qr-copy span { color: var(--qr-color); font-size: clamp(.5rem, .64vw, .64rem); font-weight: 700; line-height: 1.15; }
+    .scene-thanks-event[data-state="active"] .thanks-event-background { filter: brightness(.72) saturate(1) contrast(1.03); transform: scale(1); }
 
     .scene-five { text-align: center; }
     .scene-five .scene-content { display: grid; justify-items: center; }
@@ -1931,6 +2394,72 @@
     .tap-zone { position: fixed; top: 0; bottom: 0; z-index: 25; width: 25%; border: 0; background: transparent; cursor: pointer; }
     .tap-zone.prev { left: 0; cursor: w-resize; }
     .tap-zone.next { right: 0; cursor: e-resize; }
+    .commentary-shell { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+    .commentary-shell[data-available="false"],
+    .commentary-shell[data-disabled="true"] { display: none; }
+    .commentary-launcher {
+      position: absolute;
+      right: clamp(1.25rem, 3vw, 2.5rem);
+      bottom: clamp(3.25rem, 7vh, 4.75rem);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 3.35rem;
+      min-width: 3.35rem;
+      padding: .38rem;
+      border: 1px solid var(--cp-accent);
+      border-radius: 999px;
+      background: var(--cp-panel-strong);
+      color: var(--cp-text);
+      box-shadow: var(--cp-shadow);
+      cursor: pointer;
+      pointer-events: auto;
+      opacity: .92;
+      overflow: hidden;
+      transition: width 500ms cubic-bezier(.16, 1, .3, 1), gap 500ms cubic-bezier(.16, 1, .3, 1), opacity 220ms ease, transform 300ms cubic-bezier(.16, 1, .3, 1), background 220ms ease;
+    }
+    .commentary-launcher:hover,
+    .commentary-launcher:focus-visible { width: 14.8rem; gap: .65rem; background: var(--cp-surface); opacity: 1; transform: translateY(-.2rem); }
+    .commentary-avatar { flex: 0 0 auto; width: 2.5rem; aspect-ratio: 1; overflow: hidden; border: 2px solid var(--cp-accent); border-radius: 50%; background: var(--cp-surface-soft); }
+    .commentary-avatar img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .commentary-launcher-copy { display: grid; flex: 0 0 10.8rem; gap: .05rem; opacity: 0; text-align: left; transform: translateX(.5rem); transition: opacity 220ms ease, transform 450ms cubic-bezier(.16, 1, .3, 1); }
+    .commentary-launcher:hover .commentary-launcher-copy,
+    .commentary-launcher:focus-visible .commentary-launcher-copy { opacity: 1; transform: translateX(0); transition-delay: 100ms; }
+    .commentary-launcher-copy strong { font-size: .76rem; line-height: 1.1; }
+    .commentary-launcher-copy span { color: var(--cp-text-muted); font-size: .62rem; }
+    .commentary-backdrop { position: absolute; inset: 0; background: var(--cp-overlay); opacity: 0; pointer-events: none; transition: opacity 400ms ease; }
+    .commentary-blade {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(30rem, 92vw);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      border-left: 1px solid var(--cp-border);
+      background: var(--cp-panel-strong);
+      box-shadow: var(--cp-shadow);
+      pointer-events: auto;
+      transform: translateX(105%);
+      transition: transform 650ms cubic-bezier(.16, 1, .3, 1);
+    }
+    .commentary-shell[data-open="true"] .commentary-backdrop { opacity: .56; pointer-events: auto; }
+    .commentary-shell[data-open="true"] .commentary-blade { transform: translateX(0); }
+    .commentary-blade-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--cp-border); }
+    .commentary-author { display: flex; align-items: center; gap: .8rem; }
+    .commentary-author .commentary-avatar { width: 3rem; }
+    .commentary-author strong { display: block; font-size: .9rem; }
+    .commentary-author span { display: block; margin-top: .15rem; color: var(--cp-text-muted); font-size: .72rem; }
+    .commentary-close { display: grid; place-items: center; width: 2.25rem; aspect-ratio: 1; border: 1px solid var(--cp-border); border-radius: 50%; background: var(--cp-surface); color: var(--cp-text); cursor: pointer; font-size: 1rem; }
+    .commentary-close:hover { border-color: var(--cp-accent); color: var(--cp-accent); }
+    .commentary-content { overflow-y: auto; padding: clamp(2rem, 6vh, 4rem) .25rem 2rem; }
+    .commentary-scene-label { margin: 0 0 1rem; color: var(--cp-accent); font-size: .7rem; font-weight: 750; text-transform: uppercase; }
+    .commentary-title { margin: 0; color: var(--cp-text); font-size: clamp(1.8rem, 3.2vw, 2.8rem); line-height: .98; }
+    .commentary-body { display: grid; gap: 1.2rem; margin-top: 2rem; }
+    .commentary-body p { margin: 0; color: var(--cp-text-soft); font-size: clamp(.92rem, 1.15vw, 1.05rem); line-height: 1.65; }
+    .commentary-takeaway { margin-top: 2rem; padding: 1rem 1.1rem; border-left: 3px solid var(--cp-accent); background: var(--cp-accent-soft); color: var(--cp-text); font-size: .9rem; line-height: 1.5; }
+    .commentary-shortcut { margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--cp-border); color: var(--cp-text-muted); font-size: .68rem; }
     @media (max-aspect-ratio: 4 / 3) {
       .speaker-stage { grid-template-columns: 1fr; align-items: start; }
       .speaker-copy { padding-top: 4vh; }
@@ -1951,6 +2480,32 @@
       .scene-four .scene-content { grid-template-columns: 1fr; }
       .orchestra { width: min(62vw, 32rem); margin: auto; }
       .scene-four h2 { max-width: 14ch; }
+      .scene-audience-guide .scene-content { grid-template-columns: 1fr .62fr; gap: 3vw; }
+      .audience-guide-copy { grid-column: 1 / -1; }
+      .audience-guide-copy h2 { max-width: 14ch; font-size: clamp(2.8rem, 7vw, 5rem); }
+      .audience-guide-copy .scene-subtitle { margin-top: 1rem !important; }
+      .audience-guide-phone { width: min(28vw, 12rem); }
+      .audience-guide-qr img { width: min(27vw, 12rem); }
+    }
+    @media (max-width: 640px) {
+      .commentary-launcher-copy { display: none; }
+      .commentary-launcher,
+      .commentary-launcher:hover,
+      .commentary-launcher:focus-visible { width: 3.2rem; min-width: 3.2rem; padding: .35rem; }
+      .commentary-blade { width: 100vw; }
+    }
+    @media (min-aspect-ratio: 1 / 1) and (max-aspect-ratio: 4 / 3) {
+      .scene-four .scene-content { grid-template-columns: .72fr 1.28fr; gap: 3vw; }
+      .scene-four h2 { max-width: 8ch; font-size: clamp(2.8rem, 5.4vw, 4.8rem); }
+      .scene-four .scene-subtitle { max-width: 27rem; }
+      .orchestra { width: min(52vw, 31rem); }
+      .model-provider { width: clamp(3.25rem, 5.2vw, 3.75rem); }
+      .scene-governance .scene-content { grid-template-columns: .78fr 1.22fr; gap: 3vw; }
+      .scene-governance h2 { font-size: clamp(2.5rem, 5vw, 4rem) !important; }
+      .govern-system { width: min(47vw, 28rem); margin: auto; }
+      .govern-product { width: clamp(3.1rem, 5vw, 3.8rem); }
+      .govern-agent-badge { min-width: 7.5rem; padding: .35rem .6rem; }
+      .govern-agent-badge img { width: 1.65rem; height: 1.65rem; }
     }
   </style>
 </head>
@@ -1961,7 +2516,23 @@
     <div class="cinema-stage">
       <section class="scene scene-event" data-state="active" aria-hidden="false">
         <img class="scene-event-image" src="assets/images/work_circle_landing.jpg" alt="WorkScape Circle event landing">
-        <p class="event-prompt">Press Space to begin</p>
+        <p class="event-prompt">Starting in 3 seconds</p>
+      </section>
+      <section class="scene scene-audience-guide" data-state="future" aria-hidden="true">
+        <div class="scene-content">
+          <div class="audience-guide-copy">
+            <p class="scene-kicker">Join the conversation</p>
+            <h2>Make this a <span class="accent">two-way room.</span></h2>
+            <p class="scene-subtitle">React from your phone. Your response appears live on the big screen.</p>
+            <p class="audience-guide-prompt">Scan. Tap. React as often as you like.</p>
+          </div>
+          <figure class="audience-guide-phone"><img src="assets/images/live-reactions-phone.png" alt="Live Reactions mobile app with eight audience response choices"></figure>
+          <div class="audience-guide-qr">
+            <img src="assets/images/live-reactions-qr.png" alt="QR code for the Live Reactions app">
+            <strong>Open Live Reactions</strong>
+            <span>usman-live.lovable.app</span>
+          </div>
+        </div>
       </section>
       <section class="scene scene-one" data-state="future" aria-hidden="true">
         <img class="scene-one-image" src="assets/images/executive-collaboration.jpg" alt="Executive leaders collaborating">
@@ -1974,6 +2545,7 @@
       </section>
       <section class="scene scene-video" data-video-config="scoutIntroAfterScene2" data-state="future" aria-hidden="true">
         <video preload="none" playsinline aria-label="Scout introduction video"></video>
+        <button class="video-play-control" type="button" aria-label="Play video" title="Play video"></button>
         <p class="video-caption"></p>
       </section>
       <section class="scene scene-photo sandvik" data-state="future" aria-hidden="true">
@@ -2012,16 +2584,18 @@
                 <figure class="evo-era"><img src="assets/images/evolution/2010s-cloud.jpg" alt="Data center server racks"><figcaption><strong>2010s</strong><span>Cloud</span></figcaption></figure>
                 <figure class="evo-era"><img src="assets/images/evolution/2020-digital-workplace.jpg" alt="Modern digital workplace"><figcaption><strong>2020</strong><span>Digital workplace</span></figcaption></figure>
               </div>
-              <div class="evo-summary" aria-hidden="true">
-                <img src="assets/images/evolution/1950s-mainframe.jpg" alt="">
-                <img src="assets/images/evolution/1980s-personal-computer.jpg" alt="">
-                <img src="assets/images/evolution/1990s-internet.jpg" alt="">
-                <img src="assets/images/evolution/2000s-mobile.jpg" alt="">
-                <img src="assets/images/evolution/2010s-cloud.jpg" alt="">
-                <img src="assets/images/evolution/2020-digital-workplace.jpg" alt="">
+              <div class="evo-history-cluster">
+                <div class="evo-summary" aria-hidden="true">
+                  <img src="assets/images/evolution/1950s-mainframe.jpg" alt="">
+                  <img src="assets/images/evolution/1980s-personal-computer.jpg" alt="">
+                  <img src="assets/images/evolution/1990s-internet.jpg" alt="">
+                  <img src="assets/images/evolution/2000s-mobile.jpg" alt="">
+                  <img src="assets/images/evolution/2010s-cloud.jpg" alt="">
+                  <img src="assets/images/evolution/2020-digital-workplace.jpg" alt="">
+                </div>
+                <div class="evo-history-label"><strong>1950-2020</strong></div>
               </div>
               <div class="evo-history-branch" aria-hidden="true"></div>
-              <div class="evo-history-label"><strong>1950-2020</strong></div>
               <div class="evo-agentic" aria-label="Agentic evolution from chatbots to digital colleagues">
                 <div class="evo-agent">Chatbots<small>2022</small></div>
                 <div class="evo-agent">Copilots<small>2023</small></div>
@@ -2032,28 +2606,43 @@
           </div>
         </div>
       </section>
-      <section class="scene scene-autonomous" data-state="future" aria-hidden="true">
+      <section class="scene scene-shifts" data-state="future" aria-hidden="true">
         <div class="scene-content">
-          <h2 class="autonomous-title">The Journey Toward <span class="accent">Autonomous Work</span></h2>
-          <div class="autonomous-rail" aria-hidden="true"></div>
-          <div class="autonomous-circles" aria-label="Journey from chatbots to digital colleagues">
-            <div class="autonomous-circle">Chatbots<small>2022</small></div>
-            <div class="autonomous-circle">Copilots<small>2023</small></div>
-            <div class="autonomous-circle">Agents<small>2025</small></div>
-            <div class="autonomous-circle">Digital<br>Colleagues<small>2026</small></div>
+          <h2 class="mountain-title">The operating model is <span class="accent">moving.</span></h2>
+          <div class="mountain-journey" aria-label="Enterprise evolution climbing from conversation to digital labor">
+            <div class="mountain-back"></div><div class="mountain-mid"></div><div class="mountain-front"></div><div class="mountain-contours"></div>
+            <svg class="climb-route" viewBox="0 0 1200 650" preserveAspectRatio="none" aria-hidden="true"><path class="base" d="M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50"/><path class="progress" d="M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50"/></svg>
+            <div class="climb-stage stage-1"><div class="climb-dot">01</div><div class="climb-copy"><strong>Conversation</strong><span>Ask and answer</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><span>M365 Copilot</span></div></div></div></div>
+            <div class="climb-stage stage-2"><div class="climb-dot">02</div><div class="climb-copy"><strong>Collaboration</strong><span>Work together</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><span>Copilot Chat</span></div></div></div></div>
+            <div class="climb-stage stage-3"><div class="climb-dot">03</div><div class="climb-copy"><strong>Delegation to Agents</strong><span>Assign outcomes and execute work</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/cowork.png" alt=""><span>Copilot Cowork</span></div></div></div></div>
+            <div class="climb-stage stage-6"><div class="climb-dot">04</div><div class="climb-copy"><strong>Digital labor</strong><span>Autonomous work</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/scout.png" alt=""><span>Microsoft Scout</span></div></div></div></div>
           </div>
         </div>
       </section>
-      <section class="scene scene-shifts" data-state="future" aria-hidden="true">
+      <section class="scene scene-org" data-state="future" aria-hidden="true">
         <div class="scene-content">
-          <p class="scene-kicker">Five shifts reshaping the enterprise</p>
-          <h2 class="compact-title">The operating model is moving.</h2>
-          <div class="shift-list">
-            <div class="shift-row"><span>Conversation</span><b>&gt;</b><span>Collaboration</span></div>
-            <div class="shift-row"><span>Collaboration</span><b>&gt;</b><span>Delegation</span></div>
-            <div class="shift-row"><span>Copilots</span><b>&gt;</b><span>Agents</span></div>
-            <div class="shift-row"><span>Agents</span><b>&gt;</b><span>Agent ecosystems</span></div>
-            <div class="shift-row"><span>Knowledge work</span><b>&gt;</b><span>Digital labor</span></div>
+          <div class="org-heading">
+            <div><p class="scene-kicker">The new organizational chart</p><h2>Humans alongside <span class="accent">digital colleagues.</span></h2></div>
+            <p class="scene-subtitle">A governed team of people and specialized AI roles.</p>
+          </div>
+          <div class="keynote-org" aria-label="Organization with a founder, AI chief of staff, four AI specialists, and two human collaborators">
+            <div class="keynote-org-tree">
+              <div class="keynote-person you"><div class="keynote-portrait"><img src="assets/images/portraits/you.jpg" alt="Founder"></div><div class="keynote-name">You</div><div class="keynote-role">Founder</div></div>
+              <div class="org-connector"></div>
+              <div class="keynote-person ai emma"><div class="keynote-portrait"><img src="assets/images/portraits/emma.jpg" alt="Emma"></div><div class="keynote-name">Emma <span class="org-tag ai">AI</span></div><div class="keynote-role">Chief of Staff</div></div>
+              <div class="org-connector"></div><div class="org-connector wide"></div>
+              <div class="org-ai-row">
+                <div class="keynote-person ai"><div class="keynote-portrait"><img src="assets/images/portraits/oscar.jpg" alt="Oscar"></div><div class="keynote-name">Oscar <span class="org-tag ai">AI</span></div><div class="keynote-role">Signal Scout</div></div>
+                <div class="keynote-person ai"><div class="keynote-portrait"><img src="assets/images/portraits/iris.jpg" alt="Iris"></div><div class="keynote-name">Iris <span class="org-tag ai">AI</span></div><div class="keynote-role">Insight Analyst</div></div>
+                <div class="keynote-person ai"><div class="keynote-portrait"><img src="assets/images/portraits/otto.jpg" alt="Otto"></div><div class="keynote-name">Otto <span class="org-tag ai">AI</span></div><div class="keynote-role">Commitment Tracker</div></div>
+                <div class="keynote-person ai"><div class="keynote-portrait"><img src="assets/images/portraits/nora.jpg" alt="Nora"></div><div class="keynote-name">Nora <span class="org-tag ai">AI</span></div><div class="keynote-role">Decision Drafter</div></div>
+              </div>
+              <div class="org-humans"><div class="org-humans-label">Human collaborators</div><div class="org-humans-row">
+                <div class="keynote-person"><div class="keynote-portrait"><img src="assets/images/portraits/anna.jpg" alt="Anna"></div><div class="keynote-name">Anna <span class="org-tag">HUMAN</span></div><div class="keynote-role">EA / Operations Lead</div></div>
+                <div class="keynote-person"><div class="keynote-portrait"><img src="assets/images/portraits/mikael.jpg" alt="Mikael"></div><div class="keynote-name">Mikael <span class="org-tag">HUMAN</span></div><div class="keynote-role">Head of Product</div></div>
+              </div></div>
+            </div>
+            <button class="desk-launch" type="button"><span>Open Decision Desk</span><span class="desk-launch-icon" aria-hidden="true">→</span></button>
           </div>
         </div>
       </section>
@@ -2064,7 +2653,22 @@
             <h2 class="compact-title">AI can now <span class="accent">see, hear, reason and act.</span></h2>
           </div>
           <div class="sense-system" aria-label="Multimodal capabilities connected to reasoning">
-            <div class="sense-core">REASON</div><div class="sense-node">Text</div><div class="sense-node">Image</div><div class="sense-node">Voice</div><div class="sense-node">Video</div><div class="sense-node">Screens</div><div class="sense-node">Data</div>
+            <svg class="sense-lines" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="300" y1="300" x2="300" y2="60" style="--line-delay:360ms"></line>
+              <line x1="300" y1="300" x2="505" y2="175" style="--line-delay:450ms"></line>
+              <line x1="300" y1="300" x2="505" y2="425" style="--line-delay:540ms"></line>
+              <line x1="300" y1="300" x2="300" y2="540" style="--line-delay:630ms"></line>
+              <line x1="300" y1="300" x2="95" y2="425" style="--line-delay:720ms"></line>
+              <line x1="300" y1="300" x2="95" y2="175" style="--line-delay:810ms"></line>
+              <circle cx="300" cy="60" r="3"></circle><circle cx="505" cy="175" r="3"></circle><circle cx="505" cy="425" r="3"></circle><circle cx="300" cy="540" r="3"></circle><circle cx="95" cy="425" r="3"></circle><circle cx="95" cy="175" r="3"></circle>
+            </svg>
+            <div class="sense-core"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Microsoft 365<br>Copilot</strong><span>Reasoning core</span></div>
+            <div class="sense-node" style="--node-x:50%;--node-y:10%;--node-delay:620ms"><img src="assets/logos-and-icons/file-text.svg" alt=""><strong>Text</strong></div>
+            <div class="sense-node" style="--node-x:84.17%;--node-y:29.17%;--node-delay:720ms"><img src="assets/logos-and-icons/image.svg" alt=""><strong>Images</strong></div>
+            <div class="sense-node" style="--node-x:84.17%;--node-y:70.83%;--node-delay:820ms"><img src="assets/logos-and-icons/audio-lines.svg" alt=""><strong>Voice</strong></div>
+            <div class="sense-node" style="--node-x:50%;--node-y:90%;--node-delay:920ms"><img src="assets/logos-and-icons/video.svg" alt=""><strong>Video</strong></div>
+            <div class="sense-node" style="--node-x:15.83%;--node-y:70.83%;--node-delay:1020ms"><img src="assets/logos-and-icons/monitor.svg" alt=""><strong>Screens</strong></div>
+            <div class="sense-node" style="--node-x:15.83%;--node-y:29.17%;--node-delay:1120ms"><img src="assets/logos-and-icons/database.svg" alt=""><strong>Data</strong></div>
           </div>
         </div>
       </section>
@@ -2076,23 +2680,93 @@
             <p class="scene-subtitle">Organizations will govern portfolios of intelligence, not select a single winner.</p>
           </div>
           <div class="orchestra" aria-label="A portfolio of models routed by an orchestration layer">
-            <div class="orbit-line"></div><div class="orbit-line"></div><div class="orbit-line"></div>
-            <div class="intelligence">ROUTE</div><div class="intelligence">Open</div><div class="intelligence">Frontier</div><div class="intelligence">Specialist</div><div class="intelligence">Small</div>
+            <div class="model-orbit outer"><div class="model-orbit-track">
+              <div class="model-provider copilot" style="--node-x:50%;--node-y:0%;--node-delay:500ms"><div class="model-provider-content"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Copilot</strong><span>Experience</span></div></div>
+              <div class="model-provider" style="--node-x:93.3%;--node-y:75%;--node-delay:580ms"><div class="model-provider-content"><img src="assets/logos-and-icons/openai.svg" alt=""><strong>OpenAI</strong><span>GPT</span></div></div>
+              <div class="model-provider" style="--node-x:6.7%;--node-y:75%;--node-delay:660ms"><div class="model-provider-content"><img src="assets/logos-and-icons/anthropic.svg" alt=""><strong>Anthropic</strong><span>Claude</span></div></div>
+            </div></div>
+            <div class="model-orbit middle"><div class="model-orbit-track">
+              <div class="model-provider" style="--node-x:85.4%;--node-y:14.6%;--node-delay:740ms"><div class="model-provider-content"><img src="assets/logos-and-icons/google.svg" alt=""><strong>Google</strong><span>Gemini</span></div></div>
+              <div class="model-provider" style="--node-x:85.4%;--node-y:85.4%;--node-delay:820ms"><div class="model-provider-content"><img src="assets/logos-and-icons/mistralai.svg" alt=""><strong>Mistral</strong><span>Mistral</span></div></div>
+              <div class="model-provider" style="--node-x:14.6%;--node-y:85.4%;--node-delay:900ms"><div class="model-provider-content"><img src="assets/logos-and-icons/meta.svg" alt=""><strong>Meta</strong><span>Llama</span></div></div>
+              <div class="model-provider" style="--node-x:14.6%;--node-y:14.6%;--node-delay:980ms"><div class="model-provider-content"><img src="assets/logos-and-icons/microsoft.svg" alt=""><strong>Microsoft</strong><span>Phi</span></div></div>
+            </div></div>
+            <div class="model-orbit inner"><div class="model-orbit-track">
+              <div class="model-provider" style="--node-x:50%;--node-y:0%;--node-delay:1060ms"><div class="model-provider-content"><img src="assets/logos-and-icons/deepseek.svg" alt=""><strong>DeepSeek</strong><span>DeepSeek</span></div></div>
+              <div class="model-provider" style="--node-x:92.9%;--node-y:75%;--node-delay:1140ms"><div class="model-provider-content"><img src="assets/logos-and-icons/huggingface.svg" alt=""><strong>Hugging Face</strong><span>Open hub</span></div></div>
+              <div class="model-provider" style="--node-x:7.1%;--node-y:75%;--node-delay:1220ms"><div class="model-provider-content"><img src="assets/logos-and-icons/ibm.svg" alt=""><strong>IBM</strong><span>Granite</span></div></div>
+            </div></div>
+            <div class="model-core"><strong>ROUTE</strong><span>Governed model selection</span></div>
           </div>
         </div>
       </section>
       <section class="scene scene-orchestration" data-state="future" aria-hidden="true">
         <div class="scene-content">
-          <p class="scene-kicker">From selection to orchestration</p>
-          <h2 class="compact-title">Model choice becomes a <span class="accent">system decision.</span></h2>
+          <div class="orchestration-heading">
+            <p class="scene-kicker">From selection to orchestration</p>
+            <h2 class="compact-title">Model choice becomes a <span class="accent">system decision.</span></h2>
+          </div>
           <div class="orchestration-flow">
-            <div class="orchestration-step"><span class="step-index">01</span><strong>Human chooses</strong><p>One task. One model. Manual judgment.</p></div>
-            <div class="orchestration-step"><span class="step-index">02</span><strong>Platform routes</strong><p>Cost, capability, policy and context.</p></div>
-            <div class="orchestration-step"><span class="step-index">03</span><strong>Models collaborate</strong><p>Specialized intelligence works as a system.</p></div>
+            <div class="orchestration-step"><strong>Human chooses</strong><p>One task. One model. Manual judgment.</p></div>
+            <div class="orchestration-step"><strong>Platform routes</strong><p>Cost, capability, policy and context.</p></div>
+            <div class="orchestration-step"><strong>Models collaborate</strong><p>Specialized intelligence works as a system.</p></div>
           </div>
         </div>
       </section>
-      <section class="scene scene-stack" data-state="future" aria-hidden="true">
+      <section class="scene scene-ms-approach scene-ms-approach-copy scene-ai-architecture" data-state="future" data-builds="1" data-build="0" aria-hidden="true">
+        <div class="scene-content">
+          <div class="ms-approach-heading">
+            <p class="scene-kicker">Intelligence + Trust</p>
+            <h2>Microsoft <span class="accent">AI Approach</span></h2>
+          </div>
+          <div class="ai-architecture" aria-label="Microsoft AI architecture connected through Microsoft IQ and secured by enterprise controls">
+            <div class="architecture-trust">Intelligence <span>+ Trust</span></div>
+            <div class="architecture-frame">
+              <div class="architecture-side">
+                <img src="assets/logos-and-icons/Copilot-icon.svg" alt="">
+                <strong>Microsoft 365<br>Copilot, Cowork<br>&amp; Agents</strong>
+              </div>
+              <div class="architecture-center">
+                <div class="architecture-tile studio"><img src="assets/logos-and-icons/copilot-studio.svg" alt=""><strong>Copilot Studio</strong></div>
+                <div class="architecture-tile github"><span class="architecture-logo github-copilot-mark" aria-hidden="true"></span><strong>GitHub Copilot</strong></div>
+                <div class="architecture-tile fabric"><img src="assets/logos-and-icons/fabric.svg" alt=""><strong>Microsoft Fabric</strong></div>
+                <div class="architecture-tile foundry"><img src="assets/logos-and-icons/foundry.svg" alt=""><strong>Microsoft Foundry</strong></div>
+                <div class="architecture-tile azure"><img src="assets/logos-and-icons/azure.png" alt=""><strong>Microsoft Azure</strong></div>
+                <div class="architecture-iq"><strong>Microsoft IQ</strong><span>Work IQ<br>Foundry IQ<br>Fabric IQ</span></div>
+              </div>
+              <div class="architecture-side agent">
+                <img src="assets/logos-and-icons/agent365.svg" alt="">
+                <strong>Agent 365</strong>
+              </div>
+            </div>
+            <div class="architecture-security">Security</div>
+          </div>
+        </div>
+      </section>
+      <section class="scene scene-ms-approach" data-state="future" data-builds="1" data-build="0" aria-hidden="true">
+        <div class="scene-content">
+          <div class="ms-approach-heading">
+            <p class="scene-kicker">A governed path from data to experience</p>
+            <h2><span class="approach-main">Microsoft AI Approach</span> <span class="approach-with">with <span class="accent">Copilot.</span></span></h2>
+          </div>
+          <div class="ms-approach-map" aria-label="Microsoft AI approach from assistants through delegates to autopilots">
+            <div class="ms-approach-bands">
+              <div class="ms-approach-band assistants">Assistants</div>
+              <div class="ms-approach-band delegates">Delegates</div>
+              <div class="ms-approach-band autopilots">Autopilots</div>
+            </div>
+            <div class="ms-approach-modes">
+              <div class="ms-approach-mode"><strong>Chat</strong><span>Secure enterprise chat</span></div>
+              <div class="ms-approach-mode"><strong>Cowork</strong><span>From answers to actions</span></div>
+              <div class="ms-approach-mode"><strong>Code</strong><span>Coding for all</span></div>
+              <div class="ms-approach-mode"><strong>Autopilots</strong><span>Your digital team</span></div>
+            </div>
+            <div class="ms-approach-intent"><span>Designed for a complete AI productivity experience</span><span>Designed for executing long-running, multi-tool tasks</span></div>
+          </div>
+          <figure class="ms-approach-product"><img src="assets/images/ms-approach-ai.png" alt="Microsoft Copilot interface showing Chat, Cowork, Code and Autopilots"></figure>
+        </div>
+      </section>
+      <section class="scene scene-stack" data-disabled="true" data-state="future" aria-hidden="true">
         <div class="scene-content">
           <p class="scene-kicker">A governed path from data to experience</p>
           <h2 class="compact-title">The Microsoft AI stack.</h2>
@@ -2105,18 +2779,40 @@
           </div>
         </div>
       </section>
-      <section class="scene scene-adaptation" data-state="future" aria-hidden="true">
+      <section class="scene scene-copilot-strategy" data-state="future" aria-hidden="true">
         <div class="scene-content">
-          <p class="scene-kicker">AI was the easy part</p>
-          <h2 class="compact-title">Technology is accelerating faster than <span class="accent">organizational adaptation.</span></h2>
-          <div class="race">
-            <div class="race-lane"><div class="race-label"><span>Technology</span><span>Acceleration</span></div><div class="race-track"><div class="race-progress"></div></div></div>
-            <div class="race-lane"><div class="race-label"><span>Organization</span><span>Adaptation</span></div><div class="race-track"><div class="race-progress"></div></div></div>
+          <div class="copilot-strategy-heading">
+            <p class="scene-kicker">Platform strategy</p>
+            <h2><span class="strategy-title-main">Microsoft AI Approach</span><span class="strategy-title-with">with <span class="accent">Copilot.</span></span></h2>
           </div>
+          <div class="copilot-strategy-grid">
+            <article class="strategy-pillar">
+              <span class="strategy-index">1</span>
+              <div class="strategy-pillar-head"><span class="strategy-icon multi-model" aria-hidden="true"></span><strong>Multi-Model</strong><span>Future-proof your platform</span></div>
+              <ul><li>Anthropic, OpenAI and more to come</li><li>Adapt as the industry evolves</li><li>Never re-platform when markets shift</li></ul>
+            </article>
+            <article class="strategy-pillar">
+              <span class="strategy-index">2</span>
+              <div class="strategy-pillar-head"><span class="strategy-icon multi-harness" aria-hidden="true"></span><strong>Multi-Harness</strong><span>Orchestration and real work</span></div>
+              <ul><li>Planning, tools, agents and memory</li><li>Turn intelligence into execution</li><li>Run real-world AI workflows</li></ul>
+            </article>
+            <article class="strategy-pillar">
+              <span class="strategy-index">3</span>
+              <div class="strategy-pillar-head"><span class="strategy-icon platform" aria-hidden="true"></span><strong>World's Best Platform</strong><span>Rapid innovation at scale</span></div>
+              <ul><li>Absorbs change and cost</li><li>Quick, secure, enterprise ready</li><li>Always first with the best AI</li></ul>
+            </article>
+          </div>
+          <article class="strategy-foundation">
+            <span class="strategy-index">4</span>
+            <div class="strategy-foundation-copy"><span class="strategy-icon secure" aria-hidden="true"></span><strong>Cloud-native, enterprise-grade and secure AI built for work</strong><span>Grounded in your organization</span></div>
+            <ul><li>Copilot is grounded in your intelligence with WorkIQ</li><li>Natively integrated in the flow of work</li><li>Your data stays protected with enterprise security and governance</li></ul>
+          </article>
+          <blockquote class="strategy-thesis">“It’s not about the model. It is about a platform that can outlive every model.”</blockquote>
         </div>
       </section>
       <section class="scene scene-video" data-video-config="videoBeforeScene13" data-state="future" aria-hidden="true">
         <video preload="none" playsinline aria-label="Configured presentation video"></video>
+        <button class="video-play-control" type="button" aria-label="Play video" title="Play video"></button>
         <p class="video-caption"></p>
       </section>
       <section class="scene scene-governance" data-state="future" aria-hidden="true">
@@ -2126,34 +2822,22 @@
             <h2 class="compact-title">Govern what AI <span class="accent">sees, does, decides and uses.</span></h2>
           </div>
           <div class="govern-system" aria-label="Four nested governance domains">
-            <div class="govern-domain">DATA</div><div class="govern-domain">ACTIONS</div><div class="govern-domain">DECISIONS</div><div class="govern-domain">INTELLIGENCE</div>
+            <div class="govern-domain">DATA</div><div class="govern-domain">ACTIONS</div><div class="govern-domain">DECISIONS</div><div class="govern-domain"><span>INTELLIGENCE<small>Microsoft IQ</small></span></div>
+            <div class="govern-agent-ring" aria-hidden="true"><div class="govern-agent-badge"><img src="assets/logos-and-icons/agent365.svg" alt=""><strong>Agent 365</strong></div></div>
+            <div class="govern-product" style="--product-x:8%;--product-y:50%;--product-delay:700ms"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Microsoft 365 Copilot</strong></div>
+            <div class="govern-product" style="--product-x:31%;--product-y:19%;--product-delay:820ms"><img src="assets/logos-and-icons/copilot-studio.svg" alt=""><strong>Copilot Studio</strong></div>
+            <div class="govern-product github" style="--product-x:69%;--product-y:19%;--product-delay:940ms"><span class="govern-product-icon github-copilot-mark" aria-hidden="true"></span><strong>GitHub Copilot</strong></div>
+            <div class="govern-product" style="--product-x:18%;--product-y:73%;--product-delay:1060ms"><img src="assets/logos-and-icons/fabric.svg" alt=""><strong>Microsoft Fabric</strong></div>
+            <div class="govern-product" style="--product-x:70%;--product-y:56%;--product-delay:1180ms"><img src="assets/logos-and-icons/foundry.svg" alt=""><strong>Microsoft Foundry</strong></div>
+            <div class="govern-product" style="--product-x:82%;--product-y:77%;--product-delay:1300ms"><img src="assets/logos-and-icons/azure.png" alt=""><strong>Microsoft Azure</strong></div>
+            <div class="govern-model" style="--model-x:50%;--model-y:40%;--model-delay:1500ms" title="OpenAI"><img src="assets/logos-and-icons/openai.svg" alt="OpenAI"></div>
+            <div class="govern-model" style="--model-x:58%;--model-y:42%;--model-delay:1580ms" title="Anthropic"><img src="assets/logos-and-icons/anthropic.svg" alt="Anthropic"></div>
+            <div class="govern-model" style="--model-x:50%;--model-y:60%;--model-delay:1660ms" title="Google"><img src="assets/logos-and-icons/google.svg" alt="Google"></div>
+            <div class="govern-model" style="--model-x:42%;--model-y:58%;--model-delay:1740ms" title="Meta"><img src="assets/logos-and-icons/meta.svg" alt="Meta"></div>
           </div>
         </div>
       </section>
-      <section class="scene scene-economics" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <p class="scene-kicker">The economics of intelligence</p>
-          <h2 class="compact-title">Planning moves from access to <span class="accent">reasoning.</span></h2>
-          <div class="economy-flow">
-            <div class="economy-era"><strong>Software</strong><span>License</span><p>Predictable access priced per user.</p></div>
-            <div class="economy-era"><strong>Cloud</strong><span>Consumption</span><p>Variable infrastructure priced by usage.</p></div>
-            <div class="economy-era"><strong>AI</strong><span>Reasoning</span><p>Tokens, credits, agent execution and AI FinOps.</p></div>
-          </div>
-        </div>
-      </section>
-      <section class="scene scene-org" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <div>
-            <p class="scene-kicker">The new organizational chart</p>
-            <h2 class="compact-title">Humans working alongside <span class="accent">digital colleagues.</span></h2>
-            <p class="scene-subtitle">What will your future organizational chart look like?</p>
-          </div>
-          <div class="org-system" aria-label="Human employee connected to five digital colleagues">
-            <div class="org-human">Human</div><div class="org-agent">Research</div><div class="org-agent">HR</div><div class="org-agent">Marketing</div><div class="org-agent">Operations</div><div class="org-agent">Finance</div>
-          </div>
-        </div>
-      </section>
-      <section class="scene scene-work" data-state="future" aria-hidden="true">
+      <section class="scene scene-work" data-disabled="true" data-state="future" aria-hidden="true">
         <div class="scene-content">
           <p class="scene-kicker">Work without work</p>
           <h2>Removing friction, <span class="accent">not removing people.</span></h2>
@@ -2173,7 +2857,22 @@
           </div>
         </div>
       </section>
-      <section class="scene scene-thanks" data-state="future" aria-hidden="true">
+      <section class="scene scene-agent-challenge" data-state="future" aria-hidden="true">
+        <div class="scene-content">
+          <p class="scene-kicker">A question for the room</p>
+          <h2 class="challenge-question"><span class="challenge-setup">If every employee in your organization had access to one or more AI agents next year,</span><span class="challenge-pivot">what would be your <span class="accent">biggest challenge?</span></span></h2>
+          <p class="challenge-instruction">Choose the one that would slow adoption first.</p>
+          <div class="challenge-horizon" aria-label="Governance, skills, trust, operating model, or budget">
+            <div class="challenge-signal" aria-hidden="true"></div>
+            <div class="challenge-choice"><span class="challenge-node">01</span><strong>Governance</strong></div>
+            <div class="challenge-choice"><span class="challenge-node">02</span><strong>Skills</strong></div>
+            <div class="challenge-choice"><span class="challenge-node">03</span><strong>Trust</strong></div>
+            <div class="challenge-choice"><span class="challenge-node">04</span><strong>Operating<br>model</strong></div>
+            <div class="challenge-choice"><span class="challenge-node">05</span><strong>Budget</strong></div>
+          </div>
+        </div>
+      </section>
+      <section class="scene scene-thanks" data-disabled="true" data-state="future" aria-hidden="true">
         <div class="thanks-copy">
           <p class="scene-kicker">Usman Afzal</p>
           <h2>Thank <span class="accent">you.</span></h2>
@@ -2182,16 +2881,47 @@
         <div class="thanks-ring" aria-hidden="true"></div>
         <img class="thanks-portrait" src="assets/images/welcome-usman.png" alt="Usman Afzal welcoming the audience">
       </section>
-      <section class="scene scene-event-ending" data-state="future" aria-hidden="true">
-        <img class="ending-image" src="assets/images/workcircle-ending-scene.jpg" alt="WorkScape Circle event closing scene">
+      <section class="scene scene-thanks scene-thanks-event" data-state="future" aria-hidden="true">
+        <img class="thanks-event-background" src="assets/images/workcircle-ending-scene.jpg" alt="">
+        <div class="thanks-copy">
+          <h2>Thank <span class="accent">you.</span></h2>
+          <p>Keep the conversation going.</p>
+          <div class="closing-qr-links" aria-label="Continue online">
+            <div class="closing-qr-item workscape"><div class="closing-qr-code"><img src="assets/images/workscape-site-qr.png" alt="QR code for the WorkScape site"></div><div class="closing-qr-copy"><strong>WorkScape</strong><span>aka.ms/workscape</span></div></div>
+            <div class="closing-qr-item linkedin"><div class="closing-qr-code"><img src="assets/images/usman-linkedin-qr.png" alt="QR code for Usman's LinkedIn"><span class="linkedin-mark" aria-hidden="true">in</span></div><div class="closing-qr-copy"><strong>LinkedIn</strong><span>aka.ms/usman</span></div></div>
+          </div>
+        </div>
+        <div class="thanks-ring" aria-hidden="true"></div>
+        <img class="thanks-portrait" src="assets/images/welcome-usman.png" alt="Usman Afzal welcoming the audience">
       </section>
     </div>
     <button class="tap-zone prev" type="button" aria-label="Previous scene"></button>
     <button class="tap-zone next" type="button" aria-label="Next scene"></button>
-    <div class="scene-count" aria-live="polite">01 / 21</div>
-    <div class="control-hint">Arrow keys / Space / F fullscreen / T palette</div>
-    <div class="progress-track"><div class="progress-fill" style="width:4.7619%"></div></div>
+    <div class="scene-count" aria-live="polite">01 / 20</div>
+    <div class="control-hint">Arrow keys / Space / F fullscreen / T palette / C commentary</div>
+    <div class="progress-track"><div class="progress-fill" style="width:5%"></div></div>
   </main>
+
+  <aside class="commentary-shell" data-open="false" data-available="false" data-disabled="false" aria-label="Presenter commentary">
+    <div class="commentary-backdrop"></div>
+    <button class="commentary-launcher" type="button" aria-label="Open presenter commentary" aria-expanded="false">
+      <span class="commentary-avatar"><img src="assets/images/portraits/you.jpg" alt="Usman Afzal"></span>
+      <span class="commentary-launcher-copy"><strong>Usman's commentary</strong><span>Read the story behind this scene</span></span>
+    </button>
+    <section class="commentary-blade" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="commentaryTitle">
+      <header class="commentary-blade-head">
+        <div class="commentary-author"><span class="commentary-avatar"><img src="assets/images/portraits/you.jpg" alt=""></span><div><strong>Usman Afzal</strong><span>Presenter commentary</span></div></div>
+        <button class="commentary-close" type="button" aria-label="Close commentary" title="Close commentary">×</button>
+      </header>
+      <div class="commentary-content">
+        <p class="commentary-scene-label"></p>
+        <h2 class="commentary-title" id="commentaryTitle"></h2>
+        <div class="commentary-body"></div>
+        <div class="commentary-takeaway"></div>
+      </div>
+      <p class="commentary-shortcut">Press C to hide commentary during a live demonstration.</p>
+    </section>
+  </aside>
 
   <main class="page" hidden>
     <header class="intro">
@@ -2331,6 +3061,7 @@
     <span class="lightbox-hint">Click outside or press Esc to close</span>
     <div class="lightbox-stage"></div>
   </div>
+  <div class="page-morph" aria-hidden="true"><div class="page-morph-mark">MICROSOFT SCOUT</div></div>
 
   <script>
     document.documentElement.setAttribute("data-theme", "dark");
@@ -2352,27 +3083,357 @@
       video.muted = Boolean(settings?.muted);
       video.loop = Boolean(settings?.loop);
       caption.textContent = settings?.caption || "";
+      const playControl = scene.querySelector(".video-play-control");
+      const playVideo = () => {
+        video.play()
+          .then(() => { scene.dataset.needsPlay = "false"; })
+          .catch(() => { scene.dataset.needsPlay = "true"; });
+      };
+      playControl.addEventListener("click", (event) => {
+        event.stopPropagation();
+        playVideo();
+      });
+      video.addEventListener("click", () => {
+        if (video.paused) playVideo();
+        else video.pause();
+      });
+      video.addEventListener("play", () => { scene.dataset.needsPlay = "false"; });
+      video.addEventListener("pause", () => {
+        if (scene.dataset.state === "active" && !video.ended) scene.dataset.needsPlay = "true";
+      });
     });
 
-    const scenes = [...document.querySelectorAll(".scene")];
+    const scenes = [...document.querySelectorAll('.scene:not([data-disabled="true"])')];
     const sceneCount = document.querySelector(".scene-count");
     const progressFill = document.querySelector(".progress-fill");
     const controlHint = document.querySelector(".control-hint");
     const requestedScene = Number.parseInt(new URLSearchParams(window.location.search).get("scene") || "1", 10) - 1;
+    const autoBuildScene = scenes.find((scene) => scene.classList.contains("scene-three"));
+    const autoAdvanceScene = scenes.find((scene) => scene.classList.contains("scene-event"));
+    const commentaryShell = document.querySelector(".commentary-shell");
+    const commentaryLauncher = commentaryShell.querySelector(".commentary-launcher");
+    const commentaryBlade = commentaryShell.querySelector(".commentary-blade");
+    const commentaryBackdrop = commentaryShell.querySelector(".commentary-backdrop");
+    const commentaryClose = commentaryShell.querySelector(".commentary-close");
+    const commentaryLabel = commentaryShell.querySelector(".commentary-scene-label");
+    const commentaryTitle = commentaryShell.querySelector(".commentary-title");
+    const commentaryBody = commentaryShell.querySelector(".commentary-body");
+    const commentaryTakeaway = commentaryShell.querySelector(".commentary-takeaway");
+    const commentaryByClass = {
+      "scene-event": {
+        label: "Before we begin",
+        title: "A moment to arrive.",
+        paragraphs: [
+          "This opening image is an invitation to step out of the daily rush and into a longer view of work. The next twenty minutes are not about another feature release. They are about a change in the shape of the enterprise.",
+          "As you move forward, notice how the story travels from tools, to agency, to operating models, and finally to the leadership choices that determine whether this transition creates value."
+        ],
+        takeaway: "The technology is moving quickly. The purpose of this experience is to create enough space to decide where we want it to take us."
+      },
+      "scene-audience-guide": {
+        label: "Join the conversation",
+        title: "This experience has a live pulse.",
+        paragraphs: [
+          "The QR code opens a lightweight reaction page on your phone. Tap whenever an idea resonates, surprises you, raises a question, or needs clarification.",
+          "Your reaction rises onto the shared screen in real time. There is no form to complete and no need to wait for a formal Q&A moment; the room can respond while the story is unfolding."
+        ],
+        takeaway: "Scan once, keep the page open, and react as often as you like throughout the experience."
+      },
+      "scene-one": {
+        label: "The agentic enterprise",
+        title: "AI is becoming a participant in work.",
+        paragraphs: [
+          "The first wave of enterprise AI sat beside us. It helped draft, summarize, search, and prepare. That was a meaningful shift, but it kept the human at the center of every action.",
+          "The next wave moves from assistance to participation. Digital colleagues will carry context, accept delegated outcomes, coordinate with people and systems, and return with work completed."
+        ],
+        takeaway: "The question is no longer only how people use AI. It is how people and AI share work, accountability, and outcomes."
+      },
+      "sandvik": {
+        label: "Adoption was the spark",
+        title: "Prompting changed tasks. Agency changes the system.",
+        paragraphs: [
+          "Prompting taught millions of people that natural language could become a new interface to knowledge work. It reduced friction and made intelligence feel immediately accessible.",
+          "But prompting is still a request-and-response model. Agency begins when AI can hold a goal, decide what to do next, use tools, coordinate steps, and operate within boundaries without waiting for every instruction."
+        ],
+        takeaway: "Prompt adoption was the beginning. The strategic work starts when delegation becomes possible."
+      },
+      "scene-speaker": {
+        label: "Your guide",
+        title: "Why I care about this transition.",
+        paragraphs: [
+          "My work sits between technology architecture and organizational reality. I see what becomes possible when new capabilities arrive, and I also see the distance between a compelling demonstration and dependable enterprise value.",
+          "This story is designed for leaders making choices about that distance: what to scale, what to govern, what to redesign, and what must remain deeply human."
+        ],
+        takeaway: "Treat this as a strategic conversation, not a product pitch."
+      },
+      "scene-three": {
+        label: "A compressed history",
+        title: "Intelligence is moving closer to action.",
+        paragraphs: [
+          "For decades, each technology era changed how quickly information could move: mainframes centralized it, personal computers distributed it, the internet connected it, mobile made it ambient, and cloud made it elastic.",
+          "The recent acceleration is different. Chatbots made intelligence conversational. Copilots placed it inside the flow of work. Agents connect intelligence to tools and actions. Digital colleagues add continuity, role, and collaboration."
+        ],
+        takeaway: "The defining movement is not simply more intelligence. It is less distance between understanding, deciding, and acting."
+      },
+      "scene-shifts": {
+        label: "The operating model is moving",
+        title: "Each step changes the relationship with AI.",
+        paragraphs: [
+          "Conversation lets us ask. Collaboration lets us create together. Delegation lets us assign an outcome instead of describing every step. Digital labor extends that delegation into repeatable, autonomous work.",
+          "The mountain matters because these are not interchangeable maturity labels. Every step asks for stronger context, clearer authority, better controls, and a more explicit understanding of who owns the result."
+        ],
+        takeaway: "Capability rises with autonomy, but so does the need for operating discipline."
+      },
+      "scene-org": {
+        label: "The new organizational chart",
+        title: "Work will be organized around mixed teams.",
+        paragraphs: [
+          "This is not a chart of humans being replaced. It is a chart of work being redistributed. People continue to set direction, exercise judgment, build trust, and carry accountability while specialized AI roles research, analyze, track, and prepare.",
+          "The Decision Desk makes this concrete: signals become analysis, commitments become visible, drafts arrive ready for judgment, and only the decisions that genuinely need a leader are escalated."
+        ],
+        takeaway: "The future org chart describes responsibilities and decision rights, not only reporting lines."
+      },
+      "scene-multimodal": {
+        label: "Multimodal intelligence",
+        title: "AI can understand more of the real work environment.",
+        paragraphs: [
+          "Work rarely arrives as clean text. It lives in meetings, images, screens, documents, video, data, and the relationships between them. Multimodal systems can combine these signals into a richer view of context.",
+          "When that understanding is connected to reasoning and tools, AI can move beyond answering questions. It can inspect a situation, identify what matters, prepare a response, and act within policy."
+        ],
+        takeaway: "Multimodality expands what AI can understand; governance determines what it should be allowed to do."
+      },
+      "scene-four": {
+        label: "Multi-model enterprise",
+        title: "There will not be one permanent winner.",
+        paragraphs: [
+          "Different work demands different intelligence. A frontier model may be right for complex reasoning, a small model for speed and cost, an open model for control, and a specialist model for a narrow domain.",
+          "The moving orbits represent a portfolio that will keep changing. The durable enterprise capability is the route at the center: selecting models by task, risk, performance, policy, and economics."
+        ],
+        takeaway: "Competitive advantage shifts from choosing a model to governing a portfolio of intelligence."
+      },
+      "scene-orchestration": {
+        label: "From selection to orchestration",
+        title: "Model choice becomes a system decision.",
+        paragraphs: [
+          "Today, a person often chooses a model manually. The next step is platform routing, where context, policy, capability, latency, and cost determine the best fit automatically.",
+          "Beyond routing, specialized models and agents can collaborate: one investigates, another verifies, another acts, and an evaluation layer checks the result."
+        ],
+        takeaway: "The strategic asset is not a single model. It is the orchestration, evaluation, and control layer around them."
+      },
+      "scene-stack": {
+        label: "A governed path to experience",
+        title: "Agency needs an enterprise architecture.",
+        paragraphs: [
+          "Useful AI experiences sit on a chain of capabilities. Experiences give people an interface. Agents hold roles and workflows. Enterprise controls provide identity and management. Platforms supply models, tools, and evaluation.",
+          "The foundation is what makes the upper layers trustworthy: connected data, security, compliance, permissions, and organizational context. Remove that foundation and autonomy becomes a collection of disconnected experiments."
+        ],
+        takeaway: "The stack is less about products than about creating a governed path from enterprise context to action."
+      },
+      "scene-ai-architecture": {
+        label: "Intelligence + Trust",
+        title: "Microsoft IQ connects the AI estate.",
+        paragraphs: [
+          "The architecture brings Microsoft 365 Copilot, Cowork, agents, Copilot Studio, GitHub Copilot, Fabric, Foundry, Azure, and Agent 365 into one governed system rather than a collection of disconnected tools.",
+          "Microsoft IQ sits at the center, connecting Work IQ, Foundry IQ, and Fabric IQ so experiences can share organizational context while security forms the boundary around every layer."
+        ],
+        takeaway: "The differentiator is not only intelligence. It is intelligence connected to enterprise context and bounded by trust."
+      },
+      "scene-ms-approach": {
+        label: "The Microsoft AI Approach",
+        title: "One experience, different levels of agency.",
+        paragraphs: [
+          "The Microsoft AI approach brings several working modes into one Copilot experience. Chat assists with secure enterprise conversation. Cowork and Code move toward delegated, multi-step execution. Autopilots represent digital teams that can sustain work over time.",
+          "The important progression is not a collection of separate destinations. It is a continuum of agency: from helping a person complete a task, to accepting outcomes, using multiple tools, and coordinating work with less supervision."
+        ],
+        takeaway: "One Copilot can meet people where they are today while creating a path toward delegated and autonomous work."
+      },
+      "scene-copilot-strategy": {
+        label: "Platform strategy",
+        title: "The platform must outlive every model.",
+        paragraphs: [
+          "Microsoft's strategy begins with a multi-model foundation so enterprises can adopt the best intelligence as the market changes without rebuilding the platform. A multi-harness layer then adds planning, tools, agents, and memory so intelligence can perform real work.",
+          "That flexibility sits on a cloud-native, enterprise-grade foundation grounded in organizational context through WorkIQ, integrated into the flow of work, and protected by security and governance."
+        ],
+        takeaway: "The durable advantage is not betting on one model. It is building a platform that can absorb the next one."
+      },
+      "scene-governance": {
+        label: "Governance as capability",
+        title: "Govern what AI sees, does, decides, and uses.",
+        paragraphs: [
+          "Governance begins with data: what an agent can see and how context is protected. It extends to actions and decisions across Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, Fabric, Foundry, and Azure.",
+          "Microsoft IQ connects OpenAI, Anthropic, Google, and Meta at the intelligence center, while Agent 365 forms the outer management layer across the complete agent estate."
+        ],
+        takeaway: "Good governance is not a brake on scale. It is the mechanism that makes confident scale possible."
+      },
+      "scene-work": {
+        label: "Work without work",
+        title: "Remove friction, not people.",
+        paragraphs: [
+          "Industrial automation reduced physical effort. Digital systems reduced the friction of information. Cognitive automation can now absorb coordination, preparation, monitoring, and other work that consumes attention without requiring uniquely human judgment.",
+          "This does not make people less important. It changes where their value concentrates: framing problems, making trade-offs, building relationships, accepting responsibility, and exercising judgment under uncertainty."
+        ],
+        takeaway: "When intelligence becomes abundant, judgment becomes more valuable."
+      },
+      "scene-questions": {
+        label: "Leadership discussion",
+        title: "The agentic era begins with choices.",
+        paragraphs: [
+          "The five questions on screen turn an abstract future into an operating agenda. They ask where delegation creates value, where human authority must remain, and how intelligence should be selected, funded, and managed.",
+          "The final question makes the change visible: if digital colleagues become part of the workforce, what does the organizational chart look like, and who is accountable for the work they perform?"
+        ],
+        takeaway: "Do not start with how many agents to deploy. Start with the work, decisions, controls, economics, and accountabilities you want to redesign."
+      },
+      "scene-agent-challenge": {
+        label: "A question for the room",
+        title: "What would slow your organization first?",
+        paragraphs: [
+          "Imagine that access to AI agents is no longer scarce. Every employee can delegate research, analysis, coordination, and execution to one or more agents.",
+          "The constraint then moves away from access. It becomes the organizational capability that is least ready: governance, skills, trust, operating model, or budget."
+        ],
+        takeaway: "Choose the first constraint you would need to remove, not the one that is easiest to discuss."
+      },
+      "scene-thanks": {
+        label: "A closing thought",
+        title: "The future of work is a design choice.",
+        paragraphs: [
+          "The shift from copilots to digital colleagues will not arrive as one launch or one decision. It will emerge through hundreds of choices about work, authority, architecture, and trust.",
+          "My hope is that this experience gives you a clearer language for those choices and a reason to begin the conversation before technology makes the default decisions for you."
+        ],
+        takeaway: "Thank you for spending this time with the ideas. Keep the conversation going."
+      },
+      
+    };
     let currentScene = -1;
+    let autoBuildTimer = 0;
+    let autoAdvanceTimer = 0;
+    let commentaryDisabled = sessionStorage.getItem("keynoteCommentaryDisabled") === "true";
+
+    function commentaryForScene(scene) {
+      if (!scene || scene.classList.contains("scene-video") || scene === scenes[0] || scene === scenes[1] || scene === scenes[scenes.length - 1]) return null;
+      if (scene.classList.contains("scene-ai-architecture")) return commentaryByClass["scene-ai-architecture"];
+      return Object.entries(commentaryByClass).find(([className]) => scene.classList.contains(className))?.[1] || null;
+    }
+
+    function setCommentaryOpen(open) {
+      const shouldOpen = Boolean(open && commentaryShell.dataset.available === "true" && !commentaryDisabled);
+      commentaryShell.dataset.open = String(shouldOpen);
+      commentaryLauncher.setAttribute("aria-expanded", String(shouldOpen));
+      commentaryBlade.setAttribute("aria-hidden", String(!shouldOpen));
+    }
+
+    function updateCommentary(scene) {
+      const commentary = commentaryForScene(scene);
+      commentaryShell.dataset.available = String(Boolean(commentary));
+      commentaryShell.dataset.disabled = String(commentaryDisabled);
+      if (!commentary) {
+        setCommentaryOpen(false);
+        return;
+      }
+      commentaryLabel.textContent = commentary.label;
+      commentaryTitle.textContent = commentary.title;
+      commentaryBody.replaceChildren(...commentary.paragraphs.map((text) => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = text;
+        return paragraph;
+      }));
+      commentaryTakeaway.textContent = commentary.takeaway;
+    }
+
+    function toggleCommentaryAvailability() {
+      commentaryDisabled = !commentaryDisabled;
+      sessionStorage.setItem("keynoteCommentaryDisabled", String(commentaryDisabled));
+      commentaryShell.dataset.disabled = String(commentaryDisabled);
+      if (commentaryDisabled) setCommentaryOpen(false);
+      else updateCommentary(scenes[currentScene]);
+    }
+
+    commentaryLauncher.addEventListener("click", () => setCommentaryOpen(commentaryShell.dataset.open !== "true"));
+    commentaryClose.addEventListener("click", () => setCommentaryOpen(false));
+    commentaryBackdrop.addEventListener("click", () => setCommentaryOpen(false));
 
     function buildCount(scene) {
       return Number.parseInt(scene?.dataset.builds || "0", 10);
     }
 
     function setBuild(scene, build) {
-      scene.dataset.build = String(Math.max(0, Math.min(buildCount(scene), build)));
+      const nextBuild = Math.max(0, Math.min(buildCount(scene), build));
+      const currentBuild = Number.parseInt(scene.dataset.build || "0", 10);
+      const title = scene === autoBuildScene
+        ? scene.querySelector(".journey-title")
+        : scene.classList.contains("scene-ms-approach")
+          ? scene.querySelector(".ms-approach-heading h2")
+          : null;
+      const shouldAnimateTitle = title && currentBuild === 0 && nextBuild === 1 && scene.dataset.state === "active" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const shouldResetTitle = title && currentBuild === 1 && nextBuild === 0;
+      const startBox = shouldAnimateTitle ? title.getBoundingClientRect() : null;
+
+      if (shouldAnimateTitle || shouldResetTitle) title.classList.add("flip-moving");
+      scene.dataset.build = String(nextBuild);
+
+      if (shouldResetTitle) {
+        window.requestAnimationFrame(() => title.classList.remove("flip-moving"));
+        return;
+      }
+      if (!shouldAnimateTitle) return;
+      const endBox = title.getBoundingClientRect();
+      const scaleX = startBox.width / endBox.width;
+      const scaleY = startBox.height / endBox.height;
+      const animation = title.animate([
+        {
+          transform: `translate3d(${startBox.left - endBox.left}px, ${startBox.top - endBox.top}px, 0) scale(${scaleX}, ${scaleY})`,
+          transformOrigin: "top left"
+        },
+        { transform: "translate3d(0, 0, 0) scale(1)", transformOrigin: "top left" }
+      ], { duration: 1400, easing: "cubic-bezier(.16, 1, .3, 1)", fill: "none" });
+      animation.finished.finally(() => title.classList.remove("flip-moving"));
+    }
+
+    function clearAutoBuild() {
+      window.clearTimeout(autoBuildTimer);
+      autoBuildTimer = 0;
+    }
+
+    function clearAutoAdvance() {
+      window.clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = 0;
+    }
+
+    function scheduleAutoAdvance(scene) {
+      clearAutoAdvance();
+      if (scene !== autoAdvanceScene) return;
+      autoAdvanceTimer = window.setTimeout(() => {
+        if (scenes[currentScene] === scene) showScene(currentScene + 1);
+        autoAdvanceTimer = 0;
+      }, 3000);
+    }
+
+    function scheduleAutoBuild(scene) {
+      clearAutoBuild();
+      if (scene !== autoBuildScene || scene.dataset.build !== "0") return;
+      autoBuildTimer = window.setTimeout(() => {
+        if (scenes[currentScene] === scene && scene.dataset.build === "0") setBuild(scene, 1);
+        autoBuildTimer = 0;
+      }, 10000);
     }
 
     function showScene(nextScene) {
+      clearAutoBuild();
+      clearAutoAdvance();
       const boundedScene = Math.max(0, Math.min(scenes.length - 1, nextScene));
       if (boundedScene === currentScene) return;
       const previousScene = currentScene;
+      const outgoingScene = scenes[previousScene];
+      const incomingScene = scenes[boundedScene];
+      const approachPair = outgoingScene && incomingScene &&
+        outgoingScene.classList.contains("scene-ms-approach") &&
+        incomingScene.classList.contains("scene-ms-approach") &&
+        outgoingScene.classList.contains("scene-ai-architecture") !== incomingScene.classList.contains("scene-ai-architecture");
+      const outgoingTitle = approachPair ? outgoingScene.querySelector(".ms-approach-heading h2") : null;
+      const sharedTitleStart = outgoingTitle?.getBoundingClientRect();
+      const animateSharedTitle = Boolean(sharedTitleStart && !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+      if (animateSharedTitle) {
+        outgoingTitle.style.opacity = "0";
+        incomingScene.style.transition = "none";
+      }
       currentScene = boundedScene;
       scenes.forEach((scene, index) => {
         const state = index < currentScene ? "past" : index === currentScene ? "active" : "future";
@@ -2380,6 +3441,50 @@
         scene.setAttribute("aria-hidden", String(index !== currentScene));
       });
       setBuild(scenes[currentScene], previousScene >= 0 && currentScene < previousScene ? buildCount(scenes[currentScene]) : 0);
+      if (animateSharedTitle) {
+        const incomingTitle = incomingScene.querySelector(".ms-approach-heading h2");
+        const incomingSuffix = incomingScene.classList.contains("scene-ai-architecture") ? null : incomingTitle.querySelector(".approach-with");
+        const sharedTitleEnd = incomingTitle.getBoundingClientRect();
+        incomingTitle.classList.add("flip-moving");
+        Object.assign(incomingTitle.style, {
+          position: "fixed",
+          left: `${sharedTitleEnd.left}px`,
+          top: `${sharedTitleEnd.top}px`,
+          width: `${sharedTitleEnd.width}px`,
+          maxWidth: "none",
+          margin: "0",
+          transform: "none",
+          transformOrigin: "top left",
+          zIndex: "80"
+        });
+        const sharedTitleAnimation = incomingTitle.animate([
+          {
+            transform: `translate3d(${sharedTitleStart.left - sharedTitleEnd.left}px, ${sharedTitleStart.top - sharedTitleEnd.top}px, 0) scale(${sharedTitleStart.width / sharedTitleEnd.width}, ${sharedTitleStart.height / sharedTitleEnd.height})`,
+            transformOrigin: "top left"
+          },
+          { transform: "translate3d(0, 0, 0) scale(1)", transformOrigin: "top left" }
+        ], { duration: 1500, easing: "cubic-bezier(.16, 1, .3, 1)", fill: "none" });
+        if (incomingSuffix) {
+          incomingSuffix.style.opacity = "0";
+          const suffixAnimation = incomingSuffix.animate(
+            [{ opacity: 0 }, { opacity: 1 }],
+            { duration: 750, delay: 450, easing: "ease", fill: "forwards" }
+          );
+          suffixAnimation.finished.finally(() => {
+            incomingSuffix.style.removeProperty("opacity");
+            suffixAnimation.cancel();
+          });
+        }
+        sharedTitleAnimation.finished.finally(() => {
+          incomingTitle.classList.remove("flip-moving");
+          ["position", "left", "top", "width", "max-width", "margin", "transform", "transform-origin", "z-index"].forEach((property) => incomingTitle.style.removeProperty(property));
+          outgoingTitle.style.removeProperty("opacity");
+        });
+        window.requestAnimationFrame(() => incomingScene.style.removeProperty("transition"));
+      }
+      scheduleAutoBuild(scenes[currentScene]);
+      scheduleAutoAdvance(scenes[currentScene]);
+      updateCommentary(scenes[currentScene]);
       sceneCount.textContent = `${String(currentScene + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
       progressFill.style.width = `${((currentScene + 1) / scenes.length) * 100}%`;
       controlHint.dataset.hidden = "true";
@@ -2387,15 +3492,20 @@
         const video = scene.querySelector("video");
         if (!video) return;
         if (index === currentScene) {
-          video.play().catch(() => { video.muted = true; video.play(); });
+          video.play()
+            .then(() => { scene.dataset.needsPlay = "false"; })
+            .catch(() => { scene.dataset.needsPlay = "true"; });
         } else {
           video.pause();
           video.currentTime = 0;
+          scene.dataset.needsPlay = "false";
         }
       });
     }
 
     function stepForward() {
+      clearAutoBuild();
+      clearAutoAdvance();
       const scene = scenes[currentScene];
       const currentBuild = Number.parseInt(scene.dataset.build || "0", 10);
       if (currentBuild < buildCount(scene)) {
@@ -2406,6 +3516,8 @@
     }
 
     function stepBackward() {
+      clearAutoBuild();
+      clearAutoAdvance();
       const scene = scenes[currentScene];
       const currentBuild = Number.parseInt(scene.dataset.build || "0", 10);
       if (currentBuild > 0) {
@@ -2439,6 +3551,11 @@
         const currentPalette = document.documentElement.dataset.palette;
         document.documentElement.dataset.palette = currentPalette === "workscape" ? "keynote" : "workscape";
       }
+      if (event.key.toLowerCase() === "c") {
+        event.preventDefault();
+        toggleCommentaryAvailability();
+      }
+      if (event.key === "Escape") setCommentaryOpen(false);
       if (event.key.toLowerCase() === "m") {
         const video = scenes[currentScene].querySelector("video");
         if (video) video.muted = !video.muted;
@@ -2536,6 +3653,36 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeLightbox();
     });
+
+    const pageMorph = document.querySelector(".page-morph");
+    const deskLaunch = document.querySelector(".desk-launch");
+    function morphOrigin(element) {
+      const rect = element.getBoundingClientRect();
+      return { x: ((rect.left + rect.width / 2) / window.innerWidth) * 100, y: ((rect.top + rect.height / 2) / window.innerHeight) * 100 };
+    }
+    function setMorphOrigin(origin) {
+      pageMorph.style.setProperty("--morph-x", `${origin.x}%`);
+      pageMorph.style.setProperty("--morph-y", `${origin.y}%`);
+    }
+    const incomingMorph = sessionStorage.getItem("keynoteMorphIncoming");
+    if (incomingMorph === "keynote") {
+      const origin = JSON.parse(sessionStorage.getItem("keynoteMorphOrigin") || '{"x":75,"y":75}');
+      setMorphOrigin(origin);
+      pageMorph.classList.add("reveal");
+      sessionStorage.removeItem("keynoteMorphIncoming");
+      setTimeout(() => pageMorph.classList.remove("reveal"), 800);
+    }
+    deskLaunch.addEventListener("click", () => {
+      const origin = morphOrigin(deskLaunch);
+      setMorphOrigin(origin);
+      sessionStorage.setItem("keynoteMorphIncoming", "desk");
+      sessionStorage.setItem("keynoteMorphOrigin", JSON.stringify(origin));
+      pageMorph.classList.add("cover");
+      const theme = document.documentElement.dataset.theme || "dark";
+      const palette = document.documentElement.dataset.palette || "keynote";
+      setTimeout(() => { window.location.href = `scout-decision-desk.html?scoutTheme=${theme}&palette=${palette}`; }, 700);
+    });
   </script>
+  <script src="https://usman-live.lovable.app/api/public/embed.js" data-position="spread" data-size="48" defer></script>
 </body>
 </html>

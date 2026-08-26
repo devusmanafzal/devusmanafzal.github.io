@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Desk · Z2G Agency</title>
+  <script src="presentation.config.js"></script>
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const param = params.get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const configuredPalette = window.PRESENTATION_CONFIG?.palette || "keynote";
+      const palette = params.get("palette") || configuredPalette;
+      document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("data-palette", palette === "workscape" ? "workscape" : "keynote");
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.98);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.98);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+    html[data-theme="dark"][data-palette="workscape"] {
+      --cp-bg: #20211f;
+      --cp-bg-elevated: #191a18;
+      --cp-surface: #111210;
+      --cp-surface-soft: #1d1f1b;
+      --cp-border: #3f423b;
+      --cp-border-strong: #73776d;
+      --cp-text: #f2f2ed;
+      --cp-text-muted: #a6a89f;
+      --cp-text-soft: #d4d5cf;
+      --cp-accent: #cdd365;
+      --cp-accent-hover: #bdc997;
+      --cp-accent-soft: rgba(167, 188, 87, 0.16);
+      --cp-accent-fg: #0e0f0d;
+      --cp-success: #96b15a;
+      --cp-danger: #f87171;
+      --cp-warning: #cdd365;
+      --cp-link: #bdc997;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(17, 18, 16, 0.9);
+      --cp-panel: rgba(29, 31, 27, 0.8);
+      --cp-panel-strong: rgba(17, 18, 16, 0.98);
+      --cp-sheen: rgba(242, 242, 237, 0.045);
+      --cp-highlight: rgba(205, 211, 101, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--cp-bg);
+      color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .desk-particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.68;
+      pointer-events: none;
+    }
+
+    button, input, textarea { font: inherit; }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 76rem;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* ===== HEADER ===== */
+    header.top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--cp-border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .brand-logo {
+      display: grid;
+      place-items: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      background: var(--cp-text);
+      color: var(--cp-bg);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-info { line-height: 1.2; }
+    .brand-org { font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em; }
+    .brand-product { color: var(--cp-text-muted); font-size: 0.78rem; margin-top: 0.1rem; }
+    .brand-product .sep { margin: 0 0.4rem; color: var(--cp-border-strong); }
+    .brand-product .pill {
+      display: inline-block;
+      padding: 0.05rem 0.4rem;
+      border-radius: 0.3rem;
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      vertical-align: 1px;
+      margin-left: 0.35rem;
+    }
+    .top-right { display: flex; align-items: center; gap: 0.6rem; }
+    .keynote-return {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      min-height: 2.15rem;
+      padding: .45rem .7rem;
+      border: 1px solid var(--cp-accent);
+      border-radius: .5rem;
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .keynote-return:hover { background: var(--cp-accent); color: var(--cp-accent-fg); }
+    .icon-btn {
+      display: grid;
+      place-items: center;
+      width: 2.15rem;
+      height: 2.15rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.5rem;
+      background: var(--cp-surface);
+      color: var(--cp-text-muted);
+      cursor: pointer;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .icon-btn:hover { color: var(--cp-text); border-color: var(--cp-border-strong); }
+    .icon-btn .badge {
+      position: absolute;
+      top: -0.25rem;
+      right: -0.25rem;
+      min-width: 1.05rem;
+      height: 1.05rem;
+      padding: 0 0.3rem;
+      border-radius: 999px;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      font-size: 0.65rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--cp-bg);
+    }
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      cursor: pointer;
+    }
+    .user-chip:hover { border-color: var(--cp-border-strong); }
+    .user-chip .portrait {
+      width: 1.9rem;
+      height: 1.9rem;
+      margin: 0;
+      border-width: 1px;
+      border-color: var(--cp-border);
+    }
+    .user-chip .u-name { font-weight: 650; font-size: 0.82rem; line-height: 1.1; }
+    .user-chip .u-role { color: var(--cp-text-muted); font-size: 0.7rem; line-height: 1.1; margin-top: 0.1rem; }
+    .user-chip .u-info { display: flex; flex-direction: column; }
+    .user-chip .caret { color: var(--cp-text-soft); font-size: 0.7rem; margin-left: 0.15rem; }
+
+    /* ===== HERO ===== */
+    section.hero { max-width: 46rem; margin-bottom: 4rem; }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--cp-accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 1.25rem;
+      font-size: clamp(2.25rem, 4vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 650;
+    }
+    .lede {
+      margin: 0;
+      max-width: 38rem;
+      color: var(--cp-text-muted);
+      font-size: 1.1rem;
+      line-height: 1.55;
+    }
+
+    /* ===== SECTION LABELS ===== */
+    .section-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--cp-border);
+    }
+    .section-label h2 {
+      margin: 0;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cp-text-muted);
+    }
+    .section-label span { color: var(--cp-text-soft); font-size: 0.82rem; }
+    section.block { margin-bottom: 4.5rem; }
+
+    /* ===== DECISIONS ===== */
+    .decisions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    .decision {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .decision:hover { border-color: var(--cp-accent); transform: translateY(-2px); }
+    .decision.done { opacity: 0.85; cursor: pointer; }
+    .decision.done:hover { border-color: var(--cp-success); transform: translateY(-2px); }
+    .decision.upcoming { background: var(--cp-bg-elevated); }
+    .decision.upcoming:hover { border-color: var(--cp-warning); }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--cp-border);
+    }
+    .tab {
+      padding: 0.55rem 0.95rem;
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      background: transparent;
+      color: var(--cp-text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .tab:hover { color: var(--cp-text); }
+    .tab.on {
+      background: var(--cp-surface);
+      border-color: var(--cp-border);
+      color: var(--cp-text);
+    }
+    .tab .count {
+      display: inline-block;
+      margin-left: 0.35rem;
+      padding: 0.05rem 0.4rem;
+      border-radius: 999px;
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .tab.on .count { background: var(--cp-accent); color: var(--cp-accent-fg); }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .status-pill.pending { background: var(--cp-accent-soft); color: var(--cp-accent); }
+    .status-pill.upcoming { background: rgba(245, 158, 11, 0.12); color: var(--cp-warning); }
+    .status-pill.handled { background: rgba(22, 163, 74, 0.12); color: var(--cp-success); }
+    .status-pill::before {
+      content: ""; width: 0.35rem; height: 0.35rem;
+      border-radius: 50%; background: currentColor;
+    }
+
+    .decision .outcome {
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      border-left: 2px solid var(--cp-success);
+      background: rgba(22, 163, 74, 0.08);
+      border-radius: 0 0.4rem 0.4rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--cp-text);
+    }
+    .decision .outcome strong { color: var(--cp-success); }
+    .decision .eta {
+      margin-bottom: 1rem;
+      padding: 0.85rem 1rem;
+      border-left: 2px solid var(--cp-warning);
+      background: rgba(245, 158, 11, 0.08);
+      border-radius: 0 0.4rem 0.4rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .decision .eta strong { color: var(--cp-warning); }
+
+    /* Activity feed */
+    .activity {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .activity-item {
+      display: grid;
+      grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 12px;
+      background: var(--cp-surface);
+    }
+    .activity-item .portrait {
+      width: 2.4rem; height: 2.4rem; margin: 0;
+      border-width: 1.5px;
+    }
+    .activity-item .a-body { min-width: 0; }
+    .activity-item .a-top {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 0.15rem;
+    }
+    .activity-item .a-who { font-weight: 650; font-size: 0.88rem; }
+    .activity-item .a-text {
+      color: var(--cp-text-muted);
+      font-size: 0.86rem;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .activity-item .a-when {
+      color: var(--cp-text-soft);
+      font-family: Consolas, "Courier New", Courier, monospace;
+      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+    .activity-day {
+      color: var(--cp-text-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 1.25rem 0 0.55rem;
+    }
+    .activity-day:first-child { margin-top: 0; }
+
+    .decision-head {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+      color: var(--cp-text-muted);
+      font-size: 0.8rem;
+    }
+    .decision-head .from { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .mini-avatar {
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: var(--cp-accent-soft);
+      overflow: hidden;
+    }
+    .mini-avatar svg { display: block; width: 100%; height: 100%; }
+    .decision h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+    }
+    .decision p {
+      margin: 0 0 1.25rem;
+      color: var(--cp-text-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .rec {
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+      border-left: 2px solid var(--cp-accent);
+      background: var(--cp-accent-soft);
+      border-radius: 0 0.4rem 0.4rem 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .rec strong { color: var(--cp-accent); }
+    .open-link {
+      margin-top: auto;
+      color: var(--cp-accent);
+      font-size: 0.85rem;
+      font-weight: 650;
+    }
+    .done-tag {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: var(--cp-success);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ===== ORG CHART ===== */
+    .org {
+      padding: 3rem 2rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+    }
+    .org-tree { display: flex; flex-direction: column; align-items: center; }
+    .node { display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; }
+    .node.static { cursor: default; }
+    .node:not(.static):hover .portrait { transform: scale(1.05); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .portrait {
+      width: 5.5rem;
+      height: 5.5rem;
+      border-radius: 50%;
+      background: var(--cp-surface-soft);
+      border: 2px solid var(--cp-border);
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .portrait svg { display: block; width: 100%; height: 100%; }
+    .node.human .portrait { border-color: var(--cp-border-strong); }
+    .node.ai .portrait { border-color: var(--cp-accent); }
+    .node.you .portrait {
+      width: 6.5rem;
+      height: 6.5rem;
+      border-color: var(--cp-text);
+      border-width: 3px;
+    }
+    .node .name { font-weight: 650; font-size: 0.95rem; letter-spacing: -0.01em; }
+    .node .role { margin-top: 0.2rem; color: var(--cp-text-muted); font-size: 0.8rem; }
+    .ai-tag {
+      display: inline-block;
+      margin-left: 0.35rem;
+      padding: 0.05rem 0.4rem;
+      border-radius: 0.3rem;
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      vertical-align: 2px;
+    }
+    .human-tag {
+      display: inline-block;
+      margin-left: 0.35rem;
+      padding: 0.05rem 0.4rem;
+      border-radius: 0.3rem;
+      background: var(--cp-surface-soft);
+      color: var(--cp-text-muted);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      vertical-align: 2px;
+      border: 1px solid var(--cp-border);
+    }
+    .connector { width: 1px; height: 2rem; background: var(--cp-border); }
+    .connector.wide { width: 100%; max-width: 44rem; height: 1px; margin-top: -1px; }
+    .row-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 44rem;
+    }
+    .row-4 .node { position: relative; }
+    .row-4 .node::before {
+      content: "";
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      width: 1px;
+      height: 2rem;
+      background: var(--cp-border);
+    }
+    .humans-branch {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--cp-border);
+      width: 100%;
+      max-width: 44rem;
+    }
+    .humans-label {
+      text-align: center;
+      color: var(--cp-text-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .humans-row { display: flex; justify-content: center; gap: 3rem; }
+    .humans-row .portrait { width: 4.5rem; height: 4.5rem; }
+
+    /* ===== TEAM STRIP ===== */
+    .team {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.25rem 0.75rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 16px;
+      background: var(--cp-surface);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .member:hover { border-color: var(--cp-accent); transform: translateY(-2px); }
+    .member .portrait { width: 4.5rem; height: 4.5rem; border-color: var(--cp-accent); }
+    .member .name { font-weight: 650; font-size: 0.9rem; }
+    .member .role { margin: 0.2rem 0 0.6rem; color: var(--cp-text-muted); font-size: 0.78rem; }
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--cp-surface-soft);
+      font-size: 0.7rem;
+      color: var(--cp-text-muted);
+    }
+    .status-dot::before {
+      content: "";
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--cp-success);
+    }
+
+    /* ===== FLOW ===== */
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      align-items: start;
+    }
+    .step { position: relative; padding: 1.25rem 1rem; text-align: center; }
+    .step::after {
+      content: "→";
+      position: absolute;
+      right: -0.5rem;
+      top: 1.5rem;
+      color: var(--cp-border-strong);
+      font-size: 1rem;
+    }
+    .step:last-child::after { display: none; }
+    .step .step-num {
+      display: inline-block;
+      margin-bottom: 0.65rem;
+      color: var(--cp-accent);
+      font-family: Consolas, "Courier New", Courier, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .step .step-name { font-weight: 650; font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .step .step-desc { color: var(--cp-text-muted); font-size: 0.82rem; line-height: 1.45; }
+
+    footer.foot {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cp-border);
+      text-align: center;
+      color: var(--cp-text-soft);
+      font-size: 0.88rem;
+    }
+
+    /* ===== DECISION PAGE ===== */
+    .decision-page {
+      display: none;
+      max-width: 62rem;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+    .decision-page.on { display: block; }
+    body.decision-mode .wrap { display: none; }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface);
+      color: var(--cp-text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .back:hover { color: var(--cp-text); }
+
+    .dp-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--cp-accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .dp-eyebrow .mini-avatar { width: 1.3rem; height: 1.3rem; }
+    .dp h1 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      margin-bottom: 1.5rem;
+    }
+    .dp .summary {
+      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--cp-accent);
+      background: var(--cp-accent-soft);
+      border-radius: 0 0.5rem 0.5rem 0;
+      margin-bottom: 3rem;
+      color: var(--cp-text);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .trail {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .trail-item {
+      display: grid;
+      grid-template-columns: 3rem 6rem minmax(0, 1fr);
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 12px;
+      background: var(--cp-surface);
+    }
+    .trail-item .mini-avatar { width: 2.5rem; height: 2.5rem; }
+    .trail-item .who { font-weight: 650; font-size: 0.9rem; }
+    .trail-item .who small {
+      display: block;
+      color: var(--cp-text-muted);
+      font-weight: 400;
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+    .trail-item .what { color: var(--cp-text-muted); font-size: 0.9rem; line-height: 1.5; }
+    .trail-item .when {
+      color: var(--cp-text-soft);
+      font-family: Consolas, "Courier New", Courier, monospace;
+      font-size: 0.75rem;
+      text-align: right;
+    }
+
+    .draft-box {
+      padding: 1.5rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 12px;
+      background: var(--cp-surface);
+      margin-bottom: 2rem;
+    }
+    .draft-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--cp-text-muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .draft-label .mini-avatar { width: 1.4rem; height: 1.4rem; }
+    .draft {
+      width: 100%;
+      min-height: 10rem;
+      padding: 1rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-bg);
+      color: var(--cp-text);
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .draft:focus { outline: 2px solid var(--cp-accent); outline-offset: 1px; }
+
+    .dp-actions { display: flex; gap: 0.75rem; }
+    .btn {
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      background: var(--cp-surface-soft);
+      color: var(--cp-text);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .btn:hover { border-color: var(--cp-border-strong); }
+    .btn.primary {
+      border-color: var(--cp-accent);
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      font-weight: 650;
+    }
+    .btn.primary:hover { background: var(--cp-accent-hover); }
+
+    /* ===== CHAT PANEL ===== */
+    .chat-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 26rem;
+      max-width: 100vw;
+      height: 100vh;
+      background: var(--cp-panel-strong);
+      border-left: 1px solid var(--cp-border);
+      box-shadow: var(--cp-shadow);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+      z-index: 30;
+    }
+    .chat-panel.on { transform: translateX(0); }
+
+    .chat-head {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 1.25rem 1.25rem 1rem;
+      border-bottom: 1px solid var(--cp-border);
+    }
+    .chat-head .portrait {
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: 0;
+      border-color: var(--cp-accent);
+      border-width: 2px;
+    }
+    .chat-head .who-name { font-weight: 650; font-size: 0.95rem; }
+    .chat-head .who-role { color: var(--cp-text-muted); font-size: 0.8rem; margin-top: 0.1rem; }
+    .chat-head .who { flex: 1; }
+    .chat-close {
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.5rem;
+      background: var(--cp-surface);
+      cursor: pointer;
+      color: var(--cp-text-muted);
+    }
+    .chat-close:hover { color: var(--cp-text); }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .bubble {
+      max-width: 85%;
+      padding: 0.7rem 0.95rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .bubble.them {
+      align-self: flex-start;
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-bottom-left-radius: 0.25rem;
+    }
+    .bubble.me {
+      align-self: flex-end;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      border-bottom-right-radius: 0.25rem;
+    }
+    .typing {
+      align-self: flex-start;
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.85rem 1rem;
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-border);
+      border-radius: 1rem;
+      border-bottom-left-radius: 0.25rem;
+    }
+    .typing span {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      background: var(--cp-text-muted);
+      animation: bounce 1.2s infinite;
+    }
+    .typing span:nth-child(2) { animation-delay: 0.15s; }
+    .typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .prompts {
+      padding: 1rem 1.25rem 1.25rem;
+      border-top: 1px solid var(--cp-border);
+      background: var(--cp-bg-elevated);
+    }
+    .prompts-label {
+      color: var(--cp-text-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+    .prompt-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .prompt {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.5rem;
+      background: var(--cp-surface);
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--cp-text);
+    }
+    .prompt:hover { border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+    .handoff {
+      margin-top: 0.5rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px dashed var(--cp-accent);
+      border-radius: 0.5rem;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: var(--cp-accent);
+    }
+    .handoff:hover { background: var(--cp-accent-soft); }
+
+    /* Backdrop */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 20;
+    }
+    .backdrop.on { opacity: 1; pointer-events: auto; }
+
+    /* Ask Emma FAB */
+    .ask-emma {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.7rem 1.1rem 0.7rem 0.7rem;
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      border: none;
+      border-radius: 999px;
+      box-shadow: var(--cp-shadow);
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 0.9rem;
+      z-index: 15;
+    }
+    .ask-emma:hover { background: var(--cp-accent-hover); }
+    .ask-emma .portrait {
+      width: 2rem; height: 2rem; margin: 0;
+      border: 2px solid var(--cp-accent-fg);
+    }
+
+    /* ===== PROFILE CARD (hover popover) ===== */
+    .profile-card {
+      position: fixed;
+      z-index: 45;
+      width: 20rem;
+      padding: 1.1rem;
+      background: var(--cp-panel-strong);
+      border: 1px solid var(--cp-border);
+      border-radius: 14px;
+      box-shadow: var(--cp-shadow);
+      opacity: 0;
+      transform: translateY(0.4rem);
+      transition: opacity 0.16s, transform 0.16s;
+      pointer-events: none;
+    }
+    .profile-card.on { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .pc-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.9rem; }
+    .pc-head .portrait {
+      width: 3rem; height: 3rem; margin: 0;
+      border-width: 2px; border-color: var(--cp-accent);
+    }
+    .pc-head.human .portrait { border-color: var(--cp-border-strong); }
+    .pc-name { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; line-height: 1.1; }
+    .pc-role { color: var(--cp-text-muted); font-size: 0.78rem; margin-top: 0.15rem; }
+    .pc-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.35rem;
+      color: var(--cp-success);
+      font-size: 0.72rem;
+      font-weight: 650;
+    }
+    .pc-status::before {
+      content: ""; width: 0.4rem; height: 0.4rem;
+      border-radius: 50%; background: var(--cp-success);
+    }
+    .pc-bio {
+      color: var(--cp-text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      padding-bottom: 0.85rem;
+      margin-bottom: 0.85rem;
+      border-bottom: 1px solid var(--cp-border);
+    }
+    .pc-meta { display: grid; gap: 0.5rem; margin-bottom: 1rem; }
+    .pc-row {
+      display: grid;
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+    .pc-row .k { color: var(--cp-text-soft); font-weight: 650; }
+    .pc-row .v { color: var(--cp-text); }
+    .pc-actions { display: flex; gap: 0.4rem; }
+    .pc-btn {
+      flex: 1;
+      padding: 0.5rem 0.5rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.5rem;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+      cursor: pointer;
+      font-size: 0.78rem;
+    }
+    .pc-btn:hover { border-color: var(--cp-border-strong); }
+    .pc-btn.primary {
+      border-color: var(--cp-accent);
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+      font-weight: 650;
+    }
+    .pc-btn.primary:hover { background: var(--cp-accent-hover); }
+
+    /* Profile card extras */
+    .pc-star {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--cp-border);
+      border-radius: 50%;
+      background: var(--cp-surface);
+      color: var(--cp-text-soft);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .pc-star:hover { border-color: var(--cp-border-strong); color: var(--cp-text); }
+    .pc-star.on { color: var(--cp-accent); border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+
+    .pc-spark {
+      display: block;
+      margin-bottom: 0.85rem;
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.5rem;
+      background: var(--cp-surface);
+    }
+    .pc-spark-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+      color: var(--cp-text-soft);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .pc-spark-head .today {
+      color: var(--cp-accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+    .pc-spark svg { display: block; width: 100%; height: 2.6rem; }
+
+    .pc-last {
+      display: grid;
+      gap: 0.15rem;
+      margin-bottom: 0.9rem;
+      padding: 0.7rem 0.85rem;
+      border-left: 2px solid var(--cp-accent);
+      background: var(--cp-accent-soft);
+      border-radius: 0 0.4rem 0.4rem 0;
+    }
+    .pc-last .k {
+      color: var(--cp-accent);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .pc-last .v { color: var(--cp-text); font-size: 0.85rem; line-height: 1.4; }
+    .pc-last .t { color: var(--cp-text-muted); font-size: 0.72rem; }
+
+    /* Activity blade */
+    .activity-panel { width: 30rem; max-width: 100vw; }
+    .activity-panel .chat-body { padding: 1rem 1.25rem 1.5rem; gap: 0; }
+    .activity-filters {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--cp-border);
+      background: var(--cp-bg-elevated);
+    }
+    .agent-chips {
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.3rem;
+    }
+    .agent-chips::-webkit-scrollbar { height: 3px; }
+    .agent-chips::-webkit-scrollbar-thumb { background: var(--cp-border); border-radius: 2px; }
+    .agent-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.7rem 0.3rem 0.3rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 999px;
+      background: var(--cp-surface);
+      color: var(--cp-text);
+      cursor: pointer;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+    .agent-chip:hover { border-color: var(--cp-border-strong); }
+    .agent-chip.on {
+      border-color: var(--cp-accent);
+      background: var(--cp-accent-soft);
+      color: var(--cp-accent);
+      font-weight: 650;
+    }
+    .agent-chip .portrait {
+      width: 1.4rem; height: 1.4rem; margin: 0;
+      border: 1px solid var(--cp-border);
+    }
+    .agent-chip.all {
+      padding: 0.3rem 0.7rem;
+    }
+
+    /* Segmented toggle */
+    .seg {
+      display: inline-flex;
+      padding: 0.2rem;
+      border: 1px solid var(--cp-border);
+      border-radius: 0.5rem;
+      background: var(--cp-surface);
+      gap: 0.15rem;
+    }
+    .seg button {
+      padding: 0.35rem 0.75rem;
+      border: none;
+      border-radius: 0.375rem;
+      background: transparent;
+      color: var(--cp-text-muted);
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .seg button:hover { color: var(--cp-text); }
+    .seg button.on {
+      background: var(--cp-accent);
+      color: var(--cp-accent-fg);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translateX(-50%) translateY(0.5rem);
+      padding: 0.85rem 1.25rem;
+      background: var(--cp-panel-strong);
+      border: 1px solid var(--cp-border);
+      border-radius: 0.625rem;
+      box-shadow: var(--cp-shadow);
+      color: var(--cp-text);
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none;
+      z-index: 40;
+    }
+    .toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .keynote-morph {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      background: var(--cp-surface);
+      clip-path: circle(0 at var(--morph-x, 75%) var(--morph-y, 8%));
+      pointer-events: none;
+      transition: clip-path 700ms cubic-bezier(.16, 1, .3, 1);
+    }
+    .keynote-morph.cover { clip-path: circle(150vmax at var(--morph-x, 75%) var(--morph-y, 8%)); }
+    .keynote-morph-mark { color: var(--cp-accent); font-size: clamp(1rem, 2vw, 1.6rem); font-weight: 750; opacity: 0; transition: opacity 300ms ease 250ms; }
+    .keynote-morph.cover .keynote-morph-mark { opacity: 1; }
+
+    @media (max-width: 900px) {
+      .decisions, .team, .flow, .row-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .step::after { display: none; }
+      .row-4 .node::before { display: none; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 2rem 1.25rem 3rem; }
+      .decisions, .team, .flow, .row-4 { grid-template-columns: 1fr; }
+      .humans-row { flex-direction: column; align-items: center; gap: 1.5rem; }
+      .chat-panel { width: 100vw; }
+      .trail-item { grid-template-columns: 3rem 1fr; }
+      .trail-item .when { grid-column: 1 / -1; text-align: left; padding-left: 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="desk-particles" aria-hidden="true"></canvas>
+  <!-- ================= DASHBOARD ================= -->
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="brand-logo">Z2</div>
+        <div class="brand-info">
+          <div class="brand-org">Z2G Agency</div>
+          <div class="brand-product">
+            Decision Desk<span class="sep">·</span>Powered by Microsoft Scout<span class="pill">BETA</span>
+          </div>
+        </div>
+      </div>
+      <div class="top-right">
+        <button class="keynote-return" id="keynoteReturn" type="button" title="Back to keynote"><span aria-hidden="true">←</span><span>Back to keynote</span></button>
+        <button class="icon-btn" id="activityBtn" title="Activity feed" aria-label="Activity feed">☰</button>
+        <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">◐</button>
+        <button class="icon-btn" title="Search" aria-label="Search">⌕</button>
+        <button class="icon-btn" title="Notifications" aria-label="Notifications">
+          🔔<span class="badge">2</span>
+        </button>
+        <button class="user-chip" title="Account">
+          <span class="portrait" data-portrait="you"></span>
+          <span class="u-info">
+            <span class="u-name">Usman Afzal</span>
+            <span class="u-role">Founder · Z2G Agency</span>
+          </span>
+          <span class="caret">▾</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Tuesday, 25 August · Week 35</div>
+      <h1>Good evening, Usman.</h1>
+      <p class="lede">
+        Your team handled 47 signals today. Emma escalated 2 items that need your call.
+        Everything else is either done, tracked, or drafted and waiting.
+      </p>
+    </section>
+
+    <section class="block">
+      <div class="section-label">
+        <h2>Decisions</h2>
+        <span id="decisionCount">2 pending · 3 upcoming · 5 handled</span>
+      </div>
+      <div class="tabs" id="decisionTabs">
+        <button class="tab on" data-tab="pending">Pending <span class="count" id="cnt-pending">2</span></button>
+        <button class="tab" data-tab="upcoming">Upcoming <span class="count" id="cnt-upcoming">3</span></button>
+        <button class="tab" data-tab="handled">Handled <span class="count" id="cnt-handled">5</span></button>
+      </div>
+      <div class="decisions" id="decisionsGrid"></div>
+    </section>
+
+    <section class="block">
+      <div class="section-label">
+        <h2>Team</h2>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <span id="teamMeta">5 agents · 2 humans · last sync 22:09</span>
+          <div class="seg" id="teamView">
+            <button class="on" data-view="list">List</button>
+            <button data-view="org">Org chart</button>
+          </div>
+        </div>
+      </div>
+      <div class="team" id="teamList">
+        <div class="member" data-chat="emma">
+          <div class="portrait" data-portrait="emma"></div>
+          <div class="name">Emma <span class="ai-tag">AI</span></div>
+          <div class="role">Chief of Staff</div>
+          <span class="status-dot">2 escalations</span>
+        </div>
+        <div class="member" data-chat="oscar">
+          <div class="portrait" data-portrait="oscar"></div>
+          <div class="name">Oscar <span class="ai-tag">AI</span></div>
+          <div class="role">Signal Scout</div>
+          <span class="status-dot">14 signals · 3 flagged</span>
+        </div>
+        <div class="member" data-chat="iris">
+          <div class="portrait" data-portrait="iris"></div>
+          <div class="name">Iris <span class="ai-tag">AI</span></div>
+          <div class="role">Insight Analyst</div>
+          <span class="status-dot">2 analyses done</span>
+        </div>
+        <div class="member" data-chat="otto">
+          <div class="portrait" data-portrait="otto"></div>
+          <div class="name">Otto <span class="ai-tag">AI</span></div>
+          <div class="role">Commitment Tracker</div>
+          <span class="status-dot">7 open · 1 drifting</span>
+        </div>
+        <div class="member" data-chat="nora">
+          <div class="portrait" data-portrait="nora"></div>
+          <div class="name">Nora <span class="ai-tag">AI</span></div>
+          <div class="role">Decision Drafter</div>
+          <span class="status-dot">2 drafts ready</span>
+        </div>
+      </div>
+      <div class="org" id="teamOrg" style="display:none">
+        <div class="org-tree">
+          <div class="node you static">
+            <div class="portrait" data-portrait="you"></div>
+            <div class="name">You</div>
+            <div class="role">Founder</div>
+          </div>
+          <div class="connector"></div>
+          <div class="node ai" data-chat="emma">
+            <div class="portrait" data-portrait="emma"></div>
+            <div class="name">Emma <span class="ai-tag">AI</span></div>
+            <div class="role">Chief of Staff</div>
+          </div>
+          <div class="connector"></div>
+          <div class="connector wide"></div>
+          <div class="row-4">
+            <div class="node ai" data-chat="oscar">
+              <div class="portrait" data-portrait="oscar"></div>
+              <div class="name">Oscar <span class="ai-tag">AI</span></div>
+              <div class="role">Signal Scout</div>
+            </div>
+            <div class="node ai" data-chat="iris">
+              <div class="portrait" data-portrait="iris"></div>
+              <div class="name">Iris <span class="ai-tag">AI</span></div>
+              <div class="role">Insight Analyst</div>
+            </div>
+            <div class="node ai" data-chat="otto">
+              <div class="portrait" data-portrait="otto"></div>
+              <div class="name">Otto <span class="ai-tag">AI</span></div>
+              <div class="role">Commitment Tracker</div>
+            </div>
+            <div class="node ai" data-chat="nora">
+              <div class="portrait" data-portrait="nora"></div>
+              <div class="name">Nora <span class="ai-tag">AI</span></div>
+              <div class="role">Decision Drafter</div>
+            </div>
+          </div>
+          <div class="humans-branch">
+            <div class="humans-label">Human collaborators</div>
+            <div class="humans-row">
+              <div class="node human static" data-profile="anna">
+                <div class="portrait" data-portrait="anna"></div>
+                <div class="name">Anna <span class="human-tag">HUMAN</span></div>
+                <div class="role">EA / Operations Lead</div>
+              </div>
+              <div class="node human static" data-profile="mikael">
+                <div class="portrait" data-portrait="mikael"></div>
+                <div class="name">Mikael <span class="human-tag">HUMAN</span></div>
+                <div class="role">Head of Product</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="section-label">
+        <h2>Workflow</h2>
+        <span>Signal → Decision · Runs continuously</span>
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step-num">01</div><div class="step-name">Oscar notices</div><div class="step-desc">Something changed — an email, a meeting, a customer signal.</div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-name">Iris interprets</div><div class="step-desc">Connects the dots and asks whether it truly matters.</div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-name">Otto checks</div><div class="step-desc">Confirms it isn't already handled or drifting elsewhere.</div></div>
+        <div class="step"><div class="step-num">04</div><div class="step-name">Nora drafts</div><div class="step-desc">Prepares the decision card and a ready reply.</div></div>
+        <div class="step"><div class="step-num">05</div><div class="step-name">Emma escalates</div><div class="step-desc">Only if it truly needs you. Otherwise, silence.</div></div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Z2G Agency · Decision Desk v1.2 · Powered by Microsoft Scout · All activity is private to your workspace
+    </footer>
+  </div>
+
+  <!-- ================= DECISION PAGE ================= -->
+  <div class="decision-page dp" id="decisionPage"></div>
+
+  <!-- ================= ACTIVITY BLADE ================= -->
+  <aside class="chat-panel activity-panel" id="activityPanel" aria-hidden="true">
+    <div class="chat-head">
+      <div class="who">
+        <div class="who-name" id="activityTitle">Activity Feed</div>
+        <div class="who-role" id="activitySubtitle">Your whole team, chronological</div>
+      </div>
+      <button class="chat-close" id="activityClose" aria-label="Close activity">✕</button>
+    </div>
+    <div class="activity-filters">
+      <div class="agent-chips" id="agentChips"></div>
+      <div class="tabs" id="activityTabs" style="margin-bottom:0;padding-bottom:0;border-bottom:none">
+        <button class="tab on" data-atab="all">All</button>
+        <button class="tab" data-atab="working">Working</button>
+        <button class="tab" data-atab="completed">Done</button>
+        <button class="tab" data-atab="pending">Pending</button>
+      </div>
+    </div>
+    <div class="chat-body" id="activityFeed"></div>
+  </aside>
+
+  <!-- ================= CHAT PANEL ================= -->
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="chat-panel" id="chatPanel" aria-hidden="true">
+    <div class="chat-head">
+      <div class="portrait" id="chatPortrait"></div>
+      <div class="who">
+        <div class="who-name" id="chatName"></div>
+        <div class="who-role" id="chatRole"></div>
+      </div>
+      <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="prompts">
+      <div class="prompts-label">Suggested</div>
+      <div class="prompt-list" id="promptList"></div>
+    </div>
+  </aside>
+
+  <!-- ================= ASK EMMA FAB ================= -->
+  <button class="ask-emma" id="askEmma">
+    <span class="portrait" data-portrait="emma"></span>
+    Ask Emma
+  </button>
+
+  <div class="profile-card" id="profileCard" role="dialog" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="keynote-morph" id="keynoteMorph" aria-hidden="true"><div class="keynote-morph-mark">MICROSOFT SCOUT</div></div>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    /* =========================================================
+     * PORTRAITS
+     * ======================================================= */
+    function portrait(cfg) {
+      const src = cfg.img || "";
+      if (src) {
+        return `<img src="${src}" alt="" style="display:block;width:100%;height:100%;object-fit:cover;" />`;
+      }
+      // Fallback SVG (kept for safety)
+      const { skin, hair, hairStyle, accent } = cfg;
+      const hairPath = {
+        short: `<path d="M20 42 Q20 22 50 22 Q80 22 80 42 L80 46 Q70 34 50 34 Q30 34 20 46 Z" fill="${hair}"/>`,
+        sweep: `<path d="M22 44 Q22 20 50 20 Q82 20 80 46 Q72 30 55 32 Q40 34 32 44 Q26 50 22 44 Z" fill="${hair}"/>`,
+        bob: `<path d="M18 50 Q16 22 50 20 Q84 22 82 50 Q80 42 78 52 L78 60 Q65 58 50 58 Q35 58 22 60 L22 52 Q20 42 18 50 Z" fill="${hair}"/>`,
+        wave: `<path d="M20 46 Q18 22 50 20 Q82 22 80 48 Q76 34 62 34 Q56 30 50 34 Q42 30 36 34 Q26 36 20 46 Z" fill="${hair}"/>`,
+        undercut: `<path d="M24 40 Q24 20 50 20 Q76 20 76 40 Q68 30 50 30 Q34 30 24 40 Z" fill="${hair}"/>`,
+        long: `<path d="M18 54 Q14 22 50 20 Q86 22 82 54 L82 68 Q78 60 78 54 Q66 56 50 56 Q34 56 22 54 Q22 60 18 68 Z" fill="${hair}"/>`,
+        back: `<path d="M22 42 Q22 22 50 22 Q78 22 78 42 Q72 34 50 34 Q28 34 22 42 Z M78 42 Q84 46 80 60 Q78 50 74 46 Z" fill="${hair}"/>`,
+        curly: `<circle cx="30" cy="30" r="7" fill="${hair}"/><circle cx="42" cy="24" r="7" fill="${hair}"/><circle cx="55" cy="22" r="7" fill="${hair}"/><circle cx="68" cy="26" r="7" fill="${hair}"/><circle cx="74" cy="36" r="7" fill="${hair}"/><circle cx="26" cy="40" r="6" fill="${hair}"/>`,
+      }[hairStyle];
+      return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect width="100" height="100" fill="${accent}"/>
+  <rect x="42" y="66" width="16" height="14" rx="4" fill="${skin}"/>
+  <path d="M10 100 Q10 78 50 76 Q90 78 90 100 Z" fill="#ffffff" opacity="0.35"/>
+  <ellipse cx="50" cy="48" rx="24" ry="26" fill="${skin}"/>
+  ${hairPath}
+  <circle cx="41" cy="50" r="1.6" fill="#2a2a2a"/>
+  <circle cx="59" cy="50" r="1.6" fill="#2a2a2a"/>
+  <path d="M44 60 Q50 63 56 60" stroke="#2a2a2a" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+</svg>`;
+    }
+
+    const people = {
+      you:    { img: "assets/images/portraits/you.jpg",    name: "You",    role: "Founder" },
+      emma:   { img: "assets/images/portraits/emma.jpg",   name: "Emma",   role: "Chief of Staff [AI]",
+        type: "ai", status: "Coordinating",
+        bio: "Coordinates the digital team and filters everything down to what needs your judgment. Never forwards updates without a recommendation.",
+        activity: [8, 12, 9, 14, 11, 16, 13], last: { text: "Escalated Nordwind pilot decision", when: "21:30" },
+        meta: { Reports: "Direct to you", Handles: "Escalations, tradeoffs, tone", Today: "2 items surfaced · 12 filtered", Trained: "Your voice & priorities" } },
+      oscar:  { img: "assets/images/portraits/oscar.jpg",  name: "Oscar",  role: "Signal Scout [AI]",
+        type: "ai", status: "Listening",
+        bio: "Watches inbox, calendar, Teams, docs, and public sources. Only surfaces what genuinely changed — not everything that happened.",
+        activity: [22, 18, 25, 19, 27, 15, 14], last: { text: "Flagged Nordwind CTO follow-up", when: "18:12" },
+        meta: { Reports: "To Emma", Handles: "Signal detection", Today: "14 signals · 3 flagged", Sources: "Outlook, Teams, Web" } },
+      iris:   { img: "assets/images/portraits/iris.jpg",   name: "Iris",   role: "Insight Analyst [AI]",
+        type: "ai", status: "Interpreting",
+        bio: "Takes Oscar's signals and connects the dots. Quantifies impact and asks whether something truly warrants a decision.",
+        activity: [4, 6, 3, 7, 5, 4, 6], last: { text: "Connected 3 signals into Nordwind case", when: "19:04" },
+        meta: { Reports: "To Emma", Handles: "Analysis & patterns", Today: "2 analyses complete", Focus: "Nordwind pilot · Pricing" } },
+      otto:   { img: "assets/images/portraits/otto.jpg",   name: "Otto",   role: "Commitment Tracker [AI]",
+        type: "ai", status: "Watching",
+        bio: "Tracks every promise, deadline, and open loop across your work. Surfaces things that are quietly drifting before they become urgent.",
+        activity: [9, 7, 11, 8, 10, 12, 7], last: { text: "Flagged board update as drifting", when: "17:20" },
+        meta: { Reports: "To Emma", Handles: "Commitments & drift", Today: "7 open · 1 drifting", Watching: "Board update · 2 replies" } },
+      nora:   { img: "assets/images/portraits/nora.jpg",   name: "Nora",   role: "Decision Drafter [AI]",
+        type: "ai", status: "Drafting",
+        bio: "Writes replies, updates, and drafts in your voice. Prepares the one-page decision card so you can decide in seconds.",
+        activity: [3, 5, 4, 6, 3, 4, 2], last: { text: "Prepared board update short version", when: "19:58" },
+        meta: { Reports: "To Emma", Handles: "Drafts & replies", Today: "2 drafts ready", Style: "Trained on 47 of your emails" } },
+      anna:   { img: "assets/images/portraits/anna.jpg",   name: "Anna",   role: "EA / Operations Lead",
+        type: "human", status: "Available",
+        bio: "Human executive assistant. Partners with Emma to translate decisions into real-world execution — scheduling, logistics, follow-through.",
+        activity: [6, 5, 8, 7, 9, 6, 5], last: { text: "Confirmed Volvo pilot capacity with Otto", when: "20:11" },
+        meta: { Reports: "To you", Partners: "Emma [AI]", Timezone: "Europe/Stockholm", Contact: "anna@z2g.agency" } },
+      mikael: { img: "assets/images/portraits/mikael.jpg", name: "Mikael", role: "Head of Product",
+        type: "human", status: "In a meeting",
+        bio: "Human head of product. Receives specific signals from Iris and owns the product roadmap and customer-facing calls.",
+        activity: [4, 6, 3, 5, 7, 4, 3], last: { text: "Reviewed Iris's Nordwind pattern analysis", when: "16:40" },
+        meta: { Reports: "To you", Partners: "Iris [AI]", Timezone: "Europe/Copenhagen", Contact: "mikael@z2g.agency" } },
+    };
+
+    document.querySelectorAll("[data-portrait]").forEach((el) => {
+      const key = el.dataset.portrait;
+      if (people[key]) el.innerHTML = portrait(people[key]);
+    });
+
+    /* =========================================================
+     * DECISIONS DATA
+     * ======================================================= */
+    const decisions = [
+      // ===== PENDING =====
+      {
+        id: "nordwind",
+        status: "pending",
+        title: "Should we accept the pilot with Nordwind Retail?",
+        preview: "Iris connected three signals: two positive customer calls this week, a warm intro from your investor, and a clear budget line in their Q4 plan. Otto confirms no conflict with the Volvo pilot.",
+        recommendation: "Approve the pilot. Nora has drafted the reply.",
+        time: "21:30",
+        summary: "Nordwind Retail wants to run a 6-week pilot starting mid-October. Their CTO already spoke with you at the summit. The signals are aligned, terms are standard, and no other commitment blocks it. Emma recommends moving forward tonight.",
+        trail: [
+          { who: "oscar", when: "18:12", what: "Picked up a follow-up email from Nordwind's CTO referencing your summit conversation." },
+          { who: "iris",  when: "19:04", what: "Connected the email with two positive customer calls and their published Q4 budget line for AI pilots." },
+          { who: "otto",  when: "20:11", what: "Verified no conflict with the Volvo pilot; capacity confirmed with Anna." },
+          { who: "nora",  when: "20:47", what: "Drafted a warm, 90-word acceptance reply in your voice." },
+          { who: "emma",  when: "21:30", what: "Escalated to you as a single decision with recommendation." },
+        ],
+        draft: `Hi Jonas,\n\nThank you for the follow-up — great to reconnect after the summit.\n\nWe'd love to move forward with the 6-week pilot starting mid-October. The scope you outlined fits well with what we're already running, and I don't see any blockers on our side.\n\nI'll ask Anna to send a short kickoff plan and calendar options this week.\n\nBest,\nUsman`,
+      },
+      {
+        id: "board",
+        status: "pending",
+        title: "Board update is drifting — send the short version now?",
+        preview: "Otto noticed the monthly board note is 6 days overdue. Iris compiled the three real changes since last month. Nora produced a 180-word version that matches your voice.",
+        recommendation: "Send the short version tonight, keep the long one for the meeting.",
+        time: "20:55",
+        summary: "Your board expects a monthly written update. It is 6 days late and starting to attract polite reminders. Iris found only three real changes worth reporting. A short, honest note tonight preserves trust and buys time for the full narrative at next week's meeting.",
+        trail: [
+          { who: "otto",  when: "17:20", what: "Flagged the board update as 6 days overdue; two directors have sent gentle reminders." },
+          { who: "iris",  when: "18:35", what: "Compiled the three real changes since last month: revenue mix, hiring pause, Nordwind pilot." },
+          { who: "oscar", when: "19:10", what: "Confirmed no material risks or investor concerns in this week's inbox." },
+          { who: "nora",  when: "19:58", what: "Drafted a 180-word short version matching your voice from previous updates." },
+          { who: "emma",  when: "20:55", what: "Escalated with the recommendation to send the short version tonight." },
+        ],
+        draft: `Hi all,\n\nA short note ahead of next week's meeting.\n\nThree things worth flagging this month:\n\n1. Revenue mix continues to shift toward enterprise (now 62%, up from 54%).\n2. We've paused net-new hiring outside of two critical product roles.\n3. The Nordwind Retail pilot is confirmed and starts mid-October.\n\nA fuller narrative and Q&A at our meeting on the 3rd. Anna will send materials 48 hours in advance.\n\nBest,\nUsman`,
+      },
+
+      // ===== UPCOMING =====
+      {
+        id: "aws",
+        status: "upcoming",
+        title: "AWS enterprise contract — renew, renegotiate, or move?",
+        preview: "Iris is analyzing 12 months of spend against alternate providers. Otto is tracking the 30-day renewal window. Nora is standing by to prepare options.",
+        eta: "Emma will escalate this by tomorrow 10:00",
+        owner: "iris",
+        time: "in 12h",
+        summary: "The AWS enterprise agreement auto-renews in 30 days. Iris is midway through a spend and utilization analysis; two alternatives are worth comparing. Emma will escalate once Iris has quantified the delta.",
+        progress: [
+          { who: "iris",  state: "working",   what: "Analyzing 12 months of spend and utilization patterns.", pct: 60 },
+          { who: "otto",  state: "tracking",  what: "Watching the 30-day renewal window; auto-renew fires Sep 24." },
+          { who: "nora",  state: "queued",    what: "Prepared to draft renewal, renegotiate, or migration message once decision path is clear." },
+          { who: "emma",  state: "queued",    what: "Will escalate with a recommended path by tomorrow 10:00." },
+        ],
+      },
+      {
+        id: "hiring",
+        status: "upcoming",
+        title: "Hiring priority: senior PM or senior designer?",
+        preview: "Mikael flagged the tradeoff. Iris is quantifying pipeline impact. Otto is checking Q4 budget headroom.",
+        eta: "Emma will escalate this by Thursday",
+        owner: "iris",
+        time: "in 2 days",
+        summary: "Only one senior role can be filled this quarter under the current hiring pause. Mikael has a strong opinion (designer). Iris is running the pipeline math to test whether that holds up against the enterprise sales motion.",
+        progress: [
+          { who: "iris",   state: "working",  what: "Running the pipeline impact math on both roles.", pct: 45 },
+          { who: "otto",   state: "working",  what: "Verifying Q4 budget headroom with Anna.", pct: 70 },
+          { who: "mikael", state: "input",    what: "Human input logged: strong preference for designer, will not veto." },
+          { who: "emma",   state: "queued",   what: "Will surface tradeoff and recommendation Thursday." },
+        ],
+      },
+      {
+        id: "investor",
+        status: "upcoming",
+        title: "Q3 investor memo — approve outline before drafting?",
+        preview: "Nora is preparing a structural outline based on last quarter's memo and the three real changes this month. You review outline first, then the draft.",
+        eta: "Nora will surface the outline Wednesday",
+        owner: "nora",
+        time: "in 1 day",
+        summary: "The Q3 investor memo goes out in 10 days. Nora prefers to get your approval on structure before writing the full memo — saves a round of edits later. Iris has already provided the substance.",
+        progress: [
+          { who: "iris",   state: "done",     what: "Compiled Q3 material changes and revenue narrative." },
+          { who: "nora",   state: "working",  what: "Drafting a 5-section outline in your voice.", pct: 55 },
+          { who: "emma",   state: "queued",   what: "Will surface outline for your approval Wednesday morning." },
+        ],
+      },
+
+      // ===== HANDLED =====
+      {
+        id: "volvo",
+        status: "handled",
+        title: "Extend the Volvo pilot by 4 weeks",
+        preview: "Approved yesterday at 14:20. Nora sent the confirmation. Otto is tracking milestones.",
+        outcome: "Approved. Extension confirmed and running.",
+        time: "Yesterday · 14:20",
+        summary: "You approved a 4-week extension of the Volvo pilot after Iris confirmed strong usage metrics and one open feature request. The extension is signed and running.",
+        result: "Reply sent to Volvo's project lead. Kickoff for extension phase scheduled for October 2. Otto is tracking the three follow-up commitments made in the message.",
+        trail: [
+          { who: "iris",  when: "Mon 11:30", what: "Confirmed strong usage metrics and one high-value feature request." },
+          { who: "otto",  when: "Mon 12:15", what: "Verified no capacity conflicts with the Nordwind pipeline." },
+          { who: "nora",  when: "Mon 13:40", what: "Drafted the 4-week extension acceptance." },
+          { who: "emma",  when: "Mon 14:00", what: "Escalated with a strong recommendation to extend." },
+          { who: "emma",  when: "Yesterday 14:20", what: "You approved. Nora sent, Otto is tracking outcomes." },
+        ],
+      },
+      {
+        id: "devsum",
+        status: "handled",
+        title: "Decline the DevSum keynote slot",
+        preview: "Declined yesterday at 11:05. Nora sent a warm decline. Otto suggested Q1 as an alternative.",
+        outcome: "Declined with warmth. Q1 alternative offered.",
+        time: "Yesterday · 11:05",
+        summary: "You declined a keynote invitation that clashed with your board week. Nora drafted a warm decline suggesting Q1 instead. The organizer accepted the alternative on the same day.",
+        result: "Reply sent to DevSum organizer. Q1 slot tentatively reserved. Otto has the calendar hold in place.",
+        trail: [
+          { who: "oscar", when: "Sun 09:40", what: "Detected keynote invitation email from DevSum." },
+          { who: "otto",  when: "Sun 10:15", what: "Flagged the calendar conflict with board week." },
+          { who: "nora",  when: "Sun 18:22", what: "Drafted a warm decline offering a Q1 alternative." },
+          { who: "emma",  when: "Yesterday 09:50", what: "Escalated with recommendation to decline." },
+          { who: "emma",  when: "Yesterday 11:05", what: "You declined. Nora sent, organizer accepted the Q1 alternative." },
+        ],
+      },
+      {
+        id: "allhands",
+        status: "handled",
+        title: "Approve Q3 all-hands agenda",
+        preview: "Approved Monday. Anna sent the invite and materials. 42 acceptances so far.",
+        outcome: "Approved. Invite sent, 42 accepted.",
+        time: "Monday · 09:30",
+        summary: "You approved a lean 45-minute all-hands agenda focused on the three real Q3 changes. Anna sent the invite, Mikael prepared the product section, and Nora produced speaker notes.",
+        result: "All-hands scheduled for October 4. Materials shared 48 hours in advance. Nora prepared your speaker notes. Otto is tracking two team questions raised in advance.",
+        trail: [
+          { who: "iris",   when: "Mon 08:10", what: "Compiled the three real changes for the quarter." },
+          { who: "nora",   when: "Mon 08:45", what: "Drafted the agenda and your speaker notes." },
+          { who: "mikael", when: "Mon 09:10", what: "Human input: signed off on the product section." },
+          { who: "emma",   when: "Mon 09:20", what: "Escalated with a recommendation to approve as-is." },
+          { who: "emma",   when: "Mon 09:30", what: "You approved. Anna sent the invite; 42 accepted so far." },
+        ],
+      },
+      {
+        id: "raise",
+        status: "handled",
+        title: "Approve raise for engineering team lead",
+        preview: "Approved Friday. HR notified. Manager delivered the news same day.",
+        outcome: "Approved. Delivered same day.",
+        time: "Fri · 16:00",
+        summary: "You approved an out-of-cycle raise for the engineering team lead based on Iris's compensation analysis and Otto's flight-risk signals. HR was notified, and the manager delivered the news the same afternoon.",
+        result: "HR processed the change. Manager delivered the message. Otto is tracking sentiment signals for the next four weeks.",
+        trail: [
+          { who: "otto",   when: "Thu 10:15", what: "Detected quiet flight-risk signals — updated LinkedIn, external calendar blocks." },
+          { who: "iris",   when: "Thu 15:20", what: "Compared compensation vs market and internal peers." },
+          { who: "nora",   when: "Fri 09:30", what: "Drafted the message to HR." },
+          { who: "emma",   when: "Fri 15:40", what: "Escalated with strong recommendation to approve." },
+          { who: "emma",   when: "Fri 16:00", what: "You approved. HR notified same day, message delivered." },
+        ],
+      },
+      {
+        id: "novo",
+        status: "handled",
+        title: "Send partner intro to Novo Nordisk",
+        preview: "Sent Thursday. Warm intro accepted, first meeting scheduled next week.",
+        outcome: "Sent. First meeting confirmed.",
+        time: "Thu · 11:20",
+        summary: "You approved a warm partner intro to Novo Nordisk's innovation lead. Nora drafted the message in your voice and Anna handled the calendar coordination.",
+        result: "Intro sent. Novo Nordisk's innovation lead accepted within 3 hours. First meeting scheduled for next Tuesday.",
+        trail: [
+          { who: "oscar",  when: "Wed 14:00", what: "Detected a mutual connection signal from your investor." },
+          { who: "iris",   when: "Wed 17:30", what: "Confirmed strategic fit and low overlap with existing partners." },
+          { who: "nora",   when: "Thu 09:00", what: "Drafted the warm intro in your voice." },
+          { who: "emma",   when: "Thu 10:45", what: "Escalated with recommendation to send." },
+          { who: "emma",   when: "Thu 11:20", what: "You approved. Message sent, meeting confirmed within hours." },
+        ],
+      },
+    ];
+
+    /* =========================================================
+     * ACTIVITY DATA
+     * ======================================================= */
+    const activity = [
+      // TODAY
+      { day: "Today", who: "emma",   when: "21:30", text: "Escalated Nordwind pilot as a decision on your desk.", cat: "completed" },
+      { day: "Today", who: "emma",   when: "21:15", text: "Filtered 12 low-priority signals into tomorrow's digest.", cat: "completed" },
+      { day: "Today", who: "nora",   when: "20:47", text: "Drafted Nordwind acceptance reply — 90 words, your voice.", cat: "completed" },
+      { day: "Today", who: "otto",   when: "20:11", text: "Verified no Volvo pilot conflict; capacity confirmed with Anna.", cat: "completed" },
+      { day: "Today", who: "nora",   when: "19:58", text: "Prepared short board update (180 words).", cat: "completed" },
+      { day: "Today", who: "oscar",  when: "19:10", text: "Confirmed no material investor risks in this week's inbox.", cat: "completed" },
+      { day: "Today", who: "iris",   when: "19:04", text: "Connected 3 Nordwind signals into a single decision case.", cat: "completed" },
+      { day: "Today", who: "iris",   when: "18:35", text: "Compiled the 3 real board-level changes for this month.", cat: "completed" },
+      { day: "Today", who: "oscar",  when: "18:12", text: "Flagged follow-up email from Nordwind CTO.", cat: "completed" },
+      { day: "Today", who: "otto",   when: "17:20", text: "Flagged board update as 6 days overdue.", cat: "completed" },
+      { day: "Today", who: "iris",   when: "16:10", text: "Analyzing AWS 12-month spend vs alternatives.", cat: "working" },
+      { day: "Today", who: "iris",   when: "15:30", text: "Started competitor job-post pattern analysis.", cat: "working" },
+      { day: "Today", who: "otto",   when: "15:00", text: "Watching 3 open customer replies for drift.", cat: "pending" },
+      { day: "Today", who: "nora",   when: "14:20", text: "Outlining Q3 investor memo (5 sections).", cat: "working" },
+      { day: "Today", who: "oscar",  when: "14:15", text: "Bundled 11 low-signal items into a digest for Emma.", cat: "completed" },
+      { day: "Today", who: "otto",   when: "11:20", text: "Cleared 7 small follow-ups with Anna.", cat: "completed" },
+
+      // YESTERDAY
+      { day: "Yesterday", who: "emma", when: "14:20", text: "You approved the Volvo pilot extension.", cat: "completed" },
+      { day: "Yesterday", who: "emma", when: "11:05", text: "You declined DevSum keynote; Q1 alternative accepted.", cat: "completed" },
+      { day: "Yesterday", who: "otto", when: "10:30", text: "Tracking Volvo extension milestones (3 open).", cat: "pending" },
+      { day: "Yesterday", who: "nora", when: "09:15", text: "Drafted Volvo extension confirmation reply.", cat: "completed" },
+    ];
+
+    const state = { done: {}, decisionTab: "pending", activityTab: "all", activityAgent: "all" };
+
+    /* =========================================================
+     * DECISION CARDS
+     * ======================================================= */
+    function renderDecisions() {
+      const grid = document.getElementById("decisionsGrid");
+      grid.innerHTML = "";
+      const tab = state.decisionTab;
+      const items = decisions.filter((d) => {
+        if (tab === "handled") return d.status === "handled" || state.done[d.id];
+        if (tab === "pending") return d.status === "pending" && !state.done[d.id];
+        return d.status === tab;
+      });
+
+      // Update counts
+      const nPending = decisions.filter(d => d.status === "pending" && !state.done[d.id]).length;
+      const nUpcoming = decisions.filter(d => d.status === "upcoming").length;
+      const nHandled = decisions.filter(d => d.status === "handled" || state.done[d.id]).length;
+      document.getElementById("cnt-pending").textContent = nPending;
+      document.getElementById("cnt-upcoming").textContent = nUpcoming;
+      document.getElementById("cnt-handled").textContent = nHandled;
+      document.getElementById("decisionCount").textContent =
+        `${nPending} pending · ${nUpcoming} upcoming · ${nHandled} handled`;
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--cp-text-muted);border:1px dashed var(--cp-border);border-radius:12px;background:var(--cp-surface)">Nothing to show here right now.</div>`;
+        return;
+      }
+
+      items.forEach((d) => {
+        const wasDone = state.done[d.id];
+        const isHandled = d.status === "handled" || wasDone;
+        const isUpcoming = d.status === "upcoming";
+        const card = document.createElement("article");
+        card.className = "decision" + (isHandled ? " done" : "") + (isUpcoming ? " upcoming" : "");
+
+        let statusBlock = "";
+        if (isHandled) {
+          const outcome = d.outcome || (wasDone ? `${wasDone} — sent by Nora, tracked by Otto.` : "Handled.");
+          statusBlock = `<div class="outcome"><strong>Outcome:</strong> ${outcome}</div>`;
+        } else if (isUpcoming) {
+          statusBlock = `<div class="eta"><strong>Expected:</strong> ${d.eta}</div>`;
+        } else {
+          statusBlock = `<div class="rec"><strong>Recommendation:</strong> ${d.recommendation}</div>`;
+        }
+
+        const pill = isHandled
+          ? `<span class="status-pill handled">Handled</span>`
+          : isUpcoming
+          ? `<span class="status-pill upcoming">Upcoming</span>`
+          : `<span class="status-pill pending">Pending</span>`;
+
+        const timeLabel = isHandled ? d.time : (isUpcoming ? d.time : `· ${d.time}`);
+
+        card.innerHTML = `
+          <div class="decision-head">
+            <span class="from"><span class="mini-avatar" data-portrait="emma"></span> Emma [AI]</span>
+            <span>${isHandled || isUpcoming ? timeLabel : timeLabel}</span>
+            <span style="margin-left:auto">${pill}</span>
+          </div>
+          <h3>${d.title}</h3>
+          <p>${d.preview}</p>
+          ${statusBlock}
+          <div class="open-link">${isHandled ? "View outcome →" : (isUpcoming ? "See progress →" : "Open decision →")}</div>
+        `;
+        card.querySelectorAll("[data-portrait]").forEach((el) => {
+          el.innerHTML = portrait(people[el.dataset.portrait]);
+        });
+        card.addEventListener("click", () => openDecision(d.id));
+        grid.appendChild(card);
+      });
+    }
+
+    /* Tabs */
+    document.querySelectorAll("#decisionTabs .tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.decisionTab = btn.dataset.tab;
+        document.querySelectorAll("#decisionTabs .tab").forEach((b) => b.classList.toggle("on", b === btn));
+        renderDecisions();
+      });
+    });
+
+    /* =========================================================
+     * DECISION PAGE — adapts to status
+     * ======================================================= */
+    function openDecision(id) {
+      const d = decisions.find((x) => x.id === id);
+      if (!d) return;
+      const wasDone = state.done[d.id];
+      const isHandled = d.status === "handled" || wasDone;
+      const isUpcoming = d.status === "upcoming";
+
+      const page = document.getElementById("decisionPage");
+      page.innerHTML = `
+        <button class="back" id="backBtn">← Back to desk</button>
+        <div class="dp-eyebrow">
+          <span class="mini-avatar" data-portrait="emma"></span>
+          ${isHandled ? "Decided" : (isUpcoming ? "Being prepared" : "Escalated")} by Emma [AI]
+          <span style="margin-left:0.6rem">${isHandled ? `<span class="status-pill handled">Handled</span>` : (isUpcoming ? `<span class="status-pill upcoming">Upcoming</span>` : `<span class="status-pill pending">Pending</span>`)}</span>
+        </div>
+        <h1>${d.title}</h1>
+        <div class="summary">${d.summary}</div>
+        ${isHandled ? `
+          <div class="section-label"><h2>Outcome</h2><span>What actually happened</span></div>
+          <div class="draft-box" style="border-left:3px solid var(--cp-success)">${d.result}</div>
+          <div class="section-label"><h2>Signal Trail</h2><span>The full path this decision took</span></div>
+          <div class="trail" id="dpTrail"></div>
+        ` : isUpcoming ? `
+          <div class="section-label"><h2>Team Progress</h2><span>${d.eta}</span></div>
+          <div class="trail" id="dpProgress"></div>
+          <div class="dp-actions" style="margin-top:2rem">
+            <button class="btn primary" id="dpAsk">Ask Emma to escalate now</button>
+            <button class="btn" id="dpNudge">Nudge ${people[d.owner].name}</button>
+          </div>
+        ` : `
+          <div class="section-label"><h2>Signal Trail</h2><span>How this decision came to your desk</span></div>
+          <div class="trail" id="dpTrail"></div>
+          <div class="section-label"><h2>Nora's draft</h2><span>Edit if you'd like, then approve</span></div>
+          <div class="draft-box">
+            <div class="draft-label"><span class="mini-avatar" data-portrait="nora"></span> Prepared by Nora [AI]</div>
+            <textarea class="draft" id="dpDraft" spellcheck="false">${d.draft}</textarea>
+          </div>
+          <div class="dp-actions">
+            <button class="btn primary" id="dpApprove">Approve &amp; Send</button>
+            <button class="btn" id="dpRevise">Send back to Nora</button>
+            <button class="btn" id="dpHold">Hold for tomorrow</button>
+          </div>
+        `}
+      `;
+
+      // Render portraits inside the page
+      page.querySelectorAll("[data-portrait]").forEach((el) => {
+        el.innerHTML = portrait(people[el.dataset.portrait]);
+      });
+
+      // Trail (for handled + pending)
+      const trail = page.querySelector("#dpTrail");
+      if (trail && d.trail) {
+        d.trail.forEach((t) => {
+          const p = people[t.who];
+          const item = document.createElement("div");
+          item.className = "trail-item";
+          item.innerHTML = `
+            <span class="mini-avatar" data-portrait="${t.who}"></span>
+            <div class="who">${p.name} <small>${p.role}</small></div>
+            <div class="what">${t.what}</div>
+            <div class="when">${t.when}</div>
+          `;
+          item.querySelectorAll("[data-portrait]").forEach((el) => {
+            el.innerHTML = portrait(people[el.dataset.portrait]);
+          });
+          trail.appendChild(item);
+        });
+      }
+
+      // Progress (for upcoming)
+      const progress = page.querySelector("#dpProgress");
+      if (progress && d.progress) {
+        d.progress.forEach((t) => {
+          const p = people[t.who];
+          const stateLabel = { working: "Working", tracking: "Tracking", queued: "Queued", done: "Done", input: "Input received" }[t.state] || t.state;
+          const stateColor = t.state === "done" ? "var(--cp-success)" : t.state === "working" ? "var(--cp-accent)" : t.state === "tracking" ? "var(--cp-warning)" : "var(--cp-text-soft)";
+          const pctBar = typeof t.pct === "number"
+            ? `<div style="margin-top:0.5rem;height:4px;background:var(--cp-surface-soft);border-radius:2px;overflow:hidden"><div style="height:100%;width:${t.pct}%;background:${stateColor}"></div></div>`
+            : "";
+          const item = document.createElement("div");
+          item.className = "trail-item";
+          item.innerHTML = `
+            <span class="mini-avatar" data-portrait="${t.who}"></span>
+            <div class="who">${p.name} <small>${p.role}</small></div>
+            <div class="what">${t.what}${pctBar}</div>
+            <div class="when" style="color:${stateColor};font-weight:700">${stateLabel}${typeof t.pct === "number" ? " · " + t.pct + "%" : ""}</div>
+          `;
+          item.querySelectorAll("[data-portrait]").forEach((el) => {
+            el.innerHTML = portrait(people[el.dataset.portrait]);
+          });
+          progress.appendChild(item);
+        });
+      }
+
+      document.body.classList.add("decision-mode");
+      page.classList.add("on");
+      window.scrollTo({ top: 0, behavior: "instant" });
+
+      document.getElementById("backBtn").onclick = closeDecision;
+
+      const finish = (label, toast) => {
+        state.done[d.id] = label;
+        showToast(toast);
+        closeDecision();
+        renderDecisions();
+      };
+      const approve = document.getElementById("dpApprove");
+      if (approve) approve.onclick = () => finish("Sent", "Approved. Nora sent the reply and Otto is tracking it.");
+      const revise = document.getElementById("dpRevise");
+      if (revise) revise.onclick = () => finish("Revised", "Sent back to Nora. She'll refine and re-surface it.");
+      const hold = document.getElementById("dpHold");
+      if (hold) hold.onclick = () => finish("On hold", "Held for tomorrow. Otto will remind Emma in the morning.");
+      const ask = document.getElementById("dpAsk");
+      if (ask) ask.onclick = () => { showToast("Emma will escalate this as soon as inputs are ready."); closeDecision(); };
+      const nudge = document.getElementById("dpNudge");
+      if (nudge) nudge.onclick = () => { showToast(`${people[d.owner].name} has been asked to prioritize this.`); closeDecision(); };
+    }
+    function closeDecision() {
+      document.body.classList.remove("decision-mode");
+      document.getElementById("decisionPage").classList.remove("on");
+    }
+
+    /* =========================================================
+     * ACTIVITY FEED (blade)
+     * ======================================================= */
+    const activityPanel = document.getElementById("activityPanel");
+
+    function renderActivityChips() {
+      const chips = document.getElementById("agentChips");
+      chips.innerHTML = "";
+      const all = document.createElement("button");
+      all.className = "agent-chip all" + (state.activityAgent === "all" ? " on" : "");
+      all.textContent = "All team";
+      all.addEventListener("click", () => setActivityAgent("all"));
+      chips.appendChild(all);
+      ["emma","oscar","iris","otto","nora","anna","mikael"].forEach((k) => {
+        const p = people[k];
+        const c = document.createElement("button");
+        c.className = "agent-chip" + (state.activityAgent === k ? " on" : "");
+        c.innerHTML = `<span class="portrait" data-portrait="${k}"></span>${p.name}`;
+        c.querySelector("[data-portrait]").innerHTML = portrait(p);
+        c.addEventListener("click", () => setActivityAgent(k));
+        chips.appendChild(c);
+      });
+    }
+
+    function setActivityAgent(key) {
+      state.activityAgent = key;
+      renderActivityChips();
+      renderActivity();
+      updateActivityHeader();
+    }
+
+    function updateActivityHeader() {
+      const a = state.activityAgent;
+      if (a === "all") {
+        document.getElementById("activityTitle").textContent = "Activity Feed";
+        document.getElementById("activitySubtitle").textContent = "Your whole team, chronological";
+      } else {
+        document.getElementById("activityTitle").textContent = `${people[a].name}'s Activity`;
+        document.getElementById("activitySubtitle").textContent = people[a].role;
+      }
+    }
+
+    function renderActivity() {
+      const feed = document.getElementById("activityFeed");
+      feed.innerHTML = "";
+      const tab = state.activityTab;
+      const agent = state.activityAgent;
+      const items = activity.filter((a) => {
+        const catOk = tab === "all" || a.cat === tab;
+        const agentOk = agent === "all" || a.who === agent;
+        return catOk && agentOk;
+      });
+      if (items.length === 0) {
+        feed.innerHTML = `<div style="padding:2rem;text-align:center;color:var(--cp-text-muted);border:1px dashed var(--cp-border);border-radius:12px;background:var(--cp-surface)">No activity in this filter.</div>`;
+        return;
+      }
+      let currentDay = "";
+      items.forEach((a) => {
+        if (a.day !== currentDay) {
+          currentDay = a.day;
+          const h = document.createElement("div");
+          h.className = "activity-day";
+          h.textContent = currentDay;
+          feed.appendChild(h);
+        }
+        const p = people[a.who];
+        const catPill = a.cat === "working"
+          ? `<span class="status-pill pending" style="background:rgba(0,120,212,0.12);color:var(--cp-link)">Working</span>`
+          : a.cat === "completed"
+          ? `<span class="status-pill handled">Completed</span>`
+          : a.cat === "pending"
+          ? `<span class="status-pill upcoming">Pending</span>`
+          : "";
+        const item = document.createElement("div");
+        item.className = "activity-item";
+        item.style.marginBottom = "0.55rem";
+        item.innerHTML = `
+          <span class="portrait" data-portrait="${a.who}"></span>
+          <div class="a-body">
+            <div class="a-top"><span class="a-who">${p.name}</span> ${catPill}</div>
+            <div class="a-text" style="white-space:normal">${a.text}</div>
+          </div>
+          <div class="a-when">${a.when}</div>
+        `;
+        item.querySelectorAll("[data-portrait]").forEach((el) => {
+          el.innerHTML = portrait(people[el.dataset.portrait]);
+        });
+        feed.appendChild(item);
+      });
+    }
+
+    document.querySelectorAll("#activityTabs .tab").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.activityTab = btn.dataset.atab;
+        document.querySelectorAll("#activityTabs .tab").forEach((b) => b.classList.toggle("on", b === btn));
+        renderActivity();
+      });
+    });
+
+    function openActivity(agentKey) {
+      state.activityAgent = agentKey || "all";
+      renderActivityChips();
+      renderActivity();
+      updateActivityHeader();
+      activityPanel.classList.add("on");
+      backdrop.classList.add("on");
+      activityPanel.setAttribute("aria-hidden", "false");
+    }
+    function closeActivity() {
+      activityPanel.classList.remove("on");
+      backdrop.classList.remove("on");
+      activityPanel.setAttribute("aria-hidden", "true");
+    }
+    document.getElementById("activityBtn").addEventListener("click", () => openActivity("all"));
+    document.getElementById("activityClose").addEventListener("click", closeActivity);
+
+    /* =========================================================
+     * CHAT PANEL — scripted per colleague
+     * ======================================================= */
+    const scripts = {
+      emma: {
+        greeting: "Hi. I'm keeping things quiet unless something needs you. Two decisions are on your desk right now, and one is time-sensitive. What would you like to look at?",
+        prompts: [
+          { text: "What needs my attention today?",
+            reply: "Two things. The Nordwind pilot — Iris and Otto both say it's clean, Nora drafted the reply, and I'd approve it tonight. And the board update is 6 days late; I'd send the short version now and keep the fuller narrative for the meeting.",
+            handoff: null },
+          { text: "Anything drifting?",
+            reply: "One item. The board update. Otto flagged it, I have it queued. Beyond that, nothing is stuck — Oscar and Iris would have escalated already.",
+            handoff: { to: "otto", label: "Ask Otto to show me all drifting items" } },
+          { text: "Draft the board update",
+            reply: "Nora already prepared a 180-word version. Iris pulled the three real changes this month. Open the board decision to review and send.",
+            handoff: null },
+          { text: "Summarize what the team did today",
+            reply: "Oscar caught 14 signals, 3 mattered. Iris connected two of them into decisions. Otto cleared 7 open commitments. Nora prepared 2 drafts. I filtered everything down to the two items now on your desk.",
+            handoff: null },
+        ],
+      },
+      oscar: {
+        greeting: "Hey. I keep an eye on inbox, calendar, Teams, and public signals. I only surface what looks like it truly changed. What do you want to see?",
+        prompts: [
+          { text: "What did you notice today?",
+            reply: "Three things worth flagging. A follow-up from Nordwind's CTO. Two positive customer calls this morning. And a soft signal from a competitor's job post that might be relevant to Iris.",
+            handoff: null },
+          { text: "Show me the Nordwind signal",
+            reply: "It came in at 18:12. Warm, referenced your summit conversation, mentioned a Q4 budget line. I passed it straight to Iris to interpret.",
+            handoff: { to: "iris", label: "Ask Iris what she made of it" } },
+          { text: "Any noise I should ignore?",
+            reply: "Yes — 11 items today. I bundled them into a low-priority digest. Emma has the list if you'd like her to summarize.",
+            handoff: null },
+        ],
+      },
+      iris: {
+        greeting: "Hi. I take Oscar's raw signals and ask 'so what?'. I connect dots across sources and quantify what matters. Ask me anything.",
+        prompts: [
+          { text: "Why is Nordwind worth the pilot?",
+            reply: "Three signals aligned in the same week: the CTO's warm follow-up, two customer calls that referenced their brand positively, and their published Q4 budget line for AI pilots. That kind of convergence is rare — I'd take it seriously.",
+            handoff: null },
+          { text: "What's changed for the board this month?",
+            reply: "Three real changes. Revenue mix shifted enterprise +8 points. Hiring is paused outside two product roles. Nordwind pilot is confirmed. Everything else is noise for board-level.",
+            handoff: null },
+          { text: "Any patterns I'm missing?",
+            reply: "One quiet one. Three of your top customers mentioned pricing this week — separately. It doesn't warrant a decision yet, but Otto is watching for a fourth mention.",
+            handoff: { to: "otto", label: "Ask Otto to keep tracking it" } },
+        ],
+      },
+      otto: {
+        greeting: "Hi. I track promises, commitments, and things that were supposed to happen. I make sure nothing quietly drifts. What would you like to check?",
+        prompts: [
+          { text: "What's drifting right now?",
+            reply: "Just one item at leadership level: the board update, 6 days late. Below that, seven small follow-ups from last week that I'm handling with Anna.",
+            handoff: null },
+          { text: "Am I owing anyone a reply?",
+            reply: "Two responses are aging. Your co-founder asked about hiring priorities on Thursday. And a candidate is waiting on the CTO role. Both are in Nora's queue for a draft.",
+            handoff: { to: "nora", label: "Ask Nora to prepare both replies" } },
+          { text: "What did the team promise this week?",
+            reply: "Twelve promises total, ten already fulfilled. The two open ones are the board update and a partner intro. Emma has both.",
+            handoff: null },
+        ],
+      },
+      nora: {
+        greeting: "Hi. I write things — replies, updates, notes, drafts. I try to sound like you, not like a template. What can I prepare?",
+        prompts: [
+          { text: "Draft the Nordwind reply",
+            reply: "Already done. Warm, 90 words, matches how you replied to Jonas last time. It's in the Nordwind decision — open it to review or edit.",
+            handoff: null },
+          { text: "Prepare the short board update",
+            reply: "Ready. 180 words, three points, honest tone, no hedging. Iris gave me the substance, I shaped the voice. Open the board decision to review.",
+            handoff: null },
+          { text: "Write me a thank-you for Anna",
+            reply: "Happy to. Something short and specific, or warmer and personal? I can have both versions ready in 30 seconds.",
+            handoff: null },
+        ],
+      },
+    };
+
+    let currentChat = null;
+    const chatPanel = document.getElementById("chatPanel");
+    const chatBody = document.getElementById("chatBody");
+    const backdrop = document.getElementById("backdrop");
+
+    function openChat(key) {
+      currentChat = key;
+      const p = people[key];
+      const s = scripts[key];
+      document.getElementById("chatName").textContent = p.name;
+      document.getElementById("chatRole").textContent = p.role;
+      document.getElementById("chatPortrait").innerHTML = portrait(p);
+      chatBody.innerHTML = "";
+      appendBubble("them", s.greeting);
+      renderPrompts();
+      chatPanel.classList.add("on");
+      backdrop.classList.add("on");
+      chatPanel.setAttribute("aria-hidden", "false");
+    }
+
+    function closeChat() {
+      chatPanel.classList.remove("on");
+      backdrop.classList.remove("on");
+      chatPanel.setAttribute("aria-hidden", "true");
+      currentChat = null;
+    }
+
+    function appendBubble(who, text) {
+      const b = document.createElement("div");
+      b.className = "bubble " + who;
+      b.textContent = text;
+      chatBody.appendChild(b);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function appendTyping() {
+      const t = document.createElement("div");
+      t.className = "typing";
+      t.innerHTML = "<span></span><span></span><span></span>";
+      chatBody.appendChild(t);
+      chatBody.scrollTop = chatBody.scrollHeight;
+      return t;
+    }
+
+    function renderPrompts() {
+      const list = document.getElementById("promptList");
+      list.innerHTML = "";
+      const s = scripts[currentChat];
+      s.prompts.forEach((p) => {
+        const btn = document.createElement("button");
+        btn.className = "prompt";
+        btn.textContent = p.text;
+        btn.addEventListener("click", () => sendPrompt(p));
+        list.appendChild(btn);
+      });
+    }
+
+    function sendPrompt(p) {
+      appendBubble("me", p.text);
+      const typing = appendTyping();
+      setTimeout(() => {
+        typing.remove();
+        appendBubble("them", p.reply);
+        if (p.handoff) {
+          const h = document.createElement("button");
+          h.className = "handoff";
+          h.textContent = "→ " + p.handoff.label;
+          h.addEventListener("click", () => openChat(p.handoff.to));
+          const list = document.getElementById("promptList");
+          list.appendChild(h);
+          setTimeout(() => h.remove(), 8000);
+        }
+      }, 900);
+    }
+
+    document.getElementById("chatClose").onclick = closeChat;
+    backdrop.onclick = () => { closeChat(); closeActivity(); };
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { closeChat(); closeActivity(); }
+    });
+
+    document.querySelectorAll("[data-chat]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openChat(el.dataset.chat);
+      });
+    });
+
+    document.getElementById("askEmma").addEventListener("click", () => openChat("emma"));
+
+    /* =========================================================
+     * PROFILE CARD (hover popover)
+     * ======================================================= */
+    const profileCard = document.getElementById("profileCard");
+    let pcTimer, pcHideTimer, pcCurrent = null;
+
+    function buildProfileCard(key) {
+      const p = people[key];
+      if (!p || !p.bio) return "";
+      const isAI = p.type === "ai";
+      const metaRows = Object.entries(p.meta || {})
+        .map(([k, v]) => `<div class="pc-row"><div class="k">${k}</div><div class="v">${v}</div></div>`)
+        .join("");
+      const actions = isAI
+        ? `<button class="pc-btn primary" data-pc-act="chat" data-pc-key="${key}">Open chat</button>
+           <button class="pc-btn" data-pc-act="task" data-pc-key="${key}">Assign task</button>
+           <button class="pc-btn" data-pc-act="log" data-pc-key="${key}">Activity</button>`
+        : `<button class="pc-btn primary" data-pc-act="message" data-pc-key="${key}">Message</button>
+           <button class="pc-btn" data-pc-act="schedule" data-pc-key="${key}">Schedule</button>`;
+
+      // Sparkline: 7 daily bars, last is "today"
+      const days = p.activity || [0,0,0,0,0,0,0];
+      const max = Math.max(...days, 1);
+      const barW = 12, barGap = 6, count = days.length;
+      const totalW = count * barW + (count - 1) * barGap;
+      const bars = days.map((v, i) => {
+        const h = Math.max(2, (v / max) * 36);
+        const x = i * (barW + barGap);
+        const y = 40 - h;
+        const isToday = i === count - 1;
+        const fill = isToday ? "var(--cp-accent)" : "var(--cp-border-strong)";
+        const op = isToday ? "1" : "0.55";
+        return `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="2" fill="${fill}" opacity="${op}"/>`;
+      }).join("");
+      const spark = `
+        <div class="pc-spark">
+          <div class="pc-spark-head"><span>Activity · last 7 days</span><span class="today">Today ${days[count - 1]}</span></div>
+          <svg viewBox="0 0 ${totalW} 40" preserveAspectRatio="none">${bars}</svg>
+        </div>`;
+
+      const lastBlock = p.last
+        ? `<div class="pc-last">
+             <div class="k">Last decision handled</div>
+             <div class="v">${p.last.text}</div>
+             <div class="t">at ${p.last.when} today</div>
+           </div>`
+        : "";
+
+      const fav = isFavorite(key);
+      return `
+        <button class="pc-star ${fav ? "on" : ""}" data-pc-fav="${key}" title="${fav ? "Unfavorite" : "Add to favorites"}" aria-label="Favorite">${fav ? "★" : "☆"}</button>
+        <div class="pc-head ${isAI ? "" : "human"}">
+          <span class="portrait" data-portrait="${key}"></span>
+          <div>
+            <div class="pc-name">${p.name} <span class="${isAI ? "ai-tag" : "human-tag"}">${isAI ? "AI" : "HUMAN"}</span></div>
+            <div class="pc-role">${p.role.replace(" [AI]", "").replace(" [HUMAN]", "")}</div>
+            <div class="pc-status">${p.status}</div>
+          </div>
+        </div>
+        <div class="pc-bio">${p.bio}</div>
+        ${spark}
+        ${lastBlock}
+        <div class="pc-meta">${metaRows}</div>
+        <div class="pc-actions">${actions}</div>
+      `;
+    }
+
+    /* Favorites (localStorage-backed) */
+    const FAV_KEY = "z2g:favorites";
+    function getFavorites() {
+      try { return JSON.parse(localStorage.getItem(FAV_KEY) || "[]"); }
+      catch { return []; }
+    }
+    function isFavorite(key) { return getFavorites().includes(key); }
+    function toggleFavorite(key) {
+      const list = new Set(getFavorites());
+      const wasFav = list.has(key);
+      wasFav ? list.delete(key) : list.add(key);
+      try { localStorage.setItem(FAV_KEY, JSON.stringify([...list])); } catch {}
+      return !wasFav;
+    }
+
+    function positionProfileCard(anchor) {
+      const r = anchor.getBoundingClientRect();
+      const cardW = 320; // matches CSS width 20rem @ 16px root
+      const gap = 10;
+      let left = r.left + r.width / 2 - cardW / 2;
+      left = Math.max(12, Math.min(window.innerWidth - cardW - 12, left));
+      const cardH = profileCard.offsetHeight || 280;
+      let top = r.bottom + gap;
+      if (top + cardH > window.innerHeight - 12) top = r.top - cardH - gap;
+      profileCard.style.left = left + "px";
+      profileCard.style.top = Math.max(12, top) + "px";
+    }
+
+    function showProfile(anchor, key) {
+      if (!people[key] || !people[key].bio) return;
+      clearTimeout(pcHideTimer);
+      pcCurrent = key;
+      profileCard.innerHTML = buildProfileCard(key);
+      profileCard.querySelectorAll("[data-portrait]").forEach((el) => {
+        el.innerHTML = portrait(people[el.dataset.portrait]);
+      });
+      profileCard.querySelectorAll("[data-pc-act]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const act = btn.dataset.pcAct;
+          const k = btn.dataset.pcKey;
+          const name = people[k].name;
+          hideProfile(true);
+          if (act === "chat") openChat(k);
+          else if (act === "task") showToast(`Task assigned to ${name}. Emma will confirm shortly.`);
+          else if (act === "log") openActivity(k);
+          else if (act === "message") showToast(`Message drafted to ${name}. Review in Outlook.`);
+          else if (act === "schedule") showToast(`Time request sent to ${name}.`);
+        });
+      });
+      const star = profileCard.querySelector("[data-pc-fav]");
+      if (star) {
+        star.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const k = star.dataset.pcFav;
+          const nowFav = toggleFavorite(k);
+          star.classList.toggle("on", nowFav);
+          star.textContent = nowFav ? "★" : "☆";
+          star.title = nowFav ? "Unfavorite" : "Add to favorites";
+          showToast(nowFav ? `${people[k].name} added to favorites.` : `${people[k].name} removed from favorites.`);
+        });
+      }
+      profileCard.classList.add("on");
+      profileCard.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => positionProfileCard(anchor));
+    }
+
+    function hideProfile(immediate) {
+      clearTimeout(pcTimer);
+      if (immediate) {
+        profileCard.classList.remove("on");
+        profileCard.setAttribute("aria-hidden", "true");
+        pcCurrent = null;
+        return;
+      }
+      pcHideTimer = setTimeout(() => {
+        profileCard.classList.remove("on");
+        profileCard.setAttribute("aria-hidden", "true");
+        pcCurrent = null;
+      }, 180);
+    }
+
+    function attachProfileHover(el) {
+      const key = el.dataset.profile || el.dataset.chat;
+      if (!key || !people[key] || !people[key].bio) return;
+      el.addEventListener("mouseenter", () => {
+        clearTimeout(pcHideTimer);
+        pcTimer = setTimeout(() => showProfile(el, key), 250);
+      });
+      el.addEventListener("mouseleave", () => {
+        clearTimeout(pcTimer);
+        hideProfile(false);
+      });
+    }
+    profileCard.addEventListener("mouseenter", () => clearTimeout(pcHideTimer));
+    profileCard.addEventListener("mouseleave", () => hideProfile(false));
+
+    document.querySelectorAll("[data-chat], [data-profile]").forEach(attachProfileHover);
+    window.addEventListener("scroll", () => hideProfile(true), { passive: true });
+
+    /* =========================================================
+     * THEME + TOAST
+     * ======================================================= */
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      const now = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", now);
+    });
+
+    const keynoteReturn = document.getElementById("keynoteReturn");
+    const keynoteMorph = document.getElementById("keynoteMorph");
+    keynoteReturn.addEventListener("click", () => {
+      const rect = keynoteReturn.getBoundingClientRect();
+      const origin = {
+        x: ((rect.left + rect.width / 2) / window.innerWidth) * 100,
+        y: ((rect.top + rect.height / 2) / window.innerHeight) * 100
+      };
+      keynoteMorph.style.setProperty("--morph-x", `${origin.x}%`);
+      keynoteMorph.style.setProperty("--morph-y", `${origin.y}%`);
+      sessionStorage.setItem("keynoteMorphIncoming", "keynote");
+      sessionStorage.setItem("keynoteMorphOrigin", JSON.stringify(origin));
+      keynoteMorph.classList.add("cover");
+      const theme = document.documentElement.dataset.theme || "dark";
+      const palette = document.documentElement.dataset.palette || "keynote";
+      setTimeout(() => { window.location.href = `index.html?scene=9&scoutTheme=${theme}&palette=${palette}`; }, 700);
+    });
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("on"), 3000);
+    }
+
+    /* Init */
+    renderDecisions();
+    renderActivityChips();
+    renderActivity();
+
+    /* Team view toggle */
+    document.querySelectorAll("#teamView button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#teamView button").forEach((b) => b.classList.toggle("on", b === btn));
+        const view = btn.dataset.view;
+        document.getElementById("teamList").style.display = view === "list" ? "" : "none";
+        document.getElementById("teamOrg").style.display = view === "org" ? "" : "none";
+        document.getElementById("teamMeta").textContent =
+          view === "list" ? "5 agents · 2 humans · last sync 22:09" : "Reporting lines · Z2G Agency";
+      });
+    });
+  </script>
+  <script>
+    (() => {
+      const canvas = document.querySelector(".desk-particles");
+      const context = canvas.getContext("2d");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let particles = [];
+
+      function resizeParticles() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = window.innerWidth * ratio;
+        canvas.height = window.innerHeight * ratio;
+        canvas.style.width = `${window.innerWidth}px`;
+        canvas.style.height = `${window.innerHeight}px`;
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        particles = Array.from({ length: Math.min(82, Math.floor(window.innerWidth / 19)) }, () => ({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          radius: Math.random() * 2.3 + .8,
+          speed: Math.random() * .38 + .12,
+          drift: Math.random() * .22 - .11,
+          phase: Math.random() * Math.PI * 2
+        }));
+      }
+
+      function drawParticles() {
+        context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        const styles = getComputedStyle(document.documentElement);
+        const textColor = styles.getPropertyValue("--cp-text-muted").trim();
+        const accentColor = styles.getPropertyValue("--cp-accent").trim();
+
+        particles.forEach((particle, index) => {
+          const neighbor = particles[index + 1];
+          if (!neighbor) return;
+          const distance = Math.hypot(particle.x - neighbor.x, particle.y - neighbor.y);
+          if (distance < 145) {
+            context.beginPath();
+            context.strokeStyle = index % 9 === 0 ? accentColor : textColor;
+            context.globalAlpha = (1 - distance / 145) * .18;
+            context.moveTo(particle.x, particle.y);
+            context.lineTo(neighbor.x, neighbor.y);
+            context.stroke();
+          }
+        });
+
+        particles.forEach((particle, index) => {
+          particle.y -= reducedMotion ? 0 : particle.speed;
+          particle.phase += reducedMotion ? 0 : .007;
+          particle.x += reducedMotion ? 0 : particle.drift + Math.sin(particle.phase) * .1;
+          if (particle.y < -5) particle.y = window.innerHeight + 5;
+          if (particle.x < -5) particle.x = window.innerWidth + 5;
+          if (particle.x > window.innerWidth + 5) particle.x = -5;
+          context.beginPath();
+          context.fillStyle = index % 11 === 0 ? accentColor : textColor;
+          context.globalAlpha = index % 11 === 0 ? .72 : .38;
+          context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          context.fill();
+        });
+
+        context.globalAlpha = 1;
+        if (!reducedMotion) requestAnimationFrame(drawParticles);
+      }
+
+      resizeParticles();
+      drawParticles();
+      window.addEventListener("resize", resizeParticles);
+    })();
+  </script>
+  <script src="https://usman-live.lovable.app/api/public/embed.js" data-position="spread" data-size="48" defer></script>
+</body>
+</html>

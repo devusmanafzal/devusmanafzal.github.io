@@ -8,13 +8,19 @@ To replace it, keep the same filename or update the image path in `index.html`. 
 
 ## Video playback
 
-`videos/open-the-door.mp4` is used as a full-bleed scene. Large local videos should be presented through an offline localhost server rather than by double-clicking `index.html`:
+`videos/open-the-door-X.mp4` is configured as the full-bleed physical scene 16 while the Microsoft AI Stack scene is hidden. Large local videos should be presented through an offline localhost server rather than by double-clicking `index.html`:
 
 ```sh
 python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173`. This needs no internet connection and allows reliable streaming and seeking. The video starts when its scene becomes active, pauses and resets when leaving, and can be muted or unmuted with `M`.
+
+VS Code's integrated browser may block autoplay with sound. When that happens, use the centered play control. Clicking directly on a video also toggles play and pause.
+
+Set `videoBeforeScene13.enabled` in `../presentation.config.js` to control whether the scene renders. The same object controls source path, `cover`/`contain` fit, initial mute, looping, and caption text.
+
+`videos/scout-intro.mp4` uses the same renderer at physical scene 4. Configure it independently through `scoutIntroAfterScene2` in `../presentation.config.js`.
 
 ## Presentation palette
 
@@ -44,3 +50,30 @@ Sources and licenses:
 - Office 360 digital workplace: Bill Smith, CC BY 2.0, Wikimedia Commons.
 
 Full source URLs and license links are recorded in `credits.json`.
+
+## Microsoft AI Approach
+
+`images/ms-approach-ai.png` is the presenter-supplied lower product image used in the Microsoft AI Approach scene. The upper Assistants, Delegates, and Autopilots framework is rendered natively in the keynote for projection clarity and responsive motion.
+
+`logos-and-icons/copilot-studio.svg` is the official Copilot Studio product mark downloaded from the Microsoft Learn Copilot Studio documentation hub.
+
+`logos-and-icons/github-copilot-color.svg` uses the official GitHub Copilot silhouette as the local mask for the blue-purple product mark shown in the architecture scene.
+
+Scene 13 uses presenter-supplied product marks from `fabric.svg`, `foundry.svg`, `agent365.svg`, and `azure.png`.
+
+## Multimodal capability icons
+
+Scene 9 uses local SVG icons from [Lucide](https://lucide.dev/icons/) for text, images, voice, video, screens, and data. Lucide is distributed under the ISC License; attribution details are recorded in `credits.json`.
+
+The Copilot strategy scene also uses local Lucide SVGs for Multi-Model, Multi-Harness, Platform, and Secure AI section marks.
+
+## Live audience guide
+
+- `images/live-reactions-phone.png` is a local audience-facing capture of the presenter-owned Live Reactions app at `https://usman-live.lovable.app`.
+- `images/live-reactions-qr.png` encodes `https://usman-live.lovable.app` for the audience guide scene.
+- `images/workscape-site-qr.png` encodes `https://aka.ms/workscape` for the experimental thank-you scene.
+- `images/usman-linkedin-qr.png` encodes `https://aka.ms/usman` for the experimental thank-you scene.
+
+## Model-provider icons
+
+The multi-model scene uses local SVG marks from [Simple Icons](https://simpleicons.org/) for the ten providers represented around the orchestration orbit. The icon package is distributed under CC0 1.0; individual names and marks remain trademarks of their respective owners.

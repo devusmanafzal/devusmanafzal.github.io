@@ -56,5 +56,23 @@
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
     }
+  ],
+  "icons": [
+    {
+      "files": "logos-and-icons/{file-text,image,audio-lines,video,monitor,database}.svg",
+      "scene": "AI Can Now See, Hear, Reason and Act",
+      "creator": "Lucide Contributors",
+      "source": "https://lucide.dev/icons/",
+      "license": "ISC License",
+      "licenseUrl": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
+    },
+    {
+      "files": "logos-and-icons/{openai,microsoft,anthropic,meta,google,mistralai,deepseek,huggingface,ibm}.svg",
+      "scene": "There Will Not Be One Model for the Enterprise",
+      "creator": "Simple Icons Contributors",
+      "source": "https://simpleicons.org/",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
+    }
   ]
 }

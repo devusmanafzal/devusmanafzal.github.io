@@ -26,28 +26,30 @@ The event landing opens the experience. The speaker introduction follows the fir
 | Scene | Purpose | Treatment | Target time |
 | --- | --- | --- | ---: |
 | P0 | WorkScape Circle landing | Supplied 4K event artwork, full-bleed cinematic zoom and light sweep | Pre-show |
+| P0.5 | Live audience guide | Auto-entered after three seconds; reaction-app preview and QR code invite the audience into the live feedback channel | 20 sec |
 | 1 | From Copilots to Digital Colleagues | Collaboration image under a cinematic title treatment | 45 sec |
-| V0 | Scout introduction | Configured full-screen `scout-intro.mp4` immediately after physical scene 2 | As media |
+| V0 | Scout introduction | Configured full-screen `scout-intro.mp4` immediately after the title scene, now physical scene 4 | As media |
 | 2 | The Prompting Was Only the Beginning | TED-style centered statement shifts left as the Sandvik speaker image appears | 60 sec |
 | P1 | Speaker introduction | Large transparent portrait, particle field, editorial name treatment | 20 sec |
 | 3 | Three Years That Changed Knowledge Work | Three-step build: centered glowing statement, integrated 1950-2026 evolution, then preserved standalone timeline | 70 sec |
 | 3 | Three Years That Changed Knowledge Work | Two-step build: centered glowing statement, then integrated 1950-2026 evolution | 70 sec |
-| 3A | The Journey Toward Autonomous Work | Manual follow-on scene with the history fully removed and only the four milestone circles retained | Follow-on |
 - Reordered screen 5 so the integrated evolution follows the title. Six image milestones race along one timeline to 2020, pause, compress into a labeled 1950-2020 history callout, then Chatbots-to-Digital-Colleagues circles unfold on the same rail.
-| 4 | Five Shifts Reshaping the Enterprise | Five transformations revealed as moving paired concepts | 80 sec |
+| 4 | Five Shifts Reshaping the Enterprise | Scene 7 mountain climb through Conversation, Collaboration, Delegation to Agents, and Digital Labor | 80 sec |
 | 5 | AI Can Now See, Hear, Reason and Act | Multimodal senses orbit and converge on a reasoning core | 75 sec |
 | 6 | There Will Not Be One Model for the Enterprise | Portfolio constellation spanning frontier, open, small, and specialized models | 75 sec |
 | 7 | From Model Selection to Model Orchestration | Human choice -> platform routing -> model collaboration | 75 sec |
-| 8 | The Microsoft AI Stack | Strategic layered architecture; factual, restrained, no logos or sales language | 90 sec |
-| 9 | AI Was the Easy Part | Technology acceleration visibly outruns organization, governance, and culture | 60 sec |
-| V1 | Configured video interlude | Physical scene 13; full-screen playback controlled by `presentation.config.js` | As media |
+| 7B | Microsoft AI Approach / architecture | Two-build physical scene 13: centered title transitions to the Intelligence + Trust architecture spanning Microsoft IQ, Copilot experiences, Fabric, Foundry, Azure, Agent 365, and Security | 75 sec |
+| 8B | Microsoft AI Approach with Copilot | Two-build scene: centered TED-style title, then keyboard-triggered FLIP to the upper position as the framework and product image reveal | 75 sec |
+| 8 | The Microsoft AI Stack | Strategic layered architecture retained in markup but hidden from the current runtime | Hidden alternative |
+| 8C | Microsoft AI Approach with Copilot | Four-part strategy: Multi-Model, Multi-Harness, World's Best Platform, and cloud-native enterprise-grade secure AI for work | 75 sec |
+| V1 | Configured video interlude | Physical scene 16 while the Microsoft AI Stack scene is hidden; full-screen playback controlled by `presentation.config.js` | As media |
 | 10 | Govern What AI Sees, Does, Decides and Uses | Four governance domains form a controlled system | 80 sec |
-| 11 | The Economics of Intelligence | Software -> Cloud -> AI and License -> Consumption -> Reasoning | 90 sec |
-| 12 | The New Organizational Chart | Humans and digital colleagues reorganize into a hybrid workforce | 80 sec |
-| 13 | Work Without Work | Physical labor -> digital work -> cognitive automation; judgment becomes more valuable | 70 sec |
+| 3B | The New Organizational Chart | Scene 9; portrait-based hierarchy: founder, AI chief of staff, four AI specialists, and two human collaborators | 80 sec |
+| 13 | Work Without Work | Retained in markup but hidden from the current runtime | Hidden alternative |
 | 14 | Five Questions for the Agentic Era | One question revealed at a time; final discussion hold | 2-3 min |
-| E1 | Thank You | Large presenter portrait with a restrained animated constellation | Closing |
-| E2 | WorkScape Circle ending | Supplied event artwork as the final full-bleed hold | Post-show |
+| 14B | Audience challenge | TED-style question asking which constraint would matter most if every employee had access to AI agents: governance, skills, trust, operating model, or budget | Discussion nudge |
+| E1 | Thank You / original | Large presenter portrait with a restrained animated constellation; retained in markup but hidden from runtime | Hidden alternative |
+| E2 | Thank You / event backdrop | Final visible scene over the supplied WorkScape Circle artwork, with color-coded WorkScape and LinkedIn QR links | Closing |
 
 ## Topic Content
 
@@ -83,11 +85,15 @@ The event landing opens the experience. The speaker introduction follows the fir
 
 **Modalities:** Text, images, voice, video, screens, documents, and enterprise data.
 
+**Visual:** Microsoft 365 Copilot forms the luminous reasoning core, connected by precise animated spokes to six icon-based modality nodes.
+
 **Speaker intent:** Multimodality changes the range of work AI can understand and perform.
 
 ### 6. There Will Not Be One Model for the Enterprise
 
 **Portfolio:** OpenAI, Anthropic, Microsoft, open-source models, small models, and specialized models.
+
+**Visual:** Three loose concentric orbits distribute ten model and experience nodes around a restrained routing core. Each ring moves slowly and independently while logos remain upright. Copilot appears as one peer on the outer orbit; no hub-to-node spokes are shown.
 
 **Speaker intent:** Organizations will govern portfolios of intelligence, not select one permanent winner.
 
@@ -111,11 +117,13 @@ The event landing opens the experience. The speaker introduction follows the fir
 
 **Speaker intent:** Present an architecture for governed agency, not a product catalogue.
 
-### 9. AI Was the Easy Part
+### 8B. The Microsoft AI Approach
 
-**On-screen idea:** Technology is accelerating faster than organizational adaptation.
+**Progression:** Assistants -> Delegates -> Autopilots.
 
-**Speaker intent:** Reframe the hard work around governance, culture, capability, process ownership, and operating models.
+**One Copilot modes:** Chat, Cowork, Code, and Autopilots.
+
+**Speaker intent:** Show how one Copilot experience can span secure assistance, delegated multi-tool work, coding, and persistent digital teams without forcing people into disconnected products.
 
 ### 10. Govern What AI Sees, Does, Decides and Uses
 
@@ -126,15 +134,7 @@ The event landing opens the experience. The speaker introduction follows the fir
 
 **Speaker intent:** Governance enables confident scale; it is not merely a compliance gate.
 
-### 11. The Economics of Intelligence
-
-**Evolution:** Software -> Cloud -> AI.
-
-**Commercial shift:** License -> Consumption -> Reasoning.
-
-**Concepts:** AI credits, tokens, consumption, agent execution, and AI FinOps.
-
-**Speaker intent:** Planning must account for variable intelligence consumption and outcomes, not only user licenses.
+**Visual update:** The original Data, Actions, Decisions, and Intelligence orbit remains, now populated with Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, Fabric, Foundry, and Azure. OpenAI, Anthropic, Google, and Meta sit inside the Intelligence circle around Microsoft IQ. An encompassing Agent 365 ring represents management and control across the full agent estate, with its badge outside the lower perimeter.
 
 ### 12. The New Organizational Chart
 
@@ -171,6 +171,8 @@ The event landing opens the experience. The speaker introduction follows the fir
 
 Motion must clarify meaning. Decorative motion should remain subtle and never delay the presenter.
 
+Scenes 13 and 14 use a shared-title FLIP handoff: `Microsoft AI Approach` moves continuously from the architecture scene's upper position into the next scene's centered hold, while `with Copilot` fades into the landing title during the handoff.
+
 ## Visual System
 
 - True or near-black full-screen stage.
@@ -198,9 +200,9 @@ window.PRESENTATION_CONFIG = {
 - URL override: add `?palette=workscape` or `?palette=keynote`.
 - Live preview: press `T` during the presentation to switch palettes without changing scenes.
 
-## Configurable Video Before Scene 13
+## Configurable Video Interlude
 
-The optional full-screen video is inserted as physical presentation scene 13. Configure whether it renders and how it is framed in `presentation.config.js`:
+The optional full-screen video is currently inserted as physical presentation scene 16 while the Microsoft AI Stack scene is hidden. The configuration key remains `videoBeforeScene13` for compatibility. Configure whether it renders and how it is framed in `presentation.config.js`:
 
 ```js
 videoBeforeScene13: {
@@ -216,11 +218,12 @@ videoBeforeScene13: {
 - Set `enabled: false` to remove the video scene entirely; navigation, counters, and progress recalculate automatically.
 - `src` accepts another local browser-compatible video path for reuse in a different session.
 - The video starts when its scene is entered, pauses and resets when leaving, and `M` toggles mute.
+- If VS Code or another browser blocks autoplay, a centered play control appears; clicking the video toggles play and pause.
 - Run through the local HTTP server for reliable large-file streaming and seeking.
 
-## Configurable Scout Intro After Scene 2
+## Configurable Scout Intro After the Title Scene
 
-The Scout introduction uses the same full-screen renderer and is inserted immediately after physical scene 2:
+The Scout introduction uses the same full-screen renderer and is inserted immediately after the title scene. The configuration key remains `scoutIntroAfterScene2` for compatibility:
 
 ```js
 scoutIntroAfterScene2: {
@@ -242,7 +245,10 @@ Set `enabled: false` to remove it. Scene numbering and progress recalculate auto
 - `Home` / `End`: first / final scene.
 - `F`: enter or exit fullscreen.
 - `M`: mute or unmute active video.
+- `C`: hide or restore the on-demand commentary feature for live demonstrations; the choice persists for the browser session.
+- `Esc`: close the commentary blade.
 - Left/right invisible click zones and horizontal swipe fallback.
+- The opening event scene advances automatically to the audience guide after three seconds; any manual navigation cancels that timer.
 - Later implementation: `P` opens synchronized presenter mode with notes and timing.
 
 ## Media and Attribution
@@ -250,9 +256,19 @@ Set `enabled: false` to remove it. Scene numbering and progress recalculate auto
 - `assets/images/work_circle_landing.jpg`: WorkScape Circle event artwork supplied by the presenter.
 - `assets/images/intro_usman_01.png`: transparent speaker portrait supplied by the presenter.
 - `assets/images/executive-collaboration.jpg`: Pexels image by fauxels; details in `assets/credits.json`.
-- `assets/videos/open-the-door-X.mp4`: configured presenter-supplied video interlude before physical scene 13.
+- `assets/videos/open-the-door-X.mp4`: configured presenter-supplied video interlude at physical scene 16.
 
 All external media sources must remain recorded in `assets/credits.json` and summarized in `assets/README.md`.
+
+## On-Demand Commentary
+
+Narrative scenes include an avatar launcher using `assets/images/portraits/you.jpg`. It opens a responsive narrative blade with presenter-authored storytelling, strategic context, and a scene takeaway. The blade updates as viewers navigate and is intentionally unavailable on configured video scenes, the opening artwork, the audience guide, and the final event scene.
+
+For live delivery, press `C` to remove the launcher and blade entirely. Press `C` again to restore the on-demand experience.
+
+## Live Audience Reactions
+
+The keynote and linked Decision Desk load the production Lovable reaction overlay from `https://usman-live.lovable.app/api/public/embed.js`. Reactions use the full-screen `spread` position at a presentation-safe `48px` size, remain pointer-safe, and continue when viewers move between the keynote and Decision Desk pages.
 
 ## Implementation Files
 
@@ -287,7 +303,7 @@ All external media sources must remain recorded in `assets/credits.json` and sum
 - Corrected timeline vertical fit.
 - Added and browser-tested full-bleed local video playback.
 - Created this plan before full fourteen-topic implementation.
-- Implemented a twenty-one-screen sequence when both configured videos are enabled, including the Scout intro after scene 2 and the existing video before scene 13.
+- The current runtime contains twenty visible scenes when both configured videos are enabled, including the Scout intro at physical scene 4 and the configured video at scene 16.
 - Added direct scene review links using `?scene=1` through `?scene=17`.
 - Browser-validated the five-shift, architecture, governance, economics, and leadership-question scenes in a non-16:9 viewport.
 - Made the event landing full-bleed with a stronger cinematic zoom, color reveal, and light sweep.
@@ -304,7 +320,22 @@ All external media sources must remain recorded in `assets/credits.json` and sum
 - Lifted the compressed 1950-2020 mosaic into an upper-left branch callout with a connector and solid rail node, reduced its label, and expanded the four-circle timeline farther left.
 - Increased agentic milestone scale progressively on the same rail: Chatbots and Copilots at 19vh, Agents at 22vh, and Digital Colleagues as the dominant 25vh endpoint.
 - Anchored every differently sized agentic circle by its center to the shared timeline rail so all milestones remain precisely aligned.
-- Added a manual scene immediately after scene 5 titled “The Journey Toward Autonomous Work”; it removes the 1950-2020 history entirely and retains only the four milestone circles on a clean rail.
-- Moved the video interlude to physical scene 13 and made rendering, source, fit, audio, loop, and caption behavior configurable in `presentation.config.js`.
-- Added a separately configurable full-screen Scout intro immediately after physical scene 2 using `assets/videos/scout-intro.mp4`.
+- The video interlude is currently physical scene 16; rendering, source, fit, audio, loop, and caption remain configurable in `presentation.config.js`.
+- Added a separately configurable full-screen Scout intro at physical scene 4 using `assets/videos/scout-intro.mp4`.
+- Moved the former scene 17 before scene 7 and replaced its abstract chart with the portrait-based org hierarchy from `scout-decision-desk.html`.
+- Returned the portrait org scene to the deck's established split composition: keynote thesis on the left and the complete org hierarchy on the right.
+- Enlarged and polished the right-side org hierarchy with stronger portrait scale, luminous reporting lines, AI halos, richer typography, and a subtle constellation-depth field.
+- Linked org-chart scene 9 to `scout-decision-desk.html` through an under-chart “Open Decision Desk” control and a shared circular morph transition; the Desk header provides a reverse morph back to scene 9 while preserving theme and palette.
+- Moved the mountain-climb scene to scene 7, before Autonomous Work and the org chart.
+- Simplified scene 7 to the same wide one-line title treatment as scene 6, removed the kicker, and increased mountain ridge contrast and contour lighting.
+- Merged Delegation and Agents into one mountain milestone: “Delegation to Agents — Assign outcomes and execute work.”
+- Added a reusable milestone product-icon row to scene 7; Conversation now includes the Copilot icon labeled “Copilot Chat.”
+- Alternated mountain labels starting above the route: stages 1, 3, and 5 above; stages 2 and 4 below. Copilot Chat remains the temporary icon chip across all milestones.
+- Pulled the Digital Labor summit inward and positioned its compact label to the left of the summit marker so the endpoint stays clear of the viewport edge.
+- Removed Agent Ecosystems from scene 7 and evenly redistributed the four remaining milestones from base to summit; Digital Labor is now milestone #4.
+- Increased scene 7 milestone, label, and product-icon scale for conference-room readability and slowed the route/node reveal to a deliberate four-second sequence.
+- Separated the upper milestones: moved #3's card left of its curve point and placed #4's card above the summit node and route.
+- Re-anchored #3 and #4 after visual review: #3's card is fully left of its node, while #4's card is centered immediately above the summit node.
+- Removed the mountain container's label clipping so the summit card can extend above the internal ridge boundary without moving its node off the route.
+- Replaced percentage-estimated milestone placement with exact SVG-route coordinates, keeping node centers on the curve while cards use independent offsets.
 - Simplified the compressed state to one main rail, reduced the history mosaic, and added concise internal nodes: ChatGPT/Copilot Chat for Chatbots; Word/Excel/Teams/Outlook monograms for Copilots; Researcher/Analyst/Prompt Coach for Agents; Digital Colleagues remains intentionally open.
