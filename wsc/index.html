@@ -2881,6 +2881,11 @@
           </div>
         </div>
       </section>
+      <section class="scene scene-video" data-video-config="agencyDemoAfterScene11" data-state="future" aria-hidden="true">
+        <video preload="none" playsinline aria-label="Recorded agency demonstration"></video>
+        <button class="video-play-control" type="button" aria-label="Play agency demonstration" title="Play agency demonstration"></button>
+        <p class="video-caption"></p>
+      </section>
       <section class="scene scene-ms-approach scene-ms-approach-copy scene-ai-architecture" data-state="future" data-builds="1" data-build="0" aria-hidden="true">
         <div class="scene-content">
           <div class="ms-approach-heading">
@@ -3318,7 +3323,10 @@
         : "assets/videos/open-the-door-X.mp4";
       video.src = settings?.src || fallbackSource;
       video.style.objectFit = settings?.fit === "contain" ? "contain" : "cover";
-      video.muted = Boolean(settings?.muted);
+      const startsMuted = Boolean(settings?.muted);
+      video.muted = startsMuted;
+      video.defaultMuted = startsMuted;
+      video.toggleAttribute("muted", startsMuted);
       video.loop = Boolean(settings?.loop);
       caption.textContent = settings?.caption || "";
       const playControl = scene.querySelector(".video-play-control");

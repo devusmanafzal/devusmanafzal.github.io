@@ -12,6 +12,16 @@ window.PRESENTATION_CONFIG = {
     caption: ""
   },
 
+  // Recorded agency demonstration inserted immediately after the organization scene.
+  agencyDemoAfterScene11: {
+    enabled: true,
+    src: "assets/videos/agency-demo-web.mp4",
+    fit: "contain",
+    muted: true,
+    loop: false,
+    caption: ""
+  },
+
   // Optional full-screen video inserted immediately before presentation scene 13.
   videoBeforeScene13: {
     enabled: true,
