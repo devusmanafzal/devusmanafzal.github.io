@@ -954,7 +954,7 @@
       transform-origin: right center;
     }
     .scene-photo.sandvik[data-state="active"] .scene-photo-image {
-      animation: sandvik-image-reveal 2200ms cubic-bezier(.16, 1, .3, 1) 400ms both;
+      animation: sandvik-image-reveal 2200ms cubic-bezier(.16, 1, .3, 1) 3200ms both;
     }
     .scene-photo.sandvik .scene-content {
       align-self: start;
@@ -965,7 +965,7 @@
     .scene-photo.sandvik .scene-subtitle { opacity: 0; }
     .scene-photo.sandvik[data-state="active"] .scene-kicker,
     .scene-photo.sandvik[data-state="active"] .scene-subtitle {
-      animation: sandvik-support-reveal 850ms ease 2150ms both;
+      animation: sandvik-support-reveal 1000ms ease 4050ms both;
     }
     .scene-photo.sandvik h2 {
       margin-inline: 0;
@@ -974,11 +974,11 @@
       opacity: 0;
     }
     .scene-photo.sandvik[data-state="active"] h2 {
-      animation: sandvik-final-headline-reveal 1100ms ease 1750ms both;
+      animation: sandvik-final-headline-reveal 1100ms ease 3650ms both;
     }
     .scene-photo.sandvik .scene-subtitle { max-width: 23rem; }
     .scene-photo.sandvik[data-state="active"]::before {
-      animation: sandvik-overlay-reveal 1600ms ease 400ms both;
+      animation: sandvik-overlay-reveal 1400ms ease 3200ms both;
     }
     .sandvik-ted-line {
       position: absolute;
@@ -997,11 +997,11 @@
     }
     .sandvik-ted-line .accent { color: var(--cp-accent); }
     .scene-photo.sandvik[data-state="active"] .sandvik-ted-line {
-      animation: sandvik-ted-line-fade 2600ms ease both;
+      animation: sandvik-ted-line-fade 3900ms ease both;
     }
     @keyframes sandvik-ted-line-fade {
       0% { opacity: 0; transform: translate(-50%, calc(-50% + 1rem)) scale(.97); }
-      10%, 50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      10%, 68% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
       100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
     }
     @keyframes sandvik-final-headline-reveal {
@@ -1645,15 +1645,6 @@
     .compact-title { font-size: clamp(2.5rem, 5.4vw, 6rem) !important; }
     .scene-shifts { padding: clamp(2rem, 4vw, 4.5rem); }
     .scene-shifts .scene-content { position: relative; height: 100%; }
-    .scene-shifts > .scene-content > .scene-kicker,
-    .scene-human-loop > .scene-content > .scene-kicker,
-    .scene-agent-evolution > .scene-content > .scene-kicker {
-      position: absolute;
-      left: 0;
-      top: 1%;
-      z-index: 9;
-      margin: 0 !important;
-    }
     .mountain-title {
       position: absolute;
       left: 0;
@@ -1749,149 +1740,6 @@
     .scene-shifts[data-state="active"] .climb-stage.stage-3 { transition-delay: 2250ms; }
     .scene-shifts[data-state="active"] .climb-stage.stage-6 { transition-delay: 3050ms; }
     @keyframes climb-route-draw { to { stroke-dashoffset: 0; } }
-
-    .scene-human-loop { padding: clamp(2rem, 4vw, 4.5rem); }
-    .scene-human-loop .scene-content {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    .scene-human-loop h2 {
-      position: absolute;
-      left: 0;
-      top: 8%;
-      z-index: 8;
-      width: max-content;
-      max-width: 92vw;
-      margin: 0;
-      font-size: clamp(1.8rem, 3.5vw, 4rem) !important;
-      line-height: 1.02;
-      white-space: nowrap;
-    }
-    .loop-progression {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1rem, 2.5vw, 2.5rem);
-      position: absolute;
-      inset: 24% 0 0;
-      align-content: start;
-    }
-    .loop-stage {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: .8rem;
-      min-width: 0;
-      opacity: 0;
-      transform: translateY(1.5rem);
-      transition: opacity 650ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1);
-    }
-    .scene-human-loop[data-state="active"] .loop-stage { opacity: 1; transform: translateY(0); }
-    .scene-human-loop[data-state="active"] .loop-stage:nth-child(1) { transition-delay: 250ms; }
-    .scene-human-loop[data-state="active"] .loop-stage:nth-child(2) { transition-delay: 750ms; }
-    .scene-human-loop[data-state="active"] .loop-stage:nth-child(3) { transition-delay: 1250ms; }
-    .loop-stage-head { display: flex; align-items: center; justify-content: center; gap: .65rem; min-height: 3rem; text-align: center; }
-    .loop-state {
-      display: grid;
-      place-items: center;
-      min-width: 3.4rem;
-      padding: .45rem .6rem;
-      border-radius: .2rem;
-      color: #fff;
-      font-size: .78rem;
-      font-weight: 800;
-      line-height: 1;
-    }
-    .loop-stage.in .loop-state { background: #2563eb; }
-    .loop-stage.on .loop-state { background: var(--cp-accent); color: var(--cp-accent-fg); }
-    .loop-stage.off .loop-state { background: #f59e0b; color: #171717; }
-    .loop-stage-head strong { font-size: clamp(.95rem, 1.45vw, 1.35rem); line-height: 1.05; }
-    .loop-stage-media {
-      justify-self: center;
-      width: 94%;
-      height: clamp(18rem, 42vh, 23rem);
-      min-height: 0;
-      margin: 0;
-      overflow: hidden;
-      border: 1px solid var(--cp-border-strong);
-      border-top: 3px solid var(--stage-color);
-      border-radius: .4rem;
-      background: color-mix(in srgb, var(--cp-surface-soft) 78%, #000);
-      box-shadow: 0 .75rem 2rem rgba(0, 0, 0, .14);
-    }
-    .loop-stage.in { --stage-color: #2563eb; }
-    .loop-stage.on { --stage-color: var(--cp-accent); }
-    .loop-stage.off { --stage-color: #f59e0b; }
-    .loop-stage-media img { width: 100%; height: 100%; object-fit: contain; filter: brightness(.76) contrast(1.03) saturate(.82); }
-    @media (max-width: 700px) {
-      .scene-human-loop { padding: 1.5rem; }
-      .scene-human-loop h2 { top: 7%; max-width: 13ch; white-space: normal; }
-      .loop-progression { inset: 28% 0 0; grid-template-columns: 1fr; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: .65rem; height: auto; overflow: hidden; align-content: stretch; }
-      .loop-stage { grid-template-columns: 7.5rem minmax(0, 1fr); grid-template-rows: 1fr; gap: .65rem; }
-      .loop-stage-head { align-content: center; align-items: center; flex-direction: column; justify-content: center; }
-      .loop-stage-head strong { font-size: .92rem; }
-      .loop-stage-media { width: 100%; height: 100%; }
-    }
-
-    .scene-agent-evolution { padding: clamp(2rem, 4vw, 4.5rem); }
-    .scene-agent-evolution .scene-content { position: relative; width: 100%; height: 100%; }
-    .scene-agent-evolution h2 {
-      position: absolute;
-      left: 0;
-      top: 8%;
-      z-index: 8;
-      width: max-content;
-      max-width: 92vw;
-      margin: 0;
-      font-size: clamp(1.8rem, 3.5vw, 4rem) !important;
-      line-height: 1.02;
-      white-space: nowrap;
-    }
-    .agent-evolution-frame {
-      position: absolute;
-      inset: 25% 2% auto;
-      margin: 0;
-      padding: clamp(.45rem, .8vw, .75rem);
-      border: 1px solid var(--cp-border-strong);
-      border-top: 3px solid var(--cp-accent);
-      border-radius: .45rem;
-      background: color-mix(in srgb, var(--cp-surface-soft) 82%, #000);
-      box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, .2), 0 0 2rem var(--cp-accent-soft);
-      opacity: 0;
-      overflow: hidden;
-      transform: translateY(1.5rem) scale(.97);
-      transition: opacity 750ms ease 250ms, transform 1200ms cubic-bezier(.16, 1, .3, 1) 250ms;
-    }
-    .scene-agent-evolution[data-state="active"] .agent-evolution-frame { opacity: 1; transform: translateY(0) scale(1); }
-    .agent-evolution-frame img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: .25rem;
-      filter: brightness(.84) contrast(1.03) saturate(.88);
-    }
-    .agent-evolution-caption {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      padding: .75rem .75rem .15rem;
-      color: var(--cp-text-muted);
-      font-size: clamp(.65rem, .85vw, .82rem);
-      font-weight: 700;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .agent-evolution-caption span:nth-child(1) { color: var(--cp-link); }
-    .agent-evolution-caption span:nth-child(2) { color: var(--cp-accent); }
-    .agent-evolution-caption span:nth-child(3) { color: #f59e0b; }
-    @media (max-width: 700px) {
-      .scene-agent-evolution { padding: 1.5rem; }
-      .scene-agent-evolution h2 { top: 7%; max-width: 12ch; white-space: normal; }
-      .agent-evolution-frame { inset: 24% 0 auto; padding: .35rem; }
-      .agent-evolution-caption { gap: .25rem; padding: .55rem .2rem .1rem; font-size: .55rem; }
-    }
 
     .scene-multimodal .scene-content { display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; align-items: center; }
     .sense-system { position: relative; width: min(48vw, 42rem); aspect-ratio: 1; isolation: isolate; }
@@ -2543,68 +2391,16 @@
       transition: opacity 500ms ease;
     }
     .control-hint[data-hidden="true"] { opacity: 0; }
-    .scene-count,
-    .control-hint,
-    .progress-track { display: none; }
-    .scene-count[data-visible="true"] {
-      display: block;
-      padding: .45rem .65rem;
-      border: 1px solid var(--cp-border);
-      border-radius: .25rem;
-      background: var(--cp-panel-strong);
-      box-shadow: var(--cp-shadow);
-      color: var(--cp-text);
-    }
-    .scroll-cue {
-      position: fixed;
-      top: auto;
-      right: clamp(1rem, 2.5vw, 2rem);
-      bottom: clamp(1rem, 2.5vw, 2rem);
-      z-index: 30;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .05rem;
-      width: 3.25rem;
-      height: 5rem;
-      padding: .75rem;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      opacity: .9;
-      transform: none;
-      transition: opacity 350ms ease, transform 350ms ease;
-    }
-    .scroll-cue:hover,
-    .scroll-cue:focus-visible { opacity: 1; }
-    .scroll-cue:focus-visible { outline: 2px solid var(--cp-accent); outline-offset: 3px; }
-    .scroll-cue[data-hidden="true"] { opacity: 0; pointer-events: none; transform: translateY(.75rem); }
-    .scroll-cue-arrow {
-      width: 1rem;
-      height: 1rem;
-      border-right: 3px solid var(--cp-accent);
-      border-bottom: 3px solid var(--cp-accent);
-      transform: rotate(45deg);
-      animation: scroll-cue-arrow 1.8s ease-in-out infinite;
-    }
-    .scroll-cue-arrow:nth-child(1) { border-color: var(--cp-link); animation-delay: 0s; }
-    .scroll-cue-arrow:nth-child(2) { border-color: var(--cp-accent); animation-delay: .14s; }
-    .scroll-cue-arrow:nth-child(3) { border-color: #f59e0b; animation-delay: .28s; }
-    @keyframes scroll-cue-arrow {
-      0%, 100% { opacity: .25; transform: translateY(-.2rem) rotate(45deg); }
-      50% { opacity: 1; transform: translateY(.2rem) rotate(45deg); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .scroll-cue-arrow { animation: none; }
-    }
+    .tap-zone { position: fixed; top: 0; bottom: 0; z-index: 25; width: 25%; border: 0; background: transparent; cursor: pointer; }
+    .tap-zone.prev { left: 0; cursor: w-resize; }
+    .tap-zone.next { right: 0; cursor: e-resize; }
     .commentary-shell { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
     .commentary-shell[data-available="false"],
     .commentary-shell[data-disabled="true"] { display: none; }
     .commentary-launcher {
       position: absolute;
-      top: clamp(1.25rem, 3vw, 2.5rem);
       right: clamp(1.25rem, 3vw, 2.5rem);
-      bottom: auto;
+      bottom: clamp(3.25rem, 7vh, 4.75rem);
       display: flex;
       align-items: center;
       gap: 0;
@@ -2722,15 +2518,6 @@
         <img class="scene-event-image" src="assets/images/work_circle_landing.jpg" alt="WorkScape Circle event landing">
         <p class="event-prompt">Starting in 3 seconds</p>
       </section>
-      <section class="scene scene-one" data-state="future" aria-hidden="true">
-        <img class="scene-one-image" src="assets/images/executive-collaboration.jpg" alt="Executive leaders collaborating">
-        <div class="scene-word">AI</div>
-        <div class="scene-content">
-          <p class="scene-kicker">The agentic enterprise</p>
-          <h1>From Copilots to <span class="accent">Digital Colleagues</span></h1>
-          <p class="scene-subtitle">Preparing for a workforce of humans and agents.</p>
-        </div>
-      </section>
       <section class="scene scene-audience-guide" data-state="future" aria-hidden="true">
         <div class="scene-content">
           <div class="audience-guide-copy">
@@ -2745,6 +2532,15 @@
             <strong>Open Live Reactions</strong>
             <span>usman-live.lovable.app</span>
           </div>
+        </div>
+      </section>
+      <section class="scene scene-one" data-state="future" aria-hidden="true">
+        <img class="scene-one-image" src="assets/images/executive-collaboration.jpg" alt="Executive leaders collaborating">
+        <div class="scene-word">AI</div>
+        <div class="scene-content">
+          <p class="scene-kicker">The agentic enterprise</p>
+          <h1>From Copilots to <span class="accent">Digital Colleagues</span></h1>
+          <p class="scene-subtitle">Preparing for a workforce of humans and agents.</p>
         </div>
       </section>
       <section class="scene scene-video" data-video-config="scoutIntroAfterScene2" data-state="future" aria-hidden="true">
@@ -2812,46 +2608,15 @@
       </section>
       <section class="scene scene-shifts" data-state="future" aria-hidden="true">
         <div class="scene-content">
-          <p class="scene-kicker">Shift 1</p>
-          <h2 class="mountain-title">The operating model is shifting to <span class="accent">Digital Labor</span></h2>
+          <h2 class="mountain-title">The operating model is <span class="accent">moving.</span></h2>
           <div class="mountain-journey" aria-label="Enterprise evolution climbing from conversation to digital labor">
             <div class="mountain-back"></div><div class="mountain-mid"></div><div class="mountain-front"></div><div class="mountain-contours"></div>
             <svg class="climb-route" viewBox="0 0 1200 650" preserveAspectRatio="none" aria-hidden="true"><path class="base" d="M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50"/><path class="progress" d="M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50"/></svg>
-            <div class="climb-stage stage-1"><div class="climb-dot">01</div><div class="climb-copy"><strong>Conversation</strong><span>Ask and answer</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><span>Copilot Chat</span></div></div></div></div>
-            <div class="climb-stage stage-2"><div class="climb-dot">02</div><div class="climb-copy"><strong>Collaboration</strong><span>Work together</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><span>M365 Copilot</span></div></div></div></div>
+            <div class="climb-stage stage-1"><div class="climb-dot">01</div><div class="climb-copy"><strong>Conversation</strong><span>Ask and answer</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><span>M365 Copilot</span></div></div></div></div>
+            <div class="climb-stage stage-2"><div class="climb-dot">02</div><div class="climb-copy"><strong>Collaboration</strong><span>Work together</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><span>Copilot Chat</span></div></div></div></div>
             <div class="climb-stage stage-3"><div class="climb-dot">03</div><div class="climb-copy"><strong>Delegation to Agents</strong><span>Assign outcomes and execute work</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/cowork.png" alt=""><span>Copilot Cowork</span></div></div></div></div>
             <div class="climb-stage stage-6"><div class="climb-dot">04</div><div class="climb-copy"><strong>Digital labor</strong><span>Autonomous work</span><div class="milestone-products"><div class="milestone-product"><img src="assets/logos-and-icons/scout.png" alt=""><span>Microsoft Scout</span></div></div></div></div>
           </div>
-        </div>
-      </section>
-      <section class="scene scene-human-loop" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <p class="scene-kicker">Shift 2</p>
-          <h2>Human interactions are changing to <span class="accent">Human off the loop.</span></h2>
-          <div class="loop-progression" aria-label="Progression from human in the loop to human off the loop">
-            <article class="loop-stage in">
-              <div class="loop-stage-head"><span class="loop-state">IN</span><strong>Human in the loop</strong></div>
-              <figure class="loop-stage-media"><img src="assets/images/human-in-the-loop.png" alt="Human actively working in the loop by writing and reviewing code"></figure>
-            </article>
-            <article class="loop-stage on">
-              <div class="loop-stage-head"><span class="loop-state">ON</span><strong>Human on the loop</strong></div>
-              <figure class="loop-stage-media"><img src="assets/images/human-on-the-loop.png" alt="Human supervising Copilot as it researches and summarizes information"></figure>
-            </article>
-            <article class="loop-stage off">
-              <div class="loop-stage-head"><span class="loop-state">OFF</span><strong>Human off the loop</strong></div>
-              <figure class="loop-stage-media"><img src="assets/images/human-off-the-loop.png" alt="Autonomous multi-agent security workflow operating without continuous human involvement"></figure>
-            </article>
-          </div>
-        </div>
-      </section>
-      <section class="scene scene-agent-evolution" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <p class="scene-kicker">Shift 3</p>
-          <h2>Agents are getting <span class="accent">role-based autonomy</span></h2>
-          <figure class="agent-evolution-frame">
-            <img src="assets/images/agent-evolution.png" alt="Evolution from an interactive agent, to an autonomous agent, to a digital employee">
-            <figcaption class="agent-evolution-caption"><span>Task execution</span><span>Agent collaboration</span><span>Role-based autonomy</span></figcaption>
-          </figure>
         </div>
       </section>
       <section class="scene scene-org" data-state="future" aria-hidden="true">
@@ -2878,6 +2643,73 @@
               </div></div>
             </div>
             <button class="desk-launch" type="button"><span>Open Decision Desk</span><span class="desk-launch-icon" aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </section>
+      <section class="scene scene-multimodal" data-state="future" aria-hidden="true">
+        <div class="scene-content">
+          <div>
+            <p class="scene-kicker">Multimodal intelligence</p>
+            <h2 class="compact-title">AI can now <span class="accent">see, hear, reason and act.</span></h2>
+          </div>
+          <div class="sense-system" aria-label="Multimodal capabilities connected to reasoning">
+            <svg class="sense-lines" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="300" y1="300" x2="300" y2="60" style="--line-delay:360ms"></line>
+              <line x1="300" y1="300" x2="505" y2="175" style="--line-delay:450ms"></line>
+              <line x1="300" y1="300" x2="505" y2="425" style="--line-delay:540ms"></line>
+              <line x1="300" y1="300" x2="300" y2="540" style="--line-delay:630ms"></line>
+              <line x1="300" y1="300" x2="95" y2="425" style="--line-delay:720ms"></line>
+              <line x1="300" y1="300" x2="95" y2="175" style="--line-delay:810ms"></line>
+              <circle cx="300" cy="60" r="3"></circle><circle cx="505" cy="175" r="3"></circle><circle cx="505" cy="425" r="3"></circle><circle cx="300" cy="540" r="3"></circle><circle cx="95" cy="425" r="3"></circle><circle cx="95" cy="175" r="3"></circle>
+            </svg>
+            <div class="sense-core"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Microsoft 365<br>Copilot</strong><span>Reasoning core</span></div>
+            <div class="sense-node" style="--node-x:50%;--node-y:10%;--node-delay:620ms"><img src="assets/logos-and-icons/file-text.svg" alt=""><strong>Text</strong></div>
+            <div class="sense-node" style="--node-x:84.17%;--node-y:29.17%;--node-delay:720ms"><img src="assets/logos-and-icons/image.svg" alt=""><strong>Images</strong></div>
+            <div class="sense-node" style="--node-x:84.17%;--node-y:70.83%;--node-delay:820ms"><img src="assets/logos-and-icons/audio-lines.svg" alt=""><strong>Voice</strong></div>
+            <div class="sense-node" style="--node-x:50%;--node-y:90%;--node-delay:920ms"><img src="assets/logos-and-icons/video.svg" alt=""><strong>Video</strong></div>
+            <div class="sense-node" style="--node-x:15.83%;--node-y:70.83%;--node-delay:1020ms"><img src="assets/logos-and-icons/monitor.svg" alt=""><strong>Screens</strong></div>
+            <div class="sense-node" style="--node-x:15.83%;--node-y:29.17%;--node-delay:1120ms"><img src="assets/logos-and-icons/database.svg" alt=""><strong>Data</strong></div>
+          </div>
+        </div>
+      </section>
+      <section class="scene scene-four" data-state="future" aria-hidden="true">
+        <div class="scene-content">
+          <div>
+            <p class="scene-kicker">Multi-model enterprise</p>
+            <h2>There will not be <span class="accent">one model.</span></h2>
+            <p class="scene-subtitle">Organizations will govern portfolios of intelligence, not select a single winner.</p>
+          </div>
+          <div class="orchestra" aria-label="A portfolio of models routed by an orchestration layer">
+            <div class="model-orbit outer"><div class="model-orbit-track">
+              <div class="model-provider copilot" style="--node-x:50%;--node-y:0%;--node-delay:500ms"><div class="model-provider-content"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Copilot</strong><span>Experience</span></div></div>
+              <div class="model-provider" style="--node-x:93.3%;--node-y:75%;--node-delay:580ms"><div class="model-provider-content"><img src="assets/logos-and-icons/openai.svg" alt=""><strong>OpenAI</strong><span>GPT</span></div></div>
+              <div class="model-provider" style="--node-x:6.7%;--node-y:75%;--node-delay:660ms"><div class="model-provider-content"><img src="assets/logos-and-icons/anthropic.svg" alt=""><strong>Anthropic</strong><span>Claude</span></div></div>
+            </div></div>
+            <div class="model-orbit middle"><div class="model-orbit-track">
+              <div class="model-provider" style="--node-x:85.4%;--node-y:14.6%;--node-delay:740ms"><div class="model-provider-content"><img src="assets/logos-and-icons/google.svg" alt=""><strong>Google</strong><span>Gemini</span></div></div>
+              <div class="model-provider" style="--node-x:85.4%;--node-y:85.4%;--node-delay:820ms"><div class="model-provider-content"><img src="assets/logos-and-icons/mistralai.svg" alt=""><strong>Mistral</strong><span>Mistral</span></div></div>
+              <div class="model-provider" style="--node-x:14.6%;--node-y:85.4%;--node-delay:900ms"><div class="model-provider-content"><img src="assets/logos-and-icons/meta.svg" alt=""><strong>Meta</strong><span>Llama</span></div></div>
+              <div class="model-provider" style="--node-x:14.6%;--node-y:14.6%;--node-delay:980ms"><div class="model-provider-content"><img src="assets/logos-and-icons/microsoft.svg" alt=""><strong>Microsoft</strong><span>Phi</span></div></div>
+            </div></div>
+            <div class="model-orbit inner"><div class="model-orbit-track">
+              <div class="model-provider" style="--node-x:50%;--node-y:0%;--node-delay:1060ms"><div class="model-provider-content"><img src="assets/logos-and-icons/deepseek.svg" alt=""><strong>DeepSeek</strong><span>DeepSeek</span></div></div>
+              <div class="model-provider" style="--node-x:92.9%;--node-y:75%;--node-delay:1140ms"><div class="model-provider-content"><img src="assets/logos-and-icons/huggingface.svg" alt=""><strong>Hugging Face</strong><span>Open hub</span></div></div>
+              <div class="model-provider" style="--node-x:7.1%;--node-y:75%;--node-delay:1220ms"><div class="model-provider-content"><img src="assets/logos-and-icons/ibm.svg" alt=""><strong>IBM</strong><span>Granite</span></div></div>
+            </div></div>
+            <div class="model-core"><strong>ROUTE</strong><span>Governed model selection</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="scene scene-orchestration" data-state="future" aria-hidden="true">
+        <div class="scene-content">
+          <div class="orchestration-heading">
+            <p class="scene-kicker">From selection to orchestration</p>
+            <h2 class="compact-title">Model choice becomes a <span class="accent">system decision.</span></h2>
+          </div>
+          <div class="orchestration-flow">
+            <div class="orchestration-step"><strong>Human chooses</strong><p>One task. One model. Manual judgment.</p></div>
+            <div class="orchestration-step"><strong>Platform routes</strong><p>Cost, capability, policy and context.</p></div>
+            <div class="orchestration-step"><strong>Models collaborate</strong><p>Specialized intelligence works as a system.</p></div>
           </div>
         </div>
       </section>
@@ -2978,73 +2810,6 @@
           <blockquote class="strategy-thesis">“It’s not about the model. It is about a platform that can outlive every model.”</blockquote>
         </div>
       </section>
-      <section class="scene scene-four" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <div>
-            <p class="scene-kicker">Multi-model enterprise</p>
-            <h2>There will not be <span class="accent">one model.</span></h2>
-            <p class="scene-subtitle">Organizations will govern portfolios of intelligence, not select a single winner.</p>
-          </div>
-          <div class="orchestra" aria-label="A portfolio of models routed by an orchestration layer">
-            <div class="model-orbit outer"><div class="model-orbit-track">
-              <div class="model-provider copilot" style="--node-x:50%;--node-y:0%;--node-delay:500ms"><div class="model-provider-content"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Copilot</strong><span>Experience</span></div></div>
-              <div class="model-provider" style="--node-x:93.3%;--node-y:75%;--node-delay:580ms"><div class="model-provider-content"><img src="assets/logos-and-icons/openai.svg" alt=""><strong>OpenAI</strong><span>GPT</span></div></div>
-              <div class="model-provider" style="--node-x:6.7%;--node-y:75%;--node-delay:660ms"><div class="model-provider-content"><img src="assets/logos-and-icons/anthropic.svg" alt=""><strong>Anthropic</strong><span>Claude</span></div></div>
-            </div></div>
-            <div class="model-orbit middle"><div class="model-orbit-track">
-              <div class="model-provider" style="--node-x:85.4%;--node-y:14.6%;--node-delay:740ms"><div class="model-provider-content"><img src="assets/logos-and-icons/google.svg" alt=""><strong>Google</strong><span>Gemini</span></div></div>
-              <div class="model-provider" style="--node-x:85.4%;--node-y:85.4%;--node-delay:820ms"><div class="model-provider-content"><img src="assets/logos-and-icons/mistralai.svg" alt=""><strong>Mistral</strong><span>Mistral</span></div></div>
-              <div class="model-provider" style="--node-x:14.6%;--node-y:85.4%;--node-delay:900ms"><div class="model-provider-content"><img src="assets/logos-and-icons/meta.svg" alt=""><strong>Meta</strong><span>Llama</span></div></div>
-              <div class="model-provider" style="--node-x:14.6%;--node-y:14.6%;--node-delay:980ms"><div class="model-provider-content"><img src="assets/logos-and-icons/microsoft.svg" alt=""><strong>Microsoft</strong><span>Phi</span></div></div>
-            </div></div>
-            <div class="model-orbit inner"><div class="model-orbit-track">
-              <div class="model-provider" style="--node-x:50%;--node-y:0%;--node-delay:1060ms"><div class="model-provider-content"><img src="assets/logos-and-icons/deepseek.svg" alt=""><strong>DeepSeek</strong><span>DeepSeek</span></div></div>
-              <div class="model-provider" style="--node-x:92.9%;--node-y:75%;--node-delay:1140ms"><div class="model-provider-content"><img src="assets/logos-and-icons/huggingface.svg" alt=""><strong>Hugging Face</strong><span>Open hub</span></div></div>
-              <div class="model-provider" style="--node-x:7.1%;--node-y:75%;--node-delay:1220ms"><div class="model-provider-content"><img src="assets/logos-and-icons/ibm.svg" alt=""><strong>IBM</strong><span>Granite</span></div></div>
-            </div></div>
-            <div class="model-core"><strong>ROUTE</strong><span>Governed model selection</span></div>
-          </div>
-        </div>
-      </section>
-      <section class="scene scene-orchestration" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <div class="orchestration-heading">
-            <p class="scene-kicker">From selection to orchestration</p>
-            <h2 class="compact-title">Model choice becomes a <span class="accent">system decision.</span></h2>
-          </div>
-          <div class="orchestration-flow">
-            <div class="orchestration-step"><strong>Human chooses</strong><p>One task. One model. Manual judgment.</p></div>
-            <div class="orchestration-step"><strong>Platform routes</strong><p>Cost, capability, policy and context.</p></div>
-            <div class="orchestration-step"><strong>Models collaborate</strong><p>Specialized intelligence works as a system.</p></div>
-          </div>
-        </div>
-      </section>
-      <section class="scene scene-multimodal" data-state="future" aria-hidden="true">
-        <div class="scene-content">
-          <div>
-            <p class="scene-kicker">Multimodal intelligence</p>
-            <h2 class="compact-title">AI can now <span class="accent">see, hear, reason and act.</span></h2>
-          </div>
-          <div class="sense-system" aria-label="Multimodal capabilities connected to reasoning">
-            <svg class="sense-lines" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true">
-              <line x1="300" y1="300" x2="300" y2="60" style="--line-delay:360ms"></line>
-              <line x1="300" y1="300" x2="505" y2="175" style="--line-delay:450ms"></line>
-              <line x1="300" y1="300" x2="505" y2="425" style="--line-delay:540ms"></line>
-              <line x1="300" y1="300" x2="300" y2="540" style="--line-delay:630ms"></line>
-              <line x1="300" y1="300" x2="95" y2="425" style="--line-delay:720ms"></line>
-              <line x1="300" y1="300" x2="95" y2="175" style="--line-delay:810ms"></line>
-              <circle cx="300" cy="60" r="3"></circle><circle cx="505" cy="175" r="3"></circle><circle cx="505" cy="425" r="3"></circle><circle cx="300" cy="540" r="3"></circle><circle cx="95" cy="425" r="3"></circle><circle cx="95" cy="175" r="3"></circle>
-            </svg>
-            <div class="sense-core"><img src="assets/logos-and-icons/Copilot-icon.svg" alt=""><strong>Microsoft 365<br>Copilot</strong><span>Reasoning core</span></div>
-            <div class="sense-node" style="--node-x:50%;--node-y:10%;--node-delay:620ms"><img src="assets/logos-and-icons/file-text.svg" alt=""><strong>Text</strong></div>
-            <div class="sense-node" style="--node-x:84.17%;--node-y:29.17%;--node-delay:720ms"><img src="assets/logos-and-icons/image.svg" alt=""><strong>Images</strong></div>
-            <div class="sense-node" style="--node-x:84.17%;--node-y:70.83%;--node-delay:820ms"><img src="assets/logos-and-icons/audio-lines.svg" alt=""><strong>Voice</strong></div>
-            <div class="sense-node" style="--node-x:50%;--node-y:90%;--node-delay:920ms"><img src="assets/logos-and-icons/video.svg" alt=""><strong>Video</strong></div>
-            <div class="sense-node" style="--node-x:15.83%;--node-y:70.83%;--node-delay:1020ms"><img src="assets/logos-and-icons/monitor.svg" alt=""><strong>Screens</strong></div>
-            <div class="sense-node" style="--node-x:15.83%;--node-y:29.17%;--node-delay:1120ms"><img src="assets/logos-and-icons/database.svg" alt=""><strong>Data</strong></div>
-          </div>
-        </div>
-      </section>
       <section class="scene scene-video" data-video-config="videoBeforeScene13" data-state="future" aria-hidden="true">
         <video preload="none" playsinline aria-label="Configured presentation video"></video>
         <button class="video-play-control" type="button" aria-label="Play video" title="Play video"></button>
@@ -3130,14 +2895,11 @@
         <img class="thanks-portrait" src="assets/images/welcome-usman.png" alt="Usman Afzal welcoming the audience">
       </section>
     </div>
-    <div class="scene-count" data-visible="false" aria-hidden="true" aria-live="polite">01 / 20</div>
+    <button class="tap-zone prev" type="button" aria-label="Previous scene"></button>
+    <button class="tap-zone next" type="button" aria-label="Next scene"></button>
+    <div class="scene-count" aria-live="polite">01 / 20</div>
     <div class="control-hint">Arrow keys / Space / F fullscreen / T palette / C commentary</div>
     <div class="progress-track"><div class="progress-fill" style="width:5%"></div></div>
-    <button class="scroll-cue" type="button" aria-label="Continue to the next scene">
-      <span class="scroll-cue-arrow" aria-hidden="true"></span>
-      <span class="scroll-cue-arrow" aria-hidden="true"></span>
-      <span class="scroll-cue-arrow" aria-hidden="true"></span>
-    </button>
   </main>
 
   <aside class="commentary-shell" data-open="false" data-available="false" data-disabled="false" aria-label="Presenter commentary">
@@ -3345,13 +3107,8 @@
     const sceneCount = document.querySelector(".scene-count");
     const progressFill = document.querySelector(".progress-fill");
     const controlHint = document.querySelector(".control-hint");
-    const scrollCue = document.querySelector(".scroll-cue");
     const requestedScene = Number.parseInt(new URLSearchParams(window.location.search).get("scene") || "1", 10) - 1;
-    const evolutionScene = scenes.find((scene) => scene.classList.contains("scene-three"));
-    const autoBuildScenes = new Set([
-      evolutionScene,
-      ...scenes.filter((scene) => scene.classList.contains("scene-ms-approach"))
-    ]);
+    const autoBuildScene = scenes.find((scene) => scene.classList.contains("scene-three"));
     const autoAdvanceScene = scenes.find((scene) => scene.classList.contains("scene-event"));
     const commentaryShell = document.querySelector(".commentary-shell");
     const commentaryLauncher = commentaryShell.querySelector(".commentary-launcher");
@@ -3362,9 +3119,6 @@
     const commentaryTitle = commentaryShell.querySelector(".commentary-title");
     const commentaryBody = commentaryShell.querySelector(".commentary-body");
     const commentaryTakeaway = commentaryShell.querySelector(".commentary-takeaway");
-    let developerSceneIndicatorVisible = sessionStorage.getItem("developerSceneIndicatorVisible") === "true";
-    sceneCount.dataset.visible = String(developerSceneIndicatorVisible);
-    sceneCount.setAttribute("aria-hidden", String(!developerSceneIndicatorVisible));
     const commentaryByClass = {
       "scene-event": {
         label: "Before we begin",
@@ -3421,47 +3175,29 @@
         takeaway: "The defining movement is not simply more intelligence. It is less distance between understanding, deciding, and acting."
       },
       "scene-shifts": {
-        label: "Shift 1 · The operating model",
-        title: "The first shift is from conversation to digital labor.",
+        label: "The operating model is moving",
+        title: "Each step changes the relationship with AI.",
         paragraphs: [
           "Conversation lets us ask. Collaboration lets us create together. Delegation lets us assign an outcome instead of describing every step. Digital labor extends that delegation into repeatable, autonomous work.",
-          "These are not interchangeable maturity labels. Every step asks for stronger context, clearer authority, better controls, and a more explicit understanding of who owns the result. That changing operating model also changes where people sit in the work."
+          "The mountain matters because these are not interchangeable maturity labels. Every step asks for stronger context, clearer authority, better controls, and a more explicit understanding of who owns the result."
         ],
         takeaway: "Capability rises with autonomy, but so does the need for operating discipline."
       },
-      "scene-human-loop": {
-        label: "Shift 2 · The human role",
-        title: "As agency grows, people move from execution to oversight.",
-        paragraphs: [
-          "Human in the loop means a person remains part of each task and decision. Human on the loop shifts the person into supervision: AI performs more of the work while people monitor, guide, and intervene when needed.",
-          "Human off the loop describes bounded autonomy. Agents coordinate tools, memory, and specialist roles without continuous attention, while people retain authority over goals, policies, exceptions, and accountability. Once that autonomy persists, an agent begins to look less like a feature and more like an organizational role."
-        ],
-        takeaway: "Less human involvement in execution requires more deliberate boundaries, observability, and escalation design."
-      },
-      "scene-agent-evolution": {
-        label: "Shift 3 · Role-based autonomy",
-        title: "Agents are evolving from a capability into a role.",
-        paragraphs: [
-          "Interactive agents perform a defined task when asked. Autonomous agents can plan toward an outcome, coordinate tools, and collaborate with other agents across a more complex workflow.",
-          "Role-based autonomy adds persistent identity, organizational context, access, communication channels, and a place in enterprise systems. The shift is from invoking a tool to working with a governed participant, which raises a practical question: where does that participant sit in the organization?"
-        ],
-        takeaway: "The defining change is not greater autonomy alone; it is durable identity, access, responsibility, and accountability."
-      },
       "scene-org": {
         label: "The new organizational chart",
-        title: "Role-based agents turn the org chart into a mixed workforce.",
+        title: "Work will be organized around mixed teams.",
         paragraphs: [
           "This is not a chart of humans being replaced. It is a chart of work being redistributed. People continue to set direction, exercise judgment, build trust, and carry accountability while specialized AI roles research, analyze, track, and prepare.",
-          "The Decision Desk makes this concrete: signals become analysis, commitments become visible, drafts arrive ready for judgment, and only the decisions that genuinely need a leader are escalated. A mixed workforce like this cannot run on isolated tools; it needs a shared enterprise architecture."
+          "The Decision Desk makes this concrete: signals become analysis, commitments become visible, drafts arrive ready for judgment, and only the decisions that genuinely need a leader are escalated."
         ],
         takeaway: "The future org chart describes responsibilities and decision rights, not only reporting lines."
       },
       "scene-multimodal": {
         label: "Multimodal intelligence",
-        title: "Orchestrated AI can understand more of the real work environment.",
+        title: "AI can understand more of the real work environment.",
         paragraphs: [
-          "Routing and collaboration become more useful when AI can understand the work itself. Work rarely arrives as clean text; it lives in meetings, images, screens, documents, video, data, and the relationships between them.",
-          "When multimodal understanding is connected to reasoning and tools, AI can inspect a situation, identify what matters, prepare a response, and act. That expanded ability is exactly why the next part of the story must be governance."
+          "Work rarely arrives as clean text. It lives in meetings, images, screens, documents, video, data, and the relationships between them. Multimodal systems can combine these signals into a richer view of context.",
+          "When that understanding is connected to reasoning and tools, AI can move beyond answering questions. It can inspect a situation, identify what matters, prepare a response, and act within policy."
         ],
         takeaway: "Multimodality expands what AI can understand; governance determines what it should be allowed to do."
       },
@@ -3469,7 +3205,7 @@
         label: "Multi-model enterprise",
         title: "There will not be one permanent winner.",
         paragraphs: [
-          "A platform designed to outlive every model must treat model diversity as a feature. Different work demands different intelligence: a frontier model for complex reasoning, a small model for speed and cost, an open model for control, or a specialist model for a narrow domain.",
+          "Different work demands different intelligence. A frontier model may be right for complex reasoning, a small model for speed and cost, an open model for control, and a specialist model for a narrow domain.",
           "The moving orbits represent a portfolio that will keep changing. The durable enterprise capability is the route at the center: selecting models by task, risk, performance, policy, and economics."
         ],
         takeaway: "Competitive advantage shifts from choosing a model to governing a portfolio of intelligence."
@@ -3478,7 +3214,7 @@
         label: "From selection to orchestration",
         title: "Model choice becomes a system decision.",
         paragraphs: [
-          "Once the enterprise manages a portfolio, people cannot choose every model for every task. Platform routing uses context, policy, capability, latency, and cost to determine the best fit automatically.",
+          "Today, a person often chooses a model manually. The next step is platform routing, where context, policy, capability, latency, and cost determine the best fit automatically.",
           "Beyond routing, specialized models and agents can collaborate: one investigates, another verifies, another acts, and an evaluation layer checks the result."
         ],
         takeaway: "The strategic asset is not a single model. It is the orchestration, evaluation, and control layer around them."
@@ -3494,7 +3230,7 @@
       },
       "scene-ai-architecture": {
         label: "Intelligence + Trust",
-        title: "A mixed workforce needs connected intelligence and trust.",
+        title: "Microsoft IQ connects the AI estate.",
         paragraphs: [
           "The architecture brings Microsoft 365 Copilot, Cowork, agents, Copilot Studio, GitHub Copilot, Fabric, Foundry, Azure, and Agent 365 into one governed system rather than a collection of disconnected tools.",
           "Microsoft IQ sits at the center, connecting Work IQ, Foundry IQ, and Fabric IQ so experiences can share organizational context while security forms the boundary around every layer."
@@ -3505,7 +3241,7 @@
         label: "The Microsoft AI Approach",
         title: "One experience, different levels of agency.",
         paragraphs: [
-          "With the architecture in place, the Microsoft AI approach brings several working modes into one Copilot experience. Chat assists with secure enterprise conversation. Cowork and Code move toward delegated, multi-step execution. Autopilots represent digital teams that can sustain work over time.",
+          "The Microsoft AI approach brings several working modes into one Copilot experience. Chat assists with secure enterprise conversation. Cowork and Code move toward delegated, multi-step execution. Autopilots represent digital teams that can sustain work over time.",
           "The important progression is not a collection of separate destinations. It is a continuum of agency: from helping a person complete a task, to accepting outcomes, using multiple tools, and coordinating work with less supervision."
         ],
         takeaway: "One Copilot can meet people where they are today while creating a path toward delegated and autonomous work."
@@ -3514,7 +3250,7 @@
         label: "Platform strategy",
         title: "The platform must outlive every model.",
         paragraphs: [
-          "Turning that continuum of agency into a durable enterprise capability requires a platform that can evolve. Microsoft's strategy begins with a multi-model foundation so enterprises can adopt the best intelligence as the market changes without rebuilding.",
+          "Microsoft's strategy begins with a multi-model foundation so enterprises can adopt the best intelligence as the market changes without rebuilding the platform. A multi-harness layer then adds planning, tools, agents, and memory so intelligence can perform real work.",
           "That flexibility sits on a cloud-native, enterprise-grade foundation grounded in organizational context through WorkIQ, integrated into the flow of work, and protected by security and governance."
         ],
         takeaway: "The durable advantage is not betting on one model. It is building a platform that can absorb the next one."
@@ -3523,7 +3259,7 @@
         label: "Governance as capability",
         title: "Govern what AI sees, does, decides, and uses.",
         paragraphs: [
-          "The preceding capabilities increase what AI can perceive and do. Governance begins with data: what an agent can see and how context is protected. It extends to actions and decisions across Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, Fabric, Foundry, and Azure.",
+          "Governance begins with data: what an agent can see and how context is protected. It extends to actions and decisions across Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, Fabric, Foundry, and Azure.",
           "Microsoft IQ connects OpenAI, Anthropic, Google, and Meta at the intelligence center, while Agent 365 forms the outer management layer across the complete agent estate."
         ],
         takeaway: "Good governance is not a brake on scale. It is the mechanism that makes confident scale possible."
@@ -3572,7 +3308,7 @@
     let commentaryDisabled = sessionStorage.getItem("keynoteCommentaryDisabled") === "true";
 
     function commentaryForScene(scene) {
-      if (!scene || scene.classList.contains("scene-video") || scene.classList.contains("scene-event") || scene.classList.contains("scene-audience-guide") || scene === scenes[scenes.length - 1]) return null;
+      if (!scene || scene.classList.contains("scene-video") || scene === scenes[0] || scene === scenes[1] || scene === scenes[scenes.length - 1]) return null;
       if (scene.classList.contains("scene-ai-architecture")) return commentaryByClass["scene-ai-architecture"];
       return Object.entries(commentaryByClass).find(([className]) => scene.classList.contains(className))?.[1] || null;
     }
@@ -3621,7 +3357,7 @@
     function setBuild(scene, build) {
       const nextBuild = Math.max(0, Math.min(buildCount(scene), build));
       const currentBuild = Number.parseInt(scene.dataset.build || "0", 10);
-      const title = scene === evolutionScene
+      const title = scene === autoBuildScene
         ? scene.querySelector(".journey-title")
         : scene.classList.contains("scene-ms-approach")
           ? scene.querySelector(".ms-approach-heading h2")
@@ -3672,11 +3408,11 @@
 
     function scheduleAutoBuild(scene) {
       clearAutoBuild();
-      if (!autoBuildScenes.has(scene) || scene.dataset.build !== "0") return;
+      if (scene !== autoBuildScene || scene.dataset.build !== "0") return;
       autoBuildTimer = window.setTimeout(() => {
         if (scenes[currentScene] === scene && scene.dataset.build === "0") setBuild(scene, 1);
         autoBuildTimer = 0;
-      }, 5000);
+      }, 10000);
     }
 
     function showScene(nextScene) {
@@ -3752,10 +3488,6 @@
       sceneCount.textContent = `${String(currentScene + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
       progressFill.style.width = `${((currentScene + 1) / scenes.length) * 100}%`;
       controlHint.dataset.hidden = "true";
-      const isFinalScene = currentScene === scenes.length - 1;
-      scrollCue.dataset.hidden = String(isFinalScene);
-      scrollCue.disabled = isFinalScene;
-      scrollCue.setAttribute("aria-hidden", String(isFinalScene));
       scenes.forEach((scene, index) => {
         const video = scene.querySelector("video");
         if (!video) return;
@@ -3800,20 +3532,8 @@
       else document.exitFullscreen?.();
     }
 
-    const interactiveSelector = "a, button, input, select, textarea, video, [role='button'], [role='dialog']";
-    scrollCue.addEventListener("click", stepForward);
-    document.querySelector(".cinema-stage").addEventListener("click", (event) => {
-      if (!event.target.closest(interactiveSelector)) stepForward();
-    });
-
-    let wheelLocked = false;
-    document.addEventListener("wheel", (event) => {
-      if (event.target.closest(".commentary-blade") || Math.abs(event.deltaY) < 20 || wheelLocked) return;
-      event.preventDefault();
-      wheelLocked = true;
-      (event.deltaY > 0 ? stepForward : stepBackward)();
-      window.setTimeout(() => { wheelLocked = false; }, 700);
-    }, { passive: false });
+    document.querySelector(".tap-zone.prev").addEventListener("click", stepBackward);
+    document.querySelector(".tap-zone.next").addEventListener("click", stepForward);
 
     document.addEventListener("keydown", (event) => {
       if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(event.key)) {
@@ -3834,13 +3554,6 @@
       if (event.key.toLowerCase() === "c") {
         event.preventDefault();
         toggleCommentaryAvailability();
-      }
-      if (event.key.toLowerCase() === "d") {
-        event.preventDefault();
-        developerSceneIndicatorVisible = !developerSceneIndicatorVisible;
-        sessionStorage.setItem("developerSceneIndicatorVisible", String(developerSceneIndicatorVisible));
-        sceneCount.dataset.visible = String(developerSceneIndicatorVisible);
-        sceneCount.setAttribute("aria-hidden", String(!developerSceneIndicatorVisible));
       }
       if (event.key === "Escape") setCommentaryOpen(false);
       if (event.key.toLowerCase() === "m") {

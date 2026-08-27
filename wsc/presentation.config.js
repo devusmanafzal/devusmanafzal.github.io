@@ -15,8 +15,8 @@ window.PRESENTATION_CONFIG = {
   // Optional full-screen video inserted immediately before presentation scene 13.
   videoBeforeScene13: {
     enabled: true,
-    src: "assets/videos/open-the-door.mov",
-    fit: "cover",
+    src: "assets/videos/open-the-door-web.mp4",
+    fit: "contain",
     muted: false,
     loop: false,
     caption: ""
