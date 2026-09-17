@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "2020-12",
+  "id": "fashion-retail",
+  "name": "Fashion Retail",
+  "description": "Default use-case configuration for a fashion retail organization with brand, store operations, merchandising, and customer experience workloads.",
+  "useCases": [
+    { "useCaseId": "campaign", "enabledByDefault": true, "order": 1 },
+    { "useCaseId": "store", "enabledByDefault": true, "order": 2 },
+    { "useCaseId": "copy", "enabledByDefault": true, "order": 3 },
+    { "useCaseId": "review", "enabledByDefault": true, "order": 4 },
+    { "useCaseId": "signals", "enabledByDefault": true, "order": 5 }
+  ]
+}

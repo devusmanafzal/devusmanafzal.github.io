@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Microsoft 365 Copilot Cowork — Use Case Library for ARKET</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --cp-bg: #3d3b3a;
+    --cp-bg-elevated: #343231;
+    --cp-surface: #292929;
+    --cp-surface-soft: #2e2e2e;
+    --cp-border: #474747;
+    --cp-border-strong: #5f5f5f;
+    --cp-text: #dedede;
+    --cp-text-muted: #919191;
+    --cp-text-soft: #b0b0b0;
+    --cp-accent: #fd8ea1;
+    --cp-accent-hover: #fb7b91;
+    --cp-accent-soft: rgba(253, 142, 161, 0.14);
+    --cp-accent-fg: #1a1a1a;
+    --cp-success: #4ade80;
+    --cp-danger: #f87171;
+    --cp-warning: #fbbf24;
+    --cp-link: #4da6ff;
+    --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+    --cp-overlay: rgba(41, 41, 41, 0.88);
+    --cp-panel: rgba(41, 41, 41, 0.72);
+    --cp-panel-strong: rgba(41, 41, 41, 0.96);
+    --cp-sheen: rgba(255, 255, 255, 0.04);
+    --cp-highlight: rgba(253, 142, 161, 0.12);
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  line-height: 1.55;
+}
+a { color: var(--cp-link); }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+header.hero {
+  background: var(--cp-bg-elevated);
+  border-bottom: 1px solid var(--cp-border);
+  padding: 40px 0 32px;
+}
+.hero-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.brand-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--cp-accent);
+  background: var(--cp-accent-soft);
+  border: 1px solid var(--cp-border);
+  padding: 5px 12px; border-radius: 999px;
+}
+.ga-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600;
+  color: var(--cp-success);
+  border: 1px solid var(--cp-border); border-radius: 999px; padding: 5px 12px;
+}
+.ga-chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--cp-success); }
+h1 { font-size: 34px; line-height: 1.15; margin: 0 0 10px; font-weight: 700; letter-spacing: -.01em; }
+h1 .accent { color: var(--cp-accent); }
+.subtitle { font-size: 17px; color: var(--cp-text-muted); max-width: 760px; margin: 0 0 24px; }
+
+.stat-row { display: flex; flex-wrap: wrap; gap: 14px; }
+.stat {
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 16px;
+  padding: 14px 18px; min-width: 150px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+}
+.stat .num { font-size: 22px; font-weight: 700; color: var(--cp-accent); }
+.stat .lbl { font-size: 12.5px; color: var(--cp-text-muted); }
+
+.controls { position: sticky; top: 49px; z-index: 30; background: var(--cp-bg); border-bottom: 1px solid var(--cp-border); padding: 16px 0; }
+.controls-inner { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.search-box {
+  flex: 1 1 240px; min-width: 220px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 10px; padding: 9px 14px;
+}
+.search-box input { border: none; outline: none; background: transparent; color: var(--cp-text); font-size: 14.5px; width: 100%; font-family: inherit; }
+.search-box svg { flex: none; opacity: .55; }
+.tier-filter { display: flex; gap: 8px; flex-wrap: wrap; }
+.tier-btn {
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  background: var(--cp-surface); color: var(--cp-text-muted);
+  border: 1px solid var(--cp-border); border-radius: 999px; padding: 7px 14px;
+  font-family: inherit; transition: all .12s ease;
+}
+.tier-btn:hover { border-color: var(--cp-border-strong); color: var(--cp-text); }
+.tier-btn.active { background: var(--cp-accent); color: var(--cp-accent-fg); border-color: var(--cp-accent); }
+
+.persona-nav { display: flex; gap: 10px; flex-wrap: wrap; padding: 22px 0 4px; }
+.persona-pill {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 12px;
+  padding: 9px 14px; font-size: 13.5px; font-weight: 600; color: var(--cp-text);
+  font-family: inherit; transition: all .12s ease;
+}
+.persona-pill .emoji { font-size: 16px; }
+.persona-pill .count { font-size: 11.5px; color: var(--cp-text-soft); font-weight: 600; background: var(--cp-surface-soft); border-radius: 999px; padding: 1px 8px; }
+.persona-pill:hover { border-color: var(--cp-accent); }
+.persona-pill.active { background: var(--cp-accent-soft); border-color: var(--cp-accent); color: var(--cp-accent); }
+.persona-pill.active .count { color: var(--cp-accent); }
+
+.persona-section { padding: 30px 0 6px; scroll-margin-top: 80px; }
+.persona-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 6px; }
+.persona-header .emoji { font-size: 30px; line-height: 1; margin-top: 2px; }
+.persona-header h2 { font-size: 22px; margin: 0 0 3px; font-weight: 700; }
+.persona-header .role-desc { font-size: 14px; color: var(--cp-text-muted); margin: 0; max-width: 760px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; margin-top: 18px; }
+
+.card {
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 16px;
+  padding: 20px 20px 18px; display: flex; flex-direction: column;
+  box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+  transition: border-color .12s ease, transform .12s ease;
+}
+.card:hover { border-color: var(--cp-border-strong); }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.card h3 { font-size: 16.5px; margin: 0; font-weight: 700; line-height: 1.3; }
+.tier-tag { flex: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--cp-border); white-space: nowrap; }
+.tier-tag.light { color: var(--cp-success); background: rgba(22,163,74,.08); }
+.tier-tag.medium { color: var(--cp-link); background: rgba(0,120,212,.08); }
+.tier-tag.heavy { color: var(--cp-accent); background: var(--cp-accent-soft); }
+
+.scenario { font-size: 14px; color: var(--cp-text); margin: 0 0 14px; }
+
+.section-lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--cp-text-soft); margin: 0 0 7px; }
+
+.caps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.cap {
+  font-size: 11.5px; font-weight: 600; color: var(--cp-text-muted);
+  background: var(--cp-surface-soft); border: 1px solid var(--cp-border); border-radius: 7px; padding: 3px 9px;
+}
+.cap.plugin { color: var(--cp-accent); background: var(--cp-accent-soft); border-color: var(--cp-border); }
+
+.prompt {
+  font-family: Consolas, "Courier New", Courier, monospace; font-size: 12.5px;
+  background: var(--cp-bg-elevated); border: 1px solid var(--cp-border); border-left: 3px solid var(--cp-accent);
+  border-radius: 8px; padding: 10px 12px; color: var(--cp-text); margin-bottom: 14px;
+}
+.prompt .q { color: var(--cp-accent); font-weight: 700; }
+
+.value-row { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 16px; }
+.value-row .ic { flex: none; margin-top: 1px; }
+.value-row .txt { font-size: 13.5px; color: var(--cp-text); }
+.value-row .txt b { color: var(--cp-accent); }
+
+.cost-box {
+  margin-top: auto; background: var(--cp-bg-elevated); border: 1px solid var(--cp-border); border-radius: 12px;
+  padding: 12px 14px;
+}
+.cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.cost-cell .k { font-size: 10.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--cp-text-soft); }
+.cost-cell .v { font-size: 14px; font-weight: 700; color: var(--cp-text); }
+.cost-cell .v small { font-weight: 500; color: var(--cp-text-muted); font-size: 11.5px; }
+
+.method { padding: 46px 0; }
+.method h2 { font-size: 24px; margin: 0 0 6px; font-weight: 700; }
+.method .lead { font-size: 15px; color: var(--cp-text-muted); max-width: 800px; margin: 0 0 26px; }
+.formula {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 28px;
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 14px; padding: 18px 20px;
+}
+.formula .term { font-weight: 700; font-size: 14px; color: var(--cp-text); background: var(--cp-accent-soft); border: 1px solid var(--cp-border); border-radius: 8px; padding: 6px 12px; }
+.formula .op { font-weight: 800; color: var(--cp-accent); font-size: 18px; }
+.formula .eq { font-weight: 700; font-size: 14px; color: var(--cp-accent-fg); background: var(--cp-accent); border-radius: 8px; padding: 6px 14px; }
+
+table.tiers { width: 100%; border-collapse: collapse; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 14px; overflow: hidden; }
+table.tiers th, table.tiers td { text-align: left; padding: 12px 16px; font-size: 13.5px; border-bottom: 1px solid var(--cp-border); }
+table.tiers th { background: var(--cp-bg-elevated); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--cp-text-soft); }
+table.tiers tr:last-child td { border-bottom: none; }
+table.tiers td b { color: var(--cp-text); }
+.tier-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+.callout {
+  display: flex; gap: 12px; align-items: flex-start; margin-top: 22px;
+  background: rgba(245,158,11,.08); border: 1px solid var(--cp-border); border-left: 3px solid var(--cp-warning);
+  border-radius: 12px; padding: 14px 16px;
+}
+.callout .ic { flex: none; font-size: 18px; }
+.callout .txt { font-size: 13.5px; color: var(--cp-text); }
+.callout .txt b { color: var(--cp-text); }
+
+.gov {
+  display: flex; gap: 12px; align-items: flex-start; margin-top: 16px;
+  background: var(--cp-accent-soft); border: 1px solid var(--cp-border); border-left: 3px solid var(--cp-accent);
+  border-radius: 12px; padding: 14px 16px;
+}
+.gov .ic { flex: none; font-size: 18px; }
+.gov .txt { font-size: 13.5px; color: var(--cp-text); }
+.gov .txt b { color: var(--cp-accent); }
+
+.budget { padding: 0 0 50px; }
+.budget-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 20px; }
+.bcard { background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 14px; padding: 18px; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14); }
+.bcard .emoji { font-size: 22px; }
+.bcard h4 { margin: 8px 0 4px; font-size: 15px; }
+.bcard p { margin: 0; font-size: 13px; color: var(--cp-text-muted); }
+.bcard .mix { margin-top: 10px; font-size: 12.5px; color: var(--cp-text-soft); }
+
+footer { border-top: 1px solid var(--cp-border); padding: 26px 0 40px; }
+footer p { font-size: 12.5px; color: var(--cp-text-soft); margin: 4px 0; }
+
+.empty { text-align: center; padding: 60px 20px; color: var(--cp-text-muted); display: none; }
+
+@media (max-width: 640px) {
+  h1 { font-size: 27px; }
+  .grid { grid-template-columns: 1fr; }
+  .cost-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.viewswitch{max-width:1180px;margin:22px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;}
+.view-btn{font:inherit;font-size:13.5px;font-weight:600;color:var(--cp-text-muted);background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:999px;padding:9px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:border-color .12s,color .12s,background .12s;}
+.view-btn:hover{border-color:var(--cp-border-strong);color:var(--cp-text);}
+.view-btn.active{background:var(--cp-accent);color:var(--cp-accent-fg);border-color:var(--cp-accent);}
+.hidden{display:none;}
+.cost-badge{font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+.cost-badge.measured{color:var(--cp-success,#16a34a);background:rgba(22,163,74,.10);border:1px solid rgba(22,163,74,.35);}
+.cost-badge.est{color:var(--cp-text-soft);background:var(--cp-surface-soft);border:1px solid var(--cp-border);}
+.measured-note{display:flex;gap:12px;align-items:flex-start;margin-top:22px;background:rgba(22,163,74,.06);border:1px solid var(--cp-border);border-left:3px solid var(--cp-success,#16a34a);border-radius:12px;padding:14px 16px;}
+.measured-note .ic{flex:none;font-size:18px;}
+.measured-note .txt{font-size:13.5px;color:var(--cp-text);}
+.measured-note .txt b{color:var(--cp-success,#16a34a);}
+.journeys-intro{padding:6px 0 8px;}
+.journeys-intro h2{font-size:24px;margin:0 0 6px;font-weight:700;}
+.journeys-intro .lead{font-size:15px;color:var(--cp-text-muted);max-width:860px;margin:0 0 8px;}
+.journeys-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:18px;margin-top:18px;padding-bottom:20px;}
+.journey{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:16px;padding:20px;box-shadow:0 0 2px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.14);}
+.journey-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
+.journey-head .emoji{font-size:26px;line-height:1;margin-top:2px;}
+.journey-head h3{margin:0;font-size:17px;font-weight:700;}
+.journey-head .jrole{font-weight:600;color:var(--cp-text-muted);font-size:13.5px;}
+.journey-head .jtag{margin:5px 0 0;font-size:12.5px;color:var(--cp-text-soft);font-style:italic;max-width:44ch;}
+.jtl{position:relative;margin-left:2px;}
+.jrow{display:grid;grid-template-columns:50px 16px 1fr;align-items:stretch;}
+.jtime{font-size:12px;font-weight:700;color:var(--cp-text-soft);padding-top:14px;text-align:right;padding-right:8px;}
+.jnode{position:relative;}
+.jnode::before{content:'';position:absolute;left:3px;top:17px;width:9px;height:9px;border-radius:50%;background:var(--cp-accent);z-index:1;}
+.jnode::after{content:'';position:absolute;left:7px;top:17px;bottom:-4px;width:1px;background:var(--cp-border);}
+.jrow:last-child .jnode::after{display:none;}
+.jcard{border:1px solid var(--cp-border);border-radius:10px;padding:10px 12px;margin:6px 0 10px 6px;background:var(--cp-bg-elevated,var(--cp-surface-soft));flex:1;}
+.jcard-top{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.jlabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--cp-text-soft);}
+.jtitle{font-size:14px;font-weight:600;margin:3px 0 8px;}
+.jcost .cost-badge{font-size:11px;}
+.journey-foot{margin-top:12px;border-top:1px solid var(--cp-border);padding-top:12px;}
+.journey-foot .k{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--cp-text-soft);}
+.journey-foot .v{font-size:14.5px;font-weight:700;color:var(--cp-text);}
+.journey-foot .jest{margin-top:6px;font-size:12px;color:var(--cp-text-soft);}
+.calc{padding:20px 0 50px;}
+.calc h2{font-size:24px;margin:0 0 6px;font-weight:700;}
+.calc .lead{font-size:15px;color:var(--cp-text-muted);max-width:860px;margin:0 0 22px;}
+.calc-params{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:22px;}
+.cp-field{background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:12px;padding:12px 14px;}
+.cp-field label{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--cp-text-soft);margin-bottom:6px;}
+.cp-field input{width:100%;font:inherit;font-size:15px;font-weight:700;color:var(--cp-text);background:transparent;border:none;outline:none;padding:0;}
+.cp-field .hint{display:block;margin-top:5px;font-size:11px;color:var(--cp-text-soft);font-weight:400;line-height:1.4;}
+.cp-field.accent{border-color:var(--cp-accent);box-shadow:0 0 0 1px var(--cp-accent-soft);}
+.calc-tablewrap{overflow-x:auto;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:14px;}
+table.calc-t{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px;}
+table.calc-t th{text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--cp-text-soft);padding:12px 14px;border-bottom:1px solid var(--cp-border);white-space:nowrap;}
+table.calc-t th.num,table.calc-t td.num{text-align:right;}
+table.calc-t td{padding:9px 14px;border-bottom:1px solid var(--cp-border);vertical-align:middle;}
+table.calc-t tr:last-child td{border-bottom:none;}
+table.calc-t input{width:74px;font:inherit;font-size:13.5px;text-align:right;color:var(--cp-text);background:var(--cp-surface-soft);border:1px solid var(--cp-border);border-radius:7px;padding:5px 8px;outline:none;}
+table.calc-t input:focus{border-color:var(--cp-accent);}
+table.calc-t input.wide{width:100%;min-width:150px;text-align:left;}
+table.calc-t td.out{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+table.calc-t tr.total td{background:var(--cp-surface-soft);font-weight:700;border-top:2px solid var(--cp-border-strong,var(--cp-border));}
+table.calc-t tr.total td.grand{color:var(--cp-accent);font-size:15px;}
+.calc-foot{display:flex;gap:12px;align-items:flex-start;margin-top:16px;background:var(--cp-surface-soft);border:1px solid var(--cp-border);border-radius:12px;padding:14px 16px;}
+.calc-foot .ic{flex:none;font-size:18px;}
+.calc-foot .txt{font-size:13px;color:var(--cp-text-muted);line-height:1.55;}
+.calc-foot .txt b{color:var(--cp-text);}
+
+
+.tabs{position:sticky;top:0;z-index:40;background:var(--cp-bg);border-bottom:1px solid var(--cp-border);}
+.tabs-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;gap:4px;flex-wrap:wrap;}
+.tab{position:relative;font:inherit;font-size:14px;font-weight:600;color:var(--cp-text-muted);background:none;border:none;border-bottom:2px solid transparent;padding:15px 16px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:color .12s,border-color .12s;}
+.tab:hover{color:var(--cp-text);}
+.tab.active{color:var(--cp-accent);border-bottom-color:var(--cp-accent);}
+.tab .tnum{font-size:11px;font-weight:700;background:var(--cp-surface-soft);border:1px solid var(--cp-border);color:var(--cp-text-soft);border-radius:999px;padding:1px 7px;}
+.tab.active .tnum{background:var(--cp-accent-soft);border-color:transparent;color:var(--cp-accent);}
+.tabpane{display:none;}
+.tabpane.on{display:block;}
+.pane-intro{max-width:1180px;margin:0 auto;padding:26px 24px 0;}
+.pane-intro h2{font-size:24px;margin:0 0 6px;font-weight:700;}
+.pane-intro .lead{font-size:15px;color:var(--cp-text-muted);max-width:860px;margin:0;}
+.mstate{max-width:1180px;margin:22px auto 0;padding:0 24px;}
+.mstate-card{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--cp-border);border-radius:14px;padding:16px 18px;background:var(--cp-surface);}
+.mstate-card.est{border-left:3px solid var(--cp-text-soft);}
+.mstate-card.mixed{border-left:3px solid var(--cp-accent);}
+.mstate-card.done{border-left:3px solid var(--cp-success,#16a34a);background:rgba(22,163,74,.05);}
+.mstate-card .ic{flex:none;font-size:20px;line-height:1.2;}
+.mstate-card h4{margin:0 0 5px;font-size:15px;font-weight:700;}
+.mstate-card p{margin:0;font-size:13.5px;color:var(--cp-text-muted);line-height:1.55;}
+.mstate-card p + p{margin-top:7px;}
+.mstate-table{margin-top:14px;overflow-x:auto;border:1px solid var(--cp-border);border-radius:12px;background:var(--cp-surface);}
+.mstate-table table{width:100%;border-collapse:collapse;font-size:13px;min-width:620px;}
+.mstate-table th{text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--cp-text-soft);padding:11px 14px;border-bottom:1px solid var(--cp-border);white-space:nowrap;}
+.mstate-table td{padding:9px 14px;border-bottom:1px solid var(--cp-border);}
+.mstate-table tr:last-child td{border-bottom:none;}
+.mstate-table td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap;}
+.mstate-table td.was{text-align:right;color:var(--cp-text-soft);font-weight:400;white-space:nowrap;}
+.subnav{max-width:1180px;margin:18px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;}
+.subnav a{font-size:12.5px;font-weight:600;color:var(--cp-text-muted);text-decoration:none;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:999px;padding:7px 14px;transition:border-color .12s,color .12s;}
+.subnav a:hover{border-color:var(--cp-accent);color:var(--cp-accent);}
+
+
+.stat.measure-stat{cursor:pointer;transition:border-color .12s;}
+.stat.measure-stat:hover{border-color:var(--cp-accent);}
+.stat.measure-stat .num.est{color:var(--cp-text-soft);}
+.stat.measure-stat .num.done{color:var(--cp-success,#16a34a);}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="brand-chip">For ARKET</span>
+      <span class="ga-chip">Cowork · Generally Available</span>
+    </div>
+    <h1>Microsoft 365 Copilot <span class="accent">Cowork</span><br />Use Case Library</h1>
+    <p class="subtitle">
+      Agentic AI that executes complex, long-running, multi-tool work end-to-end across your Microsoft&nbsp;365
+      environment — returning a completed result, not just a draft. Below are feasible, ready-to-run use cases
+      organised around ARKET's collection, commerce, store and café teams, each mapped to current Cowork capabilities and a transparent credit-cost band.
+    </p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">8</div><div class="lbl">ARKET personas</div></div>
+      <div class="stat"><div class="num">21</div><div class="lbl">Ready-to-run use cases</div></div>
+      <div class="stat"><div class="num">$0.01</div><div class="lbl">per Copilot Credit (PayGo)</div></div>
+      <div class="stat measure-stat" id="heroMeasured" title="Go to Cost &amp; budget"><div class="num" id="heroMeasuredNum">&mdash;</div><div class="lbl" id="heroMeasuredLbl">cost basis</div></div>
+    </div>
+  </div>
+</header>
+
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-tab="usecases">&#9636; Use cases <span class="tnum">21</span></button>
+    <button class="tab" data-tab="journeys">&#128336; Persona journeys <span class="tnum" id="tabJourneyCount"></span></button>
+    <button class="tab" data-tab="costs">&#128176; Cost &amp; budget</button>
+  </div>
+</nav>
+
+<div id="tab-usecases" class="tabpane on">
+  <div class="pane-intro">
+    <h2>Ready-to-run use cases</h2>
+    <p class="lead">Every use case below is feasible with Cowork as it ships today. Filter by function or task tier, or search across prompts and capabilities. Each card carries the capabilities it uses, a prompt you can paste as-is, and its credit cost.</p>
+  </div>
+<div class="controls">
+  <div class="wrap controls-inner">
+    <label class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="search" placeholder="Search use cases, capabilities, or keywords…" />
+    </label>
+    <div class="tier-filter" id="tierFilter">
+      <button class="tier-btn active" data-tier="all">All tiers</button>
+      <button class="tier-btn" data-tier="light">Light</button>
+      <button class="tier-btn" data-tier="medium">Medium</button>
+      <button class="tier-btn" data-tier="heavy">Heavy</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="persona-nav" id="personaNav"></nav>
+  <main id="library"></main>
+  <div class="empty" id="empty">No use cases match your filters. Try clearing the search or selecting “All tiers”.</div>
+</div>
+
+</div><!-- /tab-usecases -->
+
+<div id="tab-journeys" class="tabpane">
+  <div class="pane-intro">
+    <h2>A day in the life &mdash; Cowork by persona journey</h2>
+    <p class="lead">The same use cases, seen as a working day. Each journey follows one person through the moments that matter &mdash; the scheduled morning brief, the mid-morning triage, the afternoon deliverable &mdash; with the credit cost of each task and a representative daily total.</p>
+  </div>
+  <div class="wrap">
+    <div class="journeys-grid" id="journeysGrid"></div>
+  </div>
+</div>
+
+<div id="tab-costs" class="tabpane">
+  <div class="pane-intro">
+    <h2>What it costs, and how to budget for it</h2>
+    <p class="lead">Three questions, three answers, in order: what drives the cost of a single task, whether these figures are estimated or measured, and what a full deployment would cost.</p>
+  </div>
+  <div class="subnav">
+    <a href="#cost">1 &middot; How a task is priced</a>
+    <a href="#measured">2 &middot; Estimated or measured?</a>
+    <a href="#calculator">3 &middot; Budget calculator</a>
+    <a href="#profiles">4 &middot; User profiles</a>
+  </div>
+
+  <section class="mstate" id="measured">
+    <div id="measuredPanel"></div>
+  </section>
+
+
+<!-- Cost methodology -->
+<section class="method" id="cost">
+  <div class="wrap">
+    <h2>How each task is priced</h2>
+    <p class="lead">
+      Cowork is billed in usage-based <b>Copilot Credits</b> on top of the Microsoft&nbsp;365 Copilot licence,
+      at <b>$0.01 per credit</b> (Pay-As-You-Go) — with a discounted <b>P3 commitment</b> rate for predictable
+      volume. Every task's cost is the sum of four inputs:
+    </p>
+    <div class="formula">
+      <span class="term">Model Use</span><span class="op">+</span>
+      <span class="term">Context Retrieval</span><span class="op">+</span>
+      <span class="term">Tool Calls</span><span class="op">+</span>
+      <span class="term">Runtime</span><span class="op">=</span>
+      <span class="eq">Credits for the task</span>
+    </div>
+
+    <table class="tiers">
+      <thead>
+        <tr><th>Task tier</th><th>Credits</th><th>Cost @ $0.01</th><th>Context size</th><th>What it looks like</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tier-dot" style="background:var(--cp-success)"></span><b>Light</b></td>
+          <td>70–200</td><td>$0.70–$2.00</td><td>~35 pages</td>
+          <td>Email/thread summary, short draft, calendar lookup, single-source Q&amp;A.</td>
+        </tr>
+        <tr>
+          <td><span class="tier-dot" style="background:var(--cp-link)"></span><b>Medium</b></td>
+          <td>400–600</td><td>$4.00–$6.00</td><td>~100 pages</td>
+          <td>Research brief, status report from emails+files, review/meeting prep, multi-file analysis. <b>The daily sweet spot.</b></td>
+        </tr>
+        <tr>
+          <td><span class="tier-dot" style="background:var(--cp-accent)"></span><b>Heavy</b></td>
+          <td>1,500+</td><td>$15.00+</td><td>~900 pages</td>
+          <td>End-to-end report from scratch, competitive scan across web+files, large batch spreadsheet analysis.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="ic">⚠️</span>
+      <div class="txt">
+        <b>Budget-planning rule:</b> a small number of <b>Heavy</b> analyses per power user drives the majority of
+        total spend. Always model the <b>high end</b> of the Heavy range — using the midpoint understated real
+        deployment budgets by 20–40%. Plan for power users, control with tenant / group / user spending caps and alerts.
+      </div>
+    </div>
+
+    <div class="gov">
+      <span class="ic">🔒</span>
+      <div class="txt">
+        <b>Confidentiality/Governance note for ARKET:</b> Cowork operates inside the Microsoft 365 trust boundary, respects existing permissions, and routes prompts, responses and generated artifacts through Microsoft Purview controls including audit, DSPM, sensitivity-label inheritance, encryption/RMS, Insider Risk Management, Communication Compliance, eDiscovery and Data Lifecycle Management. ARKET data is not used to train the models. For European operations, OpenAI-operated GPT 5.6 is included in the EU Data Boundary; Anthropic models are outside the EU Data Boundary and are off by default in the EU, EFTA and UK unless an administrator opts in.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Budget personas -->
+
+<section class="calc" id="calculator">
+  <div class="wrap">
+    <h2>Budget calculator &mdash; by group and organisation-wide</h2>
+    <p class="lead">Size a deployment from the bottom up. Set how many people sit in each group and how many Light, Medium and Heavy tasks each of them runs per month, then apply one blended discount. Every field is editable and the totals update as you type.</p>
+
+    <div class="calc-params">
+      <div class="cp-field">
+        <label for="cRate">Rate ($ / credit)</label>
+        <input type="number" id="cRate" value="0.01" step="0.001" min="0">
+        <span class="hint">PayGo list price.</span>
+      </div>
+      <div class="cp-field accent">
+        <label for="cDisc">Effective discount (P3 / ACV) %</label>
+        <input type="number" id="cDisc" value="0" step="1" min="0" max="100">
+        <span class="hint">One blended figure covering the P3 pre-purchase tier and any Azure commitment drawdown. Ask the deal desk.</span>
+      </div>
+      <div class="cp-field">
+        <label for="cLight">Credits / Light task</label>
+        <input type="number" id="cLight" value="135" step="5" min="0">
+        <span class="hint">Midpoint of 70&ndash;200.</span>
+      </div>
+      <div class="cp-field">
+        <label for="cMedium">Credits / Medium task</label>
+        <input type="number" id="cMedium" value="500" step="10" min="0">
+        <span class="hint">Midpoint of 400&ndash;600.</span>
+      </div>
+      <div class="cp-field">
+        <label for="cHeavy">Credits / Heavy task</label>
+        <input type="number" id="cHeavy" value="1775" step="25" min="0">
+        <span class="hint">Heavy is open-ended (1,500+). Published guidance: using the midpoint understated real budgets by 20&ndash;40%, so model the high end.</span>
+      </div>
+    </div>
+
+    <div class="calc-tablewrap">
+      <table class="calc-t">
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th class="num">Users</th>
+            <th class="num">Light / user / mo</th>
+            <th class="num">Medium / user / mo</th>
+            <th class="num">Heavy / user / mo</th>
+            <th class="num">Credits / mo</th>
+            <th class="num">$ / month</th>
+            <th class="num">$ / year</th>
+          </tr>
+        </thead>
+        <tbody id="calcBody"></tbody>
+        <tfoot id="calcFoot"></tfoot>
+      </table>
+    </div>
+
+    <div class="calc-foot">
+      <span class="ic">&#9888;&#65039;</span>
+      <div class="txt">
+        <b>Planning model, not a quote.</b> Credit consumption depends on the model selected, how much context
+        is retrieved, how many tool calls a task makes and how long it runs, so two people running the same
+        task can differ by 20&ndash;30%. Heavy tasks dominate spend even at low volume: a small change to the
+        Heavy assumption moves the total more than anything else on this page. Validate against real telemetry
+        during a pilot before committing to a number.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="budget" id="profiles">
+  <div class="wrap">
+    <h2 style="font-size:24px;margin:0 0 6px;font-weight:700;">Plan budget by user type</h2>
+    <p class="lead" style="margin-bottom:0;">
+      Combine how many people sit in each profile with their task mix to size a deployment. As an illustration, a
+      200-user org running ~20 Light, 10 Medium and 2 Heavy tasks per user per month lands near
+      <b>$270k/year</b> at PayGo — reduced with a P3 commitment.
+    </p>
+    <div class="budget-cards">
+      <div class="bcard"><div class="emoji">🏢</div><h4>Corporate knowledge worker</h4><p>Broad day-to-day drafting, research &amp; coordination.</p><div class="mix">Typically Light + Medium</div></div>
+      <div class="bcard"><div class="emoji">👔</div><h4>Management &amp; senior leader</h4><p>Briefings, synthesis &amp; oversight.</p><div class="mix">Fewer tasks; Medium with occasional Heavy</div></div>
+      <div class="bcard"><div class="emoji">🤝</div><h4>Customer-facing knowledge worker</h4><p>Sales/service prep, follow-ups, account research.</p><div class="mix">Light + Medium; periodic Heavy</div></div>
+      <div class="bcard"><div class="emoji">🛠️</div><h4>Technical worker</h4><p>Analysis, batch/file work, deep research.</p><div class="mix">Medium + Heavy lean</div></div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-costs -->
+
+<footer>
+  <div class="wrap">
+    <p><b>Microsoft 365 Copilot Cowork</b> — agentic AI that gets the work done across your M365 apps. Generally Available since 16 June 2026.</p>
+    <p>Use cases are illustrative and feasible with current GA capabilities (built-in skills, native &amp; partner plugins, scheduling, image generation, and Edge browser use). Credit costs are illustrative ranges published by Microsoft; actual consumption varies with context size and configuration.</p>
+    <p>Prepared for ARKET · Microsoft Sweden.</p>
+  </div>
+</footer>
+
+<script>
+const PERSONAS = [
+  {
+    "id": "collection-design",
+    "emoji": "✏️",
+    "name": "Collection, Product & Design",
+    "role": "Designers, developers and collection leads shaping long-lasting womenswear, menswear, childrenswear and home collections."
+  },
+  {
+    "id": "merchandising",
+    "emoji": "🧵",
+    "name": "Buying, Merchandising & Range Planning",
+    "role": "Merchandisers and planners balancing customer demand, availability, pricing and seasonal range architecture across markets."
+  },
+  {
+    "id": "retail",
+    "emoji": "🏬",
+    "name": "Retail Operations & Store Experience",
+    "role": "Store, area and retail-operations teams delivering a consistent modern-day market experience while opening and improving locations."
+  },
+  {
+    "id": "ecommerce",
+    "emoji": "🛍️",
+    "name": "E-commerce & Digital Trading",
+    "role": "Digital trading, content and product teams improving discovery, conversion and product storytelling across local online stores."
+  },
+  {
+    "id": "brand-creative",
+    "emoji": "📷",
+    "name": "Brand, Content & Creative Studio",
+    "role": "Brand, PR, social and creative teams turning ARKET's Nordic design point of view into campaigns, stories and local market activation."
+  },
+  {
+    "id": "supply-sustainability",
+    "emoji": "🌿",
+    "name": "Supply, Quality & Sustainability",
+    "role": "Sourcing, quality, logistics and sustainability teams protecting product standards, responsible claims and reliable flow of goods."
+  },
+  {
+    "id": "cafe",
+    "emoji": "☕",
+    "name": "ARKET Café & Food Operations",
+    "role": "Café concept, menu and operations teams delivering seasonal vegetarian food, pastries and speciality coffee alongside the retail offer."
+  },
+  {
+    "id": "finance-expansion",
+    "emoji": "📈",
+    "name": "Finance, Performance & Expansion",
+    "role": "Finance, business development and expansion teams steering performance, investment decisions and new-market growth."
+  }
+];
+
+const USE_CASES = [
+  {
+    "id": "design-pulse",
+    "persona": "collection-design",
+    "tier": "light",
+    "title": "Morning collection development pulse",
+    "scenario": "A scheduled brief scans collection calendars, design-review notes, fittings and supplier conversations, then surfaces only decisions, slippage and items waiting on the team.",
+    "caps": [
+      "Daily Briefing",
+      "Enterprise Search",
+      "Scheduling"
+    ],
+    "prompt": "Every weekday at 08:00, give me a short pulse on the active collection: decisions made since yesterday, samples or fittings that moved, deadlines at risk, and anything waiting on me. Keep it under 300 words and separate confirmed facts from open questions.",
+    "value": "Replaces the first manual sweep of messages and trackers with a consistent view of what changed overnight.",
+    "credits": "70–200",
+    "cost": "$0.70–$2.00",
+    "cadence": "~21 runs / month (scheduled)",
+    "costSource": "estimated"
+  },
+  {
+    "id": "design-range-review",
+    "persona": "collection-design",
+    "tier": "medium",
+    "title": "Collection range-review pack",
+    "scenario": "Combines the line plan, product briefs, fitting notes and open decisions into a review document plus an executive summary slide for the range meeting.",
+    "caps": [
+      "Word",
+      "PowerPoint",
+      "Excel",
+      "Enterprise Search"
+    ],
+    "prompt": "Build the review pack for the next collection range meeting. Use the current line plan, product briefs and fitting notes. Create a Word document by category with status, unresolved choices, delivery risk and decision needed, plus one summary slide showing the biggest range gaps and overlaps.",
+    "value": "Turns scattered design and development evidence into a repeatable decision pack before the meeting starts.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~4 / month per collection team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "design-trend-scan",
+    "persona": "collection-design",
+    "tier": "heavy",
+    "title": "Nordic lifestyle and design signal scan",
+    "scenario": "Researches emerging material, colour, silhouette and home-living signals across public sources, then reconciles them with internal briefs and produces a sourced opportunity deck.",
+    "caps": [
+      "Deep Research",
+      "Browser use (Edge)",
+      "PowerPoint",
+      "Excel"
+    ],
+    "prompt": "Research the strongest design and lifestyle signals emerging for the next 12–18 months across fashion, interiors, food culture and Nordic living. Compare the external evidence with our current collection briefs, identify whitespace that fits ARKET's long-lasting design principles, and produce a sourced deck plus an evidence table.",
+    "value": "Gives creative leadership a broad, traceable signal scan without turning the process into trend-chasing.",
+    "credits": "1,500+",
+    "cost": "$15.00+",
+    "cadence": "~2 / season per design function",
+    "costSource": "estimated"
+  },
+  {
+    "id": "merch-trading-pulse",
+    "persona": "merchandising",
+    "tier": "light",
+    "title": "Daily sales and stock pulse",
+    "scenario": "A scheduled digest highlights sales, stock, returns and markdown shifts that moved materially since the previous day.",
+    "caps": [
+      "Daily Briefing",
+      "Fabric IQ (plugin)",
+      "Scheduling"
+    ],
+    "prompt": "Every trading day at 08:15, summarise yesterday's sales and stock movement by market and category. Show only material changes, new low-cover risks, unusual returns and markdown movement, then list the three actions that deserve attention today.",
+    "value": "Focuses trading conversations on exceptions rather than asking planners to rebuild the same dashboard narrative each morning.",
+    "credits": "70–200",
+    "cost": "$0.70–$2.00",
+    "cadence": "~22 runs / month (scheduled)",
+    "costSource": "estimated"
+  },
+  {
+    "id": "merch-range-gap",
+    "persona": "merchandising",
+    "tier": "medium",
+    "title": "Range gap and overlap analysis",
+    "scenario": "Analyses the current line plan against recent sales, stock cover, returns and price architecture, then returns category-level gaps and overlaps.",
+    "caps": [
+      "Excel",
+      "Fabric IQ (plugin)",
+      "Word"
+    ],
+    "prompt": "Analyse the current seasonal line plan against the last eight weeks of sales, stock cover, returns and price architecture. Give me an Excel view of gaps, overlaps and concentration risk by category, then write a short recommendation for what to add, reduce, move or investigate.",
+    "value": "Brings commercial evidence into range decisions without replacing the judgement of the buying and design teams.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~4 / month per merchandising team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "merch-season-review",
+    "persona": "merchandising",
+    "tier": "heavy",
+    "title": "End-of-season assortment review",
+    "scenario": "Runs a broad review across sales, inventory, returns, markdown, customer feedback and the original range intent, producing a category scorecard and next-season recommendations.",
+    "caps": [
+      "Excel",
+      "PowerPoint",
+      "Enterprise Search",
+      "Deep Research"
+    ],
+    "prompt": "Build the end-of-season assortment review across all categories and markets. Reconcile sales, sell-through, returns, markdown, stock residue, customer feedback and the original range strategy. Produce a category scorecard, a deck for leadership, and a clear set of carry-forward, stop and test recommendations.",
+    "value": "Compresses a large cross-market hindsight exercise into one evidence-backed starting point for the next range cycle.",
+    "credits": "1,500+",
+    "cost": "$15.00+",
+    "cadence": "~2 / year per business area",
+    "costSource": "estimated"
+  },
+  {
+    "id": "retail-issue-digest",
+    "persona": "retail",
+    "tier": "light",
+    "title": "Store issue and customer signal digest",
+    "scenario": "An event-triggered or scheduled brief groups new store issues, customer comments and operational requests, highlighting repeat patterns and urgent exceptions.",
+    "caps": [
+      "Daily Briefing",
+      "Enterprise Search",
+      "Event-triggered automation"
+    ],
+    "prompt": "When new store issue reports arrive, group them by theme and market. Send me a daily digest with urgent safety or customer-impact items first, recurring patterns second, and a short list of issues that have no clear owner.",
+    "value": "Prevents local issues from disappearing in inboxes and makes recurring operational friction visible across stores.",
+    "credits": "70–200",
+    "cost": "$0.70–$2.00",
+    "cadence": "~22 runs / month (triggered or scheduled)",
+    "costSource": "estimated"
+  },
+  {
+    "id": "retail-opening-readiness",
+    "persona": "retail",
+    "tier": "medium",
+    "title": "New-store opening readiness pack",
+    "scenario": "Pulls together the opening plan, owners, dependencies, training status and recent updates, then produces a workstream pack and a concise readiness summary.",
+    "caps": [
+      "Word",
+      "Excel",
+      "Meetings",
+      "Enterprise Search"
+    ],
+    "prompt": "Build the readiness pack for the next store opening. Review the launch plan, owner updates, training materials and meeting notes. Create a workstream table with status, next milestone, risk, owner and decision needed, then draft a one-page opening-readiness summary for the steering meeting.",
+    "value": "Makes cross-functional opening risk visible early and gives every steering meeting the same fact base.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~4 / month per active opening",
+    "costSource": "estimated"
+  },
+  {
+    "id": "retail-standards-audit",
+    "persona": "retail",
+    "tier": "heavy",
+    "title": "Multi-market store standards review",
+    "scenario": "Compares audit files, action logs and market feedback across the store network, then identifies systemic gaps and builds a prioritised improvement plan.",
+    "caps": [
+      "PDF",
+      "Excel",
+      "Word",
+      "Enterprise Search",
+      "PowerPoint"
+    ],
+    "prompt": "Review the latest store audit files and action logs across all included markets. Compare compliance by standard, identify recurring gaps and overdue actions, distinguish local exceptions from systemic issues, and produce a prioritised improvement plan plus a leadership deck.",
+    "value": "Reveals network-wide operational patterns that are hard to see when each store is reviewed in isolation.",
+    "credits": "1,500+",
+    "cost": "$15.00+",
+    "cadence": "~2 / year per retail region",
+    "costSource": "estimated"
+  },
+  {
+    "id": "ecom-product-qa",
+    "persona": "ecommerce",
+    "tier": "medium",
+    "title": "Cross-market product-page QA",
+    "scenario": "Uses Edge to review a defined set of live product pages across markets, checking content completeness, consistency, links, imagery and localisation.",
+    "caps": [
+      "Browser use (Edge)",
+      "Excel",
+      "Word"
+    ],
+    "prompt": "Review the product pages in the attached list across the specified markets. Check title, description, materials, care, size information, image sequence, links and localisation consistency. Return an Excel issue log with URL, market, severity and recommended fix, plus a short summary of recurring patterns.",
+    "value": "Scales a repetitive quality check while preserving a clear, page-level trail for the digital team.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~4 / month per digital market",
+    "costSource": "estimated"
+  },
+  {
+    "id": "ecom-digital-trading",
+    "persona": "ecommerce",
+    "tier": "medium",
+    "title": "Weekly digital trading pack",
+    "scenario": "Combines traffic, conversion, product performance, search behaviour and operational notes into a concise weekly trading story.",
+    "caps": [
+      "Fabric IQ (plugin)",
+      "Excel",
+      "PowerPoint",
+      "Enterprise Search"
+    ],
+    "prompt": "Create this week's digital trading pack by market and device. Cover traffic, conversion, average order value, search behaviour, top and weak products, availability constraints and campaign effects. Give me the Excel evidence table and a five-slide deck focused on changes, causes and actions.",
+    "value": "Moves the weekly review from dashboard narration to a shared explanation of what changed and what to do next.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~4 / month per digital trading team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "brand-community-pulse",
+    "persona": "brand-creative",
+    "tier": "light",
+    "title": "Brand and community pulse",
+    "scenario": "A scheduled scan of public coverage and community conversation surfaces emerging themes, notable mentions and issues needing a response.",
+    "caps": [
+      "Browser use (Edge)",
+      "Communications",
+      "Daily Briefing"
+    ],
+    "prompt": "Every weekday morning, scan the public conversation about ARKET and the themes we are actively communicating. Give me the five most relevant developments, separate earned coverage from community reactions, flag anything that needs a response, and draft a short holding line only where necessary.",
+    "value": "Gives brand and PR teams a focused morning signal without drowning them in mention volume.",
+    "credits": "70–200",
+    "cost": "$0.70–$2.00",
+    "cadence": "~21 runs / month (scheduled)",
+    "costSource": "estimated"
+  },
+  {
+    "id": "brand-localisation",
+    "persona": "brand-creative",
+    "tier": "medium",
+    "title": "Market localisation kit",
+    "scenario": "Adapts an approved campaign story for selected markets while preserving product facts, tone and visual direction, then packages the outputs for review.",
+    "caps": [
+      "Word",
+      "PowerPoint",
+      "Communications",
+      "Image generation (ChatGPT Images 2.0)"
+    ],
+    "prompt": "Create a localisation kit for the attached approved campaign and the listed markets. Keep product facts and the ARKET tone consistent, adapt headlines and body copy to local context, note phrases that need legal review, and produce a review deck with copy variants and optional locally relevant visual concepts.",
+    "value": "Speeds market adaptation while making every deliberate change and review point visible.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~6 / month per campaign team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "brand-campaign-kit",
+    "persona": "brand-creative",
+    "tier": "heavy",
+    "title": "Integrated seasonal campaign kit",
+    "scenario": "Builds a multi-format campaign starting point from the collection story, audience evidence and approved product facts, including narrative, channel plan, copy and visual concepts.",
+    "caps": [
+      "Deep Research",
+      "PowerPoint",
+      "Word",
+      "Image generation (ChatGPT Images 2.0)",
+      "Communications"
+    ],
+    "prompt": "Build an integrated campaign kit for the attached seasonal collection story. Research the cultural and customer context, stay within the approved product facts, and create a campaign narrative, audience and channel plan, launch deck, copy matrix, press-note draft and a set of original visual-concept directions for review.",
+    "value": "Creates a coherent first version across channels so specialists can spend their time refining rather than assembling.",
+    "credits": "1,500+",
+    "cost": "$15.00+",
+    "cadence": "~3 / season per brand team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "supply-exception-digest",
+    "persona": "supply-sustainability",
+    "tier": "light",
+    "title": "Supply and delivery exception digest",
+    "scenario": "An event-triggered brief collects new delay, quality and delivery exceptions from messages and trackers, then ranks them by customer and launch impact.",
+    "caps": [
+      "Daily Briefing",
+      "Enterprise Search",
+      "Event-triggered automation"
+    ],
+    "prompt": "When a new supply, quality or delivery exception is reported, add it to today's digest. Rank items by customer impact and launch risk, show owner and next checkpoint, and highlight any exception that has changed twice or has no agreed recovery date.",
+    "value": "Creates one operational picture of exceptions without asking teams to reconcile several threads and trackers.",
+    "credits": "70–200",
+    "cost": "$0.70–$2.00",
+    "cadence": "~22 runs / month (triggered)",
+    "costSource": "estimated"
+  },
+  {
+    "id": "supply-compliance-review",
+    "persona": "supply-sustainability",
+    "tier": "medium",
+    "title": "Supplier and product compliance review",
+    "scenario": "Reads certificates, test reports, specifications and policy requirements, then produces a product-level evidence matrix and a clear list of missing or inconsistent items.",
+    "caps": [
+      "PDF",
+      "Excel",
+      "Word",
+      "Enterprise Search"
+    ],
+    "prompt": "Review the attached supplier certificates, test reports and product specifications against the current requirement documents. Build an Excel evidence matrix by product and requirement, mark missing, expired or inconsistent evidence, and draft a review memo with the questions that must be resolved before approval.",
+    "value": "Reduces document checking time while keeping the final compliance decision with the responsible specialists.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~8 / month per quality team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "supply-claims-pack",
+    "persona": "supply-sustainability",
+    "tier": "heavy",
+    "title": "Sustainability claims evidence pack",
+    "scenario": "Tests proposed customer-facing claims against internal evidence and current public guidance, then creates a sourced substantiation pack and review workflow.",
+    "caps": [
+      "Deep Research",
+      "Browser use (Edge)",
+      "PDF",
+      "Word",
+      "Excel"
+    ],
+    "prompt": "Review the proposed sustainability claims in the attached copy. Trace each claim to internal evidence, research the current public regulatory and industry guidance in the relevant markets, identify unsupported or ambiguous wording, and produce a sourced substantiation pack with safer alternatives and an approval checklist.",
+    "value": "Makes the evidence behind claims explicit before they reach customers, campaigns or product pages.",
+    "credits": "1,500+",
+    "cost": "$15.00+",
+    "cadence": "~2 / month per sustainability team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "cafe-daily-brief",
+    "persona": "cafe",
+    "tier": "light",
+    "title": "Café opening brief",
+    "scenario": "A scheduled brief combines staffing, deliveries, equipment issues, bookings and yesterday's exceptions into a short start-of-day view.",
+    "caps": [
+      "Daily Briefing",
+      "Enterprise Search",
+      "Scheduling"
+    ],
+    "prompt": "Before each café opens, give the responsible lead a short brief covering staffing changes, deliveries due, unavailable ingredients, equipment issues, larger bookings and unresolved points from yesterday. Put anything that could affect service first.",
+    "value": "Creates a calmer opening routine and reduces the chance that a known issue surprises the service team.",
+    "credits": "70–200",
+    "cost": "$0.70–$2.00",
+    "cadence": "~22 runs / month per café (scheduled)",
+    "costSource": "estimated"
+  },
+  {
+    "id": "cafe-menu-rollout",
+    "persona": "cafe",
+    "tier": "medium",
+    "title": "Seasonal menu rollout pack",
+    "scenario": "Turns the approved seasonal menu into a coordinated rollout pack covering recipes, training, allergen information, customer copy and store communications.",
+    "caps": [
+      "Word",
+      "PowerPoint",
+      "PDF",
+      "Communications"
+    ],
+    "prompt": "Build the rollout pack for the attached seasonal menu. Create a café-team guide with recipes and service notes, a training deck, a customer-facing menu PDF, an allergen and ingredient review checklist, and a concise launch message for store and café managers. Flag any source information that is missing.",
+    "value": "Keeps the food concept, training and customer communication aligned across locations.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~4 / season per café concept team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "finance-variance",
+    "persona": "finance-expansion",
+    "tier": "medium",
+    "title": "Monthly performance and variance pack",
+    "scenario": "Combines actuals, plan, trading commentary and operational evidence into a consistent performance pack with market and category explanations.",
+    "caps": [
+      "Fabric IQ (plugin)",
+      "Excel",
+      "PowerPoint",
+      "Word"
+    ],
+    "prompt": "Build the monthly ARKET performance pack from the current finance and trading data. Show actual versus plan by market and category, identify the largest revenue, margin and cost variances, connect them to operational evidence, and produce the Excel bridge, leadership deck and draft commentary.",
+    "value": "Shortens close-to-insight time and gives leadership a consistent bridge from numbers to operational causes.",
+    "credits": "400–600",
+    "cost": "$4.00–$6.00",
+    "cadence": "~1 / month per finance team",
+    "costSource": "estimated"
+  },
+  {
+    "id": "expansion-site-pack",
+    "persona": "finance-expansion",
+    "tier": "heavy",
+    "title": "New-market and site decision pack",
+    "scenario": "Researches a proposed market or site, combines external evidence with internal performance assumptions, and produces an investment model plus a decision deck.",
+    "caps": [
+      "Deep Research",
+      "Browser use (Edge)",
+      "Excel",
+      "PowerPoint",
+      "Word"
+    ],
+    "prompt": "Build a decision pack for the proposed market and site in the attached brief. Research customer, retail, tourism, competitor, labour and local operating conditions; combine that evidence with our internal assumptions; create an Excel scenario model and a sourced deck covering opportunity, risks, sensitivities and the next diligence questions.",
+    "value": "Creates a transparent first-pass investment case while preserving the governance gates for legal, finance and real-estate approval.",
+    "credits": "1,500+",
+    "cost": "$15.00+",
+    "cadence": "~1–2 / month per expansion team",
+    "costSource": "estimated"
+  }
+];
+
+const JOURNEYS = [
+  {
+    "persona": "collection-design",
+    "protagonist": "Lina",
+    "role": "Collection, Product & Design",
+    "tagline": "Starts with the overnight collection delta, arrives at range review with a decision pack, and finishes with a broad signal scan running in the background.",
+    "moments": [
+      {
+        "time": "08:00",
+        "label": "The collection pulse",
+        "uc": "design-pulse"
+      },
+      {
+        "time": "10:30",
+        "label": "The range table",
+        "uc": "design-range-review"
+      },
+      {
+        "time": "14:30",
+        "label": "The signal horizon",
+        "uc": "design-trend-scan"
+      }
+    ]
+  },
+  {
+    "persona": "merchandising",
+    "protagonist": "Erik",
+    "role": "Buying, Merchandising & Range Planning",
+    "tagline": "Opens on the trading exceptions, tests the range architecture before lunch, and turns the season into clear carry-forward decisions.",
+    "moments": [
+      {
+        "time": "08:15",
+        "label": "The trading pulse",
+        "uc": "merch-trading-pulse"
+      },
+      {
+        "time": "11:00",
+        "label": "The range balance",
+        "uc": "merch-range-gap"
+      },
+      {
+        "time": "15:00",
+        "label": "The seasonal hindsight",
+        "uc": "merch-season-review"
+      }
+    ]
+  },
+  {
+    "persona": "retail",
+    "protagonist": "Maya",
+    "role": "Retail Operations & Store Experience",
+    "tagline": "Sees the store-network friction early, takes an evidence-based opening pack into the steering meeting, and closes on systemic standards improvement.",
+    "moments": [
+      {
+        "time": "07:45",
+        "label": "The network pulse",
+        "uc": "retail-issue-digest"
+      },
+      {
+        "time": "10:00",
+        "label": "The opening room",
+        "uc": "retail-opening-readiness"
+      },
+      {
+        "time": "15:30",
+        "label": "The standards view",
+        "uc": "retail-standards-audit"
+      }
+    ]
+  },
+  {
+    "persona": "brand-creative",
+    "protagonist": "Noor",
+    "role": "Brand, Content & Creative Studio",
+    "tagline": "Reads the public signal without the noise, adapts approved work for markets, and develops the next seasonal story across channels.",
+    "moments": [
+      {
+        "time": "08:30",
+        "label": "The community signal",
+        "uc": "brand-community-pulse"
+      },
+      {
+        "time": "11:30",
+        "label": "The market adaptation",
+        "uc": "brand-localisation"
+      },
+      {
+        "time": "14:00",
+        "label": "The campaign room",
+        "uc": "brand-campaign-kit"
+      }
+    ]
+  },
+  {
+    "persona": "supply-sustainability",
+    "protagonist": "Daniel",
+    "role": "Supply, Quality & Sustainability",
+    "tagline": "Prioritises delivery exceptions, clears the product evidence queue, and gives customer-facing claims a traceable substantiation pack.",
+    "moments": [
+      {
+        "time": "08:00",
+        "label": "The exception board",
+        "uc": "supply-exception-digest"
+      },
+      {
+        "time": "10:30",
+        "label": "The evidence check",
+        "uc": "supply-compliance-review"
+      },
+      {
+        "time": "14:30",
+        "label": "The claims gate",
+        "uc": "supply-claims-pack"
+      }
+    ]
+  },
+  {
+    "persona": "cafe",
+    "protagonist": "Elin",
+    "role": "ARKET Café & Food Operations",
+    "tagline": "Opens service with the known issues already prioritised and turns the next seasonal menu into one coordinated rollout for every location.",
+    "moments": [
+      {
+        "time": "07:00",
+        "label": "Before the doors open",
+        "uc": "cafe-daily-brief"
+      },
+      {
+        "time": "13:00",
+        "label": "The seasonal rollout",
+        "uc": "cafe-menu-rollout"
+      }
+    ]
+  }
+];
+
+const HERO_EST_NUM = "Est.";
+const HERO_EST_LBL = "cost basis \u00b7 not yet measured";
+const HERO_MEASURED_LBL = "use-case costs measured live";
+
+const MS_TITLE_EST = "These costs are estimated, not measured";
+const MS_BODY_EST = "Every figure in this library comes from Microsoft's published Light / Medium / Heavy credit bands. Nothing here has been run and metered, so treat each number as a planning range rather than an observed cost.";
+const MS_HOWTO = "To replace a range with a real number, run the use case in Cowork and type <b>/cost</b> in that task. It reports the exact credits the task consumed, and using the command itself is free. Measured use cases then appear in this table, and their cards and journey moments switch from a range to the real figure.";
+const MS_TITLE_ALL = "All costs below were measured live";
+const MS_TITLE_SOME = "{n} of {total} use cases were measured live";
+const MS_BODY_DONE = "The figures below were read with <b>/cost</b> after running each task for real. Use cases not listed here still carry their estimated band.";
+const MS_CAVEAT = "A measured figure is a <b>meter reading of one run, not a forecast</b>. Cowork decides its own tool calls and retrieval depth at runtime, so the same task can vary by 20&ndash;30% between two people, and a run against a thinner data estate sits below what a fully grounded tenant will show.";
+const MS_TH_UC = "Use case";
+const MS_TH_TIER = "Tier";
+const MS_TH_EST = "Estimated band";
+const MS_TH_MEASURED = "Measured credits";
+const MS_TH_COST = "Measured cost";
+const MS_TH_DATE = "Measured on";
+
+const MEASURED_LABEL = "Measured";
+const ESTIMATED_LABEL = "Estimated";
+const MEASURED_WORD = "measured";
+const ESTIMATED_WORD = "est.";
+const JOURNEY_FOOT_LABEL = "A representative day";
+const JOURNEY_FOOT_MEASURED = "measured tasks";
+const JOURNEY_FOOT_TASKS = "tasks &middot; estimated ranges";
+const JOURNEY_FOOT_PARTIAL = "of them measured at";
+const JOURNEY_CREDITS = "credits";
+const CALC_TOTAL = "Organisation total";
+const CALC_SAVING = "Saving vs list price, per year";
+
+const TIER_LABEL = { light: "Light", medium: "Medium", heavy: "Heavy" };
+
+const library = document.getElementById("library");
+const personaNav = document.getElementById("personaNav");
+const searchInput = document.getElementById("search");
+const emptyEl = document.getElementById("empty");
+let activeTier = "all";
+let activePersona = "all";
+let query = "";
+
+function personaCount(id){ return USE_CASES.filter(u => u.persona === id).length; }
+const allPill = document.createElement("button");
+allPill.className = "persona-pill active";
+allPill.dataset.persona = "all";
+allPill.innerHTML = `<span>All ARKET functions</span><span class="count">${USE_CASES.length}</span>`;
+personaNav.appendChild(allPill);
+PERSONAS.forEach(p => {
+  const b = document.createElement("button");
+  b.className = "persona-pill";
+  b.dataset.persona = p.id;
+  b.innerHTML = `<span class="emoji">${p.emoji}</span><span>${p.name}</span><span class="count">${personaCount(p.id)}</span>`;
+  personaNav.appendChild(b);
+});
+
+function capClass(c){ return /plugin/i.test(c) ? "cap plugin" : "cap"; }
+
+
+function ucById(id){ return USE_CASES.find(u => u.id === id); }
+function isMeasured(u){ return u.costSource === "measured" && typeof u.measuredCredits === "number"; }
+function money(n){ return "$" + (n < 10 ? n.toFixed(2) : Math.round(n).toLocaleString("en-US")); }
+function creditsText(u){ return isMeasured(u) ? u.measuredCredits.toLocaleString("en-US") : u.credits; }
+function costText(u){ return isMeasured(u) ? money(u.measuredCredits * 0.01) : u.cost; }
+function costBadge(u){
+  return isMeasured(u)
+    ? `<div class="cost-head"><span class="cost-badge measured">&#9679; ${MEASURED_LABEL}</span></div>`
+    : `<div class="cost-head"><span class="cost-badge est">&#9671; ${ESTIMATED_LABEL}</span></div>`;
+}
+
+function renderJourneys(){
+  const wrap = document.getElementById("journeysGrid");
+  if (!wrap || typeof JOURNEYS === "undefined" || !JOURNEYS.length) return;
+  wrap.innerHTML = JOURNEYS.map(j => {
+    const persona = PERSONAS.find(p => p.id === j.persona);
+    const rows = j.moments.map(m => {
+      const u = ucById(m.uc); if (!u) return "";
+      const badge = isMeasured(u)
+        ? `<span class="cost-badge measured">&#9679; ${u.measuredCredits.toLocaleString("en-US")} cr &middot; ${money(u.measuredCredits*0.01)} (${MEASURED_WORD})</span>`
+        : `<span class="cost-badge est">&#9671; ${u.cost} (${ESTIMATED_WORD})</span>`;
+      return `<div class="jrow">
+        <div class="jtime">${m.time}</div>
+        <div class="jnode"></div>
+        <div class="jcard">
+          <div class="jcard-top"><span class="jlabel">${m.label}</span><span class="tier-tag ${u.tier}">${TIER_LABEL[u.tier]}</span></div>
+          <div class="jtitle">${u.title}</div>
+          <div class="jcost">${badge}</div>
+        </div>
+      </div>`;
+    }).join("");
+    const items = j.moments.map(m => ucById(m.uc)).filter(Boolean);
+    const measured = items.filter(isMeasured);
+    const sum = measured.reduce((a,u) => a + u.measuredCredits, 0);
+    const allMeasured = measured.length === items.length && items.length > 0;
+    const foot = allMeasured
+      ? `<span class="v">${measured.length} ${JOURNEY_FOOT_MEASURED} &middot; &asymp; ${Math.round(sum).toLocaleString("en-US")} ${JOURNEY_CREDITS} &middot; &asymp; ${money(sum*0.01)}</span>`
+      : `<span class="v">${items.length} ${JOURNEY_FOOT_TASKS}</span>` +
+        (measured.length ? `<div class="jest">${measured.length} ${JOURNEY_FOOT_PARTIAL} &asymp; ${Math.round(sum).toLocaleString("en-US")} ${JOURNEY_CREDITS}</div>` : "");
+    return `<section class="journey">
+      <div class="journey-head">
+        <span class="emoji">${persona ? persona.emoji : "\u2728"}</span>
+        <div>
+          <h3>${j.protagonist} <span class="jrole">&middot; ${j.role}</span></h3>
+          <p class="jtag">${j.tagline}</p>
+        </div>
+      </div>
+      <div class="jtl">${rows}</div>
+      <div class="journey-foot">
+        <span class="k">${JOURNEY_FOOT_LABEL}</span>
+        ${foot}
+      </div>
+    </section>`;
+  }).join("");
+}
+
+function setupTabs(){
+  var panes = { usecases: document.getElementById("tab-usecases"),
+                journeys: document.getElementById("tab-journeys"),
+                costs: document.getElementById("tab-costs") };
+  var jc = document.getElementById("tabJourneyCount");
+  var hasJourneys = (typeof JOURNEYS !== "undefined") && JOURNEYS.length > 0;
+  if (jc) jc.textContent = hasJourneys ? JOURNEYS.length : "";
+  var jTab = document.querySelector('.tab[data-tab="journeys"]');
+  if (!hasJourneys && jTab) jTab.style.display = "none";
+
+  function show(name){
+    Object.keys(panes).forEach(function(k){ if (panes[k]) panes[k].classList.toggle("on", k === name); });
+    document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("active", t.dataset.tab === name); });
+  }
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click", function(){ show(t.dataset.tab); window.scrollTo({ top: 0, behavior: "smooth" }); });
+  });
+  /* in-page anchors inside the cost pane */
+  document.querySelectorAll(".subnav a").forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      var el = document.querySelector(a.getAttribute("href"));
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+function renderHeroMeasured(){
+  var numEl = document.getElementById("heroMeasuredNum");
+  var lblEl = document.getElementById("heroMeasuredLbl");
+  var card = document.getElementById("heroMeasured");
+  if (!numEl || !lblEl) return;
+  var n = USE_CASES.filter(isMeasured).length, total = USE_CASES.length;
+  numEl.classList.remove("est", "done");
+  if (n === 0){
+    numEl.textContent = HERO_EST_NUM;
+    numEl.classList.add("est");
+    lblEl.textContent = HERO_EST_LBL;
+  } else {
+    numEl.textContent = n + " / " + total;
+    numEl.classList.add(n === total ? "done" : "est");
+    lblEl.textContent = HERO_MEASURED_LBL;
+  }
+  if (card && !card.dataset.wired){
+    card.dataset.wired = "1";
+    card.addEventListener("click", function(){
+      var t = document.querySelector('.tab[data-tab="costs"]');
+      if (t) t.click();
+      var m = document.getElementById("measured");
+      if (m) setTimeout(function(){ m.scrollIntoView({ behavior: "smooth", block: "start" }); }, 60);
+    });
+  }
+}
+
+/* ---------- measurement state panel ---------- */
+function renderMeasuredPanel(){
+  var host = document.getElementById("measuredPanel");
+  if (!host) return;
+  var measured = USE_CASES.filter(isMeasured);
+  var total = USE_CASES.length;
+  var n = measured.length;
+
+  var head;
+  if (n === 0){
+    head = '<div class="mstate-card est">' +
+      '<span class="ic">&#9671;</span><div>' +
+      '<h4>' + MS_TITLE_EST + '</h4>' +
+      '<p>' + MS_BODY_EST + '</p>' +
+      '<p>' + MS_HOWTO + '</p>' +
+      '</div></div>';
+  } else {
+    var cls = n === total ? "done" : "mixed";
+    var title = (n === total ? MS_TITLE_ALL : MS_TITLE_SOME.replace("{n}", n).replace("{total}", total));
+    head = '<div class="mstate-card ' + cls + '">' +
+      '<span class="ic">&#9679;</span><div>' +
+      '<h4>' + title + '</h4>' +
+      '<p>' + MS_BODY_DONE + '</p>' +
+      '<p>' + MS_CAVEAT + '</p>' +
+      '</div></div>';
+  }
+
+  var table = "";
+  if (n > 0){
+    table = '<div class="mstate-table"><table><thead><tr>' +
+      '<th>' + MS_TH_UC + '</th><th>' + MS_TH_TIER + '</th>' +
+      '<th style="text-align:right">' + MS_TH_EST + '</th>' +
+      '<th style="text-align:right">' + MS_TH_MEASURED + '</th>' +
+      '<th style="text-align:right">' + MS_TH_COST + '</th>' +
+      '<th>' + MS_TH_DATE + '</th></tr></thead><tbody>' +
+      measured.map(function(u){
+        return '<tr><td>' + u.title + '</td><td>' + TIER_LABEL[u.tier] + '</td>' +
+          '<td class="was">' + u.credits + '</td>' +
+          '<td class="num">' + u.measuredCredits.toLocaleString("en-US") + '</td>' +
+          '<td class="num">' + money(u.measuredCredits * 0.01) + '</td>' +
+          '<td>' + (u.measuredOn || "\u2014") + '</td></tr>';
+      }).join("") +
+      '</tbody></table></div>';
+  }
+  host.innerHTML = head + table;
+}
+
+/* ---------- budget calculator ---------- */
+var CALC_ROWS = PERSONAS.map(function(p){
+  return { name: p.name, users: 10, l: 20, m: 10, h: 2 };
+});
+
+function calcNum(id){ var el = document.getElementById(id); var v = parseFloat(el && el.value); return isNaN(v) || v < 0 ? 0 : v; }
+
+function buildCalcRows(){
+  var body = document.getElementById("calcBody");
+  if (!body) return;
+  body.innerHTML = CALC_ROWS.map(function(r, i){
+    return '<tr data-row="' + i + '">' +
+      '<td><input class="wide" type="text" data-i="' + i + '" data-k="name" value="' + String(r.name).replace(/"/g, "&quot;") + '"></td>' +
+      '<td class="num"><input type="number" min="0" step="1" data-i="' + i + '" data-k="users" value="' + r.users + '"></td>' +
+      '<td class="num"><input type="number" min="0" step="1" data-i="' + i + '" data-k="l" value="' + r.l + '"></td>' +
+      '<td class="num"><input type="number" min="0" step="1" data-i="' + i + '" data-k="m" value="' + r.m + '"></td>' +
+      '<td class="num"><input type="number" min="0" step="1" data-i="' + i + '" data-k="h" value="' + r.h + '"></td>' +
+      '<td class="num out" data-out="credits"></td>' +
+      '<td class="num out" data-out="month"></td>' +
+      '<td class="num out" data-out="year"></td>' +
+    '</tr>';
+  }).join("");
+}
+
+/* Recomputes only the output cells and the footer, so the inputs are never
+   replaced while the user is typing in them. */
+function renderCalc(){
+  var body = document.getElementById("calcBody");
+  var foot = document.getElementById("calcFoot");
+  if (!body || !foot) return;
+  var rate = calcNum("cRate");
+  var disc = Math.min(calcNum("cDisc"), 100) / 100;
+  var cl = calcNum("cLight"), cm = calcNum("cMedium"), ch = calcNum("cHeavy");
+  var net = rate * (1 - disc);
+  var tUsers = 0, tCredits = 0;
+
+  CALC_ROWS.forEach(function(r, i){
+    var credits = r.users * (r.l * cl + r.m * cm + r.h * ch);
+    tUsers += r.users; tCredits += credits;
+    var tr = body.querySelector('tr[data-row="' + i + '"]');
+    if (!tr) return;
+    tr.querySelector('[data-out="credits"]').textContent = Math.round(credits).toLocaleString("en-US");
+    tr.querySelector('[data-out="month"]').textContent = money(credits * net);
+    tr.querySelector('[data-out="year"]').textContent = money(credits * net * 12);
+  });
+
+  var listY = tCredits * rate * 12;
+  var netY = tCredits * net * 12;
+  foot.innerHTML =
+    '<tr class="total"><td>' + CALC_TOTAL + '</td>' +
+    '<td class="num">' + tUsers.toLocaleString("en-US") + '</td>' +
+    '<td colspan="3"></td>' +
+    '<td class="num">' + Math.round(tCredits).toLocaleString("en-US") + '</td>' +
+    '<td class="num">' + money(tCredits * net) + '</td>' +
+    '<td class="num grand">' + money(netY) + '</td></tr>' +
+    (disc > 0
+      ? '<tr class="total"><td colspan="7">' + CALC_SAVING + '</td><td class="num">' + money(listY - netY) + '</td></tr>'
+      : "");
+}
+
+function setupCalc(){
+  var body = document.getElementById("calcBody");
+  if (!body) return;
+  buildCalcRows();
+  ["cRate","cDisc","cLight","cMedium","cHeavy"].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener("input", renderCalc);
+  });
+  body.addEventListener("input", function(e){
+    var el = e.target.closest("input"); if (!el) return;
+    var i = parseInt(el.dataset.i, 10), k = el.dataset.k;
+    if (isNaN(i) || !k || !CALC_ROWS[i]) return;
+    if (k === "name"){ CALC_ROWS[i].name = el.value; return; }
+    var v = parseFloat(el.value);
+    CALC_ROWS[i][k] = isNaN(v) || v < 0 ? 0 : v;
+    renderCalc();
+  });
+  renderCalc();
+}
+
+function cardHTML(u){
+  return `<article class="card" data-tier="${u.tier}" data-persona="${u.persona}">
+    <div class="card-top">
+      <h3>${u.title}</h3>
+      <span class="tier-tag ${u.tier}">${TIER_LABEL[u.tier]}</span>
+    </div>
+    <p class="scenario">${u.scenario}</p>
+    <p class="section-lbl">Capabilities used</p>
+    <div class="caps">${u.caps.map(c => `<span class="${capClass(c)}">${c}</span>`).join("")}</div>
+    <p class="section-lbl">Example prompt</p>
+    <div class="prompt"><span class="q">“</span>${u.prompt}<span class="q">”</span></div>
+    <div class="value-row">
+      <span class="ic">📈</span>
+      <div class="txt"><b>Business value · </b>${u.value}</div>
+    </div>
+    <div class="cost-box">
+      ${costBadge(u)}
+      <div class="cost-grid">
+        <div class="cost-cell"><div class="k">Tier</div><div class="v">${TIER_LABEL[u.tier]}</div></div>
+        <div class="cost-cell"><div class="k">Credits / run</div><div class="v">${creditsText(u)}</div></div>
+        <div class="cost-cell"><div class="k">Cost / run</div><div class="v">${costText(u)}</div></div>
+        <div class="cost-cell"><div class="k">Typical cadence</div><div class="v"><small>${u.cadence}</small></div></div>
+      </div>
+    </div>
+  </article>`;
+}
+
+function render(){
+  const q = query.trim().toLowerCase();
+  library.innerHTML = "";
+  let total = 0;
+  PERSONAS.forEach(p => {
+    if (activePersona !== "all" && activePersona !== p.id) return;
+    const items = USE_CASES.filter(u => {
+      if (u.persona !== p.id) return false;
+      if (activeTier !== "all" && u.tier !== activeTier) return false;
+      if (q) {
+        const hay = (u.title + " " + u.scenario + " " + u.prompt + " " + u.value + " " + u.caps.join(" ") + " " + p.name).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    if (!items.length) return;
+    total += items.length;
+    const section = document.createElement("section");
+    section.className = "persona-section";
+    section.id = "p-" + p.id;
+    section.innerHTML = `
+      <div class="persona-header">
+        <span class="emoji">${p.emoji}</span>
+        <div>
+          <h2>${p.name}</h2>
+          <p class="role-desc">${p.role}</p>
+        </div>
+      </div>
+      <div class="grid">${items.map(cardHTML).join("")}</div>`;
+    library.appendChild(section);
+  });
+  emptyEl.style.display = total ? "none" : "block";
+}
+
+document.getElementById("tierFilter").addEventListener("click", e => {
+  const btn = e.target.closest(".tier-btn");
+  if (!btn) return;
+  document.querySelectorAll(".tier-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  activeTier = btn.dataset.tier;
+  render();
+});
+personaNav.addEventListener("click", e => {
+  const pill = e.target.closest(".persona-pill");
+  if (!pill) return;
+  document.querySelectorAll(".persona-pill").forEach(b => b.classList.remove("active"));
+  pill.classList.add("active");
+  activePersona = pill.dataset.persona;
+  render();
+  if (activePersona !== "all") {
+    const sec = document.getElementById("p-" + activePersona);
+    if (sec) sec.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+searchInput.addEventListener("input", e => { query = e.target.value; render(); });
+
+render();
+renderJourneys();
+renderMeasuredPanel();
+renderHeroMeasured();
+setupTabs();
+setupCalc();
+</script>
+</body>
+</html>

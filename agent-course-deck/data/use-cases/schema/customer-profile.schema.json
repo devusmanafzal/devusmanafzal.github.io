@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/customer-profile.schema.json",
+  "title": "Customer Profile",
+  "description": "Customer-specific selection, ordering and overrides on top of industry defaults.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "industryId", "useCases"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "2020-12" },
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string" },
+    "industryId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "description": { "type": "string" },
+    "useCases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/customerUseCase" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "customerUseCase": {
+      "type": "object",
+      "required": ["useCaseId", "enabled", "order"],
+      "properties": {
+        "useCaseId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "enabled": { "type": "boolean" },
+        "order": { "type": "integer", "minimum": 1 },
+        "overrides": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema",
+  "title": "Enriched Agent Use-Case",
+  "description": "A use case with tiering, scenarios, capabilities, and value props inspired by Cowork library patterns.",
+  "type": "object",
+  "required": ["id", "title", "icon", "persona", "workPatternId", "tier", "summary"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the use case"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the use case"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon representing the use case"
+    },
+    "persona": {
+      "type": "string",
+      "description": "Reference to a persona ID from the personas registry"
+    },
+    "workPatternId": {
+      "type": "string",
+      "description": "Reference to a work pattern ID (create, distribute-collect, batch-approve, meeting-prep, listen-route)"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["light", "medium", "heavy"],
+      "description": "Complexity tier: light (simple briefing), medium (document/analysis), heavy (research/comprehensive)"
+    },
+    "summary": {
+      "type": "string",
+      "description": "One-line summary of what the use case does"
+    },
+    "scenario": {
+      "type": "string",
+      "description": "What this use case looks like in practice - the situational context and the agent's role"
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "List of Microsoft 365 tools, features, or plugins this use case uses",
+      "items": {
+        "type": "string"
+      },
+      "examples": ["Word", "Excel", "PowerPoint", "Enterprise Search", "Teams", "SharePoint", "Daily Briefing", "Deep Research", "Browser use (Edge)"]
+    },
+    "value": {
+      "type": "string",
+      "description": "Clear value proposition - what problem does this solve and what becomes better?"
+    },
+    "narrative": {
+      "type": "object",
+      "description": "Story-based context: the everyday problem and the outcome when this agent runs",
+      "properties": {
+        "everyday": {
+          "type": "string",
+          "description": "The current manual/painful situation before the agent"
+        },
+        "becomes": {
+          "type": "string",
+          "description": "What happens when this agent is running in full automation"
+        },
+        "lead": {
+          "type": "string",
+          "description": "Key insight or design rationale for this use case"
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "description": "The four-rung structure: prompt, skill, agent, workflow",
+      "properties": {
+        "prompt": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "text": { "type": "string" }
+          }
+        },
+        "skill": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "purpose": { "type": "string" },
+            "instructions": { "type": "string" },
+            "scriptFiles": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "agent": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "instructions": { "type": "string" },
+            "knowledgeSources": { "type": "array", "items": { "type": "string" } },
+            "starterPrompts": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "workflow": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "trigger": { "type": "string" },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "title": { "type": "string" },
+                  "description": { "type": "string" },
+                  "connectorIds": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            },
+            "note": { "type": "string" }
+          }
+        }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "description": "Files and resources needed to run this use case",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "type": { "type": "string", "examples": ["docx", "csv", "xlsx", "zip", "html"] },
+          "icon": { "type": "string" }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "description": "References to limitation IDs that apply to this use case at its current level",
+      "items": { "type": "string" }
+    },
+    "relatedUseCases": {
+      "type": "array",
+      "description": "IDs of related use cases in the same catalog",
+      "items": { "type": "string" }
+    }
+  }
+}

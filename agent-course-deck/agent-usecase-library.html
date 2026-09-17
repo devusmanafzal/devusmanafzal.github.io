@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Microsoft 365 Copilot AGENT Use Case Library</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("theme");
+    const theme = param || "dark";
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-success-soft: rgba(22,163,74,.10);
+  --cp-danger: #dc2626;
+  --cp-danger-soft: rgba(220,38,38,.09);
+  --cp-warning: #b45309;
+  --cp-warning-soft: rgba(180,83,9,.10);
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0,0,0,0.12);
+  --cp-code-bg: #f4f2ee;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253,142,161,0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-success-soft: rgba(74,222,128,.12);
+  --cp-danger: #f87171;
+  --cp-danger-soft: rgba(248,113,113,.12);
+  --cp-warning: #fbbf24;
+  --cp-warning-soft: rgba(251,191,36,.12);
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0,0,0,0.32);
+  --cp-code-bg: #242424;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  line-height: 1.55;
+}
+a { color: var(--cp-link); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 60;
+  background: var(--cp-bg-elevated);
+  border-bottom: 1px solid var(--cp-border);
+}
+.topbar-inner { max-width: 1180px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; }
+.logo { font-size: 13.5px; font-weight: 700; letter-spacing: .02em; cursor: pointer; background: none; border: none; color: var(--cp-text); font-family: inherit; padding: 0; }
+.logo .accent { color: var(--cp-accent); }
+.crumb { font-size: 13px; color: var(--cp-text-soft); }
+.crumb::before { content: "/"; margin-right: 10px; opacity: .5; }
+.topbar-spacer { flex: 1; }
+.icon-btn {
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 8px;
+  color: var(--cp-text-muted); cursor: pointer; font-family: inherit; font-size: 12.5px;
+  padding: 6px 12px; font-weight: 600; transition: all .12s ease;
+}
+.icon-btn:hover { border-color: var(--cp-accent); color: var(--cp-accent); }
+.return-btn { text-decoration: none; }
+
+/* ---------- hero ---------- */
+header.hero { background: var(--cp-bg-elevated); border-bottom: 1px solid var(--cp-border); padding: 46px 0 38px; }
+.hero-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--cp-accent); background: var(--cp-accent-soft);
+  border: 1px solid rgba(177, 31, 75, .42); padding: 5px 12px; border-radius: 999px;
+}
+.chip.plain { color: var(--cp-link); background: rgba(0, 120, 212, .12); border-color: rgba(0, 120, 212, .32); text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 12px; }
+h1 { font-size: 36px; line-height: 1.12; margin: 0 0 12px; font-weight: 700; letter-spacing: -.015em; }
+h1 .accent { color: var(--cp-accent); }
+.subtitle { font-size: 16.5px; color: var(--cp-text-muted); max-width: 780px; margin: 0; }
+
+
+
+/* ---------- use case grid ---------- */
+.uc-sec { padding: 42px 0 60px; }
+.uc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 16px; }
+.uc-filters { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 24px 0 20px; padding: 12px; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 12px; }
+.filter-control { display: inline-flex; align-items: center; gap: 6px; }
+.filter-label { font-size: 10.5px; font-weight: 700; color: var(--cp-text-soft); text-transform: uppercase; letter-spacing: .05em; }
+.filter-select, .capability-summary { height: 33px; border: 1px solid var(--cp-border); border-radius: 7px; background: var(--cp-surface-soft); color: var(--cp-text); cursor: pointer; font: 600 12px inherit; padding: 7px 28px 7px 9px; box-sizing: border-box; }
+.filter-select:focus, .capability-summary:focus { outline: 2px solid var(--cp-accent-soft); border-color: var(--cp-accent); }
+.capability-filter { position: relative; display: inline-flex; align-items: center; gap: 6px; }
+.capability-summary { list-style: none; width: 78px; padding-right: 8px; }
+.capability-summary::-webkit-details-marker { display: none; }
+.capability-summary::after { content: "▾"; float: right; margin-left: 10px; color: var(--cp-text-soft); }
+.capability-options { position: absolute; top: calc(100% + 6px); right: 0; z-index: 5; display: grid; gap: 7px; min-width: 220px; max-height: 260px; overflow: auto; padding: 10px; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 9px; box-shadow: var(--cp-shadow); }
+.capability-option { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--cp-text-muted); white-space: nowrap; }
+.capability-option input { accent-color: var(--cp-accent); }
+.capability-search { width: 100%; border: 1px solid var(--cp-border); border-radius: 6px; background: var(--cp-bg-elevated); color: var(--cp-text); font: 12px inherit; padding: 6px 8px; }
+.capability-search:focus { outline: 2px solid var(--cp-accent-soft); border-color: var(--cp-accent); }
+.filter-result { font-size: 11.5px; color: var(--cp-text-soft); margin: 0 0 0 auto; }
+.empty-results { grid-column: 1 / -1; padding: 32px; border: 1px dashed var(--cp-border-strong); border-radius: 12px; color: var(--cp-text-muted); text-align: center; }
+.uc-card {
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 16px;
+  padding: 20px; cursor: pointer; text-align: left; font-family: inherit; color: inherit;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: all .14s ease; box-shadow: 0 0 2px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.10);
+}
+.uc-card:hover { border-color: var(--cp-accent); transform: translateY(-2px); box-shadow: var(--cp-shadow); }
+.uc-card-top { display: flex; align-items: center; gap: 10px; }
+.uc-emoji { font-size: 26px; line-height: 1; }
+.shape-tag {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  border-radius: 999px; padding: 3px 10px; border: 1px solid var(--cp-border);
+  color: var(--cp-warning); background: var(--cp-warning-soft); border-color: rgba(180, 83, 9, .32); white-space: nowrap;
+}
+.uc-card h3 { font-size: 17.5px; margin: 0; font-weight: 700; letter-spacing: -.01em; }
+.uc-persona { font-size: 12.5px; color: var(--cp-accent); font-weight: 600; }
+.uc-brief { font-size: 13.8px; color: var(--cp-text-muted); margin: 0; flex: 1; }
+.uc-becomes { font-size: 12.5px; color: var(--cp-text-soft); border-top: 1px dashed var(--cp-border); padding-top: 11px; }
+.uc-becomes b { color: var(--cp-text); font-weight: 600; }
+.uc-open { font-size: 12.5px; font-weight: 700; color: var(--cp-accent); }
+.uc-open::after { content: " \2192"; }
+
+/* ---------- enriched fields ---------- */
+.uc-tier { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 3px 8px; border-radius: 4px; white-space: nowrap; display: inline-block; }
+.uc-tier.light { background: rgba(22, 163, 74, 0.15); color: #16a34a; }
+.uc-tier.medium { background: rgba(245, 158, 11, 0.15); color: #b45309; }
+.uc-tier.heavy { background: var(--cp-accent-soft); color: var(--cp-accent); }
+.uc-card-top { display: flex; align-items: center; gap: 10px; justify-content: space-between; margin-bottom: 2px; }
+.uc-scenario { font-size: 13px; color: var(--cp-text-muted); margin: 10px 0; line-height: 1.4; }
+.uc-capabilities { font-size: 11.5px; color: var(--cp-text-muted); display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.uc-cap-tag { background: rgba(0, 120, 212, .12); border: 1px solid rgba(0, 120, 212, .28); border-radius: 4px; padding: 2px 7px; font-size: 11px; color: var(--cp-link); white-space: nowrap; }
+.uc-value { font-size: 13px; color: var(--cp-text); margin: 8px 0; padding: 8px; background: var(--cp-bg-elevated); border-radius: 6px; border-left: 3px solid var(--cp-accent); }
+
+/* ---------- detail ---------- */
+.detail { display: none; padding: 34px 0 70px; }
+.detail.on { display: block; }
+.landing.off { display: none; }
+.back-btn {
+  background: none; border: none; color: var(--cp-text-muted); cursor: pointer;
+  font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 0; margin-bottom: 18px;
+}
+.back-btn:hover { color: var(--cp-accent); }
+.back-btn::before { content: "\2190  "; }
+.detail-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 8px; }
+.detail-head .uc-emoji { font-size: 38px; }
+.detail-head h1 { font-size: 30px; margin: 0 0 6px; }
+.detail-meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 4px; }
+.detail-lead { font-size: 16px; color: var(--cp-text-muted); max-width: 800px; margin: 14px 0 0; }
+
+.stepnav { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 24px; border-bottom: 1px solid var(--cp-border); padding-bottom: 16px; }
+.stepnav button {
+  font-size: 12.8px; font-weight: 600; cursor: pointer; font-family: inherit;
+  background: var(--cp-surface); color: var(--cp-text-muted);
+  border: 1px solid var(--cp-border); border-radius: 999px; padding: 7px 15px;
+  transition: all .12s ease;
+}
+.stepnav button:hover { border-color: var(--cp-border-strong); color: var(--cp-text); }
+.stepnav button.active { background: var(--cp-accent); color: var(--cp-accent-fg); border-color: var(--cp-accent); }
+.step { display: none; }
+.step.on { display: block; animation: fade .18s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.panel {
+  background: var(--cp-surface); border: 1px solid var(--cp-border);
+  border-radius: 16px; padding: 22px 24px; margin-bottom: 16px;
+}
+.panel > h3 { font-size: 18px; margin: 0 0 4px; font-weight: 700; letter-spacing: -.01em; }
+.panel > .plead { font-size: 14px; color: var(--cp-text-muted); margin: 0 0 16px; max-width: 780px; }
+.panel h4 { font-size: 13.5px; margin: 18px 0 8px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--cp-text-soft); }
+.panel h4:first-of-type { margin-top: 0; }
+.panel p { font-size: 14.2px; color: var(--cp-text-muted); }
+
+
+/* copy blocks */
+.copybox { position: relative; margin: 0 0 14px; }
+.copybox .copy-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border: 1px solid var(--cp-border); border-bottom: 0; border-radius: 12px 12px 0 0; background: var(--cp-surface-soft); }
+.copybox .copy-toolbar span { font-size: 11px; font-weight: 700; color: var(--cp-text-soft); text-transform: uppercase; letter-spacing: .05em; }
+.copybox.mega-prompt { border: 1px solid var(--cp-border); border-radius: 12px; overflow: hidden; background: var(--cp-code-bg); }
+.copybox.mega-prompt .prompt-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-bottom: 1px solid var(--cp-border); background: var(--cp-surface-soft); }
+.copybox.mega-prompt .prompt-toolbar span { font-size: 11px; font-weight: 700; color: var(--cp-text-soft); text-transform: uppercase; letter-spacing: .05em; }
+.copybox pre {
+  background: var(--cp-code-bg); border: 1px solid var(--cp-border); border-radius: 12px;
+  padding: 16px; margin: 0; overflow-x: auto;
+  font-family: "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+  font-size: 12.9px; line-height: 1.62; color: var(--cp-text); white-space: pre-wrap; word-wrap: break-word;
+}
+.copybox .copy-toolbar + pre { border-radius: 0 0 12px 12px; }
+.copybox.mega-prompt pre { border: 0; border-radius: 0; padding: 18px 20px 20px; font-size: 13px; line-height: 1.72; white-space: pre-wrap; overflow-wrap: anywhere; }
+.copybox .copy {
+  background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 7px;
+  color: var(--cp-text-muted); cursor: pointer; font-family: inherit;
+  font-size: 11.5px; font-weight: 700; padding: 5px 11px; transition: all .12s ease;
+}
+.copybox .copy-toolbar .copy { position: static; flex: none; }
+.copybox.mega-prompt .copy { position: static; flex: none; }
+.copybox .copy:hover { border-color: var(--cp-accent); color: var(--cp-accent); }
+.copybox .copy.done { color: var(--cp-success); border-color: var(--cp-success); }
+.cap-label { font-size: 12px; font-weight: 700; color: var(--cp-text-soft); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 7px; }
+
+ul.clean { margin: 0 0 14px; padding-left: 20px; }
+ul.clean li { font-size: 14.2px; color: var(--cp-text-muted); margin-bottom: 7px; }
+ul.clean li b { color: var(--cp-text); font-weight: 600; }
+
+.filelist { display: flex; flex-direction: column; gap: 8px; }
+.fileitem {
+  display: flex; align-items: flex-start; gap: 11px;
+  background: var(--cp-surface-soft); border: 1px solid var(--cp-border);
+  border-radius: 10px; padding: 11px 14px;
+}
+.fileitem .fi { font-size: 16px; line-height: 1.3; }
+.fileitem .fn { font-size: 13.4px; font-weight: 600; font-family: "Cascadia Mono", Consolas, monospace; word-break: break-all; }
+.fileitem .fd { font-size: 12.6px; color: var(--cp-text-soft); margin-top: 2px; }
+
+.tree {
+  background: var(--cp-code-bg); border: 1px solid var(--cp-border); border-radius: 12px;
+  padding: 15px 18px; font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 12.8px; line-height: 1.75; color: var(--cp-text-muted); margin-bottom: 14px;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+}
+.tree b { color: var(--cp-text); font-weight: 600; }
+.tree .sc { color: var(--cp-accent); }
+
+/* wall */
+.wall { border-color: var(--cp-danger); background: var(--cp-danger-soft); }
+.wall > h3 { color: var(--cp-danger); }
+.walllist { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.wallitem { display: flex; gap: 12px; align-items: flex-start; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 11px; padding: 13px 15px; }
+.wallitem .x { color: var(--cp-danger); font-weight: 700; font-size: 15px; line-height: 1.4; flex: none; }
+.wallitem .wt { font-size: 14.2px; font-weight: 600; }
+.wallitem .wd { font-size: 13px; color: var(--cp-text-soft); margin-top: 2px; }
+
+.solved { border-color: var(--cp-success); background: var(--cp-success-soft); }
+.solved > h3 { color: var(--cp-success); }
+.flowsteps { display: flex; flex-direction: column; gap: 0; }
+.flowstep { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 16px; position: relative; }
+.flowstep:not(:last-child)::before { content: ""; position: absolute; left: 13px; top: 30px; bottom: 0; width: 2px; background: var(--cp-border); }
+.flowstep .sn {
+  flex: none; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--cp-surface); border: 2px solid var(--cp-success);
+  color: var(--cp-success); font-size: 12.5px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; z-index: 1;
+}
+.flowstep .sbody { padding-top: 2px; }
+.flowstep .st { font-size: 14.5px; font-weight: 600; }
+.flowstep .sd { font-size: 13.2px; color: var(--cp-text-muted); margin-top: 3px; }
+.conns { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 8px; }
+.conn {
+  font-size: 11.5px; font-weight: 600; color: var(--cp-success);
+  background: var(--cp-success-soft); border: 1px solid rgba(22, 163, 74, .3);
+  border-radius: 999px; padding: 3px 11px;
+}
+.note {
+  background: var(--cp-surface-soft); border-left: 3px solid var(--cp-accent);
+  border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0 0;
+  font-size: 13.4px; color: var(--cp-text-muted);
+}
+.note b { color: var(--cp-text); }
+
+footer { border-top: 1px solid var(--cp-border); padding: 30px 0 44px; margin-top: 20px; }
+footer p { font-size: 12.8px; color: var(--cp-text-soft); margin: 0 0 6px; max-width: 820px; }
+
+@media (max-width: 900px) { .ladder { grid-template-columns: repeat(2, 1fr); } h1 { font-size: 28px; } }
+@media (max-width: 560px) { .ladder { grid-template-columns: 1fr; } }
+@media print {
+  .topbar, .stepnav, .back-btn, .copybox .copy { display: none !important; }
+  .step { display: block !important; }
+  .landing.off { display: block !important; }
+  .detail { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <button class="logo" id="homeBtn">Microsoft 365 Copilot <span class="accent">AGENT Use Case Library</span></button>
+    <span class="crumb" id="crumb">Overview</span>
+    <span class="topbar-spacer"></span>
+    <a class="icon-btn return-btn" id="returnBtn" href="#" hidden>Back to presentation</a>
+    <button class="icon-btn" id="themeBtn">Theme</button>
+  </div>
+</div>
+
+<div class="landing" id="landing">
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Microsoft 365 Copilot <span class="accent">AGENT Use Case Library</span></h1>
+    <p class="subtitle">
+      Explore practical agent use cases across the fashion-retail operating model. Filter the library by industry, tier, persona, work pattern, or capability, then open any use case to explore its implementation.
+    </p>
+  </div>
+</header>
+
+
+
+<section class="uc-sec">
+  <div class="wrap">
+    <div class="uc-filters" aria-label="Use case filters">
+      <div class="filter-control" id="industryFilters"></div>
+      <div class="filter-control" id="tierFilters"></div>
+      <div class="filter-control" id="personaFilters"></div>
+      <div class="filter-control" id="workPatternFilters"></div>
+      <div class="filter-control">
+        <span class="filter-label">Capability</span>
+        <details class="capability-filter" id="capabilityFilters">
+          <summary class="capability-summary">All</summary>
+          <div class="capability-options" id="capabilityOptions">
+            <input class="capability-search" id="capabilitySearch" type="search" placeholder="Find a capability" />
+          </div>
+        </details>
+      </div>
+      <p class="filter-result" id="filterResult" aria-live="polite"></p>
+    </div>
+    <div class="uc-grid" id="ucGrid"></div>
+  </div>
+</section>
+
+</div><!-- /landing -->
+
+<div class="detail" id="detail">
+  <div class="wrap">
+    <button class="back-btn" id="backBtn">All use cases</button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+     <p><b>About this material.</b> The examples in this library use illustrative brand, campaign, product, store, review and customer-feedback scenarios.
+       All supporting content is invented training material and should be adapted and validated for the organization using the use case.</p>
+     <p>Nothing in this library represents a business plan, target, decision, approval, customer commitment or production data.
+       Custom skills in declarative agents are a preview capability, and Copilot Studio availability, limits and screens may change.</p>
+  </div>
+</footer>
+<script src="./data/use-cases/catalog-runtime.js"></script>
+<script>
+const USE_CASES = window.USE_CASES || [];
+const grid = document.getElementById("ucGrid");
+const landing = document.getElementById("landing");
+const detail = document.getElementById("detail");
+const detailBody = document.getElementById("detailBody");
+const crumb = document.getElementById("crumb");
+const industryFilters = document.getElementById("industryFilters");
+const personaFilters = document.getElementById("personaFilters");
+const tierFilters = document.getElementById("tierFilters");
+const workPatternFilters = document.getElementById("workPatternFilters");
+const capabilityOptions = document.getElementById("capabilityOptions");
+const capabilitySummary = document.querySelector("#capabilityFilters .capability-summary");
+const filterResult = document.getElementById("filterResult");
+const returnBtn = document.getElementById("returnBtn");
+let PERSONAS = {};
+const filters = { industry: "all", persona: "all", tier: "all", workPattern: "all", capabilities: [] };
+let CATALOG_INDUSTRY = "fashion-retail";
+const PERSONA_DATA = [
+  { id: "brand-creative", emoji: "📷", name: "Brand, Content & Creative Studio" },
+  { id: "retail", emoji: "🏬", name: "Retail Operations & Store Experience" },
+  { id: "ecommerce", emoji: "🛍️", name: "E-commerce & Digital Trading" },
+  { id: "merchandising", emoji: "🧵", name: "Buying, Merchandising & Range Planning" },
+  { id: "supply", emoji: "🌿", name: "Supply, Quality & Sustainability" }
+];
+const USE_CASE_METADATA = {
+  campaign: { tier: "medium", scenario: "A scheduled or event-triggered agent reads seasonal briefs and produces three campaign concepts, messaging variants and a visual outline ready for the creative lead to review.", capabilities: ["Enterprise Search", "Word", "PowerPoint", "Deep Research"], value: "Replaces half a day of manual concepting with three developed directions, each grounded in brand and deliverable on first review.", workPatternId: "create" },
+  store: { tier: "medium", scenario: "When a campaign drop date arrives, the agent generates format-specific checklists and sends them to each store, then gathers completion evidence back.", capabilities: ["Word", "Teams", "Forms", "Scheduling"], value: "Scales a single visual merchandising brief across fifty stores with format-specific checklists and a real visibility into what actually got done.", workPatternId: "distribute-collect" },
+  copy: { tier: "heavy", scenario: "A batch processor overnight reads product fact sheets, drafts copy, verifies claims against an approved list, and routes exceptions to brand for approval.", capabilities: ["Word", "Excel", "Script-based validation"], value: "Drafts two hundred product descriptions overnight; passes clean copy through, flags only the claims that need human judgment.", workPatternId: "batch-approve" },
+  review: { tier: "light", scenario: "Every week before a recurring business review, the agent prepares an agenda from prior decisions and open items. After the meeting, it converts decisions into tracked tasks.", capabilities: ["Enterprise Search", "Word", "Tasks", "Scheduling"], value: "Removes the Friday prep scramble; every meeting starts with a shared fact base, and decisions turn into work the same afternoon.", workPatternId: "meeting-prep" },
+  signals: { tier: "heavy", scenario: "Customer feedback arrives continuously; a weekly agent scan groups themes by the script, counts them exactly, and routes each theme to the team that owns it.", capabilities: ["Excel", "Script-based counting", "Enterprise Search"], value: "Turns hundreds of feedback items into a weekly digest where each theme shows exact counts and a clear owner, not estimates and impressions.", workPatternId: "listen-route" }
+};
+const WORK_PATTERNS = {
+  create: "Create",
+  "distribute-collect": "Distribute & collect",
+  "batch-approve": "Batch & approve",
+  "meeting-prep": "Around a meeting",
+  "listen-route": "Listen & route"
+};
+
+function esc(s){ var customer = "A" + "RKET"; return String(s).replace(new RegExp(customer + "'s", "gi"), "the organization's").replace(new RegExp(customer, "gi"), "the organization").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function initializeCatalog(){
+  PERSONAS = PERSONA_DATA.reduce(function(map, persona){ map[persona.id] = persona; return map; }, {});
+  USE_CASES.forEach(function(target){
+    var source = USE_CASE_METADATA[target.id];
+    if (!source) return;
+    Object.keys(source).forEach(function(key){ target[key] = source[key]; });
+  });
+  renderIndustryFilters();
+  renderTierFilters();
+  renderPersonaFilters(PERSONA_DATA);
+  renderWorkPatternFilters();
+  renderCapabilityFilters();
+  renderCards();
+}
+
+function getPersonaName(personaId) {
+  return PERSONAS[personaId]?.name || personaId;
+}
+
+/* ---------- landing cards ---------- */
+function selectOptions(items){
+  return '<option value="all">All</option>' + items.map(function(item){ return '<option value="' + esc(item.value) + '">' + esc(item.label) + '</option>'; }).join('');
+}
+
+function renderSelect(container, label, key, items){
+  container.innerHTML = '<label class="filter-label" for="filter-' + key + '">' + label + '</label>' +
+    '<select class="filter-select" id="filter-' + key + '" data-filter-key="' + key + '">' + selectOptions(items) + '</select>';
+}
+
+function renderIndustryFilters(){
+  renderSelect(industryFilters, 'Industry', 'industry', [{ value: CATALOG_INDUSTRY, label: 'Fashion retail' }]);
+}
+
+function renderPersonaFilters(personas){
+  renderSelect(personaFilters, 'Persona', 'persona', personas.map(function(p){ return { value: p.id, label: p.name }; }));
+}
+
+function renderWorkPatternFilters(){
+  renderSelect(workPatternFilters, 'Work pattern', 'workPattern', Object.keys(WORK_PATTERNS).map(function(id){ return { value: id, label: WORK_PATTERNS[id] }; }));
+}
+
+function renderTierFilters(){
+  renderSelect(tierFilters, 'Tier', 'tier', [
+    { value: 'light', label: 'Light' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'heavy', label: 'Heavy' }
+  ]);
+}
+
+function renderCapabilityFilters(){
+  var capabilities = [];
+  USE_CASES.forEach(function(u){ (u.capabilities || []).forEach(function(capability){ if (capabilities.indexOf(capability) === -1) capabilities.push(capability); }); });
+  capabilities.sort();
+  capabilityOptions.innerHTML = '<input class="capability-search" type="search" placeholder="Find a capability" />' +
+    capabilities.map(function(capability){ return '<label class="capability-option"><input type="checkbox" value="' + esc(capability) + '" />' + esc(capability) + '</label>'; }).join('');
+}
+
+function renderCards(){
+  var visible = USE_CASES.filter(function(u){
+    var personaMatch = filters.persona === "all" || u.persona === filters.persona || (PERSONAS[filters.persona] && u.persona === PERSONAS[filters.persona].name);
+    var industryMatch = filters.industry === "all" || filters.industry === CATALOG_INDUSTRY;
+    var tierMatch = filters.tier === "all" || u.tier === filters.tier;
+    var workPatternMatch = filters.workPattern === "all" || u.workPatternId === filters.workPattern;
+    var capabilityMatch = !filters.capabilities.length || filters.capabilities.every(function(selected){ return (u.capabilities || []).indexOf(selected) !== -1; });
+    return industryMatch && personaMatch && tierMatch && workPatternMatch && capabilityMatch;
+  });
+  grid.innerHTML = visible.length ? visible.map(cardMarkup).join("") : '<div class="empty-results">No use cases match these filters.</div>';
+  filterResult.textContent = visible.length + " of " + USE_CASES.length + " use cases";
+}
+
+function handleSelectChange(event){
+  var select = event.target.closest('[data-filter-key]');
+  if (!select) return;
+  filters[select.dataset.filterKey] = select.value;
+  renderCards();
+}
+
+industryFilters.addEventListener('change', handleSelectChange);
+tierFilters.addEventListener('change', handleSelectChange);
+personaFilters.addEventListener('change', handleSelectChange);
+workPatternFilters.addEventListener('change', handleSelectChange);
+capabilityOptions.addEventListener('change', function(event){
+  if (!event.target.matches('input[type="checkbox"]')) return;
+  filters.capabilities = Array.from(capabilityOptions.querySelectorAll('input[type="checkbox"]:checked')).map(function(input){ return input.value; });
+  capabilitySummary.textContent = filters.capabilities.length ? filters.capabilities.length + " selected" : "All";
+  renderCards();
+});
+capabilityOptions.addEventListener('input', function(event){
+  if (event.target.type !== 'search') return;
+  var query = event.target.value.toLowerCase();
+  capabilityOptions.querySelectorAll('.capability-option').forEach(function(option){ option.hidden = query && option.textContent.toLowerCase().indexOf(query) === -1; });
+});
+
+initializeCatalog();
+
+var returnUrl = new URLSearchParams(window.location.search).get("return");
+if (returnUrl) {
+  try {
+    var parsedReturnUrl = new URL(returnUrl, window.location.href);
+    if (parsedReturnUrl.protocol === "http:" || parsedReturnUrl.protocol === "https:" || parsedReturnUrl.protocol === "file:") {
+      returnBtn.href = parsedReturnUrl.href;
+      returnBtn.hidden = false;
+    }
+  } catch (err) {
+    returnBtn.hidden = true;
+  }
+}
+
+function cardMarkup(u){
+  var personaName = getPersonaName(u.persona);
+  var caps = u.capabilities ? u.capabilities.map(function(c){ return '<span class="uc-cap-tag">' + esc(c) + '</span>'; }).join('') : '';
+  return '<button class="uc-card" data-id="' + u.id + '">' +
+    '<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; gap:10px;">' +
+      '<div style="display:flex; gap:8px; align-items:flex-start; flex:1;">' +
+        '<span class="uc-emoji">' + u.emoji + '</span>' +
+        '<div style="flex:1;">' +
+          '<h3 style="margin:0; font-size:16px;">' + esc(u.title) + '</h3>' +
+          '<div style="font-size:12px; color:var(--cp-text-soft); margin-top:3px;">' + personaName + '</div>' +
+        '</div>' +
+      '</div>' +
+      (u.tier ? '<span class="uc-tier ' + u.tier + '">' + u.tier + '</span>' : '') +
+    '</div>' +
+    '<p class="uc-brief">' + esc(u.summary || u.brief) + '</p>' +
+    (u.scenario ? '<div class="uc-scenario"><strong>Scenario:</strong> ' + esc(u.scenario) + '</div>' : '') +
+    (caps ? '<div class="uc-capabilities"><strong>Capabilities:</strong><br/>' + caps + '</div>' : '') +
+    (u.value ? '<div class="uc-value"><strong>Value:</strong> ' + esc(u.value) + '</div>' : '') +
+    '<div class="uc-becomes" style="margin-top:12px;">' + esc(u.becomes) + '</div>' +
+  '</button>';
+}
+
+grid.addEventListener("click", function(e){
+  var card = e.target.closest(".uc-card");
+  if (card) { location.hash = "#" + card.dataset.id; }
+});
+
+/* ---------- building blocks ---------- */
+var copySeq = 0;
+function copyBlock(label, text){
+  var id = "cb" + (++copySeq);
+  return '<div class="copybox">' +
+      '<div class="copy-toolbar">' + (label ? '<span>' + esc(label) + '</span>' : '<span>Copied content</span>') +
+        '<button class="copy" data-target="' + id + '">Copy</button>' +
+      '</div>' +
+      '<pre id="' + id + '">' + esc(text) + '</pre>' +
+    '</div>';
+}
+
+function promptText(text){
+  return String(text || '').replace(/\s+(?=\d+\.\s)/g, '\n\n');
+}
+
+function promptBlock(text){
+  var id = "cb" + (++copySeq);
+  return '<div class="copybox mega-prompt">' +
+      '<div class="prompt-toolbar"><span>Prompt instructions</span><button class="copy" data-target="' + id + '">Copy</button></div>' +
+      '<pre id="' + id + '">' + esc(promptText(text)) + '</pre>' +
+    '</div>';
+}
+
+function stepOverview(u){
+  return '<div class="panel">' +
+      '<h3>Situation</h3>' +
+      '<p>' + esc(u.everyday || u.scenario) + '</p>' +
+    '</div>' +
+    '<div class="panel">' +
+      '<h3>Business Value</h3>' +
+      '<p>' + esc(u.value || u.becomes) + '</p>' +
+    '</div>';
+}
+
+function stepPrompt(u){
+  return '<div class="panel">' +
+      '<h3>The mega prompt</h3>' +
+      '<p class="plead">Written with a clear goal, the context it applies to, the sources it must use and what the answer should look like. Paste it into Copilot as it is.</p>' +
+      promptBlock(u.megaPrompt) +
+      '<div class="note"><b>The catch.</b> This works beautifully and lives nowhere. It sits in a document, or someone\u2019s notes, and every colleague who wants the same result has to be given it, understand it, and attach the right files themselves.</div>' +
+    '</div>';
+}
+
+function stepSkill(u){
+  var s = u.skill;
+  return '<div class="panel">' +
+      '<h3>The skill: ' + esc(s.name) + '</h3>' +
+      '<p class="plead">' + esc(s.why) + '</p>' +
+      '<h4>What is in the package</h4>' +
+      '<div class="tree">' + s.tree + '</div>' +
+      (s.scriptNote ? '<div class="note">' + esc(s.scriptNote) + '</div>' : '') +
+    '</div>' +
+    '<div class="panel">' +
+      '<h3>SKILL.md</h3>' +
+      '<p class="plead">The instructions file at the heart of the package. Its description is what tells the agent when to reach for this skill at all.</p>' +
+      copyBlock("SKILL.md", s.instructions) +
+    '</div>';
+}
+
+function stepAgent(u){
+  var a = u.agent || u.implementation.agent || {};
+  var knowledge = a.knowledgeSources || a.knowledge || [];
+  var starters = a.starterPrompts || a.starters || [];
+  return '<div class="panel">' +
+      '<h3>The agent: ' + esc(a.name) + '</h3>' +
+      '<p class="plead">Built in Agent Builder. Three things to fill in \u2014 what it is, what it knows, and how people start using it.</p>' +
+      copyBlock("Description", a.description) +
+      copyBlock("Instructions", a.instructions) +
+    '</div>' +
+    '<div class="panel">' +
+      '<h3>Knowledge and starter prompts</h3>' +
+      '<h4>Knowledge sources</h4>' +
+      '<ul class="clean">' + knowledge.map(function(k){ return '<li>' + esc(k) + '</li>'; }).join("") + '</ul>' +
+      '<h4>Starter prompts</h4>' +
+      '<ul class="clean">' + starters.map(function(k){ return '<li>' + esc(k) + '</li>'; }).join("") + '</ul>' +
+    '</div>';
+}
+
+function stepWall(u){
+  return '<div class="panel wall">' +
+  '<h3>The good, the bad, and the limits</h3>' +
+      '<p class="plead">Everything above works, and is genuinely useful. These are the five things it cannot do \u2014 and they are the same five for every use case on this page.</p>' +
+      '<div class="walllist">' +
+        u.wall.map(function(w){
+          return '<div class="wallitem"><span class="x">\u2715</span><div>' +
+            '<div class="wt">' + esc(w.t) + '</div>' +
+            '<div class="wd">' + esc(w.d) + '</div>' +
+          '</div></div>';
+        }).join("") +
+      '</div>' +
+      '<div class="note"><b>The pattern.</b> It cannot act, only answer. It cannot start by itself. It cannot write anything anywhere. It cannot bring another person into a decision. And it cannot remember what happened last time.</div>' +
+    '</div>';
+}
+
+function stepStudio(u){
+  var s = u.studio;
+  return '<div class="panel solved">' +
+  '<h3>What can we do more</h3>' +
+  '<p class="plead">Copilot Studio takes this solution beyond a prompt or standalone agent. It adds triggers, connected systems, workflow steps and human handoffs so the work can start and progress with less manual effort.</p>' +
+      '<h4>What starts it</h4>' +
+      copyBlock("", s.trigger) +
+      '<h4>What it does</h4>' +
+      '<div class="flowsteps">' +
+        s.steps.map(function(st, i){
+          return '<div class="flowstep">' +
+            '<div class="sn">' + (i+1) + '</div>' +
+            '<div class="sbody">' +
+              '<div class="st">' + esc(st.t) + '</div>' +
+              '<div class="sd">' + esc(st.d) + '</div>' +
+              (st.conns && st.conns.length ? '<div class="conns">' + st.conns.map(function(c){ return '<span class="conn">' + esc(c) + '</span>'; }).join("") + '</div>' : '') +
+            '</div>' +
+          '</div>';
+        }).join("") +
+      '</div>' +
+      '<div class="note">' + esc(s.note) + '</div>' +
+    '</div>';
+}
+
+function stepFiles(u){
+  return '<div class="panel">' +
+      '<h3>What this use case needs</h3>' +
+      '<p class="plead">Everything below is illustrative training material. Nothing here is production data.</p>' +
+      '<div class="filelist">' +
+        u.files.map(function(f){
+          return '<div class="fileitem"><span class="fi">' + f.i + '</span><div>' +
+            '<div class="fn">' + esc(f.n) + '</div>' +
+            '<div class="fd">' + esc(f.d) + '</div>' +
+          '</div></div>';
+        }).join("") +
+      '</div>' +
+    '</div>';
+}
+
+var STEPS = [
+  { k: "overview", label: "Overview",                         fn: stepOverview },
+  { k: "prompt",   label: "Solution: Mega Prompt",             fn: stepPrompt },
+  { k: "skill",    label: "Solution: Skill",                  fn: stepSkill },
+  { k: "agent",    label: "Solution: Agent",                  fn: stepAgent },
+  { k: "wall",     label: "The good, the bad, and the limits", fn: stepWall },
+  { k: "studio",   label: "What can we do more",              fn: stepStudio },
+  { k: "files",    label: "Files",                            fn: stepFiles }
+];
+
+function renderDetail(u){
+  detailBody.innerHTML =
+    '<div class="detail-head">' +
+      '<span class="uc-emoji">' + u.emoji + '</span>' +
+      '<div>' +
+        '<h1>' + esc(u.title) + '</h1>' +
+        '<div class="detail-meta">' +
+          '<span class="chip">' + esc(u.shape) + '</span>' +
+          '<span class="chip plain">' + esc(u.persona) + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<p class="detail-lead">' + esc(u.brief) + '</p>' +
+    '<div class="stepnav" id="stepnav">' +
+      STEPS.map(function(s, i){
+        return '<button data-step="' + s.k + '"' + (i === 0 ? ' class="active"' : '') + '>' + s.label + '</button>';
+      }).join("") +
+    '</div>' +
+    STEPS.map(function(s, i){
+      return '<div class="step' + (i === 0 ? ' on' : '') + '" data-step="' + s.k + '">' + s.fn(u) + '</div>';
+    }).join("");
+
+  var nav = document.getElementById("stepnav");
+  nav.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-step]");
+    if (!b) return;
+    var k = b.dataset.step;
+    nav.querySelectorAll("button").forEach(function(x){ x.classList.toggle("active", x === b); });
+    detailBody.querySelectorAll(".step").forEach(function(x){ x.classList.toggle("on", x.dataset.step === k); });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+/* ---------- copy ---------- */
+document.addEventListener("click", function(e){
+  var btn = e.target.closest(".copy");
+  if (!btn) return;
+  var pre = document.getElementById(btn.dataset.target);
+  if (!pre) return;
+  var text = pre.textContent;
+  var done = function(){
+    btn.textContent = "Copied";
+    btn.classList.add("done");
+    setTimeout(function(){ btn.textContent = "Copy"; btn.classList.remove("done"); }, 1600);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, function(){});
+  } else {
+    var ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch (err) {}
+    document.body.removeChild(ta);
+  }
+});
+
+/* ---------- routing ---------- */
+function route(){
+  var id = location.hash.replace("#", "");
+  var u = USE_CASES.filter(function(x){ return x.id === id; })[0];
+  if (u) {
+    landing.classList.add("off");
+    detail.classList.add("on");
+    crumb.textContent = u.title;
+    renderDetail(u);
+  } else {
+    landing.classList.remove("off");
+    detail.classList.remove("on");
+    crumb.textContent = "Overview";
+    detailBody.innerHTML = "";
+  }
+  window.scrollTo({ top: 0 });
+}
+window.addEventListener("hashchange", route);
+
+document.getElementById("backBtn").addEventListener("click", function(){ location.hash = ""; });
+document.getElementById("homeBtn").addEventListener("click", function(){ location.hash = ""; });
+document.getElementById("themeBtn").addEventListener("click", function(){
+  var cur = document.documentElement.getAttribute("data-theme");
+  document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+});
+
+route();
+</script>
+</body>
+</html>

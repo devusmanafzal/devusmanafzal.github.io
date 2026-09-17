@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-2020-12/schema",
+  "title": "Personas Registry",
+  "description": "ARKET organization personas - role groups that run use cases and have different needs",
+  "type": "object",
+  "required": ["personas"],
+  "properties": {
+    "personas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "role", "emoji"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this persona"
+          },
+          "emoji": {
+            "type": "string",
+            "description": "Visual icon/emoji for this persona"
+          },
+          "name": {
+            "type": "string",
+            "description": "Persona group name/title"
+          },
+          "role": {
+            "type": "string",
+            "description": "Description of who is in this group and what they do"
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "personas": [
+        {
+          "id": "brand-creative",
+          "emoji": "📷",
+          "name": "Brand, Content & Creative Studio",
+          "role": "Brand, PR, social and creative teams turning ARKET's Nordic design point of view into campaigns, stories and local market activation."
+        },
+        {
+          "id": "retail",
+          "emoji": "🏬",
+          "name": "Retail Operations & Store Experience",
+          "role": "Store, area and retail-operations teams delivering a consistent modern-day market experience while opening and improving locations."
+        }
+      ]
+    }
+  ]
+}

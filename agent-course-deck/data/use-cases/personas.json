@@ -1,0 +1,34 @@
+{
+  "personas": [
+    {
+      "id": "brand-creative",
+      "emoji": "📷",
+      "name": "Brand, Content & Creative Studio",
+      "role": "Brand, PR, social and creative teams turning ARKET's Nordic design point of view into campaigns, stories and local market activation."
+    },
+    {
+      "id": "retail",
+      "emoji": "🏬",
+      "name": "Retail Operations & Store Experience",
+      "role": "Store, area and retail-operations teams delivering a consistent modern-day market experience while opening and improving locations."
+    },
+    {
+      "id": "ecommerce",
+      "emoji": "🛍️",
+      "name": "E-commerce & Digital Trading",
+      "role": "Digital trading, content and product teams improving discovery, conversion and product storytelling across local online stores."
+    },
+    {
+      "id": "merchandising",
+      "emoji": "🧵",
+      "name": "Buying, Merchandising & Range Planning",
+      "role": "Merchandisers and planners balancing customer demand, availability, pricing and seasonal range architecture across markets."
+    },
+    {
+      "id": "supply",
+      "emoji": "🌿",
+      "name": "Supply, Quality & Sustainability",
+      "role": "Sourcing, quality, logistics and sustainability teams protecting product standards, responsible claims and reliable flow of goods."
+    }
+  ]
+}

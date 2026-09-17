@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "2020-12",
+  "id": "arket",
+  "name": "Arket",
+  "industryId": "fashion-retail",
+  "description": "Arket-specific customer configuration for the use-case library.",
+  "useCases": [
+    { "useCaseId": "campaign", "enabled": true, "order": 1, "overrides": { "persona": "Brand, Content & Creative Studio", "narrative": { "lead": "This is the use case Session 1 ended on. The prompt already works — the question these sessions answer is what happens when you stop being the only person who can run it." } } },
+    { "useCaseId": "store", "enabled": true, "order": 2, "overrides": { "persona": "Retail Operations & Store Experience" } },
+    { "useCaseId": "copy", "enabled": true, "order": 3, "overrides": { "persona": "E-commerce & Digital Trading" } },
+    { "useCaseId": "review", "enabled": true, "order": 4, "overrides": { "persona": "Buying, Merchandising & Range Planning" } },
+    { "useCaseId": "signals", "enabled": true, "order": 5, "overrides": { "persona": "E-commerce, Service & Product" } }
+  ]
+}

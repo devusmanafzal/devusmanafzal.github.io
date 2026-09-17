@@ -1,0 +1,21 @@
+{
+  "series": {
+    "title": "Agents: From Curiosity to Capability",
+    "subtitle": "A practical journey from first idea to first useful agent",
+    "description": "Understand what agents are, where to begin, how to build them, and when a simple builder is no longer enough.",
+    "author": "Usman Afzal",
+    "totalScenes": 15
+  },
+  "sessions": [
+    {
+      "id": "agent-journey",
+      "number": 1,
+      "title": "Agents: From Curiosity to Capability",
+      "subtitle": "From helpful answers to useful action",
+      "sceneCount": 15,
+      "enabled": true,
+      "releaseLabel": "Self-paced",
+      "file": "agent-scenes.json"
+    }
+  ]
+}

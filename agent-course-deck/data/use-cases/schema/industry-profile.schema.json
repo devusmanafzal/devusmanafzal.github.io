@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/industry-profile.schema.json",
+  "title": "Industry Profile",
+  "description": "Industry-level defaults and ordering for a set of reusable use cases.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "useCases"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "2020-12" },
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "useCases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/industryUseCase" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "industryUseCase": {
+      "type": "object",
+      "required": ["useCaseId", "enabledByDefault", "order"],
+      "properties": {
+        "useCaseId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "enabledByDefault": { "type": "boolean" },
+        "order": { "type": "integer", "minimum": 1 },
+        "overrides": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

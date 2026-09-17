@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/use-case-catalog.schema.json",
+  "title": "Agent Use-Case Catalog",
+  "description": "Reusable catalog of use cases for demoing agent capabilities across industries and customers.",
+  "type": "object",
+  "required": ["schemaVersion", "catalogVersion", "meta", "registries", "useCases"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "2020-12" },
+    "catalogVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "meta": {
+      "type": "object",
+      "required": ["title", "industry", "description"],
+      "properties": {
+        "title": { "type": "string" },
+        "industry": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "registries": {
+      "type": "object",
+      "required": ["workPatterns", "connectors", "limitations"],
+      "properties": {
+        "workPatterns": { "type": "array", "items": { "$ref": "#/$defs/workPattern" } },
+        "connectors": { "type": "array", "items": { "$ref": "#/$defs/connector" } },
+        "limitations": { "type": "array", "items": { "$ref": "#/$defs/limitation" } }
+      },
+      "additionalProperties": false
+    },
+    "useCases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/useCase" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "workPattern": {
+      "type": "object",
+      "required": ["id", "label", "description", "icon"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "connector": {
+      "type": "object",
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "limitation": {
+      "type": "object",
+      "required": ["id", "label", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "label": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "deliverable": {
+      "type": "object",
+      "required": ["id", "name", "description", "type", "icon"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "type": { "type": "string", "enum": ["docx", "csv", "zip", "md", "txt"] },
+        "icon": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "workflowStep": {
+      "type": "object",
+      "required": ["id", "title", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "connectorIds": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "implementation": {
+      "type": "object",
+      "required": ["prompt", "skill", "agent", "workflow"],
+      "properties": {
+        "prompt": {
+          "type": "object",
+          "required": ["enabled", "text"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "text": { "type": "string", "minLength": 250 }
+          },
+          "additionalProperties": false
+        },
+        "skill": {
+          "type": "object",
+          "required": ["enabled", "id", "name", "purpose", "instructions"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "name": { "type": "string" },
+            "purpose": { "type": "string" },
+            "instructions": { "type": "string", "minLength": 50 },
+            "scriptFiles": { "type": "array", "items": { "type": "string" } }
+          },
+          "additionalProperties": false
+        },
+        "agent": {
+          "type": "object",
+          "required": ["enabled", "id", "name", "description", "instructions", "knowledgeSources", "starterPrompts"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+            "name": { "type": "string" },
+            "description": { "type": "string" },
+            "instructions": { "type": "string", "minLength": 100 },
+            "knowledgeSources": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "starterPrompts": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          },
+          "additionalProperties": false
+        },
+        "workflow": {
+          "type": "object",
+          "required": ["enabled", "trigger", "steps", "note"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "trigger": { "type": "string" },
+            "steps": { "type": "array", "items": { "$ref": "#/$defs/workflowStep" }, "minItems": 1 },
+            "note": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "useCase": {
+      "type": "object",
+      "required": ["id", "title", "icon", "persona", "workPatternId", "summary", "narrative", "implementation", "deliverables"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "title": { "type": "string" },
+        "icon": { "type": "string" },
+        "persona": { "type": "string" },
+        "workPatternId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "summary": { "type": "string" },
+        "narrative": {
+          "type": "object",
+          "required": ["everyday", "brief", "becomes", "lead"],
+          "properties": {
+            "everyday": { "type": "string" },
+            "brief": { "type": "string" },
+            "becomes": { "type": "string" },
+            "lead": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "implementation": { "$ref": "#/$defs/implementation" },
+        "deliverables": { "type": "array", "items": { "$ref": "#/$defs/deliverable" } },
+        "limitationIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agents: From Curiosity to Capability</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      // This deck is designed dark-only; ignore the system light/dark preference.
+      document.documentElement.setAttribute("data-theme", param || "dark");
+    })();
+  </script>
+  <link rel="stylesheet" href="styles/agent-course.css">
+</head>
+<body data-manifest="data/agent-course-manifest.json">
+  <div class="cinema">
+    <canvas class="cinema-canvas" aria-hidden="true"></canvas>
+    <div class="cinema-vignette"></div>
+    <div class="cinema-stage"></div>
+  </div>
+  <div class="control-hint" data-hidden="false">Arrow keys / Space / L use case library / F fullscreen / D hide page count / T theme / C commentary / ? shortcuts</div>
+  <button class="nav-toggle" title="Toggle navigation panel (Press N)" aria-label="Open navigation" hidden>☰</button>
+  <div class="nav-panel" data-open="false" hidden>
+    <header class="nav-panel-header"><h2 class="nav-panel-title">Agent journey</h2><button class="nav-close" aria-label="Close navigation" title="Close (ESC)">×</button></header>
+    <div class="nav-sessions"></div>
+  </div>
+  <aside class="commentary-shell" data-open="false" aria-label="Presenter commentary">
+    <div class="commentary-backdrop"></div>
+    <button class="commentary-launcher" type="button" aria-label="Open presenter commentary" title="Press C to toggle"><span class="commentary-avatar"><img src="assets/images/portraits/you.jpg" alt="Presenter"></span><span class="commentary-launcher-copy"><strong id="presenterName">Presenter</strong><span>View notes</span></span></button>
+    <section class="commentary-blade" role="dialog" aria-modal="true">
+      <header class="commentary-blade-head"><div class="commentary-author"><span class="commentary-avatar"><img src="assets/images/portraits/you.jpg" alt=""></span><div><strong id="commentaryAuthor">Presenter</strong><span>Speaker notes</span></div></div><button class="commentary-close" type="button" aria-label="Close commentary" title="Close (C or ESC)">×</button></header>
+      <div class="commentary-content"><p class="commentary-scene-label" id="commentaryLabel"></p><h2 class="commentary-title" id="commentaryTitle"></h2><div class="commentary-body" id="commentaryBody"></div><div class="commentary-takeaway" id="commentaryTakeaway"></div><a class="commentary-source" id="commentarySource" target="_blank" rel="noreferrer"></a><p class="commentary-shortcut">Press C to hide commentary during a live demonstration.</p></div>
+    </section>
+  </aside>
+  <button class="scroll-cue" type="button" aria-label="Continue to the next scene" title="Scroll to navigate"><span class="scroll-cue-arrow"></span><span class="scroll-cue-arrow"></span><span class="scroll-cue-arrow"></span></button>
+  <div class="progress-bar"></div>
+  <div class="scene-counter"><span id="sceneNum">1</span> / <span id="sceneTotal">15</span></div>
+  <!-- Inline data fallback so the deck also works when opened directly via file:// (no fetch/CORS support) -->
+  <script src="data/agent-course-manifest.js"></script>
+  <script src="data/agent-scenes.js"></script>
+  <script src="scripts/course.js"></script>
+</body>
+</html>
