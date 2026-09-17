@@ -1024,6 +1024,7 @@
           sceneEl.dataset.state = index < this.currentSceneIndex ? 'past' : index === this.currentSceneIndex ? 'active' : 'future';
           sceneEl.setAttribute('aria-hidden', String(index !== this.currentSceneIndex));
         });
+        document.querySelector('.desktop-viewing-notice').hidden = scene.id !== 'agent-landing';
         this.startTypewriters();
         this.updateCommentary(scene);
         this.updateProgress();
@@ -1358,6 +1359,7 @@
           e.preventDefault();
           this.toggleCommentary();
         });
+        document.querySelector('.library-shortcut').addEventListener('click', () => this.openUseCaseLibrary());
         document.querySelector('.commentary-close').addEventListener('click', () => this.closeCommentary());
         document.querySelector('.commentary-backdrop').addEventListener('click', () => this.closeCommentary());
 

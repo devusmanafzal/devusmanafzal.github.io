@@ -207,6 +207,14 @@ body { background: var(--agent-ink); }
 .scene[data-scene-id="agent-close"] h1 { max-width: 15ch; width: auto; white-space: normal; font-size: clamp(3.5rem, 7vw, 7.5rem); line-height: .88; }
 .scene[data-scene-id="agent-close"] .scene-subtitle { max-width: 46rem; margin-top: clamp(1.25rem, 2.5vh, 2rem) !important; }
 .scene[data-scene-id="agent-close"] .scene-detail { max-width: 38rem; margin-top: clamp(1.5rem, 3vh, 2.5rem) !important; padding-top: clamp(1.25rem, 2.5vh, 2rem); border-top: 1px solid rgba(205, 211, 101, .45); color: var(--agent-lime); font-size: clamp(1rem, 1.5vw, 1.3rem); }
+.desktop-viewing-notice { position: fixed; top: clamp(.8rem, 1.5vw, 1.25rem); left: 50%; z-index: 55; padding: .35rem .6rem; border: 1px solid rgba(205, 211, 101, .32); border-radius: .3rem; background: rgba(16, 21, 19, .72); color: var(--cp-text-soft); font-size: .68rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transform: translateX(-50%); }
+.desktop-viewing-notice[hidden] { display: none; }
+.presenter-tools { position: fixed; top: clamp(1.25rem, 3vw, 2.5rem); right: clamp(1.25rem, 3vw, 2.5rem); z-index: 62; display: flex; align-items: center; gap: .75rem; transition: right 650ms cubic-bezier(.16, 1, .3, 1); }
+.presenter-tools .commentary-launcher { position: relative; top: auto; right: auto; }
+.library-shortcut { display: grid; flex: 0 0 auto; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; border: 1px solid rgba(205, 211, 101, .55); border-radius: 50%; background: rgba(16, 21, 19, .86); color: var(--agent-lime); cursor: pointer; box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .18); transition: border-color 180ms ease, background 180ms ease, transform 180ms ease; }
+.library-shortcut img { display: block; width: 1.65rem; height: 1.65rem; object-fit: contain; }
+.library-shortcut:hover, .library-shortcut:focus-visible { border-color: var(--agent-lime); background: rgba(205, 211, 101, .14); outline: none; }
+body:has(.commentary-shell[data-open="true"]) .presenter-tools { right: calc(min(30rem, 92vw) + 1.25rem); }
 .nav-panel { border-color: var(--agent-mint); }
 .nav-toggle, .nav-panel { display: none !important; }
 .nav-item.is-active { color: var(--agent-ink); background: var(--agent-mint); }
