@@ -1,0 +1,673 @@
+{
+  "meta": {
+    "title": "The Digital Agency",
+    "language": "en",
+    "ariaLabel": "The Digital Agency conference keynote",
+    "defaultPalette": "keynote",
+    "liveReactionsScript": "https://usman-live.lovable.app/api/public/embed.js"
+  },
+  "controls": {
+    "hint": "Arrow keys / Space / F fullscreen / T palette / C commentary",
+    "autoBuildDelayMs": 5000,
+    "autoAdvanceDelayMs": 3000,
+    "wheelLockMs": 700,
+    "swipeThresholdPx": 60
+  },
+  "videos": {
+    "scoutIntroAfterScene2": {
+      "enabled": true,
+      "src": "assets/videos/scout-intro.mp4",
+      "fit": "contain",
+      "muted": false,
+      "loop": false,
+      "caption": ""
+    },
+    "agencyDemoAfterScene11": {
+      "enabled": true,
+      "src": "assets/videos/agency-demo-web.mp4",
+      "fit": "contain",
+      "muted": true,
+      "loop": false,
+      "caption": ""
+    },
+    "videoBeforeScene13": {
+      "enabled": true,
+      "src": "assets/videos/open-the-door-web.mp4",
+      "fit": "contain",
+      "muted": false,
+      "loop": false,
+      "caption": ""
+    }
+  },
+  "commentary": {
+    "scene-home": {
+      "label": "The Digital Agency",
+      "title": "The purpose is not fewer people. It is more human work.",
+      "paragraphs": [
+        "The Digital Agency is an enterprise where intelligence becomes part of the workforce: present in the flow of work, able to accept outcomes, and governed with the same seriousness as any other operating capability.",
+        "Its purpose is not to automate humanity out of the organization. It is to absorb coordination, repetition, and administrative friction so people can spend more attention on judgment, creativity, relationships, and responsibility."
+      ],
+      "takeaway": "Use digital labor to expand human agency, not diminish it."
+    },
+    "scene-event": {
+      "label": "Before we begin",
+      "title": "A moment to arrive.",
+      "paragraphs": [
+        "This opening image is an invitation to step out of the daily rush and into a longer view of work. The next twenty minutes are not about another feature release. They are about a change in the shape of the enterprise.",
+        "As you move forward, notice how the story travels from tools, to agency, to operating models, and finally to the leadership choices that determine whether this transition creates value."
+      ],
+      "takeaway": "The technology is moving quickly. The purpose of this experience is to create enough space to decide where we want it to take us."
+    },
+    "scene-audience-guide": {
+      "label": "Join the conversation",
+      "title": "This experience has a live pulse.",
+      "paragraphs": [
+        "The QR code opens a lightweight reaction page on your phone. Tap whenever an idea resonates, surprises you, raises a question, or needs clarification.",
+        "Your reaction rises onto the shared screen in real time. There is no form to complete and no need to wait for a formal Q&A moment; the room can respond while the story is unfolding."
+      ],
+      "takeaway": "Scan once, keep the page open, and react as often as you like throughout the experience."
+    },
+    "scene-one": {
+      "label": "The agentic enterprise",
+      "title": "AI is becoming a participant in work.",
+      "paragraphs": [
+        "The first wave of enterprise AI sat beside us. It helped draft, summarize, search, and prepare. That was a meaningful shift, but it kept the human at the center of every action.",
+        "The next wave moves from assistance to participation. Digital colleagues will carry context, accept delegated outcomes, coordinate with people and systems, and return with work completed."
+      ],
+      "takeaway": "The question is no longer only how people use AI. It is how people and AI share work, accountability, and outcomes."
+    },
+    "sandvik": {
+      "label": "Adoption was the spark",
+      "title": "Prompting changed tasks. Agency changes the system.",
+      "paragraphs": [
+        "Prompting taught millions of people that natural language could become a new interface to knowledge work. It reduced friction and made intelligence feel immediately accessible.",
+        "But prompting is still a request-and-response model. Agency begins when AI can hold a goal, decide what to do next, use tools, coordinate steps, and operate within boundaries without waiting for every instruction."
+      ],
+      "takeaway": "Prompt adoption was the beginning. The strategic work starts when delegation becomes possible."
+    },
+    "scene-speaker": {
+      "label": "Your guide",
+      "title": "Why I care about this transition.",
+      "paragraphs": [
+        "My work sits between technology architecture and organizational reality. I see what becomes possible when new capabilities arrive, and I also see the distance between a compelling demonstration and dependable enterprise value.",
+        "This story is designed for leaders making choices about that distance: what to scale, what to govern, what to redesign, and what must remain deeply human."
+      ],
+      "takeaway": "Treat this as a strategic conversation, not a product pitch."
+    },
+    "scene-three": {
+      "label": "A compressed history",
+      "title": "Intelligence is moving closer to action.",
+      "paragraphs": [
+        "For decades, each technology era changed how quickly information could move: mainframes centralized it, personal computers distributed it, the internet connected it, mobile made it ambient, and cloud made it elastic.",
+        "The recent acceleration is different. Chatbots made intelligence conversational. Copilots placed it inside the flow of work. Agents connect intelligence to tools and actions. Digital colleagues add continuity, role, and collaboration."
+      ],
+      "takeaway": "The defining movement is not simply more intelligence. It is less distance between understanding, deciding, and acting."
+    },
+    "scene-shifts": {
+      "label": "Shift 1 · The operating model",
+      "title": "The first shift is from conversation to digital labor.",
+      "paragraphs": [
+        "Conversation lets us ask. Collaboration lets us create together. Delegation lets us assign an outcome instead of describing every step. Digital labor extends that delegation into repeatable, autonomous work.",
+        "These are not interchangeable maturity labels. Every step asks for stronger context, clearer authority, better controls, and a more explicit understanding of who owns the result. That changing operating model also changes where people sit in the work."
+      ],
+      "takeaway": "Capability rises with autonomy, but so does the need for operating discipline."
+    },
+    "scene-human-loop": {
+      "label": "Shift 2 · The human role",
+      "title": "As agency grows, people move from execution to oversight.",
+      "paragraphs": [
+        "Human in the loop means a person remains part of each task and decision. Human on the loop shifts the person into supervision: AI performs more of the work while people monitor, guide, and intervene when needed.",
+        "Human off the loop describes bounded autonomy. Agents coordinate tools, memory, and specialist roles without continuous attention, while people retain authority over goals, policies, exceptions, and accountability. Once that autonomy persists, an agent begins to look less like a feature and more like an organizational role."
+      ],
+      "takeaway": "Less human involvement in execution requires more deliberate boundaries, observability, and escalation design."
+    },
+    "scene-agent-evolution": {
+      "label": "Shift 3 · Role-based autonomy",
+      "title": "Agents are evolving from a capability into a role.",
+      "paragraphs": [
+        "Interactive agents perform a defined task when asked. Autonomous agents can plan toward an outcome, coordinate tools, and collaborate with other agents across a more complex workflow.",
+        "Role-based autonomy adds persistent identity, organizational context, access, communication channels, and a place in enterprise systems. The shift is from invoking a tool to working with a governed participant, which raises a practical question: where does that participant sit in the organization?"
+      ],
+      "takeaway": "The defining change is not greater autonomy alone; it is durable identity, access, responsibility, and accountability."
+    },
+    "scene-org": {
+      "label": "The new organizational chart",
+      "title": "Role-based agents turn the org chart into a mixed workforce.",
+      "paragraphs": [
+        "This is not a chart of humans being replaced. It is a chart of work being redistributed. People continue to set direction, exercise judgment, build trust, and carry accountability while specialized AI roles research, analyze, track, and prepare.",
+        "The Agency makes this concrete: signals become analysis, commitments become visible, drafts arrive ready for judgment, and only the decisions that genuinely need a leader are escalated. A mixed workforce like this cannot run on isolated tools; it needs a shared enterprise architecture."
+      ],
+      "takeaway": "The future org chart describes responsibilities and decision rights, not only reporting lines."
+    },
+    "scene-multimodal": {
+      "label": "Multimodal intelligence",
+      "title": "Orchestrated AI can understand more of the real work environment.",
+      "paragraphs": [
+        "Routing and collaboration become more useful when AI can understand the work itself. Work rarely arrives as clean text; it lives in meetings, images, screens, documents, video, data, and the relationships between them.",
+        "When multimodal understanding is connected to reasoning and tools, AI can inspect a situation, identify what matters, prepare a response, and act. That expanded ability is exactly why the next part of the story must be governance."
+      ],
+      "takeaway": "Multimodality expands what AI can understand; governance determines what it should be allowed to do."
+    },
+    "scene-four": {
+      "label": "Multi-model enterprise",
+      "title": "There will not be one permanent winner.",
+      "paragraphs": [
+        "A platform designed to outlive every model must treat model diversity as a feature. Different work demands different intelligence: a frontier model for complex reasoning, a small model for speed and cost, an open model for control, or a specialist model for a narrow domain.",
+        "The moving orbits represent a portfolio that will keep changing. The durable enterprise capability is the route at the center: selecting models by task, risk, performance, policy, and economics."
+      ],
+      "takeaway": "Competitive advantage shifts from choosing a model to governing a portfolio of intelligence."
+    },
+    "scene-orchestration": {
+      "label": "From selection to orchestration",
+      "title": "Model choice becomes a system decision.",
+      "paragraphs": [
+        "Once the enterprise manages a portfolio, people cannot choose every model for every task. Platform routing uses context, policy, capability, latency, and cost to determine the best fit automatically.",
+        "Beyond routing, specialized models and agents can collaborate: one investigates, another verifies, another acts, and an evaluation layer checks the result."
+      ],
+      "takeaway": "The strategic asset is not a single model. It is the orchestration, evaluation, and control layer around them."
+    },
+    "scene-ai-architecture": {
+      "label": "Intelligence + Trust",
+      "title": "A mixed workforce needs connected intelligence and trust.",
+      "paragraphs": [
+        "The architecture brings Microsoft 365 Copilot, Cowork, agents, Copilot Studio, GitHub Copilot, Fabric, Foundry, Azure, and Agent 365 into one governed system rather than a collection of disconnected tools.",
+        "Microsoft IQ sits at the center, connecting Work IQ, Foundry IQ, and Fabric IQ so experiences can share organizational context while security forms the boundary around every layer."
+      ],
+      "takeaway": "The differentiator is not only intelligence. It is intelligence connected to enterprise context and bounded by trust."
+    },
+    "scene-ms-approach": {
+      "label": "The Microsoft AI Approach",
+      "title": "One experience, different levels of agency.",
+      "paragraphs": [
+        "With the architecture in place, the Microsoft AI approach brings several working modes into one Copilot experience. Chat assists with secure enterprise conversation. Cowork and Code move toward delegated, multi-step execution. Autopilots represent digital teams that can sustain work over time.",
+        "The important progression is not a collection of separate destinations. It is a continuum of agency: from helping a person complete a task, to accepting outcomes, using multiple tools, and coordinating work with less supervision."
+      ],
+      "takeaway": "One Copilot can meet people where they are today while creating a path toward delegated and autonomous work."
+    },
+    "scene-copilot-strategy": {
+      "label": "Platform strategy",
+      "title": "The platform must outlive every model.",
+      "paragraphs": [
+        "Turning that continuum of agency into a durable enterprise capability requires a platform that can evolve. Microsoft's strategy begins with a multi-model foundation so enterprises can adopt the best intelligence as the market changes without rebuilding.",
+        "That flexibility sits on a cloud-native, enterprise-grade foundation grounded in organizational context through WorkIQ, integrated into the flow of work, and protected by security and governance."
+      ],
+      "takeaway": "The durable advantage is not betting on one model. It is building a platform that can absorb the next one."
+    },
+    "scene-governance": {
+      "label": "Governance as capability",
+      "title": "Govern what AI sees, does, decides, and uses.",
+      "paragraphs": [
+        "The preceding capabilities increase what AI can perceive and do. Governance begins with data: what an agent can see and how context is protected. It extends to actions and decisions across Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, Fabric, Foundry, and Azure.",
+        "Microsoft IQ connects OpenAI, Anthropic, Google, and Meta at the intelligence center, while Agent 365 forms the outer management layer across the complete agent estate."
+      ],
+      "takeaway": "Good governance is not a brake on scale. It is the mechanism that makes confident scale possible."
+    },
+    "scene-questions": {
+      "label": "Leadership discussion",
+      "title": "The agentic era begins with choices.",
+      "paragraphs": [
+        "The five questions on screen turn an abstract future into an operating agenda. They ask where delegation creates value, where human authority must remain, and how intelligence should be selected, funded, and managed.",
+        "The final question makes the change visible: if digital colleagues become part of the workforce, what does the organizational chart look like, and who is accountable for the work they perform?"
+      ],
+      "takeaway": "Do not start with how many agents to deploy. Start with the work, decisions, controls, economics, and accountabilities you want to redesign."
+    },
+    "scene-agent-challenge": {
+      "label": "A question for the room",
+      "title": "What would slow your organization first?",
+      "paragraphs": [
+        "Imagine that access to AI agents is no longer scarce. Every employee can delegate research, analysis, coordination, and execution to one or more agents.",
+        "The constraint then moves away from access. It becomes the organizational capability that is least ready: governance, skills, trust, operating model, or budget."
+      ],
+      "takeaway": "Choose the first constraint you would need to remove, not the one that is easiest to discuss."
+    },
+    "scene-thanks": {
+      "label": "A closing thought",
+      "title": "The future of work is a design choice.",
+      "paragraphs": [
+        "The shift from copilots to digital colleagues will not arrive as one launch or one decision. It will emerge through hundreds of choices about work, authority, architecture, and trust.",
+        "My hope is that this experience gives you a clearer language for those choices and a reason to begin the conversation before technology makes the default decisions for you."
+      ],
+      "takeaway": "Thank you for spending this time with the ideas. Keep the conversation going."
+    }
+  },
+  "scenes": [
+    {
+      "id": "home",
+      "enabled": true,
+      "className": "scene scene-home scene-home-org",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-home scene-home-org\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"home-org-backdrop\" aria-hidden=\"true\"></div>\n        <div class=\"home-content\">\n          <p class=\"home-eyebrow\">A human-centered agentic enterprise</p>\n          <h1>The Digital <span class=\"accent\">Agency</span></h1>\n          <p class=\"home-question\">What happens when intelligence becomes part of the workforce?</p>\n          <div class=\"home-manifesto\"><span>The future of work is not about removing people.</span><span>It is about removing the work that keeps people from being fully human.</span></div>\n          <p class=\"home-balance\">Less coordination. Less repetition. More judgment, creativity, and connection.</p>\n        </div>\n        <button class=\"home-begin\" type=\"button\"><span>Begin</span><span class=\"home-begin-arrow\" aria-hidden=\"true\">→</span></button>\n      </section>"
+    },
+    {
+      "id": "event",
+      "enabled": false,
+      "className": "scene scene-event",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-event\" data-state=\"future\" aria-hidden=\"true\">\n        <img class=\"scene-event-image\" src=\"assets/images/work_circle_landing.jpg\" alt=\"WorkScape Circle event landing\">\n        <p class=\"event-prompt\">Starting in 3 seconds</p>\n      </section>"
+    },
+    {
+      "id": "opening",
+      "enabled": false,
+      "className": "scene scene-one",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-one\" data-state=\"future\" aria-hidden=\"true\">\n        <img class=\"scene-one-image\" src=\"assets/images/evolution/executive-collaboration.jpg\" alt=\"Executive leaders collaborating\">\n        <div class=\"scene-word\">AI</div>\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">The agentic enterprise</p>\n          <h1>From Copilots to <span class=\"accent\">Digital Colleagues</span></h1>\n          <p class=\"scene-subtitle\">Preparing for a workforce of humans and agents.</p>\n        </div>\n      </section>"
+    },
+    {
+      "id": "scout-intro-video",
+      "enabled": false,
+      "className": "scene scene-video",
+      "videoConfig": "scoutIntroAfterScene2",
+      "builds": 0,
+      "markup": "<section class=\"scene scene-video\" data-video-config=\"scoutIntroAfterScene2\" data-state=\"future\" aria-hidden=\"true\">\n        <video preload=\"none\" playsinline aria-label=\"Scout introduction video\"></video>\n        <button class=\"video-play-control\" type=\"button\" aria-label=\"Play video\" title=\"Play video\"></button>\n        <p class=\"video-caption\"></p>\n      </section>"
+    },
+    {
+      "id": "prompting",
+      "enabled": false,
+      "className": "scene scene-photo sandvik",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-photo sandvik\" data-state=\"future\" aria-hidden=\"true\">\n        <img class=\"scene-photo-image\" src=\"assets/images/usman-afzal/usman-storyals.jpg\" alt=\"Usman Afzal presenting at Storyals\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Adoption was the spark</p>\n          <h2>The Prompting was only <span class=\"accent\">the beginning.</span></h2>\n          <p class=\"scene-subtitle\">A prompt changes a task. Agency changes the operating model.</p>\n        </div>\n      </section>"
+    },
+    {
+      "id": "audience-guide",
+      "enabled": true,
+      "className": "scene scene-audience-guide",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-audience-guide\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"audience-guide-copy\">\n            <p class=\"scene-kicker\">Join the conversation</p>\n            <h2>Make this a <span class=\"accent\">two-way room.</span></h2>\n            <p class=\"scene-subtitle\">React from your phone. Your response appears live on the big screen.</p>\n            <p class=\"audience-guide-prompt\">Scan. Tap. React as often as you like.</p>\n          </div>\n          <figure class=\"audience-guide-phone\"><img src=\"assets/images/evolution/live-reactions-phone.png\" alt=\"Live Reactions mobile app with eight audience response choices\"></figure>\n          <div class=\"audience-guide-qr\">\n            <img src=\"assets/images/evolution/live-reactions-qr.png\" alt=\"QR code for the Live Reactions app\">\n            <strong>Open Live Reactions</strong>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "multimodal",
+      "enabled": true,
+      "className": "scene scene-multimodal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-multimodal\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Multimodal intelligence</p>\n            <h2 class=\"compact-title\">AI can now <span class=\"accent\">see, hear, reason and act.</span></h2>\n          </div>\n          <div class=\"sense-system\" aria-label=\"Multimodal capabilities connected to reasoning\">\n            <svg class=\"sense-lines\" viewBox=\"0 0 600 600\" preserveAspectRatio=\"none\" aria-hidden=\"true\">\n              <line x1=\"300\" y1=\"300\" x2=\"300\" y2=\"60\" style=\"--line-delay:360ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"505\" y2=\"175\" style=\"--line-delay:450ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"505\" y2=\"425\" style=\"--line-delay:540ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"300\" y2=\"540\" style=\"--line-delay:630ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"95\" y2=\"425\" style=\"--line-delay:720ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"95\" y2=\"175\" style=\"--line-delay:810ms\"></line>\n              <circle cx=\"300\" cy=\"60\" r=\"3\"></circle><circle cx=\"505\" cy=\"175\" r=\"3\"></circle><circle cx=\"505\" cy=\"425\" r=\"3\"></circle><circle cx=\"300\" cy=\"540\" r=\"3\"></circle><circle cx=\"95\" cy=\"425\" r=\"3\"></circle><circle cx=\"95\" cy=\"175\" r=\"3\"></circle>\n            </svg>\n            <div class=\"sense-core\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Microsoft 365<br>Copilot</strong><span>Reasoning core</span></div>\n            <div class=\"sense-node\" style=\"--node-x:50%;--node-y:10%;--node-delay:620ms\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><strong>Text</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:84.17%;--node-y:29.17%;--node-delay:720ms\"><img src=\"assets/logos-and-icons/image.svg\" alt=\"\"><strong>Images</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:84.17%;--node-y:70.83%;--node-delay:820ms\"><img src=\"assets/logos-and-icons/audio-lines.svg\" alt=\"\"><strong>Voice</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:50%;--node-y:90%;--node-delay:920ms\"><img src=\"assets/logos-and-icons/video.svg\" alt=\"\"><strong>Video</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:15.83%;--node-y:70.83%;--node-delay:1020ms\"><img src=\"assets/logos-and-icons/monitor.svg\" alt=\"\"><strong>Screens</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:15.83%;--node-y:29.17%;--node-delay:1120ms\"><img src=\"assets/logos-and-icons/database.svg\" alt=\"\"><strong>Data</strong></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "open-door-video",
+      "enabled": true,
+      "className": "scene scene-video",
+      "videoConfig": "videoBeforeScene13",
+      "builds": 0,
+      "markup": "<section class=\"scene scene-video\" data-video-config=\"videoBeforeScene13\" data-state=\"future\" aria-hidden=\"true\">\n        <video preload=\"none\" playsinline aria-label=\"Configured presentation video\"></video>\n        <button class=\"video-play-control\" type=\"button\" aria-label=\"Play video\" title=\"Play video\"></button>\n        <p class=\"video-caption\"></p>\n      </section>"
+    },
+    {
+      "id": "speaker",
+      "enabled": true,
+      "className": "scene scene-speaker",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-speaker\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"speaker-stage\">\n          <div class=\"speaker-copy\">\n            <h2>Usman<br><span class=\"accent\">Afzal</span></h2>\n            <p class=\"speaker-role\">Solution Architect at Microsoft<br>AI advisor and international speaker</p>\n            <div class=\"speaker-line\"></div>\n          </div>\n          <div class=\"speaker-halo\" aria-hidden=\"true\"></div>\n          <img class=\"speaker-portrait\" src=\"assets/images/usman-afzal/intro_usman_01.png\" alt=\"Usman Afzal\">\n        </div>\n      </section>"
+    },
+    {
+      "id": "technology-evolution",
+      "enabled": true,
+      "className": "scene scene-three",
+      "videoConfig": null,
+      "builds": 1,
+      "markup": "<section class=\"scene scene-three\" data-state=\"future\" data-builds=\"1\" data-build=\"0\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">We've Already Entered a New Era </p>\n          <h2 class=\"journey-title\">Intelligence is moving <span class=\"accent\">closer to actions.</span></h2>\n          <div class=\"evolution-cinema\" aria-label=\"Cinematic technology evolution from mainframes to digital colleagues\">\n            <div class=\"evo-stage\">\n              <div class=\"evo-tracer\" aria-hidden=\"true\"></div>\n              <div class=\"evo-history\">\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/1950s-mainframe.jpg\" alt=\"IBM 705 mainframe computer\"><figcaption><strong>1950s</strong><span>Mainframes</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/1980s-personal-computer.jpg\" alt=\"IBM personal computer\"><figcaption><strong>1980s</strong><span>Personal computers</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/1990s-internet.jpg\" alt=\"The first World Wide Web server\"><figcaption><strong>1990s</strong><span>Internet</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/2000s-mobile.jpg\" alt=\"Nokia mobile phone\"><figcaption><strong>2000s</strong><span>Mobile</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/2010s-cloud.jpg\" alt=\"Data center server racks\"><figcaption><strong>2010s</strong><span>Cloud</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/2020-digital-workplace.jpg\" alt=\"Modern digital workplace\"><figcaption><strong>2020</strong><span>Digital workplace</span></figcaption></figure>\n              </div>\n              <div class=\"evo-history-cluster\">\n                <div class=\"evo-summary\" aria-hidden=\"true\">\n                  <img src=\"assets/images/evolution/1950s-mainframe.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/1980s-personal-computer.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/1990s-internet.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/2000s-mobile.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/2010s-cloud.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/2020-digital-workplace.jpg\" alt=\"\">\n                </div>\n                <div class=\"evo-history-label\"><strong>1950-2020</strong></div>\n              </div>\n              <div class=\"evo-history-branch\" aria-hidden=\"true\"></div>\n              <div class=\"evo-agentic\" aria-label=\"Agentic evolution from chatbots to digital colleagues\">\n                <div class=\"evo-agent\">Chatbots<small>2022</small></div>\n                <div class=\"evo-agent\">Copilots<small>2023</small></div>\n                <div class=\"evo-agent\">Agents<small>2025</small></div>\n                <div class=\"evo-agent\">Digital<br>Colleagues<small>2026</small></div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "digital-labor-shift",
+      "enabled": true,
+      "className": "scene scene-shifts",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-shifts\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Shift 1</p>\n          <h2 class=\"mountain-title\">The operating model is shifting to <span class=\"accent\">Digital Labor</span></h2>\n          <div class=\"mountain-journey\" aria-label=\"Enterprise evolution climbing from conversation to digital labor\">\n            <div class=\"mountain-back\"></div><div class=\"mountain-mid\"></div><div class=\"mountain-front\"></div><div class=\"mountain-contours\"></div>\n            <svg class=\"climb-route\" viewBox=\"0 0 1200 650\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path class=\"base\" d=\"M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50\"/><path class=\"progress\" d=\"M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50\"/></svg>\n            <div class=\"climb-stage stage-1\"><div class=\"climb-dot\">01</div><div class=\"climb-copy\"><strong>Conversation</strong><span>Ask and answer</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>Copilot Chat</span></div></div></div></div>\n            <div class=\"climb-stage stage-2\"><div class=\"climb-dot\">02</div><div class=\"climb-copy\"><strong>Collaboration</strong><span>Work together</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>M365 Copilot</span></div></div></div></div>\n            <div class=\"climb-stage stage-3\"><div class=\"climb-dot\">03</div><div class=\"climb-copy\"><strong>Delegation to Agents</strong><span>Assign outcomes and execute work</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/cowork.png\" alt=\"\"><span>Copilot Cowork</span></div></div></div></div>\n            <div class=\"climb-stage stage-6\"><div class=\"climb-dot\">04</div><div class=\"climb-copy\"><strong>Digital labor</strong><span>Autonomous work</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/scout.png\" alt=\"\"><span>Microsoft Scout</span></div></div></div></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "human-loop-shift",
+      "enabled": true,
+      "className": "scene scene-human-loop",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-human-loop\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Shift 2</p>\n          <h2>Human interactions are changing to <span class=\"accent\">Human off the loop.</span></h2>\n          <div class=\"loop-progression\" aria-label=\"Progression from human in the loop to human off the loop\">\n            <article class=\"loop-stage in\">\n              <div class=\"loop-stage-head\"><span class=\"loop-state\">IN</span><strong>Human in the loop</strong></div>\n              <figure class=\"loop-stage-media\"><img src=\"assets/images/evolution/human-in-the-loop.png\" alt=\"Human actively working in the loop by writing and reviewing code\"></figure>\n            </article>\n            <article class=\"loop-stage on\">\n              <div class=\"loop-stage-head\"><span class=\"loop-state\">ON</span><strong>Human on the loop</strong></div>\n              <figure class=\"loop-stage-media\"><img src=\"assets/images/evolution/human-on-the-loop.png\" alt=\"Human supervising Copilot as it researches and summarizes information\"></figure>\n            </article>\n            <article class=\"loop-stage off\">\n              <div class=\"loop-stage-head\"><span class=\"loop-state\">OFF</span><strong>Human off the loop</strong></div>\n              <figure class=\"loop-stage-media\"><img src=\"assets/images/evolution/human-off-the-loop.png\" alt=\"Autonomous multi-agent security workflow operating without continuous human involvement\"></figure>\n            </article>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "agent-evolution",
+      "enabled": true,
+      "className": "scene scene-agent-evolution",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent-evolution\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Shift 3</p>\n          <h2>Agents are getting <span class=\"accent\">role-based autonomy</span></h2>\n          <figure class=\"agent-evolution-frame\">\n            <img src=\"assets/images/evolution/agent-evolution.png\" alt=\"Evolution from an interactive agent, to an autonomous agent, to a digital employee\">\n            <figcaption class=\"agent-evolution-caption\"><span>Task execution</span><span>Agent collaboration</span><span>Role-based autonomy</span></figcaption>\n          </figure>\n        </div>\n      </section>"
+    },
+    {
+      "id": "organization",
+      "enabled": true,
+      "className": "scene scene-org",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-org\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"org-heading\">\n            <div><p class=\"scene-kicker\">The new organizational chart</p><h2>Humans alongside <span class=\"accent\">digital colleagues.</span></h2></div>\n            <p class=\"scene-subtitle\">A governed team of people and specialized AI roles.</p>\n          </div>\n          <div class=\"keynote-org\" aria-label=\"Organization with a founder, AI chief of staff, four AI specialists, and two human collaborators\">\n            <div class=\"keynote-org-tree\">\n              <div class=\"keynote-person you\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/you.jpg\" alt=\"Founder\"></div><div class=\"keynote-name\">You</div><div class=\"keynote-role\">Founder</div></div>\n              <div class=\"org-connector\"></div>\n              <div class=\"keynote-person ai emma\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/emma.jpg\" alt=\"Emma\"></div><div class=\"keynote-name\">Emma <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Chief of Staff</div></div>\n              <div class=\"org-connector\"></div><div class=\"org-connector wide\"></div>\n              <div class=\"org-ai-row\">\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/oscar.jpg\" alt=\"Oscar\"></div><div class=\"keynote-name\">Oscar <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Signal Scout</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/iris.jpg\" alt=\"Iris\"></div><div class=\"keynote-name\">Iris <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Insight Analyst</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/otto.jpg\" alt=\"Otto\"></div><div class=\"keynote-name\">Otto <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Commitment Tracker</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/nora.jpg\" alt=\"Nora\"></div><div class=\"keynote-name\">Nora <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Decision Drafter</div></div>\n              </div>\n              <div class=\"org-humans\"><div class=\"org-humans-label\">Human collaborators</div><div class=\"org-humans-row\">\n                <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/anna.jpg\" alt=\"Anna\"></div><div class=\"keynote-name\">Anna <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">EA / Operations Lead</div></div>\n                <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/mikael.jpg\" alt=\"Mikael\"></div><div class=\"keynote-name\">Mikael <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">Head of Product</div></div>\n              </div></div>\n            </div>\n            <button class=\"desk-launch\" type=\"button\"><span>Open Agency</span><span class=\"desk-launch-icon\" aria-hidden=\"true\">→</span></button>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "personal-opening",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "The personal AI journey",
+      "className": "scene story-personal chapter-starter",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal chapter-starter personal-hero\"><img class=\"personal-founder-backdrop\" src=\"assets/images/portraits/you.jpg\" alt=\"\"><div><p class=\"personal-kicker\">A personal transformation</p><h1>How AI changed the way <span class=\"accent\">I work.</span></h1><p class=\"personal-note\">Not a feature tour. Four chapters about the moments when work began to feel different.</p></div></section>"
+    },
+    {
+      "id": "knowledge-premise",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal chapter-starter",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal chapter-starter statement\"><div><p class=\"personal-kicker\">Chapter 1 · AI changed how I think about knowledge</p><h2>I used to think knowledge was <span class=\"accent\">having information.</span></h2><p class=\"statement-quiet\">Then I learned that information only becomes useful when it can be found, connected, and understood.</p></div></section>"
+    },
+    {
+      "id": "knowledge-organized-desktop",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal organized-desktop",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal organized-desktop\">\n    <img class=\"organized-backdrop\" src=\"assets/images/personal-ai-journey/clean_information_desktop.jpeg\" alt=\"A desktop filled with folders, email, meeting notes, chat, downloads and browser tabs\">\n    <div class=\"organized-shade\" aria-hidden=\"true\"></div>\n    <div class=\"organized-folders\" aria-label=\"Desktop folders appearing one after another\">\n      <span>Customers</span><span>Presentations</span><span>Notes</span><span>Useful</span><span>Final</span><span>Final v2</span><span>Final latest</span><span>Downloads</span>\n    </div>\n    <div class=\"organized-signals\" aria-label=\"Work spreading across applications\">\n      <span class=\"email\">42 unread emails</span><span class=\"meeting\">Meeting notes</span><span class=\"chat\">Project chat</span><span class=\"tabs\">8 browser tabs</span>\n    </div>\n    <div class=\"organized-copy\">\n      <p class=\"personal-kicker\">The system worked</p>\n      <h2>I thought I was <span class=\"accent\">organized.</span></h2>\n      <p>Everything had a place. Until work started living everywhere.</p>\n    </div>\n  </section>"
+    },
+    {
+      "id": "knowledge-chaos",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal chaos\"><div class=\"scene-content\"><div class=\"chaos-copy\"><p class=\"personal-kicker\">Information was everywhere</p><h2>But knowledge was <span class=\"accent\">fragmented.</span></h2></div><div class=\"chaos-field\"><div class=\"chaos-card\"><img class=\"chaos-icon\" src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><strong>Documents</strong><span>OneDrive</span><span>Project files</span></div><div class=\"chaos-card\"><img class=\"chaos-icon\" src=\"assets/logos-and-icons/presentation.svg\" alt=\"\"><strong>Presentations</strong><span>SharePoint</span><span>Buried in folders</span></div><div class=\"chaos-card\"><img class=\"chaos-icon\" src=\"assets/logos-and-icons/messages-square.svg\" alt=\"\"><strong>Conversations</strong><span>Teams</span><span>Decisions in chat</span></div><div class=\"chaos-card\"><img class=\"chaos-icon\" src=\"assets/logos-and-icons/notebook-pen.svg\" alt=\"\"><strong>Meeting notes</strong><span>Different places</span></div><div class=\"chaos-card\"><img class=\"chaos-icon\" src=\"assets/logos-and-icons/download.svg\" alt=\"\"><strong>Downloads</strong><span>Versions everywhere</span></div><div class=\"chaos-card\"><img class=\"chaos-icon\" src=\"assets/logos-and-icons/brain.svg\" alt=\"\"><strong>My memory</strong><span>Not searchable enough</span></div></div></div></section>"
+    },
+    {
+      "id": "knowledge-map",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal knowledge-map\"><div class=\"knowledge-copy\"><p class=\"personal-kicker\">The turning point</p><h2>AI taught me something <span class=\"accent\">unexpected.</span></h2><p class=\"scene-subtitle\">AI is only as valuable as the information it can access.</p></div><div class=\"knowledge-network\" aria-label=\"Connected knowledge from OneDrive, SharePoint, Teams and notes\"><div class=\"knowledge-core\">Digital<br>memory</div><div class=\"knowledge-node\"><img src=\"assets/logos-and-icons/onedrive-official.svg\" alt=\"\"><span>OneDrive</span></div><div class=\"knowledge-node\"><img src=\"assets/logos-and-icons/sharepoint-official.svg\" alt=\"\"><span>SharePoint</span></div><div class=\"knowledge-node\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><span>Notes</span></div><div class=\"knowledge-node\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\"><span>Conversations</span></div></div></section>"
+    },
+    {
+      "id": "information-not-knowledge",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal information-not-knowledge",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal information-not-knowledge\">\n    <img class=\"information-backdrop\" src=\"assets/images/personal-ai-journey/scatered_knowledge.jpeg\" alt=\"A person surrounded by search results, messages, documents and scattered information\">\n    <div class=\"information-shade\" aria-hidden=\"true\"></div>\n    <div class=\"information-statement\">\n      <p class=\"personal-kicker\">Digital Memory</p>\n      <h2>Information is not <span class=\"accent\">knowledge.</span></h2>\n    </div>\n  </section>"
+    },
+    {
+      "id": "folders-to-context",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal folders-to-context",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal folders-to-context\">\n    <img class=\"context-backdrop\" src=\"assets/images/personal-ai-journey/connected_workplace.jpeg\" alt=\"Scattered files connecting into OneDrive, SharePoint, Teams, meeting content and notebooks\">\n    <div class=\"context-shade\" aria-hidden=\"true\"></div>\n    <div class=\"context-copy\">\n      <p class=\"personal-kicker\">A digital memory forms</p>\n      <h2>From folders to <span class=\"accent\">context.</span></h2>\n      <p>Scattered content begins to connect.</p>\n    </div>\n  </section>"
+    },
+    {
+      "id": "knowledge-practice",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 1 · Knowledge",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal statement knowledge-practice-image\"><img class=\"knowledge-practice-backdrop\" src=\"assets/images/personal-ai-journey/copilot_notebooks.png\" alt=\"Copilot Notebooks organizing references and creating a presentation from connected knowledge\"><div class=\"knowledge-practice-shade\" aria-hidden=\"true\"></div><div class=\"knowledge-practice-copy\"><p class=\"personal-kicker\">Today</p><h2><span class=\"knowledge-practice-line\">I organize knowledge</span><span class=\"knowledge-practice-line\">for <span class=\"accent\">humans and AI.</span></span></h2><p class=\"statement-quiet\">I store information for myself — and for my digital colleagues.</p></div><div class=\"knowledge-tool-strip\" aria-label=\"Microsoft tools that shape my digital knowledge\"><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/onedrive-official.svg\" alt=\"\"><strong>OneDrive</strong><span>Personal, unfinished</span></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/sharepoint-official.svg\" alt=\"\"><strong>SharePoint</strong><span>Shared work</span></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\"><strong>Teams</strong><span>Collaboration</span></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/loop-official.svg\" alt=\"\"><strong>Microsoft Loop</strong><span>Living information</span></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Copilot Notebooks</strong><span>Where the magic happens</span></div></div></section>"
+    },
+    {
+      "id": "meetings-overload",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 2 · Meetings",
+      "className": "scene story-personal chapter-starter",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal chapter-starter meeting-overload\"><div><p class=\"personal-kicker\">Chapter 2 · AI changed how I attend meetings</p><h2>Meeting overload is a <span class=\"accent\">familiar feeling.</span></h2><p class=\"scene-subtitle\">Calendar. Calls. Notifications. One eye on the conversation, one eye on my notes.</p></div><div class=\"calendar-stack\"><div class=\"calendar-card\"><strong>09:00 · Context</strong><span>What do I need to know before this meeting?</span></div><div class=\"calendar-card\"><strong>10:00 · Conversation</strong><span>Listen, think, type, catch up, listen again.</span></div><div class=\"calendar-card\"><strong>11:00 · Follow-up</strong><span>What did we decide — and who owns what?</span></div></div></section>"
+    },
+    {
+      "id": "meetings-efficient",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 2 · Meetings",
+      "className": "scene story-personal meetings-efficient",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal meetings-efficient\">\n    <img class=\"efficient-backdrop\" src=\"assets/images/personal-ai-journey/notes_taking_during_meeting.jpeg\" alt=\"A person watching a speaker while simultaneously taking notes, monitoring chat and checking email\">\n    <div class=\"efficient-shade\" aria-hidden=\"true\"></div>\n    <div class=\"efficient-copy\">\n      <p class=\"personal-kicker\">OLD ME</p>\n      <h2>What I thought was <span class=\"accent\">efficient.</span></h2>\n      <div class=\"efficient-focus\">\n        <div class=\"efficient-workload\">\n          <ul><li>Type notes</li><li>Monitor chat</li><li>Check an earlier email</li><li>Identify actions</li></ul>\n        </div>\n      </div>\n    </div>\n  </section>"
+    },
+    {
+      "id": "flow-meet",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Stay in the flow",
+      "className": "scene story-flow",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-flow flow-meet\"><div class=\"scene-content\"><div><p class=\"personal-kicker\">The New Me: From Notes to Conversation</p><h2>The work keeps moving while I <span class=\"accent\">stay present.</span></h2><p class=\"scene-subtitle\">Teams carries the conversation. Copilot captures the signal. The next artifact starts before the meeting is even over.</p></div><div class=\"flow-ribbon\"><div class=\"flow-step\"><span></span><div><strong>Meet</strong><small>Listen, contribute, decide</small><div class=\"flow-step-tools\"><span class=\"flow-product\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\"><span>Microsoft Teams</span></span></div></div></div><div class=\"flow-step\"><span></span><div><strong>Remember</strong><small>Recap, actions, follow-ups</small><div class=\"flow-step-tools flow-step-tools-stacked\"><span class=\"flow-product\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\"><span>Microsoft Teams</span></span><span class=\"flow-product\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>Microsoft Copilot</span></span></div></div></div><div class=\"flow-step\"><span></span><div><strong>Make</strong><small>Decision into useful work</small><div class=\"flow-step-tools\"><span class=\"flow-product\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>Microsoft Copilot</span></span></div></div></div></div></div></section>"
+    },
+    {
+      "id": "meetings-listen",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 2 · Meetings",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal statement meetings-listen\"><img class=\"meetings-listen-backdrop\" src=\"assets/images/usman-afzal/usman-storyals-03.jpeg\" alt=\"Usman listening and contributing during a group workshop\"><div class=\"meetings-listen-shade\" aria-hidden=\"true\"></div><div class=\"meetings-listen-copy\"><h2><span class=\"meetings-listen-line\">I stopped to take <span class=\"accent\">notes.</span></span> <span class=\"meetings-listen-line\">I started to <span class=\"accent\">listen.</span></span></h2><p class=\"statement-quiet\">AI did not make me attend fewer meetings. It helped me become more present in them.</p></div><div class=\"knowledge-tool-strip meetings-app-strip\" aria-label=\"Microsoft apps supporting meetings\"><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\"><strong>Teams</strong><span>Before, During, and After the meeting</span></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Copilot</strong><span>Before, During, and After the meeting</span></div></div></section>"
+    },
+    {
+      "id": "creating-blank-page",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 3 · Creating",
+      "className": "scene story-personal chapter-starter",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal chapter-starter create-blank\"><div><p class=\"personal-kicker\">Chapter 3 · AI changed how I create</p><h2>Every idea used to begin with a <span class=\"accent\">blank page.</span></h2><p class=\"scene-subtitle\">Email. Workshop. Presentation. Strategy paper. Project plan.</p></div><div class=\"blank-page\" aria-label=\"A blank page with a blinking cursor\"><div class=\"cursor\"></div></div></section>"
+    },
+    {
+      "id": "flow-create",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "From idea to outcome",
+      "className": "scene story-flow",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-flow flow-create\"><div class=\"create-copy\"><p class=\"personal-kicker\">Create and build</p><h2>One idea can become <span class=\"accent\">many outcomes.</span></h2><p class=\"scene-subtitle\">A message becomes a deck. A plan becomes a prototype. A question becomes something people can use.</p><div class=\"flow-tools office-tools\" aria-label=\"Microsoft 365 apps\"><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/word-official.svg\" alt=\"\">Word</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/excel-official.svg\" alt=\"\">Excel</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/powerpoint-official.svg\" alt=\"\">PowerPoint</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/outlook-official.svg\" alt=\"\">Outlook</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\">Teams</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/loop-official.svg\" alt=\"\">Loop</span></div></div><div class=\"artifact-stream\" aria-label=\"Work artifacts moving from an idea to outcomes\"><div class=\"stream-card\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><div><strong>Message</strong><small>Clarify the idea</small></div></div><div class=\"stream-card\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><div><strong>Story</strong><small>Shape the deck</small></div></div><div class=\"stream-card\"><img src=\"assets/logos-and-icons/microsoft.svg\" alt=\"\"><div><strong>Plan</strong><small>Make it actionable</small></div></div><div class=\"stream-card\"><img src=\"assets/logos-and-icons/github-copilot-color.svg\" alt=\"\"><div><strong>Prototype</strong><small>Make it real</small></div></div><div class=\"stream-card\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><div><strong>Outcome</strong><small>Move the work forward</small></div></div></div></section>"
+    },
+    {
+      "id": "creating-thinking-partner",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 3 · Creating",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal thinking-partner\"><div><p class=\"personal-kicker\">The turning point</p><h2>Copilot became a <span class=\"accent\">thinking partner.</span></h2><p class=\"scene-subtitle\">Not a feature. A conversation that helps me see options, challenge assumptions, and move forward.</p></div><div class=\"conversation\"><div class=\"bubble\"><span>Me</span>Here is what I am trying to achieve. What am I missing?</div><div class=\"bubble ai\"><span>Copilot</span>There are three ways to approach this. The trade-off is...</div><div class=\"bubble\"><span>Me</span>Make the second option clearer and more human.</div></div></section>"
+    },
+    {
+      "id": "creating-think",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 3 · Creating",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal statement creating-think-apps\"><div class=\"creating-think-copy\"><p class=\"personal-kicker\">The real benefit</p><h2>AI helps me <span class=\"accent\">think.</span></h2><p class=\"statement-quiet\">I spend less time producing and more time refining, improving, and choosing.</p></div><div class=\"knowledge-tool-strip creating-app-strip\" aria-label=\"Microsoft 365 apps connected by Copilot\"><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/word-official.svg\" alt=\"\"><strong>Word</strong></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/excel-official.svg\" alt=\"\"><strong>Excel</strong></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/powerpoint-official.svg\" alt=\"\"><strong>PowerPoint</strong></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/outlook-official.svg\" alt=\"\"><strong>Outlook</strong></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/teams-official.svg\" alt=\"\"><strong>Teams</strong></div><div class=\"knowledge-tool\"><img src=\"assets/logos-and-icons/loop-official.svg\" alt=\"\"><strong>Loop</strong></div><div class=\"knowledge-tool knowledge-tool-copilot\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Microsoft 365 Copilot</strong><span>One Copilot across every app</span></div></div></section>"
+    },
+    {
+      "id": "teammates-opening",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 4 · Teammates",
+      "className": "scene story-personal chapter-starter",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal chapter-starter statement\"><div><p class=\"personal-kicker\">Chapter 4 · AI changed who I work with</p><h2>Every morning, I come to work with a <span class=\"accent\">team.</span></h2></div></section>"
+    },
+    {
+      "id": "teammates-question",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 4 · Teammates",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal statement\"><div><p class=\"personal-kicker\">The question</p><h2>Who do I <span class=\"accent\">work with?</span></h2><p class=\"statement-quiet\">The answer is not an org chart. It is a set of roles around the work.</p></div></section>"
+    },
+    {
+      "id": "teammates-reflection",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 4 · Teammates",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal statement\"><div><h2>Some of the <span class=\"accent\">best teammates</span> I've gained over the last three years were not only <span class=\"accent\">people.</span></h2></div></section>"
+    },
+    {
+      "id": "teammates-roles",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Chapter 4 · Teammates",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal team-reveal teammates-roles-talk\"><div><p class=\"personal-kicker\">The reveal</p><h2>My growing team of <span class=\"accent\">digital colleagues.</span></h2><div class=\"roles\"><div class=\"role\"><strong>Researcher</strong><span>Finds information and challenges my thinking.</span></div><div class=\"role\"><strong>Meeting colleague</strong><span>Prepares, summarizes, and tracks actions.</span></div><div class=\"role\"><strong>Content colleague</strong><span>Creates drafts and generates options.</span></div><div class=\"role\"><strong>Analyst</strong><span>Turns signals into useful perspective.</span></div><div class=\"role\"><strong>Learning coach</strong><span>Explains concepts and creates paths.</span></div></div></div></section>"
+    },
+    {
+      "id": "personal-bridge",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "The bridge to what comes next",
+      "className": "scene story-personal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-personal personal-hero personal-bridge-hero\"><img class=\"personal-founder-backdrop\" src=\"assets/images/portraits/you.jpg\" alt=\"\"><div><p class=\"personal-kicker\">The question I carry forward</p><h1><span class=\"personal-bridge-line\">If this is already changing how I work...</span><span class=\"personal-bridge-line accent\">what might it mean for all of us?</span></h1></div></section>"
+    },
+    {
+      "id": "organization-copy-after-30",
+      "enabled": true,
+      "className": "scene scene-org",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-org\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"org-heading\">\n            <div><p class=\"scene-kicker\">The new organizational chart</p><h2>Humans alongside <span class=\"accent\">digital colleagues.</span></h2></div>\n            <p class=\"scene-subtitle\">A governed team of people and specialized AI roles.</p>\n          </div>\n          <div class=\"keynote-org\" aria-label=\"Organization with a founder, AI chief of staff, four AI specialists, and two human collaborators\">\n            <div class=\"keynote-org-tree\">\n              <div class=\"keynote-person you\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/you.jpg\" alt=\"Founder\"></div><div class=\"keynote-name\">You</div><div class=\"keynote-role\">Founder</div></div>\n              <div class=\"org-connector\"></div>\n              <div class=\"keynote-person ai emma\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/emma.jpg\" alt=\"Emma\"></div><div class=\"keynote-name\">Emma <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Chief of Staff</div></div>\n              <div class=\"org-connector\"></div><div class=\"org-connector wide\"></div>\n              <div class=\"org-ai-row\">\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/oscar.jpg\" alt=\"Oscar\"></div><div class=\"keynote-name\">Oscar <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Signal Scout</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/iris.jpg\" alt=\"Iris\"></div><div class=\"keynote-name\">Iris <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Insight Analyst</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/otto.jpg\" alt=\"Otto\"></div><div class=\"keynote-name\">Otto <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Commitment Tracker</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/nora.jpg\" alt=\"Nora\"></div><div class=\"keynote-name\">Nora <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Decision Drafter</div></div>\n              </div>\n              <div class=\"org-humans\"><div class=\"org-humans-label\">Human collaborators</div><div class=\"org-humans-row\">\n                <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/anna.jpg\" alt=\"Anna\"></div><div class=\"keynote-name\">Anna <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">EA / Operations Lead</div></div>\n                <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/mikael.jpg\" alt=\"Mikael\"></div><div class=\"keynote-name\">Mikael <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">Head of Product</div></div>\n              </div></div>\n            </div>\n            <button class=\"desk-launch\" type=\"button\"><span>Open Agency</span><span class=\"desk-launch-icon\" aria-hidden=\"true\">→</span></button>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "agency-demo-video",
+      "enabled": false,
+      "className": "scene scene-video",
+      "videoConfig": "agencyDemoAfterScene11",
+      "builds": 0,
+      "markup": "<section class=\"scene scene-video\" data-video-config=\"agencyDemoAfterScene11\" data-state=\"future\" aria-hidden=\"true\">\n        <video preload=\"none\" playsinline aria-label=\"Recorded agency demonstration\"></video>\n        <button class=\"video-play-control\" type=\"button\" aria-label=\"Play agency demonstration\" title=\"Play agency demonstration\"></button>\n        <p class=\"video-caption\"></p>\n      </section>"
+    },
+    {
+      "id": "ai-architecture",
+      "enabled": false,
+      "className": "scene scene-ms-approach scene-ms-approach-copy scene-ai-architecture",
+      "videoConfig": null,
+      "builds": 1,
+      "markup": "<section class=\"scene scene-ms-approach scene-ms-approach-copy scene-ai-architecture\" data-state=\"future\" data-builds=\"1\" data-build=\"0\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"ms-approach-heading\">\n            <p class=\"scene-kicker\">Intelligence + Trust</p>\n            <h2>Microsoft <span class=\"accent\">AI Approach</span></h2>\n          </div>\n          <div class=\"ai-architecture\" aria-label=\"Microsoft AI architecture connected through Microsoft IQ and secured by enterprise controls\">\n            <div class=\"architecture-trust\">Intelligence <span>+ Trust</span></div>\n            <div class=\"architecture-frame\">\n              <div class=\"architecture-side\">\n                <img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\">\n                <strong>Microsoft 365<br>Copilot, Cowork<br>&amp; Agents</strong>\n              </div>\n              <div class=\"architecture-center\">\n                <div class=\"architecture-tile studio\"><img src=\"assets/logos-and-icons/copilot-studio.svg\" alt=\"\"><strong>Copilot Studio</strong></div>\n                <div class=\"architecture-tile github\"><span class=\"architecture-logo github-copilot-mark\" aria-hidden=\"true\"></span><strong>GitHub Copilot</strong></div>\n                <div class=\"architecture-tile fabric\"><img src=\"assets/logos-and-icons/fabric.svg\" alt=\"\"><strong>Microsoft Fabric</strong></div>\n                <div class=\"architecture-tile foundry\"><img src=\"assets/logos-and-icons/foundry.svg\" alt=\"\"><strong>Microsoft Foundry</strong></div>\n                <div class=\"architecture-tile azure\"><img src=\"assets/logos-and-icons/azure.png\" alt=\"\"><strong>Microsoft Azure</strong></div>\n                <div class=\"architecture-iq\"><strong>Microsoft IQ</strong><span>Work IQ<br>Foundry IQ<br>Fabric IQ</span></div>\n              </div>\n              <div class=\"architecture-side agent\">\n                <img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\">\n                <strong>Agent 365</strong>\n              </div>\n            </div>\n            <div class=\"architecture-security\">Security</div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "copilot-approach",
+      "enabled": false,
+      "className": "scene scene-ms-approach",
+      "videoConfig": null,
+      "builds": 1,
+      "markup": "<section class=\"scene scene-ms-approach\" data-state=\"future\" data-builds=\"1\" data-build=\"0\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"ms-approach-heading\">\n            <p class=\"scene-kicker\">A governed path from data to experience</p>\n            <h2><span class=\"approach-main\">Microsoft AI Approach</span> <span class=\"approach-with\">with <span class=\"accent\">Copilot.</span></span></h2>\n          </div>\n          <div class=\"ms-approach-map\" aria-label=\"Microsoft AI approach from assistants through delegates to autopilots\">\n            <div class=\"ms-approach-bands\">\n              <div class=\"ms-approach-band assistants\">Assistants</div>\n              <div class=\"ms-approach-band delegates\">Delegates</div>\n              <div class=\"ms-approach-band autopilots\">Autopilots</div>\n            </div>\n            <div class=\"ms-approach-modes\">\n              <div class=\"ms-approach-mode\"><strong>Chat</strong><span>Secure enterprise chat</span></div>\n              <div class=\"ms-approach-mode\"><strong>Cowork</strong><span>From answers to actions</span></div>\n              <div class=\"ms-approach-mode\"><strong>Code</strong><span>Coding for all</span></div>\n              <div class=\"ms-approach-mode\"><strong>Autopilots</strong><span>Your digital team</span></div>\n            </div>\n            <div class=\"ms-approach-intent\"><span>Designed for a complete AI productivity experience</span><span>Designed for executing long-running, multi-tool tasks</span></div>\n          </div>\n          <figure class=\"ms-approach-product\"><img src=\"assets/images/evolution/ms-approach-ai.png\" alt=\"Microsoft Copilot interface showing Chat, Cowork, Code and Autopilots\"></figure>\n        </div>\n      </section>"
+    },
+    {
+      "id": "copilot-strategy",
+      "enabled": false,
+      "className": "scene scene-copilot-strategy",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-copilot-strategy\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"copilot-strategy-heading\">\n            <p class=\"scene-kicker\">Platform strategy</p>\n            <h2><span class=\"strategy-title-main\">Microsoft AI Approach</span><span class=\"strategy-title-with\">with <span class=\"accent\">Copilot.</span></span></h2>\n          </div>\n          <div class=\"copilot-strategy-grid\">\n            <article class=\"strategy-pillar\">\n              <span class=\"strategy-index\">1</span>\n              <div class=\"strategy-pillar-head\"><span class=\"strategy-icon multi-model\" aria-hidden=\"true\"></span><strong>Multi-Model</strong><span>Future-proof your platform</span></div>\n              <ul><li>Anthropic, OpenAI and more to come</li><li>Adapt as the industry evolves</li><li>Never re-platform when markets shift</li></ul>\n            </article>\n            <article class=\"strategy-pillar\">\n              <span class=\"strategy-index\">2</span>\n              <div class=\"strategy-pillar-head\"><span class=\"strategy-icon multi-harness\" aria-hidden=\"true\"></span><strong>Multi-Harness</strong><span>Orchestration and real work</span></div>\n              <ul><li>Planning, tools, agents and memory</li><li>Turn intelligence into execution</li><li>Run real-world AI workflows</li></ul>\n            </article>\n            <article class=\"strategy-pillar\">\n              <span class=\"strategy-index\">3</span>\n              <div class=\"strategy-pillar-head\"><span class=\"strategy-icon platform\" aria-hidden=\"true\"></span><strong>World's Best Platform</strong><span>Rapid innovation at scale</span></div>\n              <ul><li>Absorbs change and cost</li><li>Quick, secure, enterprise ready</li><li>Always first with the best AI</li></ul>\n            </article>\n          </div>\n          <article class=\"strategy-foundation\">\n            <span class=\"strategy-index\">4</span>\n            <div class=\"strategy-foundation-copy\"><span class=\"strategy-icon secure\" aria-hidden=\"true\"></span><strong>Cloud-native, enterprise-grade and secure AI built for work</strong><span>Grounded in your organization</span></div>\n            <ul><li>Copilot is grounded in your intelligence with WorkIQ</li><li>Natively integrated in the flow of work</li><li>Your data stays protected with enterprise security and governance</li></ul>\n          </article>\n          <blockquote class=\"strategy-thesis\">“It’s not about the model. It is about a platform that can outlive every model.”</blockquote>\n        </div>\n      </section>"
+    },
+    {
+      "id": "model-portfolio",
+      "enabled": false,
+      "className": "scene scene-four",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-four\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Multi-model enterprise</p>\n            <h2>There will not be <span class=\"accent\">one model.</span></h2>\n            <p class=\"scene-subtitle\">Organizations will govern portfolios of intelligence, not select a single winner.</p>\n          </div>\n          <div class=\"orchestra\" aria-label=\"A portfolio of models routed by an orchestration layer\">\n            <div class=\"model-orbit outer\"><div class=\"model-orbit-track\">\n              <div class=\"model-provider copilot\" style=\"--node-x:50%;--node-y:0%;--node-delay:500ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Copilot</strong><span>Experience</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:93.3%;--node-y:75%;--node-delay:580ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/openai.svg\" alt=\"\"><strong>OpenAI</strong><span>GPT</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:6.7%;--node-y:75%;--node-delay:660ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/anthropic.svg\" alt=\"\"><strong>Anthropic</strong><span>Claude</span></div></div>\n            </div></div>\n            <div class=\"model-orbit middle\"><div class=\"model-orbit-track\">\n              <div class=\"model-provider\" style=\"--node-x:85.4%;--node-y:14.6%;--node-delay:740ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/google.svg\" alt=\"\"><strong>Google</strong><span>Gemini</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:85.4%;--node-y:85.4%;--node-delay:820ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/mistralai.svg\" alt=\"\"><strong>Mistral</strong><span>Mistral</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:14.6%;--node-y:85.4%;--node-delay:900ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/meta.svg\" alt=\"\"><strong>Meta</strong><span>Llama</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:14.6%;--node-y:14.6%;--node-delay:980ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/microsoft.svg\" alt=\"\"><strong>Microsoft</strong><span>Phi</span></div></div>\n            </div></div>\n            <div class=\"model-orbit inner\"><div class=\"model-orbit-track\">\n              <div class=\"model-provider\" style=\"--node-x:50%;--node-y:0%;--node-delay:1060ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/deepseek.svg\" alt=\"\"><strong>DeepSeek</strong><span>DeepSeek</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:92.9%;--node-y:75%;--node-delay:1140ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/huggingface.svg\" alt=\"\"><strong>Hugging Face</strong><span>Open hub</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:7.1%;--node-y:75%;--node-delay:1220ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/ibm.svg\" alt=\"\"><strong>IBM</strong><span>Granite</span></div></div>\n            </div></div>\n            <div class=\"model-core\"><strong>ROUTE</strong><span>Governed model selection</span></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "model-orchestration",
+      "enabled": false,
+      "className": "scene scene-orchestration",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-orchestration\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"orchestration-heading\">\n            <p class=\"scene-kicker\">From selection to orchestration</p>\n            <h2 class=\"compact-title\">Model choice becomes a <span class=\"accent\">system decision.</span></h2>\n          </div>\n          <div class=\"orchestration-flow\">\n            <div class=\"orchestration-step\"><strong>Human chooses</strong><p>One task. One model. Manual judgment.</p></div>\n            <div class=\"orchestration-step\"><strong>Platform routes</strong><p>Cost, capability, policy and context.</p></div>\n            <div class=\"orchestration-step\"><strong>Models collaborate</strong><p>Specialized intelligence works as a system.</p></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "governance",
+      "enabled": false,
+      "className": "scene scene-governance",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-governance\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Governance as capability</p>\n            <h2 class=\"compact-title\">Govern what AI <span class=\"accent\">sees, does, decides and uses.</span></h2>\n          </div>\n          <div class=\"govern-system\" aria-label=\"Four nested governance domains\">\n            <div class=\"govern-domain\">DATA</div><div class=\"govern-domain\">ACTIONS</div><div class=\"govern-domain\">DECISIONS</div><div class=\"govern-domain\"><span>INTELLIGENCE<small>Microsoft IQ</small></span></div>\n            <div class=\"govern-agent-ring\" aria-hidden=\"true\"><div class=\"govern-agent-badge\"><img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\"><strong>Agent 365</strong></div></div>\n            <div class=\"govern-product\" style=\"--product-x:8%;--product-y:50%;--product-delay:700ms\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Microsoft 365 Copilot</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:31%;--product-y:19%;--product-delay:820ms\"><img src=\"assets/logos-and-icons/copilot-studio.svg\" alt=\"\"><strong>Copilot Studio</strong></div>\n            <div class=\"govern-product github\" style=\"--product-x:69%;--product-y:19%;--product-delay:940ms\"><span class=\"govern-product-icon github-copilot-mark\" aria-hidden=\"true\"></span><strong>GitHub Copilot</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:18%;--product-y:73%;--product-delay:1060ms\"><img src=\"assets/logos-and-icons/fabric.svg\" alt=\"\"><strong>Microsoft Fabric</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:70%;--product-y:56%;--product-delay:1180ms\"><img src=\"assets/logos-and-icons/foundry.svg\" alt=\"\"><strong>Microsoft Foundry</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:82%;--product-y:77%;--product-delay:1300ms\"><img src=\"assets/logos-and-icons/azure.png\" alt=\"\"><strong>Microsoft Azure</strong></div>\n            <div class=\"govern-model\" style=\"--model-x:50%;--model-y:40%;--model-delay:1500ms\" title=\"OpenAI\"><img src=\"assets/logos-and-icons/openai.svg\" alt=\"OpenAI\"></div>\n            <div class=\"govern-model\" style=\"--model-x:58%;--model-y:42%;--model-delay:1580ms\" title=\"Anthropic\"><img src=\"assets/logos-and-icons/anthropic.svg\" alt=\"Anthropic\"></div>\n            <div class=\"govern-model\" style=\"--model-x:50%;--model-y:60%;--model-delay:1660ms\" title=\"Google\"><img src=\"assets/logos-and-icons/google.svg\" alt=\"Google\"></div>\n            <div class=\"govern-model\" style=\"--model-x:42%;--model-y:58%;--model-delay:1740ms\" title=\"Meta\"><img src=\"assets/logos-and-icons/meta.svg\" alt=\"Meta\"></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "leadership-questions",
+      "enabled": true,
+      "className": "scene scene-questions",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-questions\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div><p class=\"scene-kicker\">Leadership discussion</p><h2 class=\"compact-title\">Five questions for the <span class=\"accent\">agentic era.</span></h2></div>\n          <div class=\"leadership-questions\">\n            <div class=\"leadership-question\">Which work should be delegated to agents?</div>\n            <div class=\"leadership-question\">Which decisions must remain human?</div>\n            <div class=\"leadership-question\">How should model choice be governed?</div>\n            <div class=\"leadership-question\">How will AI consumption be funded and managed?</div>\n            <div class=\"leadership-question\">What does your future organizational chart look like?</div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "agent-challenge",
+      "enabled": false,
+      "className": "scene scene-agent-challenge",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent-challenge\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">A question for the room</p>\n          <h2 class=\"challenge-question\"><span class=\"challenge-setup\">If every employee in your organization had access to one or more AI agents next year,</span><span class=\"challenge-pivot\">what would be your <span class=\"accent\">biggest challenge?</span></span></h2>\n          <p class=\"challenge-instruction\">Choose the one that would slow adoption first.</p>\n          <div class=\"challenge-horizon\" aria-label=\"Governance, skills, trust, operating model, or budget\">\n            <div class=\"challenge-signal\" aria-hidden=\"true\"></div>\n            <div class=\"challenge-choice\"><span class=\"challenge-node\">01</span><strong>Governance</strong></div>\n            <div class=\"challenge-choice\"><span class=\"challenge-node\">02</span><strong>Skills</strong></div>\n            <div class=\"challenge-choice\"><span class=\"challenge-node\">03</span><strong>Trust</strong></div>\n            <div class=\"challenge-choice\"><span class=\"challenge-node\">04</span><strong>Operating<br>model</strong></div>\n            <div class=\"challenge-choice\"><span class=\"challenge-node\">05</span><strong>Budget</strong></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "flow-opening",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Working in the flow",
+      "className": "scene story-flow",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-flow flow-opening\"><div><p class=\"personal-kicker\">A day in the life</p><h1>Work is no longer a sequence of <span class=\"accent\">apps.</span></h1><p>I do not think about which AI tool to open. I think about what I am trying to accomplish — and the right intelligence appears along the way.</p><div class=\"flow-orbit\" aria-label=\"Connected work tools around a shared goal\"><div class=\"flow-orbit-core\">One<br>workday</div><div class=\"flow-orbit-node\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>Copilot Chat</span></div><div class=\"flow-orbit-node\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><span>Notebooks</span></div><div class=\"flow-orbit-node\"><img src=\"assets/logos-and-icons/microsoft.svg\" alt=\"\"><span>Teams</span></div><div class=\"flow-orbit-node\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>M365 Copilot</span></div><div class=\"flow-orbit-node\"><img src=\"assets/logos-and-icons/github-copilot-color.svg\" alt=\"\"><span>GitHub Copilot</span></div></div></div></section>"
+    },
+    {
+      "id": "flow-context",
+      "enabled": true,
+      "section": "personal",
+      "chapter": "Context before action",
+      "className": "scene story-flow",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-flow flow-context\"><div class=\"flow-context-copy\"><p class=\"personal-kicker\">Start with context</p><h2>Before I act, I need to <span class=\"accent\">orient myself.</span></h2><p class=\"scene-subtitle\">Copilot Chat frames the question. Notebooks hold the background. Microsoft 365 Copilot connects the work already happening around it.</p><div class=\"flow-tools\"><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\">Copilot Chat</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\">Notebooks</span><span class=\"flow-tool\"><img src=\"assets/logos-and-icons/microsoft.svg\" alt=\"\">M365 Copilot</span></div></div><div class=\"context-stage\"><div class=\"context-panel chat\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Frame the question</strong><span>What matters? What is missing? Where should I start?</span></div><div class=\"context-panel notebook\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><strong>Hold the context</strong><span>Research, notes, references, and the thread of thought.</span></div><div class=\"context-panel copilot\"><img src=\"assets/logos-and-icons/microsoft.svg\" alt=\"\"><strong>Connect the work</strong><span>Documents, conversations, meetings, and decisions.</span></div></div></section>"
+    },
+    {
+      "id": "thanks-linkedin",
+      "enabled": true,
+      "className": "scene scene-thanks scene-thanks-linkedin",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-thanks scene-thanks-linkedin\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"thanks-copy\">\n          <p class=\"scene-kicker\">Usman Afzal</p>\n          <h2>Thank <span class=\"accent\">you.</span></h2>\n          <p>Keep the conversation going.</p>\n          <div class=\"closing-qr-links\" aria-label=\"Continue online\">\n            <div class=\"closing-qr-item linkedin\"><div class=\"closing-qr-code\"><img src=\"assets/images/usman-afzal/usman-linkedin-qr.png\" alt=\"QR code for Usman's LinkedIn\"><span class=\"linkedin-mark\" aria-hidden=\"true\">in</span></div><div class=\"closing-qr-copy\"><strong>LinkedIn</strong><span>aka.ms/usman</span></div></div>\n          </div>\n        </div>\n        <div class=\"thanks-ring\" aria-hidden=\"true\"></div>\n        <img class=\"thanks-portrait\" src=\"assets/images/usman-afzal/welcome-usman.png\" alt=\"Usman Afzal welcoming the audience\">\n      </section>"
+    },
+    {
+      "id": "thanks-event",
+      "enabled": false,
+      "className": "scene scene-thanks scene-thanks-event",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-thanks scene-thanks-event\" data-state=\"future\" aria-hidden=\"true\">\n        <img class=\"thanks-event-background\" src=\"assets/images/workcircle-ending-scene.jpg\" alt=\"\">\n        <div class=\"thanks-copy\">\n          <h2>Thank <span class=\"accent\">you.</span></h2>\n          <p>Keep the conversation going.</p>\n          <div class=\"closing-qr-links\" aria-label=\"Continue online\">\n            <div class=\"closing-qr-item workscape\"><div class=\"closing-qr-code\"><img src=\"assets/images/workscape-site-qr.png\" alt=\"QR code for the WorkScape site\"></div><div class=\"closing-qr-copy\"><strong>WorkScape</strong><span>aka.ms/workscape</span></div></div>\n            <div class=\"closing-qr-item linkedin\"><div class=\"closing-qr-code\"><img src=\"assets/images/usman-afzal/usman-linkedin-qr.png\" alt=\"QR code for Usman's LinkedIn\"><span class=\"linkedin-mark\" aria-hidden=\"true\">in</span></div><div class=\"closing-qr-copy\"><strong>LinkedIn</strong><span>aka.ms/usman</span></div></div>\n          </div>\n        </div>\n        <div class=\"thanks-ring\" aria-hidden=\"true\"></div>\n        <img class=\"thanks-portrait\" src=\"assets/images/usman-afzal/welcome-usman.png\" alt=\"Usman Afzal welcoming the audience\">\n      </section>"
+    }
+  ]
+}

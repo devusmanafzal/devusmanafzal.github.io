@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="copilot-a" cx="987.21" cy="1216.02" r="2" gradientTransform="translate(-402710.65 -405348.49) rotate(116.72) scale(232.26 -445.89) skewX(-9.72)" gradientUnits="userSpaceOnUse">
+      <stop offset=".25" stop-color="#109df2"/><stop offset=".72" stop-color="#aad445"/><stop offset=".97" stop-color="#ffd400"/>
+    </radialGradient>
+    <linearGradient id="copilot-b" x1="175.87" y1="498.29" x2="173.86" y2="137.69" gradientTransform="translate(0 514) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3dcbff"/><stop offset=".25" stop-color="#0588f7" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="copilot-c" cx="987.17" cy="1215.84" r="2" gradientTransform="translate(-214974.35 -373904.68) rotate(116.05) scale(242.03 -294.27) skewX(.49)" gradientUnits="userSpaceOnUse">
+      <stop offset=".07" stop-color="#8c48ff"/><stop offset=".5" stop-color="#f2598a"/><stop offset=".9" stop-color="#ffb152"/>
+    </radialGradient>
+    <linearGradient id="copilot-d" x1="337.55" y1="400.48" x2="337.35" y2="302.27" gradientTransform="translate(0 514) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset=".06" stop-color="#f8adfa"/><stop offset=".71" stop-color="#a86edd" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#copilot-a)" d="M347.3 115.17l-5.16 20.63h-49.62c-36.77 0-68.82 25.03-77.74 60.7l-44.92 179.7H80.17c-52.13 0-90.38-48.99-77.74-99.57L47.46 96.53C59.35 48.97 102.08 15.6 151.11 15.6h118.45c52.13 0 90.38 48.99 77.74 99.57Z"/>
+  <path fill="url(#copilot-b)" d="M347.3 115.17l-5.16 20.63h-49.62c-36.77 0-68.82 25.03-77.74 60.7l-44.92 179.7H80.17c-52.13 0-90.38-48.99-77.74-99.57L47.46 96.53C59.35 48.97 102.08 15.6 151.11 15.6h118.45c52.13 0 90.38 48.99 77.74 99.57Z"/>
+  <path fill="url(#copilot-c)" d="m164.7 396.83 5.16-20.63h49.62c36.77 0 68.82-25.03 77.74-60.7l44.92-179.7h89.69c52.13 0 90.38 48.99 77.74 99.57l-45.02 180.1c-11.89 47.56-54.63 80.93-103.66 80.93H242.44c-52.13 0-90.38-48.99-77.74-99.57Z"/>
+  <path fill="url(#copilot-d)" d="m164.7 396.83 5.16-20.63h49.62c36.77 0 68.82-25.03 77.74-60.7l44.92-179.7h89.69c52.13 0 90.38 48.99 77.74 99.57l-45.02 180.1c-11.89 47.56-54.63 80.93-103.66 80.93H242.44c-52.13 0-90.38-48.99-77.74-99.57Z"/>
+  <g transform="translate(318 318)">
+    <rect width="176" height="176" rx="42" fill="#fff" stroke="#242424" stroke-width="10"/>
+    <path d="M57 38h70a14 14 0 0 1 14 14v86H57a14 14 0 0 1-14-14V52a14 14 0 0 1 14-14Z" fill="none" stroke="#242424" stroke-width="12" stroke-linejoin="round"/>
+    <path d="M70 38v100M43 70h27M43 104h27" fill="none" stroke="#242424" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>

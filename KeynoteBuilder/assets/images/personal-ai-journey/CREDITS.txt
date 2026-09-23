@@ -1,0 +1,9 @@
+Chapter 1 imagery
+
+The following images were downloaded from Unsplash on 2026-09-17 and are used as local visual references in the personal AI journey draft:
+
+- knowledge-desk.jpg — https://unsplash.com/photos/14997503101075fef28a66643
+- notes-and-paper.jpg — https://unsplash.com/photos/1456324504439367cee3b3c32
+- digital-workspace.jpg — https://unsplash.com/photos/1499951360447b19be8fe80f5
+
+Image URLs use the Unsplash photo IDs as provided by the public image CDN.

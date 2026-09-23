@@ -1,0 +1,185 @@
+{
+  "images": [
+    {
+      "file": "images/evolution/executive-collaboration.jpg",
+      "scene": "The Promptathon Was Only the Beginning",
+      "creator": "fauxels",
+      "source": "https://www.pexels.com/photo/people-sitting-at-the-table-with-laptop-3184291/",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/"
+    },
+    {
+      "file": "images/evolution/1950s-mainframe.jpg",
+      "scene": "Technology Evolution - 1950s Mainframes",
+      "creator": "Wolfgang Stief",
+      "source": "https://commons.wikimedia.org/wiki/File:IBM_705_tube_computer_(1).jpg",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "file": "images/evolution/1980s-personal-computer.jpg",
+      "scene": "Technology Evolution - 1980s Personal Computers",
+      "creator": "Rama and Musee Bolo",
+      "source": "https://commons.wikimedia.org/wiki/File:IBM_PC-IMG_7271.jpg",
+      "license": "CC BY-SA 2.0 FR",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/fr/"
+    },
+    {
+      "file": "images/evolution/1990s-internet.jpg",
+      "scene": "Technology Evolution - 1990s Internet",
+      "creator": "Coolcaesar",
+      "source": "https://commons.wikimedia.org/wiki/File:First_Web_Server.jpg",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "file": "images/evolution/2000s-mobile.jpg",
+      "scene": "Technology Evolution - 2000s Mobile",
+      "creator": "Michael Brandtner",
+      "source": "https://commons.wikimedia.org/wiki/File:Nokia_3310_blue.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+    },
+    {
+      "file": "images/evolution/2010s-cloud.jpg",
+      "scene": "Technology Evolution - 2010s Cloud",
+      "creator": "Carl Lender",
+      "source": "https://commons.wikimedia.org/wiki/File:Datacenter_Server_Racks_(22370909788).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    },
+    {
+      "file": "images/evolution/2020-digital-workplace.jpg",
+      "scene": "Technology Evolution - 2020 Digital Workplace",
+      "creator": "Bill Smith",
+      "source": "https://commons.wikimedia.org/wiki/File:Office_360_(49805354138).jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    }
+  ],
+  "icons": [
+    {
+      "files": "logos-and-icons/{file-text,image,audio-lines,video,monitor,database}.svg",
+      "scene": "AI Can Now See, Hear, Reason and Act",
+      "creator": "Lucide Contributors",
+      "source": "https://lucide.dev/icons/",
+      "license": "ISC License",
+      "licenseUrl": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
+    },
+    {
+      "files": "logos-and-icons/{presentation,messages-square,notebook-pen,download,brain}.svg",
+      "scene": "Information Was Everywhere",
+      "creator": "Lucide Contributors",
+      "source": "https://lucide.dev/icons/",
+      "license": "ISC License",
+      "licenseUrl": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
+    },
+    {
+      "files": "logos-and-icons/{sharepoint,onedrive,word,excel,powerpoint,teams,onenote}.svg",
+      "scene": "Microsoft product icon library",
+      "creator": "Simple Icons Contributors",
+      "source": "https://simpleicons.org/",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
+    },
+    {
+      "files": "logos-and-icons/{onedrive-official,sharepoint-official,teams-official}.svg",
+      "scene": "AI Taught Me Something Unexpected",
+      "creator": "Microsoft Corporation",
+      "source": "https://commons.wikimedia.org/wiki/Category:Microsoft_Office_logos",
+      "license": "Public domain text logos; trademark restrictions may apply",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Threshold_of_originality"
+    },
+    {
+      "files": "logos-and-icons/loop-official.svg",
+      "scene": "I Organize Knowledge for Humans and AI",
+      "creator": "Microsoft Corporation",
+      "source": "https://loop.cloud.microsoft/",
+      "license": "Official Microsoft product mark; trademark restrictions apply",
+      "licenseUrl": "https://www.microsoft.com/trademarks"
+    },
+    {
+      "files": "logos-and-icons/copilot-notebooks.svg",
+      "scene": "Microsoft product icon library",
+      "creator": "Local composite using the presenter-supplied Copilot mark and a Lucide notebook motif",
+      "source": "logos-and-icons/Copilot-icon.svg and https://lucide.dev/icons/notebook-pen",
+      "license": "Presenter-supplied mark with ISC-licensed motif",
+      "licenseUrl": "https://lucide.dev/license"
+    },
+    {
+      "files": "logos-and-icons/{openai,microsoft,anthropic,meta,google,mistralai,deepseek,huggingface,ibm}.svg",
+      "scene": "There Will Not Be One Model for the Enterprise",
+      "creator": "Simple Icons Contributors",
+      "source": "https://simpleicons.org/",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md"
+    }
+  ],
+  "presenterSupplied": [
+    {
+      "files": [
+        "images/usman-afzal/usman-storyals.jpg",
+        "images/usman-afzal/usman-storyals-01.jpg",
+        "images/usman-afzal/intro_usman_01.png",
+        "images/usman-afzal/welcome-usman.png",
+        "images/evolution/human-in-the-loop.png",
+        "images/evolution/human-on-the-loop.png",
+        "images/evolution/human-off-the-loop.png",
+        "images/evolution/agent-evolution.png",
+        "images/evolution/ms-approach-ai.png",
+        "images/personal-ai-journey/clean_information_desktop.jpeg",
+        "images/personal-ai-journey/scatered_knowledge.jpeg",
+        "images/personal-ai-journey/connected_workplace.jpeg",
+        "images/personal-ai-journey/copilot_notebooks.png",
+        "images/portraits/you.jpg",
+        "images/portraits/emma.jpg",
+        "images/portraits/oscar.jpg",
+        "images/portraits/iris.jpg",
+        "images/portraits/otto.jpg",
+        "images/portraits/nora.jpg",
+        "images/portraits/anna.jpg",
+        "images/portraits/mikael.jpg"
+      ],
+      "usage": "Current keynote imagery and organization portraits",
+      "source": "Supplied by the presenter"
+    },
+    {
+      "files": [
+        "images/evolution/live-reactions-phone.png",
+        "images/evolution/live-reactions-qr.png",
+        "images/usman-afzal/usman-linkedin-qr.png",
+        "images/workscape-site-qr.png",
+        "images/work_circle_landing.jpg",
+        "images/workcircle-ending-scene.jpg"
+      ],
+      "usage": "Presenter-owned links and event alternatives",
+      "source": "Supplied by the presenter or event organizer"
+    },
+    {
+      "files": [
+        "images/prompting/image12.png",
+        "images/prompting/image13.png",
+        "images/prompting/image14.png",
+        "images/prompting/image15.png",
+        "images/prompting/image16.png",
+        "images/prompting/image17.svg",
+        "images/prompting/image18.png",
+        "images/prompting/image19.jpeg",
+        "images/prompting/image20.jpeg",
+        "images/prompting/image21.jpeg",
+        "images/prompting/image22.jpeg"
+      ],
+      "usage": "Promptathon opening story imagery extracted from the presenter-supplied Promptathon presentation",
+      "source": "Supplied by the presenter"
+    },
+    {
+      "files": [
+        "videos/scout-intro.mp4",
+        "videos/agency-demo-web.mp4",
+        "videos/open-the-door-web.mp4"
+      ],
+      "usage": "Configured full-screen presentation videos",
+      "source": "Supplied by the presenter"
+    }
+  ]
+}

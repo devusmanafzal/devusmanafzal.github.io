@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keynote Admin</title>
+  <link rel="icon" href="data:,">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+  </style>
+  <link rel="stylesheet" href="styles/admin.css">
+  <script src="scripts/presentation-store.js" defer></script>
+  <script src="scripts/admin.js" defer></script>
+</head>
+<body>
+  <div class="admin-app">
+    <header class="admin-header">
+      <div class="brand-block">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <div><strong>Keynote Admin</strong><span id="presentationTitle">Loading presentation...</span></div>
+      </div>
+      <div class="header-actions">
+        <span class="save-status" id="saveStatus" data-state="loading" role="status">Loading</span>
+        <button class="button secondary" id="importButton" type="button">Import</button>
+        <button class="button secondary" id="exportButton" type="button">Export</button>
+        <button class="icon-button" id="resetButton" type="button" title="Reset browser changes" aria-label="Reset browser changes">↺</button>
+        <a class="button primary" href="keynote.html" target="_blank" rel="noopener">Open keynote</a>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
+      </div>
+    </header>
+
+    <aside class="admin-sidebar" aria-label="Admin sections">
+      <nav class="admin-nav">
+        <button type="button" data-panel="general" aria-current="page"><span aria-hidden="true">Aa</span>General</button>
+        <button type="button" data-panel="controls"><span aria-hidden="true">⌨</span>Controls</button>
+        <button type="button" data-panel="videos"><span aria-hidden="true">▶</span>Videos</button>
+        <button type="button" data-panel="scenes"><span aria-hidden="true">▤</span>Scenes <small id="sceneNavCount"></small></button>
+      </nav>
+      <div class="source-note"><span>Active source</span><strong id="activeSource">Checked-in JSON</strong></div>
+    </aside>
+
+    <main class="admin-main" id="adminMain">
+      <section class="panel" id="panel-general" data-panel-view="general">
+        <header class="panel-heading"><div><p>Presentation</p><h1>General settings</h1></div></header>
+        <form class="settings-form" id="generalForm"></form>
+      </section>
+      <section class="panel" id="panel-controls" data-panel-view="controls" hidden>
+        <header class="panel-heading"><div><p>Behavior</p><h1>Presentation controls</h1></div></header>
+        <form class="settings-form" id="controlsForm"></form>
+      </section>
+      <section class="panel" id="panel-videos" data-panel-view="videos" hidden>
+        <header class="panel-heading"><div><p>Media</p><h1>Video configuration</h1></div></header>
+        <div class="video-list" id="videoList"></div>
+      </section>
+      <section class="panel scenes-panel" id="panel-scenes" data-panel-view="scenes" hidden>
+        <header class="panel-heading scenes-heading">
+          <div><p>Sequence</p><h1>Scenes</h1></div>
+          <div class="scene-summary" id="sceneSummary"></div>
+        </header>
+        <div class="scene-toolbar">
+          <label class="search-field"><span class="sr-only">Search scenes</span><input id="sceneSearch" type="search" placeholder="Search scenes"></label>
+          <select id="sceneFilter" aria-label="Filter scenes"><option value="all">All scenes</option><option value="enabled">Enabled</option><option value="disabled">Disabled</option></select>
+        </div>
+        <div class="scene-workspace">
+          <div class="scene-list" id="sceneList" aria-label="Presentation scenes"></div>
+          <section class="scene-editor" id="sceneEditor" aria-label="Scene editor"></section>
+        </div>
+      </section>
+      <section class="load-error" id="loadError" hidden>
+        <h1>Unable to load the presentation</h1><p id="loadErrorMessage"></p>
+      </section>
+    </main>
+  </div>
+  <div class="validation-bar" id="validationBar" hidden role="alert"><strong>Changes not saved</strong><span id="validationMessage"></span></div>
+</body>
+</html>
