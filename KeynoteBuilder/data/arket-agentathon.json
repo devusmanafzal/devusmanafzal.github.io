@@ -419,14 +419,6 @@
       "markup": "<section class=\"scene scene-multimodal\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Multimodal intelligence</p>\n            <h2 class=\"compact-title\">AI can now <span class=\"accent\">see, hear, reason and act.</span></h2>\n          </div>\n          <div class=\"sense-system\" aria-label=\"Multimodal capabilities connected to reasoning\">\n            <svg class=\"sense-lines\" viewBox=\"0 0 600 600\" preserveAspectRatio=\"none\" aria-hidden=\"true\">\n              <line x1=\"300\" y1=\"300\" x2=\"300\" y2=\"60\" style=\"--line-delay:360ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"505\" y2=\"175\" style=\"--line-delay:450ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"505\" y2=\"425\" style=\"--line-delay:540ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"300\" y2=\"540\" style=\"--line-delay:630ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"95\" y2=\"425\" style=\"--line-delay:720ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"95\" y2=\"175\" style=\"--line-delay:810ms\"></line>\n              <circle cx=\"300\" cy=\"60\" r=\"3\"></circle><circle cx=\"505\" cy=\"175\" r=\"3\"></circle><circle cx=\"505\" cy=\"425\" r=\"3\"></circle><circle cx=\"300\" cy=\"540\" r=\"3\"></circle><circle cx=\"95\" cy=\"425\" r=\"3\"></circle><circle cx=\"95\" cy=\"175\" r=\"3\"></circle>\n            </svg>\n            <div class=\"sense-core\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Microsoft 365<br>Copilot</strong><span>Reasoning core</span></div>\n            <div class=\"sense-node\" style=\"--node-x:50%;--node-y:10%;--node-delay:620ms\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><strong>Text</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:84.17%;--node-y:29.17%;--node-delay:720ms\"><img src=\"assets/logos-and-icons/image.svg\" alt=\"\"><strong>Images</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:84.17%;--node-y:70.83%;--node-delay:820ms\"><img src=\"assets/logos-and-icons/audio-lines.svg\" alt=\"\"><strong>Voice</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:50%;--node-y:90%;--node-delay:920ms\"><img src=\"assets/logos-and-icons/video.svg\" alt=\"\"><strong>Video</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:15.83%;--node-y:70.83%;--node-delay:1020ms\"><img src=\"assets/logos-and-icons/monitor.svg\" alt=\"\"><strong>Screens</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:15.83%;--node-y:29.17%;--node-delay:1120ms\"><img src=\"assets/logos-and-icons/database.svg\" alt=\"\"><strong>Data</strong></div>\n          </div>\n        </div>\n      </section>"
     },
     {
-      "id": "open-door-video",
-      "enabled": true,
-      "className": "scene scene-video",
-      "videoConfig": "videoBeforeScene13",
-      "builds": 0,
-      "markup": "<section class=\"scene scene-video\" data-video-config=\"videoBeforeScene13\" data-state=\"future\" aria-hidden=\"true\">\n        <video preload=\"none\" playsinline aria-label=\"Configured presentation video\"></video>\n        <button class=\"video-play-control\" type=\"button\" aria-label=\"Play video\" title=\"Play video\"></button>\n        <p class=\"video-caption\"></p>\n      </section>"
-    },
-    {
       "id": "speaker",
       "enabled": true,
       "className": "scene scene-speaker",
@@ -514,6 +506,14 @@
       "videoConfig": null,
       "builds": 0,
       "markup": "<section class=\"scene s1-prompt-story-1\" data-layout=\"stage\" data-scene-tags=\"section-opener\" data-prompt-story=\"true\" data-state=\"future\" aria-hidden=\"true\" style=\"display:flex;align-items:stretch;padding:clamp(3rem,4vw,4rem) clamp(3rem,5vw,6rem);background:#111;color:#dedede;font-family:'Segoe UI',Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif\"><img class=\"scene-backdrop\" src=\"assets/images/usman-afzal/usman-storyals-01.jpg\" alt=\"\" style=\"position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:grayscale(.55) brightness(.4) contrast(1.08);opacity:.24;pointer-events:none\"><div class=\"scene-content\" style=\"position:relative;z-index:1;display:flex;width:100%;height:100%;max-width:none;margin:0\"><section class=\"scene-stage scene-stage-type-hero\" aria-label=\"AI as a thinking partner\" style=\"display:grid;align-items:center;width:100%;height:100%;padding:clamp(3rem,6vw,6rem)\"><p class=\"prompt-hero-quote\" style=\"width:100%;max-width:none;margin:0;color:#dedede;font-size:clamp(4rem,8.4vw,8rem);font-weight:650;line-height:.88;text-align:center\"><span>AI isn't magic - </span><span style=\"color:#fd8ea1\">it's a </span><span style=\"color:#fd8ea1\">thinking partner</span><span> we guide with </span><span style=\"color:#fd8ea1\">words.</span></p></section></div></section>"
+    },
+    {
+      "id": "open-door-video",
+      "enabled": true,
+      "className": "scene scene-video",
+      "videoConfig": "videoBeforeScene13",
+      "builds": 0,
+      "markup": "<section class=\"scene scene-video\" data-video-config=\"videoBeforeScene13\" data-state=\"future\" aria-hidden=\"true\">\n        <video preload=\"none\" playsinline aria-label=\"Configured presentation video\"></video>\n        <button class=\"video-play-control\" type=\"button\" aria-label=\"Play video\" title=\"Play video\"></button>\n        <p class=\"video-caption\"></p>\n      </section>"
     },
     {
       "id": "s1-failure-brief-contrast",
