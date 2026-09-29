@@ -14,6 +14,110 @@ async function initializePresentation() {
     document.querySelector(".cinema-stage").innerHTML = enabledScenes
       .map((scene) => scene.markup.replace("<section ", `<section data-scene-id="${scene.id}" data-section="${scene.section || "enterprise"}" data-chapter="${scene.chapter || ""}" `))
       .join("\n");
+    const workforceScene = document.querySelector(".scene-workforce-org");
+    workforceScene?.querySelectorAll(".agent-capabilities").forEach((tooltip) => {
+      tooltip.classList.add("workforce-role-tooltip");
+    });
+    const humanRoleCapabilities = [
+      { selector: ".workforce-org-ceo", id: "ceo-capabilities", capabilities: ["Strategy", "Governance", "Investment", "Accountability"] },
+      { selector: ".workforce-org-branch.human .workforce-org-role:nth-child(1)", id: "engineering-manager-capabilities", capabilities: ["Planning", "Delivery", "Architecture", "Coaching"] },
+      { selector: ".workforce-org-branch.human .workforce-org-role:nth-child(2)", id: "operations-manager-capabilities", capabilities: ["Processes", "Resources", "Risk", "Service Delivery"] },
+      { selector: ".workforce-org-branch.human .workforce-org-role:nth-child(3)", id: "finance-manager-capabilities", capabilities: ["Budgeting", "Forecasting", "Reporting", "Controls"] }
+    ];
+    humanRoleCapabilities.forEach(({ selector, id, capabilities }) => {
+      const role = workforceScene?.querySelector(selector);
+      if (!role) return;
+      role.tabIndex = 0;
+      role.setAttribute("aria-describedby", id);
+      const tooltip = document.createElement("ul");
+      tooltip.className = "workforce-role-tooltip";
+      tooltip.id = id;
+      tooltip.setAttribute("role", "tooltip");
+      tooltip.replaceChildren(...capabilities.map((capability) => {
+        const item = document.createElement("li");
+        item.textContent = capability;
+        return item;
+      }));
+      role.append(tooltip);
+    });
+    const governancePlot = document.querySelector(".scene-agency-governance .governance-plot");
+    if (governancePlot) {
+      const governanceStages = [
+        {
+          name: "Knowledge",
+          title: "Ground the agent in trusted knowledge.",
+          detail: "Begin with clear identity, verified authentication, and accountable human decisions.",
+          focus: "Foundation: identity and authentication"
+        },
+        {
+          name: "Actions",
+          title: "Delegate focused actions with confidence.",
+          detail: "Add clear authorization, least-privilege access, and bounded action controls.",
+          focus: "Guardrails: authorization and action controls"
+        },
+        {
+          name: "Workflows",
+          title: "Scale coordination without losing visibility.",
+          detail: "Monitor end-to-end outcomes, exceptions, and cross-system handoffs with full auditability.",
+          focus: "Assurance: monitoring and auditability"
+        },
+        {
+          name: "Computer Use",
+          title: "High autonomy can still be governed.",
+          detail: "Apply continuous monitoring, strong controls, and meaningful human oversight.",
+          focus: "Oversight: human review and continuous controls"
+        }
+      ];
+      const tooltip = document.createElement("aside");
+      tooltip.className = "governance-explorer";
+      tooltip.id = "governance-explorer";
+      tooltip.setAttribute("role", "status");
+      tooltip.setAttribute("aria-live", "polite");
+      tooltip.setAttribute("aria-hidden", "true");
+      const stageLabel = document.createElement("span");
+      const title = document.createElement("strong");
+      const detail = document.createElement("p");
+      const focus = document.createElement("em");
+      tooltip.append(stageLabel, title, detail, focus);
+      governancePlot.append(tooltip);
+
+      const points = [...governancePlot.querySelectorAll(".governance-point")];
+      let activeStage = -1;
+      const showStage = (index) => {
+        const boundedIndex = Math.max(0, Math.min(governanceStages.length - 1, index));
+        if (boundedIndex === activeStage && tooltip.dataset.visible === "true") return;
+        activeStage = boundedIndex;
+        const stage = governanceStages[boundedIndex];
+        stageLabel.textContent = stage.name;
+        title.textContent = stage.title;
+        detail.textContent = stage.detail;
+        focus.textContent = stage.focus;
+        tooltip.dataset.visible = "true";
+        tooltip.setAttribute("aria-hidden", "false");
+        points.forEach((point, pointIndex) => point.classList.toggle("is-active", pointIndex === boundedIndex));
+      };
+      const hideStage = () => {
+        tooltip.dataset.visible = "false";
+        tooltip.setAttribute("aria-hidden", "true");
+        points.forEach((point) => point.classList.remove("is-active"));
+      };
+      governancePlot.tabIndex = 0;
+      governancePlot.setAttribute("aria-describedby", tooltip.id);
+      governancePlot.setAttribute("aria-label", "Interactive governance curve. Move from left to right or use the arrow keys to explore each level of agency.");
+      governancePlot.addEventListener("pointermove", (event) => {
+        const bounds = governancePlot.getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(.999, (event.clientX - bounds.left) / bounds.width));
+        showStage(Math.floor(ratio * governanceStages.length));
+      });
+      governancePlot.addEventListener("pointerleave", hideStage);
+      governancePlot.addEventListener("focus", () => showStage(activeStage < 0 ? 0 : activeStage));
+      governancePlot.addEventListener("blur", hideStage);
+      governancePlot.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        showStage(activeStage + (event.key === "ArrowRight" ? 1 : -1));
+      });
+    }
     document.querySelectorAll(".story-agent .tedtalk-reveal").forEach((reveal) => {
       const button = reveal.querySelector(".tedtalk-reveal-button");
       const setOpen = (open) => {

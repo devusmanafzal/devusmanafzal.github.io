@@ -1,0 +1,356 @@
+SAAB: The Agentic Organization
+Comprehensive presenter narrative and conversation guide
+Prepared for Usman Afzal | Strategic customer dialogue
+
+ How to use this document
+This is not a script to memorize. It is a bank of language, transitions, questions, and guardrails. Use the opening sentence and closing transition from each section as anchors. Speak naturally through the middle, and stop when Saab begins contributing.
+•	Aim to make each slide earn a customer response, not merely deliver information.
+•	Use the chapter questions to decide where to compress or expand.
+•	If Saab engages deeply, skip lower-priority detail and move relevant technical material to follow-up.
+•	Keep the main story strategic. Treat architecture, availability, models, credentials, and hosting specifics as supporting detail.
+•	Do not use internal confidential slides or wording directly in customer materials. Use only customer-shareable collateral and current public documentation.
+Core thesis
+As intelligence moves closer to action, organizations gain a new form of digital labor. The opportunity is not maximum autonomy. It is appropriate autonomy, governed through explicit identity, authorization, execution, oversight, and evidence boundaries.
+Conversation objective
+Help Saab connect Microsoft's agentic vision to its own operating model, trust requirements, and last-mile automation opportunities, then identify the right follow-on engagement.
+
+ 1. Title: The Agentic Organization
+Purpose
+Establish strategic altitude and make clear that this is a conversation about the future operating model, not a product pitch.
+Delivery guidance
+About 60 seconds. Calm opening, no hype.
+Suggested narrative
+Thank you for bringing the broader group together. We understand that the interest is not simply in what agents can do, but in how an organization can use them responsibly when they begin to participate in real work.
+Today we would like to connect three ideas. First, how intelligence is moving closer to action. Second, how trust, governance, and security need to evolve as agents gain agency. Third, how Computer Use may extend agents into the parts of the enterprise where APIs and modern integrations do not reach.
+We will use Microsoft examples, but the central discussion is not about adopting a single product. It is about the operating model and control model that make agentic systems useful and trustworthy.
+Transition
+Before we begin the storyline, let us calibrate around what would make the discussion most useful for you.
+Presenter guardrail
+Do not open by defining AI, Copilot, or Copilot Studio. Assume a technically mature audience and begin with the strategic question.
+2. Today’s Conversation
+Purpose
+Show four chapters and give Saab permission to redirect the emphasis.
+Delivery guidance
+About 60 to 90 seconds, including two or three customer responses.
+Suggested narrative
+We have organized the discussion as a journey rather than a product agenda.
+We will begin with the agentic shift and what it changes in the organization. Then we will move into the trusted agentic enterprise: how agents are observed, governed, and secured. From there, we will address the last-mile problem and Computer Use. We will finish by discussing what these ideas could mean in your context.
+This is intentionally designed as a conversation. If one of these areas is more important, we can spend more time there and compress the others.
+Engagement prompt
+Which deserves the most attention today: the future operating model, governance and control, identity and authorization, Computer Use, or tailor-made workflows?
+Transition
+Before we enter the first chapter, which of these areas is carrying the greatest importance or uncertainty for the group?
+Presenter guardrail
+Do not read every agenda label. Use the slide to set pacing and participation.
+3. Opening Engagement
+Purpose
+Generate early customer voice and collect signals that shape the rest of the session.
+Delivery guidance
+Keep this brief. The purpose is calibration, not discovery workshop depth.
+Suggested narrative
+The reason for asking this now is that the same phrase, Computer Use, can represent very different interests. For one organization it is an innovation opportunity. For another it immediately raises questions about identity, privilege, auditability, and human control.
+There is no need to resolve those questions now. We simply want to understand where the room is starting so that the examples and discussion are relevant.
+Engagement prompt
+When you imagine agents acting in enterprise processes, what creates more energy for you: the value they could unlock, or the control questions they introduce?
+Transition
+With that context, let us first step back and look at why the organization itself is beginning to change.
+Presenter guardrail
+Listen without debating. Capture language that you can reuse later, such as “approval,” “segmented environment,” “legacy application,” or “audit.”
+4. Intelligence Is Moving Closer to Action
+Purpose
+Explain the historical shift from systems that process information to systems that can assist and act.
+Delivery guidance
+About 2 minutes.
+Suggested narrative
+For much of the digital era, intelligence was embedded in systems but remained separated from execution. Software stored data, applied rules, and presented information. Humans interpreted the information and performed the next action.
+The current shift is not simply that models are becoming better at producing answers. Intelligence is moving closer to the point where work happens.
+We can describe the recent progression in simple terms: systems that answer, systems that assist, and systems that act. Chat made generative AI visible. Copilots placed assistance into the flow of work. Agents extend that model by reasoning over goals, selecting tools, coordinating steps, and in defined circumstances taking action.
+That movement from answer to action is what makes the current change organizational, not only technological.
+Transition
+When intelligence can participate in action, three shifts begin to appear inside the operating model.
+Presenter guardrail
+Do not spend time narrating every year in the timeline. The visual establishes progression; your narration should establish the change in relationship between intelligence and action.
+5. Three Shifts Are Changing the Organization
+Purpose
+Translate AI progress into changes in workforce, human interaction, and delegated autonomy.
+Delivery guidance
+About 3 minutes, or shorter if the opening already drew strong opinions.
+Suggested narrative
+The first shift is a workforce shift. Organizations are beginning to treat AI not only as software people use, but as a form of digital labor that can perform bounded work.
+The second is an interaction shift. Humans move from executing every step toward directing, supervising, and handling judgment, exceptions, and accountability. This is not the removal of the human. It is a change in where human contribution is most valuable.
+The third is an autonomy shift. Early automation performed prescribed tasks. Agents can increasingly operate against role-level instructions and outcomes, selecting among approved tools and steps within a defined boundary.
+These shifts should not be interpreted as inevitable maximum autonomy. They create a design choice: which work can be delegated, under what authority, with what boundaries, and with whom remaining accountable.
+Engagement prompt
+Which of these shifts feels most material in your environment: workforce capacity, human orchestration, or role-based delegation?
+Transition
+If work is distributed differently, the traditional organizational picture also begins to change.
+Presenter guardrail
+Avoid “human off the loop.” Use human-directed, human-supervised, or human-on-the-loop language, particularly for consequential work.
+6. The New Org Chart
+Purpose
+Visualize humans and role-based agents in one hierarchy while preserving human accountability.
+Delivery guidance
+About 2 to 3 minutes. Pause after the visual reveal.
+Suggested narrative
+The new org chart is not an old org chart with digital people inserted into human positions. It is a representation of how responsibility and execution may be distributed across a hybrid workforce.
+Human leaders continue to own objectives, risk, policy, and accountability. Human managers and specialists contribute judgment, domain expertise, and exception handling. Role-based agents support defined areas of work, such as knowledge synthesis, process coordination, compliance checks, or service operations.
+The important design choice is that the agent should be represented by a role and purpose, not a human persona. A Procurement Operations Agent communicates what the agent is accountable for doing. A human avatar may accidentally imply personhood, independent accountability, or employee replacement.
+The org chart therefore represents a hybrid operating model: humans own outcomes and digital colleagues perform delegated work within explicit boundaries.
+Engagement prompt
+Where in an org chart like this should accountability always remain explicitly human?
+Transition
+However, the word agent can hide major differences in capability and risk. Not all agents are equal.
+Presenter guardrail
+Do not imply that agents manage employees or hold legal accountability. If you show an AI chief-of-staff concept, describe it as coordination support, not a reporting manager.
+7. Not All Agents Are Equal
+Purpose
+Introduce a continuum of agency and create the bridge toward governance and Computer Use.
+Delivery guidance
+About 2 minutes.
+Suggested narrative
+Agent is a broad category. Some agents retrieve and synthesize knowledge. Some invoke approved actions through APIs. Some coordinate multi-step workflows. Some interact with applications through the user interface.
+A knowledge agent may advise a person without changing a system. An action agent may create or update a record. A workflow agent may coordinate several systems and approvals. A computer-using agent may navigate screens, enter data, and interact with an application as a person would.
+These are not simply four levels of sophistication. They represent different combinations of reach, authority, consequence, and operational uncertainty.
+This distinction matters because an organization should not apply the same approval, identity, monitoring, and testing model to an agent that summarizes documents and an agent that submits a transaction.
+Transition
+As the agent moves from informing work to performing work, governance cannot remain static.
+Presenter guardrail
+Do not present Computer Use as the ultimate or best kind of agent. Present it as one execution mechanism with a particular control profile.
+8. As Agency Increases, Governance Must Increase
+Purpose
+State the central governance principle and make the security chapter feel inevitable.
+Delivery guidance
+About 2 to 3 minutes.
+Suggested narrative
+The key principle is simple: the more authority we delegate, the more explicit the control model must become.
+Governance should not scale only with technical complexity. It should scale with the sensitivity of the data, the scope of access, the consequence of an action, the reversibility of the outcome, and the degree of human supervision.
+An agent that searches approved knowledge may need content permissions and usage monitoring. An agent that updates a business system also needs action authorization and audit. An agent that orchestrates a process needs lifecycle ownership, exception handling, and clear approval points. A computer-using agent additionally needs a controlled execution environment, application boundaries, credential protection, and evidence of what occurred on screen.
+The goal is not to slow adoption. The goal is to make the path to broader agency intentional and defensible.
+Engagement prompt
+Which dimension should drive the strongest control in your environment: data sensitivity, action consequence, or autonomy?
+Transition
+This is where Microsoft’s secure AI approach and the Agent 365 control plane become relevant.
+Presenter guardrail
+Avoid describing risk as a simple low-medium-high label based only on agent type. Risk is scenario-dependent.
+9. Microsoft Secure AI Approach
+Purpose
+Connect agent governance to the broader Microsoft security stack and established enterprise controls.
+Delivery guidance
+About 2 minutes. This is a framing slide, not a security portfolio lecture.
+Suggested narrative
+Our position is that AI security cannot be solved only at the model layer. An enterprise agent operates through identities, data, applications, devices, networks, tools, and workflows. The security model must therefore span those layers.
+There are three related responsibilities. Secure the AI application and its runtime. Protect the data the agent can access, create, and share. Govern the identity, permissions, lifecycle, and activity of the agent itself.
+This is important because model-level safeguards cannot determine whether a specific agent should access a specific engineering record, initiate a specific action, or remain active after its business purpose has ended. Those are identity, data, platform, and operating-model questions.
+The advantage of an integrated approach is that agent controls can extend the security and governance infrastructure organizations already use for users, applications, data, endpoints, and cloud resources.
+Transition
+Agent 365 organizes that integrated approach around three outcomes: observe, govern, and secure.
+Presenter guardrail
+Use only customer-shareable Secure AI collateral. Do not expose internal competitive claims or future commitments.
+10. Agent 365: Observe
+Purpose
+Explain why inventory and visibility are prerequisites for governance.
+Delivery guidance
+About 2 minutes across the Observe scenes.
+Suggested narrative
+An organization cannot govern what it cannot see. The first requirement is a trustworthy view of the agent estate: which agents exist, where they came from, who owns them, what they connect to, and how they are being used.
+Observation is broader than counting agents. It includes understanding relationships among agents, users, tools, data sources, and downstream systems. It also includes operational signals such as usage, quality, cost, and failures where those signals are available.
+This matters because agent sprawl can emerge through several paths: centrally developed enterprise agents, departmental agents, personal agents, third-party agents, and agents built across different platforms.
+The strategic message is straightforward: establish visibility early, before the agent population and dependency graph become difficult to reconstruct.
+Engagement prompt
+How would you want to distinguish approved, experimental, departmental, and unknown agents?
+Transition
+Once the organization can see the agent estate, it can apply lifecycle and access governance intentionally.
+Presenter guardrail
+Do not promise universal discovery coverage unless the exact scenario and current capability have been verified.
+11. Agent 365: Govern
+Purpose
+Explain governance as ownership, lifecycle, access, policy, audit, and human oversight.
+Delivery guidance
+About 3 minutes. This slide may attract identity and lifecycle questions; use those as signals for a follow-up deep dive.
+Suggested narrative
+Governance begins with purpose and accountability. Every material agent should have a defined business purpose, an owner or sponsor, an approved scope, and a lifecycle.
+It then extends to access. Which data, tools, applications, and other agents may this agent reach? Are those permissions intentional, least-privileged, time-bound, and reviewable?
+Governance also covers change. Who can modify the instructions, tools, credentials, or sharing scope? What testing and approval are required before an agent moves from development to production? What happens when the owner changes role or the business need disappears?
+Finally, governance must preserve evidence. The organization should be able to reconstruct who initiated the work, which agent acted, which authority was used, which action occurred, and what approvals or exceptions were involved.
+The operating model should therefore differentiate low-risk personal assistance from departmental process agents and enterprise-critical agents, with increasing oversight and engineering discipline.
+Engagement prompt
+Who should be the sponsor of a high-impact agent: the business process owner, IT, security, or a shared model?
+Transition
+Governance defines what should be allowed. Security detects and responds when identities, data, or behavior become risky.
+Presenter guardrail
+Do not imply that one admin center alone contains every control. Describe a distributed control plane across relevant Microsoft services.
+12. Agent 365: Secure
+Purpose
+Explain protection across identity, data, behavior, threats, and runtime access.
+Delivery guidance
+About 2 to 3 minutes. Then deliberately close the governance chapter.
+Suggested narrative
+Security focuses on protecting the agent and protecting the organization from unintended or malicious agent behavior.
+Identity controls answer who or what is acting, how it authenticates, and which access policies apply. Data controls address oversharing, sensitive information, retention, and downstream use. Threat protection addresses vulnerabilities, malicious instructions, compromised identities, anomalous access, and risky destinations.
+For agents, these signals need to be correlated. An unusual resource request may be harmless in one workflow and highly suspicious in another. Context such as agent purpose, expected tools, sponsor, normal activity, user delegation, device health, and data sensitivity becomes important.
+The practical outcome is not “secure every agent identically.” It is consistent control with scenario-specific enforcement.
+Engagement prompt
+Which security boundary is most important when agents can act: identity, data, runtime, network, or human approval?
+Transition
+With the trust model established, we can now turn to a practical challenge: how agents reach systems that were not designed for them.
+Presenter guardrail
+Separate generally available capability from preview or future-looking material. Do not reuse internal slides marked confidential or in development.
+13. The Last Mile Problem
+Purpose
+Create the operational problem that Computer Use solves.
+Delivery guidance
+About 2 minutes. Let the problem land before showing the solution.
+Suggested narrative
+Agents may be able to reason, plan, and coordinate, but enterprise execution is not uniformly accessible through APIs.
+Some systems have modern connectors and deterministic interfaces. Others are specialized engineering applications, desktop software, internal portals, or legacy systems designed for human interaction. Some processes even span several of these surfaces.
+This creates a last-mile problem. Intelligence may understand what should happen, but the final operational step still depends on navigating a user interface.
+The point is not that APIs have failed. APIs remain the preferred approach when they provide the right deterministic, supportable integration. The question is what to do when the necessary interface does not exist, is impractical to build, or cannot cover the full process.
+Engagement prompt
+Where do you see the greatest last-mile friction today: legacy applications, desktop engineering tools, internal portals, or cross-system processes?
+Transition
+Computer Use introduces an additional way for the agent to reach that last mile.
+Presenter guardrail
+Do not assume Saab’s specific systems or architecture. Use PLM, engineering applications, desktop tools, and internal portals as illustrative categories only.
+14. Computer Use Extends Agent Reach
+Purpose
+Define Computer Use clearly and position it alongside APIs and workflows.
+Delivery guidance
+About 3 minutes. This is the main conceptual Computer Use explanation.
+Suggested narrative
+Computer Use enables an agent to interpret a graphical interface and take actions such as navigating, selecting controls, entering information, and moving through a sequence of screens.
+The important word on this slide is reach. Computer Use does not necessarily make the agent more intelligent. It gives the agent another execution mechanism for environments where the user interface is the available path.
+This mechanism does not replace retrieval, APIs, connectors, workflows, or robotic process automation. The right execution model depends on the scenario. Where an API provides deterministic integration, use it. Where a governed workflow coordinates systems and approvals, use it. Where the interface remains the last available boundary, Computer Use may extend the agent into that environment.
+Because Computer Use interprets visual state, its control model must account for unexpected layouts, pop-ups, misleading content, session expiry, wrong-target actions, and irreversible actions.
+Engagement prompt
+Would you see Computer Use primarily as a bridge to legacy environments, or as a more general interaction mechanism?
+Transition
+Microsoft offers Computer Use through different experiences based on the user, maker, developer, and runtime requirements.
+Presenter guardrail
+Do not say “if a human can use it, an agent can use it” without immediately qualifying supported applications, testing, access, and security boundaries.
+15. One Capability. Different Experiences.
+Purpose
+Map Microsoft’s current public Computer Use experiences without turning the story into a catalogue.
+Delivery guidance
+About 3 minutes. Use the three cards as orientation, not a feature comparison.
+Suggested narrative
+Microsoft applies Computer Use across different scenarios rather than presenting one universal implementation.
+In Microsoft Copilot, Researcher with Computer Use is oriented toward user-driven research and knowledge work. Public guidance describes a secure, temporary virtual environment and confirmation before sensitive activities such as signing in or sending email. Its current public availability should be represented exactly as documented for the meeting date.
+In Copilot Studio, makers can add Computer Use as a tool for agents that interact with websites and Windows desktop applications. The task is described through natural-language instructions, and the execution environment, credentials, access controls, and supervision must be configured for the scenario.
+In Microsoft Foundry, developers build the application loop around screenshot interpretation and proposed actions. The developer-owned application is responsible for validation, execution, sandboxing, policy checks, and approvals. Current public documentation describes this capability as preview and warns against production use with sensitive resources.
+Windows 365 for Agents provides managed Cloud PCs for agent workloads, including pool-based allocation, Entra and Intune management for applicable environments, session control, monitoring, and intervention capabilities.
+The selection is therefore not simply low-code versus pro-code. It includes who initiates the work, who owns execution, what environment is required, how identity is handled, and how much custom validation and control the scenario needs.
+Engagement prompt
+Which operating model is closest to your interest: an end-user research experience, a maker-configured business process, or a developer-owned custom solution?
+Transition
+Whichever experience is selected, Computer Use still needs an explicit authorization contract.
+Presenter guardrail
+Verify availability, preview status, supported models, regions, languages, and hosting options immediately before customer delivery. Keep volatile details in notes or appendix.
+16. Computer Use Needs an Explicit Authorization Contract
+Purpose
+Close the content story by connecting identity, authentication, authorization, runtime, approval, and evidence.
+Delivery guidance
+About 4 minutes. Slow down. This is the closing thesis, not another checklist.
+Suggested narrative
+Computer Use should not be treated as a magic identity layer. The agent still requires an explicit method of authenticating to the target application, and the organization must decide under whose authority the agent acts.
+The authorization contract should answer seven questions. Who or what is acting? Who initiated or sponsored the work? Which applications, domains, records, and tools are permitted? Which actions are allowed? Which actions require human approval? What evidence is retained? How can the session be stopped, taken over, or remediated?
+A customer-safe control model begins with runtime isolation. Use a dedicated VM, managed Cloud PC, or temporary environment appropriate to the experience. Apply least privilege to the identity and credentials. Restrict destinations and applications. Separate broad data access from high-impact actions. Require confirmation for consequential or irreversible steps. Retain traces, outcomes, failures, and approval events. Test adversarially against changed layouts, injected instructions, misleading controls, and expired sessions. Provide an operator intervention path.
+Authentication proves the identity. Authorization defines what the identity may do. Human approval governs consequential decisions. Auditability provides accountability after the event. None of these can substitute for the others.
+The goal is not maximum autonomy. It is appropriate autonomy within explicit control boundaries.
+Engagement prompt
+For a Computer Use scenario, which actions would you consider safe to delegate, and which would always require a human checkpoint?
+Transition
+With that, we would like to move from Microsoft’s perspective to your environment and priorities.
+Presenter guardrail
+Do not promise that every Microsoft Computer Use experience implements identity, approval, logging, or application restrictions identically. Keep the framework conceptual and validate product-specific controls separately.
+17. What Could This Mean for Saab?
+Purpose
+Convert the presentation into structured discovery and let Saab define value, boundaries, and concerns.
+Delivery guidance
+Reserve meaningful discussion time. Use one question at a time, not all at once.
+Suggested narrative
+We have intentionally avoided selecting a Saab use case on your behalf. The value and control model need to be shaped together.
+A useful starting point is to look for processes with meaningful friction: repeated navigation across systems, manual data transfer, high coordination effort, long exception queues, or important knowledge that is difficult to operationalize.
+Then test each opportunity against trust requirements. What data is involved? What actions could occur? Is the outcome reversible? Under whose authority would the agent act? Where is human judgment mandatory? What evidence would security, audit, or process owners require?
+The strongest first scenario is not necessarily the most ambitious. It is one that produces visible value while allowing the organization to test identity, controls, monitoring, and the operating model in a bounded environment.
+Engagement prompt
+Where could digital labor create meaningful value, where should human oversight remain mandatory, and where could Computer Use remove a genuine last-mile constraint?
+Transition
+Based on this discussion, we can identify the most useful follow-on path rather than prescribing one in advance.
+Presenter guardrail
+Stop presenting. Facilitate. Reflect Saab’s language and have the Microsoft team capture themes, owners, and unanswered questions.
+18. Potential Next Steps
+Purpose
+Offer a small menu of concrete engagements and connect each to signals from the discussion.
+Delivery guidance
+About 2 minutes, followed by ownership and next-step confirmation.
+Suggested narrative
+The appropriate next step depends on what we have heard today.
+If the central question is organizational, an agentic operating-model workshop can clarify roles, ownership, decision rights, and where digital labor fits.
+If the central question is trust, an agent governance and identity deep dive can map agent types, authentication patterns, authorization contracts, lifecycle, least privilege, human approvals, and evidence requirements.
+If Computer Use is the priority, a scenario and risk assessment can identify one bounded process, compare APIs, workflows, RPA, and Computer Use, and define execution, isolation, credential, approval, monitoring, and testing requirements.
+If tailor-made workflows are the priority, a workflow discovery session can map the current process, systems, exceptions, approvals, and desired outcomes before selecting implementation technology.
+The objective is not to leave with a generic interest in agents. It is to identify a focused question that is valuable enough to pursue and bounded enough to evaluate responsibly.
+Engagement prompt
+Which follow-on path would produce the most value: operating model, governance and identity, Computer Use assessment, or workflow discovery?
+Transition
+Close by confirming the one or two themes Saab wants to continue, the right stakeholders, and the evidence or architecture inputs needed for that next conversation.
+Presenter guardrail
+Do not force a workshop if the group needs internal alignment first. Capture the decision and the missing information clearly.
+
+ Pacing and conversation control
+Your best protection against over-talking is to treat the deck as four chapters, each ending in a customer question. Do not attempt to deliver every paragraph in this document.
+Opening
+Create relevance and collect priorities. If Saab already provides context, compress the engagement slide.
+The Agentic Shift
+Explain the organizational change. Do not debate product architecture here.
+The Trusted Agentic Enterprise
+Establish confidence in the control model. Avoid reading every Agent 365 capability.
+The Last Mile
+Explain the problem, capability, portfolio, and authorization contract. This is likely the highest-curiosity chapter.
+Saab Discussion
+Stop presenting and facilitate. The quality of the next step is the success measure.
+Compression cues
+•	If time is short, combine the title, journey, and opening engagement verbally.
+•	Treat the three shifts and new org chart as one chapter, not four independent lectures.
+•	On Agent 365, explain the Observe-Govern-Secure logic once, then use the scenes as visual evidence.
+•	Keep detailed Computer Use hosting, model, credential, availability, and SDK facts in appendix or Q&A.
+•	Never sacrifice the final Saab discussion to finish content.
+Likely questions to prepare for
+•	Whose identity does a computer-using agent use?
+•	Can an agent have its own identity rather than using a person’s account?
+•	How are authentication and authorization separated?
+•	Can access be restricted to specific applications, websites, domains, records, or actions?
+•	Where are credentials stored and how are they rotated?
+•	What happens if the user interface changes or the agent selects the wrong control?
+•	How is prompt injection from a webpage or application handled?
+•	Can human approval be required before sign-in, submission, external communication, deletion, purchase, or approval?
+•	What is logged, and can the organization reconstruct the session?
+•	Can an operator stop or take over a running session?
+•	What runs on the user device versus a temporary or managed environment?
+•	Which features are generally available and which remain preview?
+•	When should we choose an API, workflow, RPA, or Computer Use?
+•	How would this work in segmented, restricted, on-premises, or sensitive environments?
+•	How are agent owners, sponsors, lifecycle, access reviews, and retirement managed?
+Response discipline
+Answer only to the level supported by current customer-shareable documentation. When implementation depends on the product experience or environment, say so explicitly and propose a focused architecture follow-up rather than generalizing.
+Public-source verification checklist
+•	Copilot Studio Computer Use availability and model choices
+•	Status of hosted browser, Cloud PC pool, and bring-your-own-machine options
+•	Copilot Studio credential, access-control, HTTPS, and human-supervision behavior
+•	Microsoft Foundry Computer Use preview status, supported regions, and production guidance
+•	Researcher with Computer Use availability, supported language, and admin controls
+•	Windows 365 for Agents capabilities and integration status
+•	Agent 365 availability and customer-shareable claims
+•	Entra Agent ID and lifecycle-governance availability
+•	Any roadmap or in-development material that must remain internal or NDA
+Customer-shareable public references used for preparation
+•	Copilot Studio: Automate web and desktop apps with Computer Use
+https://learn.microsoft.com/en-us/microsoft-copilot-studio/computer-use
+•	Copilot Studio: Configure where Computer Use runs
+https://learn.microsoft.com/en-US/microsoft-copilot-studio/configure-where-computer-use-runs
+•	Microsoft Foundry: Use the Computer Use tool for agents
+https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/computer-use
+•	Microsoft Copilot: Researcher with Computer Use
+https://support.microsoft.com/en-us/microsoft-365-copilot/get-started-using-researcher-with-computer-use-in-microsoft-365-copilot-frontier
+•	Windows 365 for Agents overview
+https://learn.microsoft.com/en-US/windows-365/agents/introduction-windows-365-for-agents

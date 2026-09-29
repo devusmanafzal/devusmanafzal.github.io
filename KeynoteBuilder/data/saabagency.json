@@ -1,0 +1,944 @@
+{
+  "meta": {
+    "title": "The New Org Chart",
+    "language": "en",
+    "ariaLabel": "The Digital Agency",
+    "defaultPalette": "keynote",
+    "liveReactionsScript": "https://usman-live.lovable.app/api/public/embed.js"
+  },
+  "controls": {
+    "hint": "Arrow keys / Space / F fullscreen / T palette / C commentary",
+    "autoBuildDelayMs": 5000,
+    "autoAdvanceDelayMs": 3000,
+    "wheelLockMs": 700,
+    "swipeThresholdPx": 60
+  },
+  "videos": {
+    "scoutIntroAfterScene2": {
+      "enabled": true,
+      "src": "assets/videos/scout-intro.mp4",
+      "fit": "contain",
+      "muted": false,
+      "loop": false,
+      "caption": ""
+    },
+    "agencyDemoAfterScene11": {
+      "enabled": true,
+      "src": "assets/videos/agency-demo-web.mp4",
+      "fit": "contain",
+      "muted": true,
+      "loop": false,
+      "caption": ""
+    },
+    "videoBeforeScene13": {
+      "enabled": true,
+      "src": "assets/videos/open-the-door-web.mp4",
+      "fit": "contain",
+      "muted": false,
+      "loop": false,
+      "caption": ""
+    }
+  },
+  "commentary": {
+    "scene-home": {
+      "label": "The Digital Agency",
+      "title": "The purpose is not fewer people. It is more human work.",
+      "paragraphs": [
+        "The Digital Agency is an enterprise where intelligence becomes part of the workforce: present in the flow of work, able to accept outcomes, and governed with the same seriousness as any other operating capability.",
+        "Its purpose is not to automate humanity out of the organization. It is to absorb coordination, repetition, and administrative friction so people can spend more attention on judgment, creativity, relationships, and responsibility."
+      ],
+      "takeaway": "Use digital labor to expand human agency, not diminish it."
+    },
+    "scene-conversation-agenda": {
+      "label": "Today's conversation",
+      "title": "Five connected questions move us from direction to implication.",
+      "paragraphs": [
+        "We will begin with where organizations are heading and how the nature of work is changing as intelligence becomes part of the workforce.",
+        "We will then look at how trust is maintained and how agents can operate across the systems where work actually happens.",
+        "Finally, we will bring those ideas together and ask what this shift could mean for Saab."
+      ],
+      "takeaway": "Five questions. One connected conversation."
+    },
+    "scene-event": {
+      "label": "Before we begin",
+      "title": "A moment to arrive.",
+      "paragraphs": [
+        "This opening image is an invitation to step out of the daily rush and into a longer view of work. The next twenty minutes are not about another feature release. They are about a change in the shape of the enterprise.",
+        "As you move forward, notice how the story travels from tools, to agency, to operating models, and finally to the leadership choices that determine whether this transition creates value."
+      ],
+      "takeaway": "The technology is moving quickly. The purpose of this experience is to create enough space to decide where we want it to take us."
+    },
+    "scene-audience-guide": {
+      "label": "Join the conversation",
+      "title": "This experience has a live pulse.",
+      "paragraphs": [
+        "The QR code opens a lightweight reaction page on your phone. Tap whenever an idea resonates, surprises you, raises a question, or needs clarification.",
+        "Your reaction rises onto the shared screen in real time. There is no form to complete and no need to wait for a formal Q&A moment; the room can respond while the story is unfolding."
+      ],
+      "takeaway": "Scan once, keep the page open, and react as often as you like throughout the experience."
+    },
+    "scene-one": {
+      "label": "The agentic enterprise",
+      "title": "AI is becoming a participant in work.",
+      "paragraphs": [
+        "The first wave of enterprise AI sat beside us. It helped draft, summarize, search, and prepare. That was a meaningful shift, but it kept the human at the center of every action.",
+        "The next wave moves from assistance to participation. Digital colleagues will carry context, accept delegated outcomes, coordinate with people and systems, and return with work completed."
+      ],
+      "takeaway": "The question is no longer only how people use AI. It is how people and AI share work, accountability, and outcomes."
+    },
+    "sandvik": {
+      "label": "Adoption was the spark",
+      "title": "Prompting changed tasks. Agency changes the system.",
+      "paragraphs": [
+        "Prompting taught millions of people that natural language could become a new interface to knowledge work. It reduced friction and made intelligence feel immediately accessible.",
+        "But prompting is still a request-and-response model. Agency begins when AI can hold a goal, decide what to do next, use tools, coordinate steps, and operate within boundaries without waiting for every instruction."
+      ],
+      "takeaway": "Prompt adoption was the beginning. The strategic work starts when delegation becomes possible."
+    },
+    "scene-speaker": {
+      "label": "Your guide",
+      "title": "Why I care about this transition.",
+      "paragraphs": [
+        "My work sits between technology architecture and organizational reality. I see what becomes possible when new capabilities arrive, and I also see the distance between a compelling demonstration and dependable enterprise value.",
+        "This story is designed for leaders making choices about that distance: what to scale, what to govern, what to redesign, and what must remain deeply human."
+      ],
+      "takeaway": "Treat this as a strategic conversation, not a product pitch."
+    },
+    "scene-three": {
+      "label": "A compressed history",
+      "title": "Intelligence is moving closer to action.",
+      "paragraphs": [
+        "For decades, each technology era changed how quickly information could move: mainframes centralized it, personal computers distributed it, the internet connected it, mobile made it ambient, and cloud made it elastic.",
+        "The recent acceleration is different. Chatbots made intelligence conversational. Copilots placed it inside the flow of work. Agents connect intelligence to tools and actions. Digital colleagues add continuity, role, and collaboration."
+      ],
+      "takeaway": "The defining movement is not simply more intelligence. It is less distance between understanding, deciding, and acting."
+    },
+    "scene-shifts": {
+      "label": "Shift 1 · The operating model",
+      "title": "The first shift is from conversation to digital labor.",
+      "paragraphs": [
+        "Conversation lets us ask. Collaboration lets us create together. Delegation lets us assign an outcome instead of describing every step. Digital labor extends that delegation into repeatable, autonomous work.",
+        "These are not interchangeable maturity labels. Every step asks for stronger context, clearer authority, better controls, and a more explicit understanding of who owns the result. That changing operating model also changes where people sit in the work."
+      ],
+      "takeaway": "Capability rises with autonomy, but so does the need for operating discipline."
+    },
+    "scene-human-loop": {
+      "label": "Shift 2 · The human role",
+      "title": "As agency grows, people move from execution to oversight.",
+      "paragraphs": [
+        "Human in the loop means a person remains part of each task and decision. Human on the loop shifts the person into supervision: AI performs more of the work while people monitor, guide, and intervene when needed.",
+        "Human off the loop describes bounded autonomy. Agents coordinate tools, memory, and specialist roles without continuous attention, while people retain authority over goals, policies, exceptions, and accountability. Once that autonomy persists, an agent begins to look less like a feature and more like an organizational role."
+      ],
+      "takeaway": "Less human involvement in execution requires more deliberate boundaries, observability, and escalation design."
+    },
+    "scene-agent-evolution": {
+      "label": "Shift 3 · Role-based autonomy",
+      "title": "Agents are evolving from a capability into a role.",
+      "paragraphs": [
+        "Interactive agents perform a defined task when asked. Autonomous agents can plan toward an outcome, coordinate tools, and collaborate with other agents across a more complex workflow.",
+        "Role-based autonomy adds persistent identity, organizational context, access, communication channels, and a place in enterprise systems. The shift is from invoking a tool to working with a governed participant, which raises a practical question: where does that participant sit in the organization?"
+      ],
+      "takeaway": "The defining change is not greater autonomy alone; it is durable identity, access, responsibility, and accountability."
+    },
+    "scene-org": {
+      "label": "The new organizational chart",
+      "title": "Role-based agents turn the org chart into a mixed workforce.",
+      "paragraphs": [
+        "This is not a chart of humans being replaced. It is a chart of work being redistributed. People continue to set direction, exercise judgment, build trust, and carry accountability while specialized AI roles research, analyze, track, and prepare.",
+        "The Agency makes this concrete: signals become analysis, commitments become visible, drafts arrive ready for judgment, and only the decisions that genuinely need a leader are escalated. A mixed workforce like this cannot run on isolated tools; it needs a shared enterprise architecture."
+      ],
+      "takeaway": "The future org chart describes responsibilities and decision rights, not only reporting lines."
+    },
+    "scene-multimodal": {
+      "label": "Multimodal intelligence",
+      "title": "Orchestrated AI can understand more of the real work environment.",
+      "paragraphs": [
+        "Routing and collaboration become more useful when AI can understand the work itself. Work rarely arrives as clean text; it lives in meetings, images, screens, documents, video, data, and the relationships between them.",
+        "When multimodal understanding is connected to reasoning and tools, AI can inspect a situation, identify what matters, prepare a response, and act. That expanded ability is exactly why the next part of the story must be governance."
+      ],
+      "takeaway": "Multimodality expands what AI can understand; governance determines what it should be allowed to do."
+    },
+    "scene-four": {
+      "label": "Multi-model enterprise",
+      "title": "There will not be one permanent winner.",
+      "paragraphs": [
+        "A platform designed to outlive every model must treat model diversity as a feature. Different work demands different intelligence: a frontier model for complex reasoning, a small model for speed and cost, an open model for control, or a specialist model for a narrow domain.",
+        "The moving orbits represent a portfolio that will keep changing. The durable enterprise capability is the route at the center: selecting models by task, risk, performance, policy, and economics."
+      ],
+      "takeaway": "Competitive advantage shifts from choosing a model to governing a portfolio of intelligence."
+    },
+    "scene-orchestration": {
+      "label": "From selection to orchestration",
+      "title": "Model choice becomes a system decision.",
+      "paragraphs": [
+        "Once the enterprise manages a portfolio, people cannot choose every model for every task. Platform routing uses context, policy, capability, latency, and cost to determine the best fit automatically.",
+        "Beyond routing, specialized models and agents can collaborate: one investigates, another verifies, another acts, and an evaluation layer checks the result."
+      ],
+      "takeaway": "The strategic asset is not a single model. It is the orchestration, evaluation, and control layer around them."
+    },
+    "scene-ai-architecture": {
+      "label": "Intelligence + Trust",
+      "title": "A mixed workforce needs connected intelligence and trust.",
+      "paragraphs": [
+        "The architecture brings Microsoft 365 Copilot, Cowork, agents, Copilot Studio, GitHub Copilot, Fabric, Foundry, Azure, and Agent 365 into one governed system rather than a collection of disconnected tools.",
+        "Microsoft IQ sits at the center, connecting Work IQ, Foundry IQ, and Fabric IQ so experiences can share organizational context while security forms the boundary around every layer."
+      ],
+      "takeaway": "The differentiator is not only intelligence. It is intelligence connected to enterprise context and bounded by trust."
+    },
+    "scene-ms-approach": {
+      "label": "The Microsoft AI Approach",
+      "title": "One experience, different levels of agency.",
+      "paragraphs": [
+        "With the architecture in place, the Microsoft AI approach brings several working modes into one Copilot experience. Chat assists with secure enterprise conversation. Cowork and Code move toward delegated, multi-step execution. Autopilots represent digital teams that can sustain work over time.",
+        "The important progression is not a collection of separate destinations. It is a continuum of agency: from helping a person complete a task, to accepting outcomes, using multiple tools, and coordinating work with less supervision."
+      ],
+      "takeaway": "One Copilot can meet people where they are today while creating a path toward delegated and autonomous work."
+    },
+    "scene-copilot-strategy": {
+      "label": "Platform strategy",
+      "title": "The platform must outlive every model.",
+      "paragraphs": [
+        "Turning that continuum of agency into a durable enterprise capability requires a platform that can evolve. Microsoft's strategy begins with a multi-model foundation so enterprises can adopt the best intelligence as the market changes without rebuilding.",
+        "That flexibility sits on a cloud-native, enterprise-grade foundation grounded in organizational context through WorkIQ, integrated into the flow of work, and protected by security and governance."
+      ],
+      "takeaway": "The durable advantage is not betting on one model. It is building a platform that can absorb the next one."
+    },
+    "scene-governance": {
+      "label": "Governance as capability",
+      "title": "Govern what AI sees, does, decides, and uses.",
+      "paragraphs": [
+        "The preceding capabilities increase what AI can perceive and do. Governance begins with data: what an agent can see and how context is protected. It extends to actions and decisions across Microsoft 365 Copilot, Copilot Studio, GitHub Copilot, Fabric, Foundry, and Azure.",
+        "Microsoft IQ connects OpenAI, Anthropic, Google, and Meta at the intelligence center, while Agent 365 forms the outer management layer across the complete agent estate."
+      ],
+      "takeaway": "Good governance is not a brake on scale. It is the mechanism that makes confident scale possible."
+    },
+    "scene-questions": {
+      "label": "Leadership discussion",
+      "title": "The agentic era begins with choices.",
+      "paragraphs": [
+        "The five questions on screen turn an abstract future into an operating agenda. They ask where delegation creates value, where human authority must remain, and how intelligence should be selected, funded, and managed.",
+        "The final question makes the change visible: if digital colleagues become part of the workforce, what does the organizational chart look like, and who is accountable for the work they perform?"
+      ],
+      "takeaway": "Do not start with how many agents to deploy. Start with the work, decisions, controls, economics, and accountabilities you want to redesign."
+    },
+    "scene-agent-challenge": {
+      "label": "How to read the animation",
+      "title": "The agent can move across systems—but every system introduces a different constraint.",
+      "paragraphs": [
+        "Start with the agent icon on the left. The moving signal represents an agent attempting to carry one task across the enterprise. The arrows show that this is a continuous operational journey: the agent must pass through each environment rather than work in only one isolated application.",
+        "Each circle exposes a different design assumption. ERP expects rigid workflows. Mainframes expose legacy interfaces. SaaS applications depend on human sessions and user context. Desktop interfaces rely on visual controls, clicks, and screens. These systems were built for people operating one step at a time—not autonomous agents acting continuously.",
+        "The point is not that an agent cannot reach these systems. The point is that connectivity alone is not enough. The agent needs identity, context, authorization, monitoring, and auditability to remain consistent from one system to the next."
+      ],
+      "takeaway": "The real question is not: can the agent access the system? It is: can the agent operate across it safely, consistently, and accountably?"
+    },
+    "scene-last-mile-problem": {
+      "label": "From intelligence to execution",
+      "title": "The last mile is where agent intent meets operational reality.",
+      "paragraphs": [
+        "As agents become capable of reasoning and planning, a practical challenge emerges.",
+        "Many business systems were not designed for agents. Some expose APIs. Many do not.",
+        "Yet organizations still need work to happen. The agent must convert a decision into reliable action across ERP, PLM, custom applications, and legacy systems."
+      ],
+      "takeaway": "The last mile problem is not deciding what to do. It is executing that decision safely and reliably in the systems where work actually happens."
+    },
+    "scene-computer-use-reach": {
+      "label": "Bridging the last mile",
+      "title": "Computer use extends agent reach beyond APIs.",
+      "paragraphs": [
+        "When a reliable API exists, it remains the preferred path for agent action. But many important systems expose incomplete APIs—or none at all.",
+        "Computer use gives the agent another path. It can understand screens, navigate interfaces, enter information, and complete workflows through the same applications people already use.",
+        "This does not remove the need for identity, controls, monitoring, or human oversight. It extends governed agent action into ERP, PLM, custom applications, and legacy systems that would otherwise remain beyond reach.",
+        "The important word here is reach. Computer Use does not necessarily make the agent more intelligent. It gives the agent an additional execution mechanism: the ability to interpret a graphical interface, select controls, enter information, and move through a sequence of screens when the user interface is the available path.",
+        "Computer Use should not replace retrieval, APIs, connectors, governed workflows, or robotic process automation by default. The right mechanism depends on the scenario. Use an API when it provides deterministic integration. Use a governed workflow when systems, rules, and approvals can be coordinated explicitly. Use Computer Use when the interface remains the last practical boundary between the agent's intent and operational execution.",
+        "Because this mechanism interprets visual state rather than relying only on a fixed contract, its control model must anticipate what real interfaces do: layouts change, pop-ups interrupt the sequence, sessions expire, controls can be misleading, and the agent can target the wrong element. Consequential or irreversible actions therefore need explicit validation, approval, recovery, and evidence."
+      ],
+      "takeaway": "Computer use does not replace APIs. It bridges the last mile where APIs stop."
+    },
+    "scene-computer-use-execution": {
+      "label": "How computer use executes",
+      "title": "Computer use runs a closed observe, reason, and act loop.",
+      "paragraphs": [
+        "The user begins with a prompt that defines the goal, not every individual click.",
+        "The computer-using agent captures the current screen, interprets the visible state, and determines the next action based on both the prompt and what it can observe.",
+        "It executes that action through the computer interface, then observes the updated screen again. The cycle repeats until the task is complete or a control requires the agent to stop."
+      ],
+      "takeaway": "Computer use is not a single automated click. It is an iterative, screen-grounded execution loop."
+    },
+    "scene-computer-use-portfolio": {
+      "label": "The Microsoft portfolio",
+      "title": "Microsoft offers computer use across three agent-building paths.",
+      "paragraphs": [
+        "Computer Use is not one isolated Microsoft product. It appears across different experiences depending on who is doing the work and how much control they need.",
+        "For an individual, Researcher can use a temporary virtual environment to support complex research.",
+        "For business process automation, Copilot Studio lets makers describe tasks across websites and desktop applications.",
+        "For custom solutions, Microsoft Foundry gives developers control over orchestration, validation, execution, and approval.",
+        "Underneath these experiences, Windows 365 for Agents introduces managed compute designed for agent workloads."
+      ],
+      "takeaway": "But selecting the experience is only half the decision. The other half is defining the control boundary."
+    },
+    "scene-trustworthy-computer-use": {
+      "label": "Computer use: trust by design",
+      "title": "Trustworthy computer use is designed into the operating model.",
+      "paragraphs": [
+        "Start by containing the runtime, identity, permissions, and destinations. A dedicated environment and least-privileged account reduce the impact of mistakes before the first action is taken.",
+        "Separate broad data access from consequential actions, and require human approval at the moments where intent becomes impact: authentication, submission, deletion, external communication, or financial activity.",
+        "Keep evidence of what the agent observed, attempted, completed, failed, and escalated. Then test against the conditions that break real workflows, including changed layouts, misleading controls, injected instructions, pop-ups, and expired sessions.",
+        "Finally, preserve operator authority. Every computer-use session needs a clear way for a person to stop, inspect, or take over.",
+        "Computer Use must not be treated as a magic identity layer. The agent still needs an explicit way to authenticate to every target application, and the organization must decide under whose authority it acts: its own identity, delegated user authority, or another approved service identity.",
+        "That decision should be captured in an authorization contract answering seven questions: who or what is acting; who initiated or sponsored the work; which applications, domains, records, and tools are permitted; which actions are allowed; which actions require human approval; what evidence is retained; and how the session can be stopped, taken over, or remediated.",
+        "A customer-safe control model begins with runtime isolation in a dedicated virtual machine, managed Cloud PC, or temporary environment appropriate to the experience. Apply least privilege to identities and credentials, restrict destinations and applications, and separate broad information access from high-impact actions.",
+        "Require confirmation before consequential or irreversible steps. Retain traces, outcomes, failures, and approval events. Test adversarially against changed layouts, injected instructions, misleading controls, pop-ups, expired sessions, and wrong-target actions. Then provide a clear operator path to pause, inspect, take over, or remediate the session.",
+        "Each control has a distinct job. Authentication proves the identity. Authorization defines what that identity may do. Human approval governs consequential decisions. Auditability preserves accountability after the event. None can substitute for the others, and strength in one does not compensate for the absence of another.",
+        "The objective is not maximum autonomy. It is appropriate autonomy: enough freedom to complete useful work, inside explicit boundaries for identity, access, execution, approval, evidence, and human intervention."
+      ],
+      "takeaway": "Trust is not a blocker to computer use. It is what makes computer use safe enough to scale."
+    },
+    "scene-procure-to-pay-example": {
+      "label": "A computer use example",
+      "title": "Procure-to-pay reveals where human interface work accumulates.",
+      "paragraphs": [
+        "The process begins in email. A person validates incomplete information, logs into a vendor management tool, and exchanges messages with the requester until a supplier can be selected.",
+        "Another person creates the purchase order and coordinates approvals through more email threads. When the invoice arrives, someone compares it with the purchase order and manually resolves discrepancies.",
+        "Finally, a person signs into a legacy system and posts the invoice into ERP. The business controls are necessary, but every transition depends on a human moving information between interfaces."
+      ],
+      "takeaway": "Computer use can automate the interface work and handoffs without removing the approvals and controls the process requires."
+    },
+    "scene-thanks": {
+      "label": "A closing thought",
+      "title": "The future of work is a design choice.",
+      "paragraphs": [
+        "The shift from copilots to digital colleagues will not arrive as one launch or one decision. It will emerge through hundreds of choices about work, authority, architecture, and trust.",
+        "My hope is that this experience gives you a clearer language for those choices and a reason to begin the conversation before technology makes the default decisions for you."
+      ],
+      "takeaway": "Thank you for spending this time with the ideas. Keep the conversation going."
+    },
+    "agent-landing": {
+      "label": "A practical field guide",
+      "title": "Agents: From Curiosity to Capability",
+      "paragraphs": [
+        "This is a story about crossing a threshold. For the last few years, most of our AI conversations have followed the same shape: we ask, it answers, we decide what to do with the answer. That pattern taught us how to prompt, how to phrase a request, how to iterate on wording. It did not teach us how to hand off real work.",
+        "Agents change the relationship. Instead of asking for an answer each time, we give intelligence a role, the context it needs to act responsibly, and a bounded set of things it is allowed to do. Picture the difference between asking a colleague 'what should our weekly status update say?' versus asking them to actually own the weekly status update end to end: gather the inputs, draft it, flag anything unusual, and send it by Friday morning. The second version is agency. That is the shift this session is about.",
+        "Three concrete examples we will return to across this session: a researcher agent that gathers and organizes evidence before a decision, a status-report agent that turns scattered updates into a clean weekly brief, and a triage agent that reads incoming requests and routes them to the right owner. None of these require a data science team. They require a clear role, good grounding, and a sensible boundary.",
+        "The goal today is not to make everyone an engineer. It is to make the first step concrete enough that by the end of this session you can point at one piece of your own work and say, 'that is where an agent belongs.'"
+      ],
+      "takeaway": "Start with a real piece of work, not a fascination with the technology."
+    },
+    "agent-spark": {
+      "label": "Adoption was the spark",
+      "title": "The Prompting Was Only the Beginning",
+      "paragraphs": [
+        "Every organization I have worked with over the last two years has already lived through one shift: people learned to prompt. They learned how to phrase a request, how to iterate on wording, how to get a better answer out of a chat window. That adoption wave was real, and it mattered. It built comfort and trust with the technology.",
+        "But prompting a model for a better answer and handing a model a real piece of work are two different operating models. A prompt still requires a human to ask the question, read the answer, and decide what to do next, every single time. An agent is asked once, understands the boundary of the job, and carries it through to a result.",
+        "That is why the adoption spark matters so much. The habit of prompting is what makes the leap to agency possible: people who are already comfortable describing what they want in plain language are the same people who will know how to give an agent clear instructions, useful context, and a sensible boundary.",
+        "So the shift is not from 'no AI' to 'agents.' It is from 'a prompt changes a task' to 'agency changes the operating model:' the same comfort with language, redirected from asking questions to assigning outcomes."
+      ],
+      "takeaway": "The prompting habit was the spark. Agency is what it was preparing us for."
+    },
+    "agent-introduction": {
+      "label": "Introduction",
+      "title": "From Answers to Agency",
+      "paragraphs": [
+        "An agent is not simply a chatbot with a new label. A chatbot waits for a question and answers it. An agent is given a job: it interprets an outcome you want, draws on the knowledge available to it, chooses from a set of approved capabilities, and comes back with progress or a finished result. The difference shows up the moment you stop asking questions and start assigning outcomes.",
+        "Consider a simple scenario. Every Monday, a regional sales lead spends 45 minutes pulling numbers from three systems into a one-page summary for their VP. A chatbot could help draft the summary if you paste in the numbers. An agent goes further: it knows where the three systems are, knows the format the VP expects, checks for anomalies worth flagging, and produces a draft ready for a two-minute review. That is Purpose (produce the Monday brief), Context (which systems, which format, what counts as an anomaly), and Action (assemble, check, draft) working together.",
+        "The why is human, not technical. Most organizations are full of work that is important but draining: chasing status updates from five people, sorting a cluttered inbox into categories, reformatting the same report every week, or moving a request from one queue to the next system. None of this requires deep expertise, but all of it consumes attention that could go toward judgment calls, relationships, and creative problem-solving. Agents can absorb that friction, but only if we design their role, context, and boundary with real care rather than assuming intelligence alone is enough.",
+        "A useful test when you meet a new agent, whether built by you or by someone else: can you name its purpose in one sentence, point to the context it relies on, and describe what it is and is not allowed to do? If you cannot answer all three, the agent is not yet ready to be trusted with real work."
+      ],
+      "takeaway": "An agent is purpose plus context plus capability, operating within a boundary."
+    },
+    "agent-foundations": {
+      "label": "Agent foundations",
+      "title": "The Anatomy of an Agent",
+      "paragraphs": [
+        "Think of these four foundations as a working agreement between you and the agent, the same way you would onboard a new team member. Instructions define behavior: the role, the tone, the rules, and what 'done' actually looks like. Knowledge gives the agent something grounded to reason over instead of guessing. Skills and tools expand what it can actually access and do. Actions and triggers define what it is allowed to do, and when the work should start.",
+        "Here is how this looks in practice for a customer-escalation summarizer agent. Instructions: 'Summarize each escalation in three sentences, always name the customer impact, never promise a resolution date.' Knowledge: the last 90 days of support tickets and the current SLA policy document. Skills and Tools: a search tool over the ticket system and a summarization skill. Actions and Triggers: it drafts a summary and posts it to a review channel every morning at 8am, but it never closes a ticket itself.",
+        "Weak agents almost never fail because the underlying model is incapable. They fail because one of these four foundations is missing or vague. A vague instruction ('be helpful with escalations') produces inconsistent tone and scope. Missing knowledge produces confident, wrong answers. Missing skills means the agent describes what it would do instead of doing it. Missing or overly broad actions means either the agent can't finish the job, or it has more power than the task warrants.",
+        "When an agent disappoints you, walk through the four foundations like a checklist before you blame the model: Is the instruction specific enough that two different people would interpret it the same way? Does the agent have access to the right knowledge, and only the right knowledge? Does it have the skill it actually needs, no more and no less? And is the action it is about to take proportional to how much you trust the input it received?"
+      ],
+      "takeaway": "When an agent disappoints you, inspect the foundation before changing the model."
+    },
+    "agent-tedtalk": {
+      "label": "How to begin",
+      "title": "The Best Agent Starts With a Better Question",
+      "paragraphs": [
+        "A technology-first conversation produces impressive demos and very few habits. You have seen this pattern before: someone shows a flashy AI demo in a town hall, everyone claps, and six months later almost no one has changed how they actually work. That happens because 'what can AI do?' starts from the capability, not the pain.",
+        "A work-first conversation starts from the other direction. It asks: where is human attention being wasted right now? Some concrete patterns worth listening for in your own team: a recurring request that lands in someone's inbox every single week in nearly the same shape (a status report, a competitive summary, an onboarding checklist). A queue that keeps growing no matter how fast people work through it (support tickets, expense approvals, contract reviews). A report that takes hours to assemble but only minutes to read once it exists. A decision that sits idle for days simply because the information needed to make it hasn't been gathered yet.",
+        "Example: a product manager notices that every sprint retro, someone spends 30 minutes manually pulling ticket data into a slide. That is a strong first-agent candidate: frequent (every two weeks), structured (the ticket system has consistent fields), and bounded (the output is a slide draft, not a decision). Compare that to 'help us decide which features to build next quarter' - important, but not bounded enough to be a safe first project.",
+        "Choose work that is frequent enough to matter, structured enough to learn from, and bounded enough to test safely without real-world consequences if it gets something wrong early on. Your first agent should teach you something about scoping, grounding, and trust, not carry the organization on day one."
+      ],
+      "takeaway": "The right starting point is repeated work with a visible definition of done."
+    },
+    "agent-build": {
+      "label": "First move",
+      "title": "Start With Built-In Agents",
+      "paragraphs": [
+        "Before building anything from scratch, look at what already exists. Microsoft 365 Copilot ships with a library of built-in agents designed for exactly the everyday scenarios most people start with. Idea Coach helps turn a rough thought into a stronger direction before you commit to it. Prompt Coach improves a brief before you send it to a person or another agent. Researcher finds and organizes evidence so you are not starting a decision from a blank page. Analyst surfaces patterns and signals buried in messy data. Plan My Day turns a long list of priorities into a realistic schedule. Career Coach helps someone reflect on options before a hard conversation.",
+        "Try this concretely: open Idea Coach with a real, half-formed idea you have right now, such as 'I want to reduce the time our team spends on status updates.' Notice how it asks clarifying questions instead of jumping to a solution. Then try Researcher on a real open question at work, such as 'what are competitors doing with AI agents in customer support?' and see how it organizes findings instead of just listing links.",
+        "The first build should feel almost too small, and using a built-in agent for a real task is the smallest possible build. It lets you see the relationship between instruction, context, output, and judgment without hiding the learning inside a large workflow you built yourself. You get to evaluate whether the pattern works before you invest any effort in constructing it.",
+        "Use real material as soon as you can, not a toy example. A generic test ('summarize this paragraph') only proves an agent can respond. A real example, like your actual half-written status update or your actual competitive question, reveals whether the agent understands the language, standards, exceptions, and judgment calls that make the output genuinely useful rather than superficially plausible."
+      ],
+      "takeaway": "Build the smallest useful loop, then make it reliable before making it ambitious."
+    },
+    "agent-store": {
+      "label": "Find leverage",
+      "title": "Borrow Before You Build",
+      "paragraphs": [
+        "An Agent Store is not only a catalogue of finished answers. It is a library of patterns you can study before you write a single instruction of your own. Open a well-built agent listing and look at how its description scopes the role, what data sources it says it uses, and what kind of output it promises. That framing is often more valuable than the agent's actual output, because it teaches you how to describe your own role clearly.",
+        "Scenario: your team needs a meeting-notes agent. Instead of designing one cold, browse three or four note-taking or summarization agents in the store. Notice how one insists on tagging action items with an owner and a due date, while another just produces a narrative summary. That comparison tells you something concrete about what 'good' looks like for your use case before you build anything.",
+        "Borrowing is often the fastest way to learn, and it is a perfectly legitimate way to get started: install an agent, run it against a real task this week, and see where it falls short for your specific context. But treat an installed agent as a starting point, not an authority. It was designed for a general case, not your team's specific data, tone, exceptions, and definition of done.",
+        "Before connecting any third-party agent to real work, run through a short checklist: Who owns and maintains it? What permissions does it request, and are they proportional to its job? Where does its knowledge come from, and is that source trustworthy for your context? Is there a review step before its output reaches a customer, a leader, or a system of record? An agent that fails this checklist may still be useful for exploration, but it is not yet ready for production."
+      ],
+      "takeaway": "Reuse the pattern, verify the behavior, and make ownership explicit."
+    },
+    "agent-platforms": {
+      "label": "Build paths",
+      "title": "Choose Your Level of Agency",
+      "paragraphs": [
+        "Agent Builder, sometimes called Copilot Studio Lite, is a strong first doorway. It is declarative rather than technical: you describe the role in plain language, point it at the knowledge it should trust, and test it immediately in the same interface. It is well suited to an individual or a small team that needs a focused agent quickly, such as a personal meeting-prep assistant or a team FAQ responder grounded in a shared document.",
+        "As the work grows, so does what you need from the platform. Imagine that FAQ agent becomes popular, and now the team wants it to also open a ticket in the helpdesk system when it cannot answer a question, require manager approval before closing certain requests, and report usage metrics to a compliance dashboard. That is the moment to graduate to Copilot Studio: it adds connectors to external systems, multi-step workflows, approval steps, and stronger governance controls suited to a shared, team-owned business process.",
+        "Azure AI Foundry is the next level up, built for when the requirement moves beyond a single workflow into a genuine engineered system: custom model selection and fine-tuning, rigorous evaluation pipelines, multi-agent orchestration, and enterprise-grade observability. A fraud-detection agent that must meet audit requirements, or a multi-agent research pipeline coordinating several specialized models, belongs here rather than in a lighter-weight builder.",
+        "The decision test is simple: start with the lightest platform that can responsibly carry the work today, and treat 'we've outgrown this' as a specific, observable signal (a missing connector, a missing approval step, a missing evaluation metric) rather than a vague feeling that you should move to something more powerful."
+      ],
+      "takeaway": "Choose the lightest platform that can responsibly carry the work."
+    },
+    "agent-first-build": {
+      "label": "Build together",
+      "title": "Your First Agent: From Idea to Useful",
+      "paragraphs": [
+        "Let's build something real, live, in about six minutes. Imagine we are building an agent that prepares a weekly leadership brief. Its job is not to be generally intelligent. Its job is to collect agreed sources, identify what changed since last week, highlight decisions that need attention, and return a concise brief with links back to the original evidence.",
+        "Step one, name the role: not 'AI Assistant' but 'Weekly Leadership Brief Writer.' A memorable, specific name forces you to also be specific about scope. Step two, write the brief: purpose (a one-page Friday summary for the leadership team), audience (people who skim in under two minutes), constraints (no speculation, always cite the source), and definition of done (every section has at least one linked source).",
+        "Step three, add grounding: point it at the three or four sources it should trust, such as the project tracker, the incident log, and last week's brief for continuity. Step four, run a real test: feed it this week's actual data and read the output looking specifically for assumptions it made without evidence, anything it omitted that mattered, and any action it took that it should not have (like sending the brief before a human reviewed it).",
+        "Step five, improve the loop: refine one foundation at a time. If the tone is off, that is an instructions fix. If it missed an important update, that is a knowledge fix. If it can't format a chart, that is a skills fix. If it sent before review, that is an actions and triggers fix. Notice how quickly the five foundations become practical the moment you're troubleshooting a real, specific gap instead of a hypothetical one."
+      ],
+      "takeaway": "A first agent becomes useful when its role, inputs, outputs, and boundaries are visible."
+    },
+    "agent-foundation-consolidation": {
+      "label": "Agent foundation",
+      "title": "The Agent Foundation, in One View",
+      "paragraphs": [
+        "Before we move into a more capable building environment, hold these two views together. Agency describes the job: a clear purpose, trusted context, and the ability to move work toward an outcome. The anatomy describes how we make that job dependable: instructions, knowledge, skills and tools, and actions and triggers.",
+        "The platform can change, but this foundation does not. When an agent falls short, return to this view and ask whether the role is unclear, the context is weak, a capability is missing, or an action needs a stronger boundary.",
+        "That is the lens we will use for the next step. We are not moving tools simply to gain more features; we are moving because the work now asks for more capability and control around the same foundation."
+      ],
+      "takeaway": "Better tools extend the foundation; they do not replace it."
+    },
+    "agent-builder-focus": {
+      "label": "Where we started",
+      "title": "Start with Agent Builder",
+      "paragraphs": [
+        "This is where we started because Agent Builder is the shortest path between understanding the foundation and putting it into practice. We could describe a focused role, ground it in knowledge, and test it immediately without first designing infrastructure.",
+        "That accessibility is a strength. It lets us learn whether the instructions are clear, whether the knowledge is useful, and whether the agent produces something worth trusting before we add complexity.",
+        "Now that the first agent works, the next question is not whether Agent Builder was the right choice. It is whether the work we want to add next still fits inside its designed boundary."
+      ],
+      "takeaway": "Agent Builder proves the role before the workflow becomes complex."
+    },
+    "agent-limitations": {
+      "label": "Know the boundary",
+      "title": "Every Shortcut Has a Boundary",
+      "paragraphs": [
+        "The limitation is not a failure of Agent Builder. Every tool has a designed center of gravity, and knowing that shape is what separates a confident builder from someone who gets surprised in production. Agent Builder helps people turn intent and knowledge into a useful agent quickly. It is not meant to hide the architecture of a high-stakes, deeply integrated operating system, and it was never trying to be that.",
+        "Orchestration: your weekly-brief agent works well alone, but now leadership wants it to also trigger a follow-up agent that drafts action-item emails, wait for responses, and compile those into next week's brief. That multi-step, multi-agent choreography needs a richer canvas than a single declarative builder provides.",
+        "Actions and governance: if your agent needs to actually update a production database, submit an expense reimbursement, or modify customer records, the connected systems and required approvals usually outgrow simple setup, and scale starts demanding identity management, policy enforcement, evaluation pipelines, and observability you can audit after the fact.",
+        "Reuse and autonomy: an agent one person built for themselves is not automatically ready to become a team-wide capability; it needs testing across more scenarios, clearer ownership, and often a redesign of its knowledge sources. And some decisions, like approving a large financial transaction or making a legal commitment, need a human owner and an explicit escalation path no matter how good the agent's judgment appears to be in testing.",
+        "The mature move is knowing when to step up a level, and treating each of these five signals, orchestration, actions, governance, reuse, and autonomy, as a concrete checkpoint rather than a vague sense that 'this needs to be more sophisticated.'"
+      ],
+      "takeaway": "Start with the accessible tool, then graduate when the work demands more control."
+    },
+    "copilot-studio-focus": {
+      "label": "Where we go next",
+      "title": "Go Further with Copilot Studio",
+      "paragraphs": [
+        "The limitations we just named are the reason Copilot Studio is the next tool, not a rejection of what we built. The role and knowledge remain useful; the environment expands around them.",
+        "Copilot Studio gives us the richer canvas needed for connected actions, multi-step workflows, approvals, shared ownership, and governance. Those capabilities let an agent participate in a business process rather than stop at a useful response.",
+        "As we build today, keep the foundation visible. We will still define the role, ground the agent, choose its tools, and set its boundaries. The difference is that we can now connect those choices into a workflow designed for a team."
+      ],
+      "takeaway": "Graduate platforms when the work requires more connection, control, and shared ownership."
+    },
+    "agent-tedtalk-return": {
+      "label": "How to begin",
+      "title": "The Best Agent Starts With a Better Question",
+      "paragraphs": [
+        "A technology-first conversation produces impressive demos and very few habits. You have seen this pattern before: someone shows a flashy AI demo in a town hall, everyone claps, and six months later almost no one has changed how they actually work. That happens because 'what can AI do?' starts from the capability, not the pain.",
+        "A work-first conversation starts from the other direction. It asks: where is human attention being wasted right now? Some concrete patterns worth listening for in your own team: a recurring request that lands in someone's inbox every single week in nearly the same shape (a status report, a competitive summary, an onboarding checklist). A queue that keeps growing no matter how fast people work through it (support tickets, expense approvals, contract reviews). A report that takes hours to assemble but only minutes to read once it exists. A decision that sits idle for days simply because the information needed to make it hasn't been gathered yet.",
+        "Example: a product manager notices that every sprint retro, someone spends 30 minutes manually pulling ticket data into a slide. That is a strong first-agent candidate: frequent (every two weeks), structured (the ticket system has consistent fields), and bounded (the output is a slide draft, not a decision). Compare that to 'help us decide which features to build next quarter' - important, but not bounded enough to be a safe first project.",
+        "Choose work that is frequent enough to matter, structured enough to learn from, and bounded enough to test safely without real-world consequences if it gets something wrong early on. Your first agent should teach you something about scoping, grounding, and trust, not carry the organization on day one."
+      ],
+      "takeaway": "The right starting point is repeated work with a visible definition of done."
+    },
+    "agent-close": {
+      "label": "The next move is yours",
+      "title": "Design the Work, Then Design the Agent",
+      "paragraphs": [
+        "The point of this journey is not to leave with a list of platforms. It is to leave with a way of seeing. When work is repeated, bounded, and meaningful, it may be ready for a role that intelligence can carry, with the right context and the right controls in place.",
+        "Before you leave this room, do one thing: write down a single sentence naming a real, recurring task you or your team does every week. Not 'improve productivity,' but something as specific as 'compile the Friday leadership brief' or 'triage incoming support tickets by urgency.' That sentence is the seed of your first agent.",
+        "Then walk it through what you learned today: is it frequent and bounded enough to be a safe first build? Which of the four foundations, instructions, knowledge, skills, or actions, is easiest to define clearly? Is there a built-in agent in the store you could test against it this week before building anything yourself? And which platform, Agent Builder, Copilot Studio, or Azure AI Foundry, matches how much control and governance this specific task actually needs, today, not eventually?",
+        "The first agent does not need to be impressive. It needs to be useful enough to teach you what the organization will need next, and specific enough that you can point to it, in six months, and say exactly what you learned by building it."
+      ],
+      "takeaway": "Start small enough to learn, and design carefully enough to trust."
+    },
+    "scene-chapter-one": {
+      "label": "Chapter 1 · The Agentic Shift",
+      "title": "The Org Chart in the Making",
+      "paragraphs": [
+        "We begin with the change beneath the technology: intelligence is moving from answering questions to participating in work.",
+        "This chapter follows that shift from assistance to delegation, and from isolated tools to role-based digital colleagues."
+      ],
+      "takeaway": "The operating model changes when intelligence can act."
+    },
+    "scene-chapter-two": {
+      "label": "Chapter 2",
+      "title": "The Trusted Agentic Enterprise",
+      "paragraphs": [
+        "Agency only creates enterprise value when identity, access, oversight, and accountability move with it.",
+        "This chapter explores the architecture and control plane that make a mixed workforce visible, governable, and secure."
+      ],
+      "takeaway": "Trust is not a brake on agency; it is what makes agency scalable."
+    },
+    "scene-chapter-three": {
+      "label": "Chapter 3",
+      "title": "The Last Mile",
+      "paragraphs": [
+        "Reasoning is not the same as execution. Value appears when an agent can reach the applications, interfaces, and processes where work actually happens.",
+        "This chapter focuses on closing that final distance safely.",
+        "Agents may be able to reason, plan, and coordinate, but enterprise execution is not uniformly accessible through APIs. Intelligence can understand the goal and determine the next step while still lacking a reliable path to perform that step in the target system.",
+        "Some systems provide modern connectors and deterministic interfaces. Others are specialized engineering applications, desktop software, internal portals, or legacy environments designed around human interaction. A single business process may span several of these surfaces, moving between modern services and applications that expose only a graphical interface.",
+        "That creates the last-mile problem. The agent may know what should happen, but the final operational step still depends on navigating screens, selecting controls, entering information, and responding to what the interface presents.",
+        "The point is not that APIs have failed. When an API provides the right deterministic, supportable integration, it remains the preferred approach. The practical question is what to do when the necessary interface does not exist, is impractical to build, or cannot cover the full end-to-end process."
+      ],
+      "takeaway": "The last mile connects intelligence to real work."
+    },
+    "scene-chapter-four": {
+      "label": "Chapter 4",
+      "title": "What Does This Mean for Saab?",
+      "paragraphs": [
+        "The final chapter turns the story toward Saab and the leadership choices that translate possibility into a trusted operating model.",
+        "It is an invitation to decide where to begin, what to protect, and what work should become more human."
+      ],
+      "takeaway": "The strategic question is where Saab chooses to lead."
+    },
+    "scene-agent365-network": {
+      "label": "Scene 16 · Microsoft Agent 365",
+      "title": "A digital workforce needs a control plane.",
+      "paragraphs": [
+        "We have seen how agents can become part of the workforce. The next question is how the enterprise keeps that workforce visible, governed, and secure as it grows across teams, platforms, and processes.",
+        "Microsoft Agent 365 is the control plane for that environment. It does not replace the platforms where agents are built or the applications where they work. It creates the management layer around them so IT and security can treat agents as an enterprise estate rather than a collection of isolated experiments."
+      ],
+      "takeaway": "To understand that control plane, start with its three responsibilities: observe, govern, and secure."
+    },
+    "scene-agent365-pillars": {
+      "label": "Scene 17 · The control plane",
+      "title": "Observe, govern, and secure are one connected discipline.",
+      "paragraphs": [
+        "First, observe: know which agents exist, who owns them, what they use, and how they behave. Then govern: define the policies, permissions, and lifecycle rules that keep their work within an approved boundary. Finally, secure: protect the agent, its identity, its data, and the organization from misuse or compromise.",
+        "These are not three separate projects. Observation provides the evidence for governance, governance defines the expected behavior, and security responds when reality moves outside that expectation."
+      ],
+      "takeaway": "The three pillars only work at enterprise scale when every kind of agent enters the same field of view."
+    },
+    "scene-agent365-registry": {
+      "label": "Scene 18 · Unified registry",
+      "title": "One control plane begins with one inventory.",
+      "paragraphs": [
+        "That field of view has to extend beyond Microsoft-built agents. The estate may include agents from Microsoft AI platforms, partner solutions, custom SDK implementations, connected clouds, and agents discovered through endpoints or network activity.",
+        "The unified registry brings those sources together. IT, business owners, security operations, data security, and identity teams can work from a consistent inventory instead of maintaining separate lists and discovering gaps only after an incident."
+      ],
+      "takeaway": "Once the estate is visible, the next step is understanding how every agent is connected and behaving."
+    },
+    "scene-agent365-observability": {
+      "label": "Scene 19 · Observability",
+      "title": "Inventory tells us what exists; observability tells us what it is doing.",
+      "paragraphs": [
+        "An agent rarely operates alone. It acts for users, calls APIs, invokes tools and MCP servers, and draws on knowledge sources. Observability maps those relationships and adds operational context: sessions, active users, exceptions, trends, and the dependencies behind each outcome.",
+        "That context also connects to risk signals from Microsoft Entra, Purview, and Defender. A failed action is no longer just an isolated error; it can be assessed against identity, data, and threat evidence to determine whether it is expected, misconfigured, or suspicious.",
+        "A list of names is not observability. Knowing that an agent exists tells us very little about whether it is operating as intended. To observe and control agent risk, we need to understand every agent across three connected dimensions: its connections, its usage, and its behavior.",
+        "First, connections: who and what the agent communicates with. That includes the users behind it, the tools, APIs, and MCP servers it calls, the knowledge and data it reaches, and the other agents with which it collaborates. Mapping those relationships reveals both the agent's operational role and the paths through which risk could travel.",
+        "Second, usage: the operational pulse of the agent. Sessions, active users, exceptions, engagement trends, and changes over time show whether the agent is useful, stable, underused, or beginning to operate outside its expected pattern.",
+        "Third, behavior: the anomalies that require attention. If an agent suddenly reaches for data it has never accessed, calls an unfamiliar tool, produces an unusual volume of exceptions, or becomes active at unexpected times, that deviation becomes a security signal to surface and investigate. Connections, usage, and behavior are what turn a registry into real observability."
+      ],
+      "takeaway": "A deeper understanding becomes more valuable when it covers the complete, multi-platform agent ecosystem."
+    },
+    "scene-agent365-ecosystem": {
+      "label": "Scene 20 · The complete estate",
+      "title": "The agent estate will be diverse, so control must be consistent.",
+      "paragraphs": [
+        "This view makes the scale of the challenge tangible. Agents may come from Agent Builder, Copilot Studio, Foundry, Copilot, GitHub, partners, open development frameworks, other clouds, local tools, desktop applications, and emerging agentic environments.",
+        "Agent 365 connects that diversity through native integrations, SDK-based integration, registry synchronization, and discovery controls. The objective is not to force every agent onto one creation platform. It is to give the organization one way to observe, govern, and secure the estate through the Microsoft 365 admin center, Defender, Purview, Intune, and Entra.",
+        "Microsoft makes that onboarding automatic. The moment an agent is created, discovered, or brought into the organization through a connected platform, it is onboarded to Agent 365 and represented in the Agent 365 Registry. The agent enters the control plane without waiting for someone to file a ticket or maintain a separate inventory.",
+        "Administrators first gain visibility that the agent exists, then the deeper context needed to make informed decisions: its owner, the users it serves, the tools and data it can reach, its activity, its permissions, and the risk signals associated with its behavior.",
+        "Whether the agent is first-party, supplied by a partner, custom-built, connected from another platform, or discovered as a shadow agent, it enters one consistent view. That view is delivered through the Microsoft 365 admin center where the team already manages the rest of the digital estate."
+      ],
+      "takeaway": "The need for a common control plane becomes urgent because agents can multiply much faster than manual governance can respond."
+    },
+    "scene-agent-sprawl": {
+      "label": "Scene 21 · The governance gap",
+      "title": "Agent creation is accelerating faster than lifecycle governance.",
+      "paragraphs": [
+        "An agent can now be created in seconds, but ownership reviews, permission checks, and lifecycle decisions still take time. As the creation curve rises, manual governance cannot keep pace.",
+        "The gap is where risk accumulates. Agents become ownerless, remain active after their purpose has ended, or retain more permission than the task requires. The answer is not to slow every team down; it is to make governance part of the lifecycle from the moment an agent is created.",
+        "Every agent has a lifecycle. It is created, put to work, changed as the process evolves, and eventually should be retired. The problem is that many organizations manage only day one. Agents can be spun up quickly without a clear approval gate, named owner, review schedule, or retirement condition.",
+        "They then keep running after the person who built them changes role or leaves the organization. Ownership becomes unclear, yet the agent continues to operate and quietly accumulates access as new tools, data sources, and permissions are added. What began as a bounded experiment can become an orphaned operational dependency.",
+        "Retirement is the stage most often missed. An agent can outlive the project, campaign, or process it was created to support while still holding permissions granted months earlier. Put simply, agents are created in seconds but are rarely retired with the same discipline.",
+        "Point-in-time reviews cannot keep pace with a population that grows every week. By the time a periodic audit identifies an ownerless, inactive, or over-permissioned agent, the estate has already changed again. The distance between how quickly agents are created and how quickly they can be governed is exactly where risk quietly piles up."
+      ],
+      "takeaway": "Closing the gap requires identity, registration, oversight, and security to move together through the agent lifecycle."
+    },
+    "scene-agent365-lifecycle": {
+      "label": "Scene 22 · A governed lifecycle",
+      "title": "Governance starts at creation and continues through every stage.",
+      "paragraphs": [
+        "Whether an agent is created in Foundry, Copilot Studio, or another platform through the Agent 365 SDK, it should enter the operating model in a consistent way. It receives a Microsoft Entra Agent ID and appears in the Agent 365 Registry, making it visible from the beginning rather than discovered later.",
+        "From there, IT can observe usage, govern access and tools, apply security controls, and manage lifecycle state through the Microsoft 365 admin experience. This turns lifecycle governance from a periodic manual exercise into a continuous operating discipline.",
+        "Agent 365 operationalizes this without adding a separate process that slows developers down. A developer can continue building in Microsoft Foundry, Copilot Studio, or another platform through the SDK. As the agent is created, it receives an Entra Agent ID and is represented in the registry automatically, eliminating the manual registration step and the dangerous gap where an agent exists but no one is watching.",
+        "The operating model also meets administrators and security teams where they already work. From the Microsoft 365 admin center, IT can observe the agent, apply governance policy, and manage its tools and usage. Through Microsoft Entra, security teams can control access and lifecycle using identity capabilities already familiar from managing employees and applications.",
+        "Governance therefore stops being a brake applied after innovation has happened. It becomes the rail that allows innovation to move faster with confidence, because visibility, identity, policy, and accountability are present from the agent's first day rather than added later."
+      ],
+      "takeaway": "The lifecycle becomes governable because every agent begins with a first-class identity."
+    },
+    "scene-agent365-identity-access": {
+      "label": "Scene 23 · Identity and access",
+      "title": "Control starts by knowing exactly what is acting.",
+      "paragraphs": [
+        "Identity is the anchor for every control that follows. An agent needs a first-class identity so the organization can distinguish it from a user, an application, or another agent and connect every action to a known purpose and owner.",
+        "Authentication proves that identity. Authorization limits it to the permissions required for the task. Continuous risk assessment then keeps the decision current, because access that was appropriate at the start of a session may no longer be appropriate when behavior, context, or risk changes.",
+        "This matters because over-permissioned agents create one of the most immediate security concerns. With delegated access, the fast path is often to give an agent the same access as the user for whom it acts. The agent may then reach far more data, tools, and resources than its specific task requires.",
+        "With an autonomous agent, the pattern is different but the outcome is the same. Teams may provision the agent's identity with broad, standing permissions granted just in case they are needed later. In both cases, the organization is left with excessive access, unclear attribution, and the potential for privilege abuse at machine speed.",
+        "That is not simply convenience. It is standing attack surface that remains active every second, potentially long after the original task or project has ended. Least privilege therefore has to be designed around the agent's actual role and reviewed as that role changes.",
+        "The fix starts with a first-class identity, just as it does for users and applications. Once the agent has that identity, authentication can verify who is acting, authorization can restrict access to the required tasks, and continuous risk assessment can reevaluate access as conditions change. Without identity, the organization is guessing; with it, access policy, Conditional Access, audit evidence, and risk controls finally have something real to attach to."
+      ],
+      "takeaway": "A first-class identity makes access governable; real-time verification makes that access trustworthy."
+    },
+    "scene-agent365-trusted-identity": {
+      "label": "Scene 24 · Trusted identity",
+      "title": "Trust is a continuous decision, not a one-time login.",
+      "paragraphs": [
+        "Here the full flow comes together. The agent presents its Entra Agent ID, requests governed access, and generates risk signals through its activity. Microsoft Entra continuously evaluates those signals against Conditional Access policy before allowing or blocking access to resources.",
+        "That means trust can change session by session. Normal behavior can proceed, while anomalous activity can reduce access or stop the agent before risk spreads. The result is not unrestricted autonomy; it is agency operating inside an identity-aware, policy-driven boundary.",
+        "Security teams need this model to provide consistent, secure AI access for both users and agents. Every agent requires its own unique identity so its actions can be controlled, attributed, and audited independently. That requirement also applies to local agents operating autonomously on behalf of users; acting for a person must not make the agent indistinguishable from that person.",
+        "Access is then assessed continuously through adaptive Conditional Access. Runtime identity enforcement responds as risk conditions change, rather than assuming that a successful authentication at the beginning of a session remains trustworthy for everything the agent does afterward.",
+        "Lifecycle governance keeps those identities aligned with purpose and policy over time. It tracks whether users and agents remain authorized for the work, limits access to the intended task and duration, and supports automated expiration and deprovisioning when an assignment, project, or agent lifecycle ends.",
+        "Finally, identity-centric network controls extend protection to the path between the agent and the resource. They can enforce network-based access boundaries, help prevent sensitive data from leaving approved environments, and block malicious destinations or threats. Together, identity, adaptive access, lifecycle governance, and network controls create a consistent security boundary around agent action."
+      ],
+      "takeaway": "With the control plane established, we can now ask how governed agents reach the systems where work actually happens."
+    }
+  },
+  "scenes": [
+    {
+      "id": "home",
+      "enabled": true,
+      "className": "scene scene-home scene-home-org",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-home scene-home-org\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"home-org-backdrop\" aria-hidden=\"true\">\n          <div class=\"keynote-org-tree\">\n            <div class=\"keynote-person you\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/you.jpg\" alt=\"Founder\"></div><div class=\"keynote-name\">You</div><div class=\"keynote-role\">Founder</div></div>\n            <div class=\"org-connector\"></div>\n            <div class=\"keynote-person ai emma\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/emma.jpg\" alt=\"Emma\"></div><div class=\"keynote-name\">Emma <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Chief of Staff</div></div>\n            <div class=\"org-connector\"></div><div class=\"org-connector wide\"></div>\n            <div class=\"org-ai-row\">\n              <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/oscar.jpg\" alt=\"Oscar\"></div><div class=\"keynote-name\">Oscar <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Signal Scout</div></div>\n              <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/iris.jpg\" alt=\"Iris\"></div><div class=\"keynote-name\">Iris <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Insight Analyst</div></div>\n              <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/otto.jpg\" alt=\"Otto\"></div><div class=\"keynote-name\">Otto <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Commitment Tracker</div></div>\n              <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/nora.jpg\" alt=\"Nora\"></div><div class=\"keynote-name\">Nora <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Decision Drafter</div></div>\n            </div>\n            <div class=\"org-humans\"><div class=\"org-humans-label\">Human collaborators</div><div class=\"org-humans-row\">\n              <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/anna.jpg\" alt=\"Anna\"></div><div class=\"keynote-name\">Anna <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">EA / Operations Lead</div></div>\n              <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/mikael.jpg\" alt=\"Mikael\"></div><div class=\"keynote-name\">Mikael <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">Head of Product</div></div>\n            </div></div>\n          </div>\n        </div>\n        <div class=\"home-content\">\n          <p class=\"home-eyebrow\">A human-centered agentic enterprise</p>\n          <h1>The Digital <span class=\"accent\">Agency</span></h1>\n          <p class=\"home-question\">What happens when intelligence becomes part of the workforce?</p>\n          <div class=\"home-manifesto\"><span>The future of work is not about removing people.</span><span>It is about removing the work that keeps people from being fully human.</span></div>\n          <p class=\"home-balance\">Less coordination. Less repetition. More judgment, creativity, and connection.</p>\n        </div>\n        <button class=\"home-begin\" type=\"button\"><span>Begin</span><span class=\"home-begin-arrow\" aria-hidden=\"true\">→</span></button>\n      </section>"
+    },
+    {
+      "id": "conversation-agenda",
+      "enabled": true,
+      "className": "scene scene-conversation-agenda",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-conversation-agenda\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"conversation-heading\"><h2>Today's <span class=\"accent\">Conversation</span></h2></header><div class=\"conversation-path\" aria-label=\"Conversation agenda from organizational direction through implications for Saab\"><span class=\"conversation-line\" aria-hidden=\"true\"></span><article class=\"conversation-stop\"><span class=\"conversation-node\">01</span><strong>Where organizations<br>are heading</strong></article><article class=\"conversation-stop\"><span class=\"conversation-node\">02</span><strong>How work<br>is changing</strong></article><article class=\"conversation-stop\"><span class=\"conversation-node\">03</span><strong>How trust<br>is maintained</strong></article><article class=\"conversation-stop\"><span class=\"conversation-node\">04</span><strong>How agents<br>can operate</strong></article><article class=\"conversation-stop saab\"><span class=\"conversation-node\">05</span><strong>What this could<br>mean for Saab</strong></article></div></div></section>"
+    },
+    {
+      "id": "speaker",
+      "enabled": true,
+      "className": "scene scene-speaker",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-speaker\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"speaker-stage\">\n          <div class=\"speaker-copy\">\n            <h2>Usman<br><span class=\"accent\">Afzal</span></h2>\n            <p class=\"speaker-role\">Solution Architect at Microsoft<br>AI advisor and international speaker</p>\n            <div class=\"speaker-line\"></div>\n          </div>\n          <div class=\"speaker-halo\" aria-hidden=\"true\"></div>\n          <img class=\"speaker-portrait\" src=\"assets/images/usman-afzal/intro_usman_01.png\" alt=\"Usman Afzal\">\n        </div>\n      </section>"
+    },
+    {
+      "id": "chapter-one-agentic-shift",
+      "enabled": true,
+      "className": "scene scene-chapter scene-chapter-one",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-chapter scene-chapter-one\" data-state=\"future\" aria-hidden=\"true\"><div class=\"chapter-stage\"><span class=\"chapter-watermark\" aria-hidden=\"true\">01</span><header class=\"chapter-copy\"><p class=\"chapter-label\"><span>Chapter</span><strong>01</strong><span aria-hidden=\"true\">·</span><span>The Agentic Shift</span></p><h2>The Org Chart <span>in the Making</span></h2><div class=\"chapter-rule\" aria-hidden=\"true\"></div><p class=\"chapter-prompt\">From tools that answer to colleagues that act.</p></header><div class=\"chapter-spotlight\" aria-hidden=\"true\"></div></div></section>"
+    },
+    {
+      "id": "technology-evolution",
+      "enabled": true,
+      "className": "scene scene-three",
+      "videoConfig": null,
+      "builds": 1,
+      "markup": "<section class=\"scene scene-three\" data-state=\"future\" data-builds=\"1\" data-build=\"0\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">The Journey Toward the Agentic Organization </p>\n          <h2 class=\"journey-title\">Intelligence is moving <span class=\"accent\">closer to actions.</span></h2>\n          <div class=\"evolution-cinema\" aria-label=\"Cinematic technology evolution from mainframes to digital colleagues\">\n            <div class=\"evo-stage\">\n              <div class=\"evo-tracer\" aria-hidden=\"true\"></div>\n              <div class=\"evo-history\">\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/1950s-mainframe.jpg\" alt=\"IBM 705 mainframe computer\"><figcaption><strong>1950s</strong><span>Mainframes</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/1980s-personal-computer.jpg\" alt=\"IBM personal computer\"><figcaption><strong>1980s</strong><span>Personal computers</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/1990s-internet.jpg\" alt=\"The first World Wide Web server\"><figcaption><strong>1990s</strong><span>Internet</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/2000s-mobile.jpg\" alt=\"Nokia mobile phone\"><figcaption><strong>2000s</strong><span>Mobile</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/2010s-cloud.jpg\" alt=\"Data center server racks\"><figcaption><strong>2010s</strong><span>Cloud</span></figcaption></figure>\n                <figure class=\"evo-era\"><img src=\"assets/images/evolution/2020-digital-workplace.jpg\" alt=\"Modern digital workplace\"><figcaption><strong>2020</strong><span>Digital workplace</span></figcaption></figure>\n              </div>\n              <div class=\"evo-history-cluster\">\n                <div class=\"evo-summary\" aria-hidden=\"true\">\n                  <img src=\"assets/images/evolution/1950s-mainframe.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/1980s-personal-computer.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/1990s-internet.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/2000s-mobile.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/2010s-cloud.jpg\" alt=\"\">\n                  <img src=\"assets/images/evolution/2020-digital-workplace.jpg\" alt=\"\">\n                </div>\n                <div class=\"evo-history-label\"><strong>1950-2020</strong></div>\n              </div>\n              <div class=\"evo-history-branch\" aria-hidden=\"true\"></div>\n              <div class=\"evo-agentic\" aria-label=\"Agentic evolution from chatbots to digital colleagues\">\n                <div class=\"evo-agent\">Chatbots<small>2022</small></div>\n                <div class=\"evo-agent\">Copilots<small>2023</small></div>\n                <div class=\"evo-agent\">Agents<small>2025</small></div>\n                <div class=\"evo-agent\">Digital<br>Colleagues<small>2026</small></div>\n              </div>\n              <p class=\"evo-shifts-reveal\">... and this happens through <strong>Three Emerging Shifts</strong></p>\n            </div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "digital-labor-shift",
+      "enabled": true,
+      "className": "scene scene-shifts",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-shifts\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Shift 1: Workforce Shift</p>\n          <h2 class=\"mountain-title\">The operating model is shifting to <span class=\"accent\">Digital Labor</span></h2>\n          <div class=\"mountain-journey\" aria-label=\"Enterprise evolution climbing from conversation to digital labor\">\n            <div class=\"mountain-back\"></div><div class=\"mountain-mid\"></div><div class=\"mountain-front\"></div><div class=\"mountain-contours\"></div>\n            <svg class=\"climb-route\" viewBox=\"0 0 1200 650\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path class=\"base\" d=\"M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50\"/><path class=\"progress\" d=\"M70 590 C150 545 170 505 250 475 S350 395 430 365 S535 285 630 265 S740 195 830 170 S970 90 1140 50\"/></svg>\n            <div class=\"climb-stage stage-1\"><div class=\"climb-dot\">01</div><div class=\"climb-copy\"><strong>Conversation</strong><span>Ask and answer</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>Copilot Chat</span></div></div></div></div>\n            <div class=\"climb-stage stage-2\"><div class=\"climb-dot\">02</div><div class=\"climb-copy\"><strong>Collaboration</strong><span>Work together</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>M365 Copilot</span></div></div></div></div>\n            <div class=\"climb-stage stage-3\"><div class=\"climb-dot\">03</div><div class=\"climb-copy\"><strong>Delegation to Agents</strong><span>Assign outcomes and execute work</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/cowork.png\" alt=\"\"><span>Copilot Cowork</span></div></div></div></div>\n            <div class=\"climb-stage stage-6\"><div class=\"climb-dot\">04</div><div class=\"climb-copy\"><strong>Digital labor</strong><span>Autonomous work</span><div class=\"milestone-products\"><div class=\"milestone-product\"><img src=\"assets/logos-and-icons/scout.png\" alt=\"\"><span>Microsoft Autopilot</span></div></div></div></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "human-loop-shift",
+      "enabled": true,
+      "className": "scene scene-human-loop",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-human-loop\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Shift 2: Interaction Shift</p>\n          <h2>Humans evolve from executors <span class=\"accent\">to orchestrators.</span></h2>\n          <div class=\"loop-progression\" aria-label=\"Progression from human in the loop to human off the loop\">\n            <article class=\"loop-stage in\">\n              <div class=\"loop-stage-head\"><strong>Human executing the work</strong></div>\n              <figure class=\"loop-stage-media\"><img src=\"assets/images/evolution/human-in-the-loop.png\" alt=\"Human actively working in the loop by writing and reviewing code\"></figure>\n            </article>\n            <article class=\"loop-stage on\">\n              <div class=\"loop-stage-head\"><strong>Human directing the work</strong></div>\n              <figure class=\"loop-stage-media\"><img src=\"assets/images/evolution/human-on-the-loop.png\" alt=\"Human supervising Copilot as it researches and summarizes information\"></figure>\n            </article>\n            <article class=\"loop-stage off\">\n              <div class=\"loop-stage-head\"><strong>Human supervising outcomes</strong></div>\n              <figure class=\"loop-stage-media\"><img src=\"assets/images/evolution/human-off-the-loop.png\" alt=\"Autonomous multi-agent security workflow operating without continuous human involvement\"></figure>\n            </article>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "agent-evolution",
+      "enabled": true,
+      "className": "scene scene-agent-evolution",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent-evolution\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <p class=\"scene-kicker\">Shift 3: Autonomy Shift</p>\n          <h2>Agents are getting <span class=\"accent\">role-based autonomy</span></h2>\n          <figure class=\"agent-evolution-frame\">\n            <img src=\"assets/images/evolution/agent-evolution.png\" alt=\"Evolution from an interactive agent, to an autonomous agent, to a digital employee\">\n            <figcaption class=\"agent-evolution-caption\"><span>Task execution</span><span>Agent collaboration</span><span>Role-based autonomy</span></figcaption>\n          </figure>\n          <p class=\"agent-evolution-question\">How do we trust systems that can act?</p>\n        </div>\n      </section>"
+    },
+    {
+      "id": "organization",
+      "enabled": false,
+      "className": "scene scene-org",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-org\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"org-heading\">\n            <div><p class=\"scene-kicker\">The new organizational chart</p><h2>Humans alongside <span class=\"accent\">digital colleagues.</span></h2></div>\n            <p class=\"scene-subtitle\">A governed team of people and specialized AI roles.</p>\n          </div>\n          <div class=\"keynote-org\" aria-label=\"Organization with a founder, AI chief of staff, four AI specialists, and two human collaborators\">\n            <div class=\"keynote-org-tree\">\n              <div class=\"keynote-person you\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/you.jpg\" alt=\"Founder\"></div><div class=\"keynote-name\">You</div><div class=\"keynote-role\">Founder</div></div>\n              <div class=\"org-connector\"></div>\n              <div class=\"keynote-person ai emma\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/emma.jpg\" alt=\"Emma\"></div><div class=\"keynote-name\">Emma <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Chief of Staff</div></div>\n              <div class=\"org-connector\"></div><div class=\"org-connector wide\"></div>\n              <div class=\"org-ai-row\">\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/oscar.jpg\" alt=\"Oscar\"></div><div class=\"keynote-name\">Oscar <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Signal Scout</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/iris.jpg\" alt=\"Iris\"></div><div class=\"keynote-name\">Iris <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Insight Analyst</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/otto.jpg\" alt=\"Otto\"></div><div class=\"keynote-name\">Otto <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Commitment Tracker</div></div>\n                <div class=\"keynote-person ai\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/nora.jpg\" alt=\"Nora\"></div><div class=\"keynote-name\">Nora <span class=\"org-tag ai\">AI</span></div><div class=\"keynote-role\">Decision Drafter</div></div>\n              </div>\n              <div class=\"org-humans\"><div class=\"org-humans-label\">Human collaborators</div><div class=\"org-humans-row\">\n                <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/anna.jpg\" alt=\"Anna\"></div><div class=\"keynote-name\">Anna <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">EA / Operations Lead</div></div>\n                <div class=\"keynote-person\"><div class=\"keynote-portrait\"><img src=\"assets/images/portraits/mikael.jpg\" alt=\"Mikael\"></div><div class=\"keynote-name\">Mikael <span class=\"org-tag\">HUMAN</span></div><div class=\"keynote-role\">Head of Product</div></div>\n              </div></div>\n            </div>\n            <button class=\"desk-launch\" type=\"button\"><span>Open Agency</span><span class=\"desk-launch-icon\" aria-hidden=\"true\">→</span></button>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "organization-copy",
+      "enabled": true,
+      "className": "scene scene-workforce-org",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-workforce-org\" data-state=\"future\" aria-hidden=\"true\">\n  <div class=\"scene-content\">\n    <header class=\"workforce-org-heading\">\n      <p class=\"scene-kicker\">The new organizational chart</p>\n      <h2>Human and digital talent. <span class=\"accent\">One workforce.</span></h2>\n    </header>\n    <div class=\"workforce-org-chart\" aria-label=\"CEO leading a human workforce and a digital workforce\">\n      <div class=\"workforce-org-node workforce-org-ceo\">\n              <div class=\"workforce-org-avatar\"><img src=\"assets/images/portraits/otto.jpg\" alt=\"CEO\"></div>\n        <strong>CEO</strong><span class=\"org-tag\">HUMAN</span>\n      </div>\n      <div class=\"workforce-org-trunk\" aria-hidden=\"true\"></div>\n      <div class=\"workforce-org-branches\">\n        <section class=\"workforce-org-branch human\" aria-label=\"Human Workforce\">\n          <div class=\"workforce-org-branch-title\">Human Workforce</div>\n          <div class=\"workforce-org-roles\">\n            <article class=\"workforce-org-node workforce-org-role\"><div class=\"workforce-org-avatar\"><img src=\"assets/images/portraits/mikael.jpg\" alt=\"Engineering Manager\"></div><strong>Engineering<br>Manager</strong><span class=\"org-tag\">HUMAN</span></article>\n            <article class=\"workforce-org-node workforce-org-role\"><div class=\"workforce-org-avatar\"><img src=\"assets/images/portraits/anna.jpg\" alt=\"Operations Manager\"></div><strong>Operations<br>Manager</strong><span class=\"org-tag\">HUMAN</span></article>\n            <article class=\"workforce-org-node workforce-org-role\"><div class=\"workforce-org-avatar\"><img src=\"assets/images/portraits/emma.jpg\" alt=\"Finance Manager\"></div><strong>Finance<br>Manager</strong><span class=\"org-tag\">HUMAN</span></article>\n          </div>\n        </section>\n        <section class=\"workforce-org-branch digital\" aria-label=\"Digital Workforce\">\n          <div class=\"workforce-org-branch-title\">Digital Workforce</div>\n          <div class=\"workforce-org-roles\">\n                        <article class=\"workforce-org-node workforce-org-role agent\" tabindex=\"0\" aria-describedby=\"knowledge-agent-capabilities\"><div class=\"workforce-org-avatar\"><svg class=\"workforce-agent-icon\" viewBox=\"0 0 64 64\" role=\"img\" aria-label=\"Knowledge Agent icon\"><path d=\"M20 17h24a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V23a6 6 0 0 1 6-6Z\"/><path d=\"M32 17V9m-4 0h8M14 27H8m0-4v8m42-4h6m0-4v8M14 39H8m42 0h6\"/><circle class=\"agent-eye\" cx=\"25\" cy=\"31\" r=\"2.5\"/><circle class=\"agent-eye\" cx=\"39\" cy=\"31\" r=\"2.5\"/><path d=\"M25 40c2 2 4.3 3 7 3s5-1 7-3\"/><circle cx=\"6\" cy=\"39\" r=\"2\"/><circle cx=\"58\" cy=\"39\" r=\"2\"/></svg></div><strong>Knowledge<br>Agent</strong><span class=\"org-tag ai\">AI</span><ul class=\"agent-capabilities\" id=\"knowledge-agent-capabilities\" role=\"tooltip\"><li>Retrieval</li><li>APIs</li><li>Workflows</li><li>Computer Use</li></ul></article>\n            <article class=\"workforce-org-node workforce-org-role agent\" tabindex=\"0\" aria-describedby=\"procurement-agent-capabilities\"><div class=\"workforce-org-avatar\"><svg class=\"workforce-agent-icon\" viewBox=\"0 0 64 64\" role=\"img\" aria-label=\"Procurement Agent icon\"><path d=\"M20 17h24a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V23a6 6 0 0 1 6-6Z\"/><path d=\"M32 17V9m-4 0h8M14 27H8m0-4v8m42-4h6m0-4v8M14 39H8m42 0h6\"/><circle class=\"agent-eye\" cx=\"25\" cy=\"31\" r=\"2.5\"/><circle class=\"agent-eye\" cx=\"39\" cy=\"31\" r=\"2.5\"/><path d=\"M25 40c2 2 4.3 3 7 3s5-1 7-3\"/><circle cx=\"6\" cy=\"39\" r=\"2\"/><circle cx=\"58\" cy=\"39\" r=\"2\"/></svg></div><strong>Procurement<br>Agent</strong><span class=\"org-tag ai\">AI</span><ul class=\"agent-capabilities\" id=\"procurement-agent-capabilities\" role=\"tooltip\"><li>Retrieval</li><li>APIs</li><li>Workflows</li><li>Computer Use</li></ul></article>\n            <article class=\"workforce-org-node workforce-org-role agent\" tabindex=\"0\" aria-describedby=\"compliance-agent-capabilities\"><div class=\"workforce-org-avatar\"><svg class=\"workforce-agent-icon\" viewBox=\"0 0 64 64\" role=\"img\" aria-label=\"Compliance Agent icon\"><path d=\"M20 17h24a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V23a6 6 0 0 1 6-6Z\"/><path d=\"M32 17V9m-4 0h8M14 27H8m0-4v8m42-4h6m0-4v8M14 39H8m42 0h6\"/><circle class=\"agent-eye\" cx=\"25\" cy=\"31\" r=\"2.5\"/><circle class=\"agent-eye\" cx=\"39\" cy=\"31\" r=\"2.5\"/><path d=\"M25 40c2 2 4.3 3 7 3s5-1 7-3\"/><circle cx=\"6\" cy=\"39\" r=\"2\"/><circle cx=\"58\" cy=\"39\" r=\"2\"/></svg></div><strong>Compliance<br>Agent</strong><span class=\"org-tag ai\">AI</span><ul class=\"agent-capabilities\" id=\"compliance-agent-capabilities\" role=\"tooltip\"><li>Retrieval</li><li>APIs</li><li>Workflows</li><li>Computer Use</li></ul></article>\n          </div>\n              </section>\n      </div>\n      <div class=\"workforce-org-systems\" aria-label=\"Shared Enterprise Systems: ERP, PLM, CRM, Microsoft 365, and Data Platform\">\n        <span class=\"workforce-org-systems-link human\" aria-hidden=\"true\"></span>\n        <span class=\"workforce-org-systems-link digital\" aria-hidden=\"true\"></span>\n        <div class=\"workforce-org-systems-card\"><strong>Shared Enterprise Systems</strong><span>ERP | PLM | CRM | M365 | Data Platform</span></div>\n      </div>\n    </div>\n  </div>\n</section>"
+    },
+    {
+      "id": "workforce-2030-question",
+      "enabled": true,
+      "className": "scene story-agent workforce-tedtalk",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene story-agent workforce-tedtalk\" data-layout=\"stage\" data-state=\"future\" aria-hidden=\"true\"><img class=\"scene-backdrop\" src=\"assets/images/usman-afzal/usman-storyals-01.jpg\" alt=\"\"><div class=\"scene-content\"><header class=\"scene-header\"><p class=\"scene-kicker\">Looking ahead</p><h2>How many workers<br>will your organization have<br><span class=\"accent\">in 2030?</span></h2></header><div class=\"workforce-question-hints\" aria-label=\"Questions to consider\"><article class=\"workforce-question-hint human\"><strong>Human Workforce</strong><p>Where will judgment, creativity, empathy, and accountability matter most?</p></article><article class=\"workforce-question-hint digital\"><strong>Digital Workforce</strong><p>Which roles could agents augment, scale, or perform alongside your people?</p></article></div></div></section>"
+    },
+    {
+      "id": "chapter-two-trusted-enterprise",
+      "enabled": true,
+      "className": "scene scene-chapter scene-chapter-two",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-chapter scene-chapter-two\" data-state=\"future\" aria-hidden=\"true\"><div class=\"chapter-stage\"><span class=\"chapter-watermark\" aria-hidden=\"true\">02</span><header class=\"chapter-copy\"><p class=\"chapter-label\"><span>Chapter</span><strong>02</strong></p><h2>The Trusted <span>Agentic Enterprise</span></h2><div class=\"chapter-rule\" aria-hidden=\"true\"></div><p class=\"chapter-prompt\">Identity, governance, and control at the speed of agency.</p></header><div class=\"chapter-spotlight\" aria-hidden=\"true\"></div></div></section>"
+    },
+    {
+      "id": "agent-capability-continuum",
+      "enabled": true,
+      "className": "scene scene-agent-continuum",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent-continuum\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"agent-continuum-heading\"><p class=\"scene-kicker\">Agent capability continuum</p><h2>Not All Agents <span class=\"accent\">Are Equal</span></h2><p class=\"scene-subtitle\">Each step expands how an agent can participate in the work.</p></header><div class=\"agent-continuum\" aria-label=\"Continuum from knowledge agents to computer use agents\"><article class=\"agent-continuum-stage\"><div class=\"agent-continuum-marker\"><span>01</span><svg viewBox=\"0 0 48 48\" aria-hidden=\"true\"><circle cx=\"20\" cy=\"20\" r=\"11\"/><path d=\"m28 28 9 9M16 16h8M16 20h8M16 24h5\"/></svg></div><h3>Knowledge Agent</h3><ul><li>Answers questions</li><li>Finds information</li><li>Provides recommendations</li></ul></article><article class=\"agent-continuum-stage\"><div class=\"agent-continuum-marker\"><span>02</span><svg viewBox=\"0 0 48 48\" aria-hidden=\"true\"><path d=\"M15 8v27l7-7 5 11 6-3-5-10h10L15 8Z\"/><path d=\"m31 12 3-5m4 10 5-2m-9 10 5 3\"/></svg></div><h3>Action Agent</h3><ul><li>Creates tickets</li><li>Sends approvals</li><li>Updates systems</li></ul></article><article class=\"agent-continuum-stage\"><div class=\"agent-continuum-marker\"><span>03</span><svg viewBox=\"0 0 48 48\" aria-hidden=\"true\"><rect x=\"5\" y=\"18\" width=\"10\" height=\"10\" rx=\"2\"/><rect x=\"33\" y=\"7\" width=\"10\" height=\"10\" rx=\"2\"/><rect x=\"33\" y=\"31\" width=\"10\" height=\"10\" rx=\"2\"/><path d=\"M15 23h9c5 0 5-11 9-11M24 23c5 0 5 13 9 13\"/></svg></div><h3>Workflow Agent</h3><ul><li>Coordinates processes</li><li>Across multiple systems</li></ul></article><article class=\"agent-continuum-stage\"><div class=\"agent-continuum-marker\"><span>04</span><svg viewBox=\"0 0 48 48\" aria-hidden=\"true\"><rect x=\"5\" y=\"7\" width=\"38\" height=\"28\" rx=\"3\"/><path d=\"M18 41h12M24 35v6m4-22-10 5 5 3 2 6 4-2-2-6 5-2-4-4Z\"/></svg></div><h3>Computer Use Agent</h3><ul><li>Interacts with applications</li><li>Through the user interface</li></ul></article></div><p class=\"agent-continuum-caption\"><span>Insight</span><strong>Increasing agency and execution</strong><span>Action</span></p></div></section>"
+    },
+    {
+      "id": "agency-governance-curve",
+      "enabled": true,
+      "className": "scene scene-agency-governance",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agency-governance\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"agency-governance-heading\"><p class=\"scene-kicker\">Governance follows agency</p><h2>As Agency Increases, <span class=\"accent\">Governance Must Increase</span></h2></header><figure class=\"agency-governance-chart\" aria-label=\"Required governance rises from low for knowledge agents to highest for computer use agents\"><div class=\"governance-y-title\">Required Governance</div><ul class=\"governance-y-labels\"><li>Human Oversight</li><li>Auditability</li><li>Monitoring</li><li>Action Controls</li><li>Authorization</li><li>Authentication</li><li>Identity</li></ul><div class=\"governance-plot\"><svg viewBox=\"0 0 1000 360\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path class=\"governance-grid\" d=\"M0 51H1000M0 103H1000M0 154H1000M0 206H1000M0 257H1000M0 309H1000\"/><path class=\"governance-area\" d=\"M25 325 C165 320 230 292 310 260 C430 214 505 210 585 165 C710 95 795 82 955 30 L955 340 L25 340 Z\"/><path class=\"governance-line\" d=\"M25 325 C165 320 230 292 310 260 C430 214 505 210 585 165 C710 95 795 82 955 30\"/><path class=\"governance-guide\" d=\"M25 325V340M310 260V340M585 165V340M955 30V340\"/><circle class=\"governance-point\" cx=\"25\" cy=\"325\" r=\"8\"/><circle class=\"governance-point\" cx=\"310\" cy=\"260\" r=\"8\"/><circle class=\"governance-point\" cx=\"585\" cy=\"165\" r=\"8\"/><circle class=\"governance-point\" cx=\"955\" cy=\"30\" r=\"8\"/></svg><div class=\"governance-level level-low\">Low</div><div class=\"governance-level level-medium\">Medium</div><div class=\"governance-level level-higher\">Higher</div><div class=\"governance-level level-highest\">Highest</div><div class=\"governance-x-labels\"><span>Knowledge</span><span>Actions</span><span>Workflows</span><span>Computer Use</span></div><div class=\"governance-x-title\">Increasing Agency <span aria-hidden=\"true\">→</span></div></div></figure></div></section>"
+    },
+    {
+      "id": "governance",
+      "enabled": true,
+      "className": "scene scene-governance",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-governance\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Governance as capability</p>\n            <h2 class=\"compact-title\">Govern what AI <span class=\"accent\">sees, does, decides and uses.</span></h2>\n          </div>\n          <div class=\"govern-system\" aria-label=\"Four nested governance domains\">\n            <div class=\"govern-domain\">DATA</div><div class=\"govern-domain\">ACTIONS</div><div class=\"govern-domain\">DECISIONS</div><div class=\"govern-domain\"><span>INTELLIGENCE<small>Microsoft IQ</small></span></div>\n            <div class=\"govern-agent-ring\" aria-hidden=\"true\"><div class=\"govern-agent-badge\"><img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\"><strong>Agent 365</strong></div></div>\n            <div class=\"govern-product\" style=\"--product-x:8%;--product-y:50%;--product-delay:700ms\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Microsoft 365 Copilot</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:31%;--product-y:19%;--product-delay:820ms\"><img src=\"assets/logos-and-icons/copilot-studio.svg\" alt=\"\"><strong>Copilot Studio</strong></div>\n            <div class=\"govern-product github\" style=\"--product-x:69%;--product-y:19%;--product-delay:940ms\"><span class=\"govern-product-icon github-copilot-mark\" aria-hidden=\"true\"></span><strong>GitHub Copilot</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:18%;--product-y:73%;--product-delay:1060ms\"><img src=\"assets/logos-and-icons/fabric.svg\" alt=\"\"><strong>Microsoft Fabric</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:70%;--product-y:56%;--product-delay:1180ms\"><img src=\"assets/logos-and-icons/foundry.svg\" alt=\"\"><strong>Microsoft Foundry</strong></div>\n            <div class=\"govern-product\" style=\"--product-x:82%;--product-y:77%;--product-delay:1300ms\"><img src=\"assets/logos-and-icons/azure.png\" alt=\"\"><strong>Microsoft Azure</strong></div>\n            <div class=\"govern-model\" style=\"--model-x:50%;--model-y:40%;--model-delay:1500ms\" title=\"OpenAI\"><img src=\"assets/logos-and-icons/openai.svg\" alt=\"OpenAI\"></div>\n            <div class=\"govern-model\" style=\"--model-x:58%;--model-y:42%;--model-delay:1580ms\" title=\"Anthropic\"><img src=\"assets/logos-and-icons/anthropic.svg\" alt=\"Anthropic\"></div>\n            <div class=\"govern-model\" style=\"--model-x:50%;--model-y:60%;--model-delay:1660ms\" title=\"Google\"><img src=\"assets/logos-and-icons/google.svg\" alt=\"Google\"></div>\n            <div class=\"govern-model\" style=\"--model-x:42%;--model-y:58%;--model-delay:1740ms\" title=\"Meta\"><img src=\"assets/logos-and-icons/meta.svg\" alt=\"Meta\"></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "ai-architecture",
+      "enabled": true,
+      "className": "scene scene-ms-approach scene-ms-approach-copy scene-ai-architecture",
+      "videoConfig": null,
+      "builds": 1,
+      "markup": "<section class=\"scene scene-ms-approach scene-ms-approach-copy scene-ai-architecture\" data-state=\"future\" data-builds=\"1\" data-build=\"0\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"ms-approach-heading\">\n            <p class=\"scene-kicker\">Intelligence + Trust</p>\n                  <h2>Microsoft <span class=\"accent\">Secure AI Approach</span></h2>\n          </div>\n          <div class=\"ai-architecture\" aria-label=\"Microsoft AI architecture connected through Microsoft IQ and secured by enterprise controls\">\n            <div class=\"architecture-trust\">Intelligence <span>+ Trust</span></div>\n            <div class=\"architecture-frame\">\n              <div class=\"architecture-side\">\n                <img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\">\n                <strong>Microsoft 365<br>Copilot, Cowork<br>&amp; Agents</strong>\n              </div>\n              <div class=\"architecture-center\">\n                <div class=\"architecture-tile studio\"><img src=\"assets/logos-and-icons/copilot-studio.svg\" alt=\"\"><strong>Copilot Studio</strong></div>\n                <div class=\"architecture-tile github\"><span class=\"architecture-logo github-copilot-mark\" aria-hidden=\"true\"></span><strong>GitHub Copilot</strong></div>\n                <div class=\"architecture-tile fabric\"><img src=\"assets/logos-and-icons/fabric.svg\" alt=\"\"><strong>Microsoft Fabric</strong></div>\n                <div class=\"architecture-tile foundry\"><img src=\"assets/logos-and-icons/foundry.svg\" alt=\"\"><strong>Microsoft Foundry</strong></div>\n                <div class=\"architecture-tile azure\"><img src=\"assets/logos-and-icons/azure.png\" alt=\"\"><strong>Microsoft Azure</strong></div>\n                <div class=\"architecture-iq\"><strong>Microsoft IQ</strong><span>Work IQ<br>Foundry IQ<br>Fabric IQ</span></div>\n              </div>\n              <div class=\"architecture-side agent\">\n                <img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\">\n                <strong>Agent 365</strong>\n              </div>\n            </div>\n            <div class=\"architecture-security\">Security</div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "agent365-control-plane",
+      "enabled": true,
+      "className": "scene scene-agent365-network",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-network\" data-state=\"future\" aria-hidden=\"true\"><div class=\"agent365-network\" aria-hidden=\"true\"><svg viewBox=\"0 0 1200 620\" preserveAspectRatio=\"none\"><path d=\"M40 330 150 220 270 315 395 145 520 305 635 210 760 330 900 180 1040 300 1170 225M20 405 150 360 270 430 390 335 520 410 650 350 790 440 920 345 1060 420 1190 350M95 520 210 465 335 535 470 450 600 525 735 455 860 535 990 470 1120 525M150 220 150 360M270 315 270 430M395 145 390 335M520 305 520 410M635 210 650 350M760 330 790 440M900 180 920 345M1040 300 1060 420M210 465 270 315M335 535 390 335M470 450 520 305M600 525 650 350M735 455 760 330M860 535 920 345M990 470 1040 300\"/></svg><span class=\"agent365-node\" style=\"--x:3%;--y:53%;--size:1.6rem;--delay:120ms\"></span><span class=\"agent365-node\" style=\"--x:8%;--y:84%;--size:2.2rem;--delay:220ms\"></span><span class=\"agent365-node\" style=\"--x:13%;--y:35%;--size:2.6rem;--delay:320ms\"></span><span class=\"agent365-node\" style=\"--x:18%;--y:74%;--size:1.7rem;--delay:420ms\"></span><span class=\"agent365-node\" style=\"--x:23%;--y:51%;--size:3rem;--delay:520ms\"></span><span class=\"agent365-node\" style=\"--x:28%;--y:86%;--size:1.8rem;--delay:620ms\"></span><span class=\"agent365-node\" style=\"--x:33%;--y:23%;--size:2rem;--delay:720ms\"></span><span class=\"agent365-node\" style=\"--x:38%;--y:55%;--size:2.6rem;--delay:820ms\"></span><span class=\"agent365-node\" style=\"--x:43%;--y:78%;--size:1.5rem;--delay:920ms\"></span><span class=\"agent365-node\" style=\"--x:49%;--y:40%;--size:2.1rem;--delay:1020ms\"></span><span class=\"agent365-node\" style=\"--x:55%;--y:72%;--size:3.2rem;--delay:1120ms\"></span><span class=\"agent365-node\" style=\"--x:61%;--y:34%;--size:1.7rem;--delay:1220ms\"></span><span class=\"agent365-node\" style=\"--x:66%;--y:54%;--size:2.5rem;--delay:1320ms\"></span><span class=\"agent365-node\" style=\"--x:72%;--y:84%;--size:1.8rem;--delay:1420ms\"></span><span class=\"agent365-node\" style=\"--x:77%;--y:46%;--size:2rem;--delay:1520ms\"></span><span class=\"agent365-node\" style=\"--x:82%;--y:27%;--size:2.7rem;--delay:1620ms\"></span><span class=\"agent365-node\" style=\"--x:87%;--y:68%;--size:3rem;--delay:1720ms\"></span><span class=\"agent365-node\" style=\"--x:92%;--y:48%;--size:1.7rem;--delay:1820ms\"></span><span class=\"agent365-node\" style=\"--x:97%;--y:78%;--size:2.3rem;--delay:1920ms\"></span></div><div class=\"agent365-hero\"><div class=\"agent365-mark\"><img src=\"assets/logos-and-icons/agent365.svg\" alt=\"Microsoft Agent 365\"></div><h2>Microsoft <span class=\"accent\">Agent 365</span></h2><p>The unified control plane for agents</p></div></section>"
+    },
+    {
+      "id": "agent365-control-pillars",
+      "enabled": true,
+      "className": "scene scene-agent365-pillars",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-pillars\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"agent365-pillars-heading\"><div class=\"agent365-pill\">Agent 365</div><h2>The control plane for agents</h2></header><div class=\"agent365-pillars\" aria-label=\"Agent 365 capabilities: Observe, Govern, and Secure\"><article class=\"agent365-pillar observe\"><h3>Observe</h3><div class=\"agent365-pillar-visual observe-visual\" aria-hidden=\"true\"><svg viewBox=\"0 0 300 190\" preserveAspectRatio=\"none\"><path d=\"M28 92 76 38 146 62 212 30 270 88M28 92 78 146 146 118 220 152 270 88M76 38 78 146M146 62 146 118M212 30 220 152M28 92 146 62 270 88M28 92 146 118 270 88\"/></svg><span class=\"observe-node n1\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span class=\"observe-node n2\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span class=\"observe-node n3\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span class=\"observe-node n4\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span class=\"observe-node n5\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span class=\"observe-node n6\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><div class=\"observe-center\"><svg viewBox=\"0 0 48 48\"><rect x=\"7\" y=\"8\" width=\"34\" height=\"31\" rx=\"4\"/><path d=\"M13 32V25m7 7V19m7 13V22m7 10V15\"/></svg></div></div><p>Monitor and manage<br>agents in real time</p></article><article class=\"agent365-pillar govern\"><h3>Govern</h3><div class=\"agent365-pillar-visual govern-visual\" aria-hidden=\"true\"><svg class=\"govern-orbit\" viewBox=\"0 0 240 190\"><path d=\"M181 35a76 76 0 0 0-116 8M59 151a76 76 0 0 0 122-3\"/><path d=\"m174 25 10 10-14 4M66 161l-10-10 14-4\"/></svg><div class=\"govern-center\"><svg viewBox=\"0 0 48 48\"><rect x=\"8\" y=\"8\" width=\"30\" height=\"32\" rx=\"3\"/><path d=\"M14 15h18M14 21h10M14 27h8\"/><circle cx=\"34\" cy=\"32\" r=\"7\"/><path d=\"M34 28v8m-4-4h8\"/></svg></div></div><p>Establish guardrails for<br>agents and users</p></article><article class=\"agent365-pillar secure\"><h3>Secure</h3><div class=\"agent365-pillar-visual secure-visual\" aria-hidden=\"true\"><svg class=\"secure-links\" viewBox=\"0 0 300 190\" preserveAspectRatio=\"none\"><path d=\"M92 95H188M92 95 188 42M92 95l96 54\"/><path class=\"secure-arc\" d=\"M205 25a82 82 0 0 1 0 140\"/></svg><div class=\"secure-agent\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></div><div class=\"secure-target lock\"><svg viewBox=\"0 0 40 40\"><rect x=\"9\" y=\"17\" width=\"22\" height=\"18\" rx=\"3\"/><path d=\"M14 17v-5a6 6 0 0 1 12 0v5M20 24v5\"/></svg></div><div class=\"secure-target data\"><svg viewBox=\"0 0 40 40\"><ellipse cx=\"20\" cy=\"10\" rx=\"11\" ry=\"5\"/><path d=\"M9 10v18c0 3 5 5 11 5s11-2 11-5V10M9 19c0 3 5 5 11 5s11-2 11-5\"/></svg></div><div class=\"secure-target alert\"><svg viewBox=\"0 0 40 40\"><path d=\"M20 5 35 33H5L20 5Z\"/><path d=\"M20 14v10m0 4v1\"/></svg></div></div><p>Protect agents<br>comprehensively</p></article></div></div></section>"
+    },
+    {
+      "id": "agent365-unified-registry",
+      "enabled": true,
+      "className": "scene scene-agent365-registry",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-registry\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"registry-heading\"><h2>A unified approach to <span class=\"accent\">observe, govern, and secure</span> all agents</h2><p>Microsoft Agent 365 gives security and IT a consistent inventory of all agents across your environment</p></header><div class=\"registry-map\" aria-label=\"Agent sources connected through a unified registry and observability layer to administration, operations, security, and identity roles\"><svg class=\"registry-connectors\" viewBox=\"0 0 1200 430\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><defs><marker id=\"registry-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0 8 4 0 8Z\"/></marker></defs>            <path class=\"source-trunk\" d=\"M467 43H500V387M467 129H500M467 215H544M467 301H500M467 387H500\"/><path class=\"role-link\" d=\"M700 43H805M700 129H805M700 215H805M700 301H805M700 387H805\" marker-end=\"url(#registry-arrow)\"/></svg><div class=\"registry-sources\"><article class=\"registry-card source\"><span class=\"registry-icon code\"><svg viewBox=\"0 0 42 42\"><path d=\"m17 10-8 11 8 11M25 10l8 11-8 11\"/></svg></span><span><strong>Microsoft AI platforms</strong><small>Native integration</small></span></article><article class=\"registry-card source\"><span class=\"registry-icon code\"><svg viewBox=\"0 0 42 42\"><path d=\"m17 10-8 11 8 11M25 10l8 11-8 11\"/></svg></span><span><strong>Partner integrations</strong><small>Out of the box</small></span></article><article class=\"registry-card source\"><span class=\"registry-icon code\"><svg viewBox=\"0 0 42 42\"><path d=\"m17 10-8 11 8 11M25 10l8 11-8 11\"/></svg></span><span><strong>Agent 365 SDK-enabled Agents</strong><small>Developer integration</small></span></article><article class=\"registry-card source\"><span class=\"registry-icon code\"><svg viewBox=\"0 0 42 42\"><path d=\"m17 10-8 11 8 11M25 10l8 11-8 11\"/></svg></span><span><strong>Connected platforms</strong><small>Multi-cloud, multi-platform</small></span></article><article class=\"registry-card source shadow-agent\"><span class=\"registry-icon\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span><strong>Shadow agents</strong><small>Discovered via network and endpoints</small></span></article></div><div class=\"registry-core\"><img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\" aria-hidden=\"true\"><strong>Unified Registry<br>and Observability</strong><span>One control plane</span></div><div class=\"registry-roles\"><article class=\"registry-card role\"><span class=\"registry-icon\"><svg viewBox=\"0 0 42 42\"><circle cx=\"16\" cy=\"15\" r=\"4\"/><circle cx=\"27\" cy=\"17\" r=\"3\"/><path d=\"M8 31c1-6 5-9 9-9s8 3 9 9M25 27h9m-4-4v8\"/></svg></span><strong>IT admin</strong></article><article class=\"registry-card role\"><span class=\"registry-icon\"><svg viewBox=\"0 0 42 42\"><path d=\"M9 33V18m7 15V10m7 23V22m7 11V15M7 33h28\"/></svg></span><strong>Business Decision Maker</strong></article><article class=\"registry-card role\"><span class=\"registry-icon\"><svg viewBox=\"0 0 42 42\"><path d=\"M21 6 33 11v9c0 8-5 13-12 16-7-3-12-8-12-16v-9L21 6Z\"/></svg></span><strong>SecOps</strong></article><article class=\"registry-card role\"><span class=\"registry-icon\"><svg viewBox=\"0 0 42 42\"><rect x=\"8\" y=\"8\" width=\"18\" height=\"25\" rx=\"3\"/><path d=\"M13 14h8M13 20h8\"/><rect x=\"23\" y=\"24\" width=\"12\" height=\"10\" rx=\"2\"/><path d=\"M26 24v-3a3 3 0 0 1 6 0v3\"/></svg></span><strong>Data Security</strong></article><article class=\"registry-card role\"><span class=\"registry-icon\"><svg viewBox=\"0 0 42 42\"><rect x=\"7\" y=\"10\" width=\"28\" height=\"22\" rx=\"4\"/><circle cx=\"16\" cy=\"20\" r=\"4\"/><path d=\"M12 29c1-4 3-6 5-6s4 2 5 6M26 17h5M26 23h5\"/></svg></span><strong>Identity Manager</strong></article></div></div></div></section>"
+    },
+    {
+      "id": "agent365-observability",
+      "enabled": true,
+      "className": "scene scene-agent365-observability",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-observability\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"observability-heading\"><h2>Observability delivers a <span class=\"accent\">deeper understanding</span> of your agents</h2></header><div class=\"observability-panels\" aria-label=\"Agent observability across relationships, context, and security risks\"><article class=\"observability-panel relationships\"><h3>Understand agent<br>relationships</h3><div class=\"relationship-map\" aria-hidden=\"true\"><svg viewBox=\"0 0 320 250\" preserveAspectRatio=\"none\"><path d=\"M160 125 66 64M160 125 48 154M160 125 108 216M160 125 238 202M160 125 252 48\"/></svg><div class=\"relationship-center\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></div><div class=\"relationship-node users\"><svg viewBox=\"0 0 40 40\"><circle cx=\"20\" cy=\"13\" r=\"6\"/><path d=\"M8 33c1-9 6-13 12-13s11 4 12 13\"/></svg><span>Users</span></div><div class=\"relationship-node apis\"><strong>APIs</strong><span>Tools</span></div><div class=\"relationship-node mcps\"><strong>MCPs</strong></div><div class=\"relationship-node knowledge\"><svg viewBox=\"0 0 40 40\"><ellipse cx=\"20\" cy=\"10\" rx=\"10\" ry=\"5\"/><path d=\"M10 10v19c0 3 4 5 10 5s10-2 10-5V10\"/></svg><span>Knowledge</span></div><div class=\"relationship-node agent\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></div></div></article><article class=\"observability-panel context\"><h3>Assess agent<br>context</h3><div class=\"context-kpis\"><span><small>Total sessions</small><strong>3,600</strong><em>▲ 12.2%</em></span><span><small>Total exceptions</small><strong>1,078</strong><em>▲ 10.2%</em></span><span><small>Active users</small><strong>956</strong><em>▲ 21.9%</em></span></div><div class=\"context-chart\" aria-hidden=\"true\"><svg viewBox=\"0 0 360 230\"><path class=\"grid\" d=\"M42 30H340M42 82H340M42 134H340M42 186H340M42 30V186M340 30V186\"/><path class=\"axis\" d=\"M42 186H340M42 30V186\"/><rect class=\"sessions\" x=\"72\" y=\"102\" width=\"48\" height=\"84\"/><rect class=\"exceptions\" x=\"132\" y=\"168\" width=\"48\" height=\"18\"/><rect class=\"sessions\" x=\"220\" y=\"49\" width=\"48\" height=\"137\"/><rect class=\"exceptions\" x=\"280\" y=\"154\" width=\"48\" height=\"32\"/><path class=\"users-line\" d=\"M98 139 156 122 244 96 304 80\"/><circle cx=\"98\" cy=\"139\" r=\"4\"/><circle cx=\"156\" cy=\"122\" r=\"4\"/><circle cx=\"244\" cy=\"96\" r=\"4\"/><circle cx=\"304\" cy=\"80\" r=\"4\"/><text x=\"105\" y=\"210\">26-Dec</text><text x=\"250\" y=\"210\">2-Jan</text></svg></div><div class=\"context-legend\"><span class=\"sessions\">Total sessions</span><span class=\"exceptions\">Exceptions</span><span class=\"users\">Active users</span></div></article><article class=\"observability-panel risks\"><h3>Identify and mitigate<br>security risks</h3><strong class=\"risks-label\">Risks detected</strong>      <div class=\"risk-list\"><div><span class=\"risk-product\"><i><img src=\"assets/logos-and-icons/entra.png\" alt=\"\"></i>Microsoft Entra</span><span class=\"risk-count\">△ <strong>1 risk</strong></span></div><div><span class=\"risk-product\"><i><img src=\"assets/logos-and-icons/purview.png\" alt=\"\"></i>Microsoft Purview</span><span class=\"risk-count\">△ <strong>2 risks</strong></span></div><div><span class=\"risk-product\"><i><img src=\"assets/logos-and-icons/defender.png\" alt=\"\"></i>Microsoft Defender</span><span class=\"risk-count\">△ <strong>1 risk</strong></span></div></div></article></div></div></section>"
+    },
+    {
+      "id": "agent365-ecosystem-view",
+      "enabled": true,
+      "className": "scene scene-agent365-ecosystem",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-ecosystem\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"ecosystem-heading\"><h2><span class=\"accent\">Agent 365</span> brings agents into one view</h2></header><div class=\"ecosystem-grid\" aria-label=\"Five sources of agents integrated into Microsoft Agent 365\"><article class=\"ecosystem-card\"><h3>Microsoft AI Platforms</h3><div class=\"ecosystem-list\"><span><img src=\"assets/logos-and-icons/agent-builder.png\" alt=\"\">Agent Builder</span><span><img src=\"assets/logos-and-icons/copilot-studio.svg\" alt=\"\">Copilot Studio</span><span><img src=\"assets/logos-and-icons/foundry.svg\" alt=\"\">Microsoft Foundry</span><span><img src=\"assets/logos-and-icons/cowork.png\" alt=\"\">Copilot Cowork</span><span><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\">Researcher</span><span><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\">Microsoft Agents</span><span><img src=\"assets/logos-and-icons/github-copilot-color.svg\" alt=\"\">GitHub Copilot</span></div><div class=\"ecosystem-mode\">Out-of-the-box</div></article><article class=\"ecosystem-card\"><h3>Partner<br>integrations</h3><div class=\"ecosystem-list partner-list\"><span><b>KO</b>Kore.ai</span><span><b>EG</b>eGain</span><span><b>MA</b>Manus</span><span><b>ZE</b>Zendesk</span><span><b>GS</b>Genspark</span><span><b>ZA</b>Zensai</span><em>More coming...</em></div><div class=\"ecosystem-mode\">Out-of-the-box</div></article><article class=\"ecosystem-card\"><h3>Agent 365 SDK-enabled agents</h3><div class=\"ecosystem-list\"><span><img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\">M365 Agent SDK</span><span><img src=\"assets/logos-and-icons/openai.svg\" alt=\"\">OpenAI Agent SDK</span><span><b>AF</b>Agent Framework</span><span><b>LC</b>LangChain</span><span><b>CA</b>CrewAI</span></div><div class=\"ecosystem-mode\">Developer integrated</div></article><article class=\"ecosystem-card\"><h3>Connected Platforms</h3><div class=\"ecosystem-list connected-list\"><span><b>VX</b>Vertex AI</span><span><b>AW</b>AWS Bedrock</span><em>More coming...</em></div><div class=\"ecosystem-mode\">Configured per platform</div></article><article class=\"ecosystem-card\"><h3>Shadow agents</h3><div class=\"shadow-columns\"><div><strong>Local agents</strong><span>CLI agents</span><span>Desktop apps</span><span>Agentic IDEs</span><span>VS Code extensions</span><span>Claw-based agents</span></div><div><strong>SaaS agents</strong><span>Roadmap</span></div></div><div class=\"ecosystem-mode\">Endpoint &amp; network</div></article></div><div class=\"ecosystem-paths\" aria-hidden=\"true\"><span>Native Integration</span><span>Agent 365 SDK</span><span>Registry Sync</span><span>Endpoint + network discovery &amp; controls</span></div><div class=\"ecosystem-control\"><img src=\"assets/logos-and-icons/agent365.svg\" alt=\"\"><div><strong>Agent 365</strong><span>The control plane to observe, govern, and secure AI agents at scale</span></div></div><div class=\"ecosystem-services\" aria-label=\"Microsoft services connected to Agent 365\"><span><i>AC</i>Microsoft 365 Admin Center</span><span><i>DF</i>Microsoft Defender</span><span><i>PV</i>Microsoft Purview</span><span><i>IN</i>Microsoft Intune</span><span><i>EN</i>Microsoft Entra</span></div></div></section>"
+    },
+    {
+      "id": "multimodal",
+      "enabled": false,
+      "className": "scene scene-multimodal",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-multimodal\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Multimodal intelligence</p>\n            <h2 class=\"compact-title\">AI can now <span class=\"accent\">see, hear, reason and act.</span></h2>\n          </div>\n          <div class=\"sense-system\" aria-label=\"Multimodal capabilities connected to reasoning\">\n            <svg class=\"sense-lines\" viewBox=\"0 0 600 600\" preserveAspectRatio=\"none\" aria-hidden=\"true\">\n              <line x1=\"300\" y1=\"300\" x2=\"300\" y2=\"60\" style=\"--line-delay:360ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"505\" y2=\"175\" style=\"--line-delay:450ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"505\" y2=\"425\" style=\"--line-delay:540ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"300\" y2=\"540\" style=\"--line-delay:630ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"95\" y2=\"425\" style=\"--line-delay:720ms\"></line>\n              <line x1=\"300\" y1=\"300\" x2=\"95\" y2=\"175\" style=\"--line-delay:810ms\"></line>\n              <circle cx=\"300\" cy=\"60\" r=\"3\"></circle><circle cx=\"505\" cy=\"175\" r=\"3\"></circle><circle cx=\"505\" cy=\"425\" r=\"3\"></circle><circle cx=\"300\" cy=\"540\" r=\"3\"></circle><circle cx=\"95\" cy=\"425\" r=\"3\"></circle><circle cx=\"95\" cy=\"175\" r=\"3\"></circle>\n            </svg>\n            <div class=\"sense-core\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Microsoft 365<br>Copilot</strong><span>Reasoning core</span></div>\n            <div class=\"sense-node\" style=\"--node-x:50%;--node-y:10%;--node-delay:620ms\"><img src=\"assets/logos-and-icons/file-text.svg\" alt=\"\"><strong>Text</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:84.17%;--node-y:29.17%;--node-delay:720ms\"><img src=\"assets/logos-and-icons/image.svg\" alt=\"\"><strong>Images</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:84.17%;--node-y:70.83%;--node-delay:820ms\"><img src=\"assets/logos-and-icons/audio-lines.svg\" alt=\"\"><strong>Voice</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:50%;--node-y:90%;--node-delay:920ms\"><img src=\"assets/logos-and-icons/video.svg\" alt=\"\"><strong>Video</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:15.83%;--node-y:70.83%;--node-delay:1020ms\"><img src=\"assets/logos-and-icons/monitor.svg\" alt=\"\"><strong>Screens</strong></div>\n            <div class=\"sense-node\" style=\"--node-x:15.83%;--node-y:29.17%;--node-delay:1120ms\"><img src=\"assets/logos-and-icons/database.svg\" alt=\"\"><strong>Data</strong></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "copilot-approach",
+      "enabled": false,
+      "className": "scene scene-ms-approach",
+      "videoConfig": null,
+      "builds": 1,
+      "markup": "<section class=\"scene scene-ms-approach\" data-state=\"future\" data-builds=\"1\" data-build=\"0\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"ms-approach-heading\">\n            <p class=\"scene-kicker\">A governed path from data to experience</p>\n            <h2><span class=\"approach-main\">Microsoft AI Approach</span> <span class=\"approach-with\">with <span class=\"accent\">Copilot.</span></span></h2>\n          </div>\n          <div class=\"ms-approach-map\" aria-label=\"Microsoft AI approach from assistants through delegates to autopilots\">\n            <div class=\"ms-approach-bands\">\n              <div class=\"ms-approach-band assistants\">Assistants</div>\n              <div class=\"ms-approach-band delegates\">Delegates</div>\n              <div class=\"ms-approach-band autopilots\">Autopilots</div>\n            </div>\n            <div class=\"ms-approach-modes\">\n              <div class=\"ms-approach-mode\"><strong>Chat</strong><span>Secure enterprise chat</span></div>\n              <div class=\"ms-approach-mode\"><strong>Cowork</strong><span>From answers to actions</span></div>\n              <div class=\"ms-approach-mode\"><strong>Code</strong><span>Coding for all</span></div>\n              <div class=\"ms-approach-mode\"><strong>Autopilots</strong><span>Your digital team</span></div>\n            </div>\n            <div class=\"ms-approach-intent\"><span>Designed for a complete AI productivity experience</span><span>Designed for executing long-running, multi-tool tasks</span></div>\n          </div>\n          <figure class=\"ms-approach-product\"><img src=\"assets/images/evolution/ms-approach-ai.png\" alt=\"Microsoft Copilot interface showing Chat, Cowork, Code and Autopilots\"></figure>\n        </div>\n      </section>"
+    },
+    {
+      "id": "copilot-strategy",
+      "enabled": false,
+      "className": "scene scene-copilot-strategy",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-copilot-strategy\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"copilot-strategy-heading\">\n            <p class=\"scene-kicker\">Platform strategy</p>\n            <h2><span class=\"strategy-title-main\">Microsoft AI Approach</span><span class=\"strategy-title-with\">with <span class=\"accent\">Copilot.</span></span></h2>\n          </div>\n          <div class=\"copilot-strategy-grid\">\n            <article class=\"strategy-pillar\">\n              <span class=\"strategy-index\">1</span>\n              <div class=\"strategy-pillar-head\"><span class=\"strategy-icon multi-model\" aria-hidden=\"true\"></span><strong>Multi-Model</strong><span>Future-proof your platform</span></div>\n              <ul><li>Anthropic, OpenAI and more to come</li><li>Adapt as the industry evolves</li><li>Never re-platform when markets shift</li></ul>\n            </article>\n            <article class=\"strategy-pillar\">\n              <span class=\"strategy-index\">2</span>\n              <div class=\"strategy-pillar-head\"><span class=\"strategy-icon multi-harness\" aria-hidden=\"true\"></span><strong>Multi-Harness</strong><span>Orchestration and real work</span></div>\n              <ul><li>Planning, tools, agents and memory</li><li>Turn intelligence into execution</li><li>Run real-world AI workflows</li></ul>\n            </article>\n            <article class=\"strategy-pillar\">\n              <span class=\"strategy-index\">3</span>\n              <div class=\"strategy-pillar-head\"><span class=\"strategy-icon platform\" aria-hidden=\"true\"></span><strong>World's Best Platform</strong><span>Rapid innovation at scale</span></div>\n              <ul><li>Absorbs change and cost</li><li>Quick, secure, enterprise ready</li><li>Always first with the best AI</li></ul>\n            </article>\n          </div>\n          <article class=\"strategy-foundation\">\n            <span class=\"strategy-index\">4</span>\n            <div class=\"strategy-foundation-copy\"><span class=\"strategy-icon secure\" aria-hidden=\"true\"></span><strong>Cloud-native, enterprise-grade and secure AI built for work</strong><span>Grounded in your organization</span></div>\n            <ul><li>Copilot is grounded in your intelligence with WorkIQ</li><li>Natively integrated in the flow of work</li><li>Your data stays protected with enterprise security and governance</li></ul>\n          </article>\n          <blockquote class=\"strategy-thesis\">“It’s not about the model. It is about a platform that can outlive every model.”</blockquote>\n        </div>\n      </section>"
+    },
+    {
+      "id": "model-portfolio",
+      "enabled": false,
+      "className": "scene scene-four",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-four\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div>\n            <p class=\"scene-kicker\">Multi-model enterprise</p>\n            <h2>There will not be <span class=\"accent\">one model.</span></h2>\n            <p class=\"scene-subtitle\">Organizations will govern portfolios of intelligence, not select a single winner.</p>\n          </div>\n          <div class=\"orchestra\" aria-label=\"A portfolio of models routed by an orchestration layer\">\n            <div class=\"model-orbit outer\"><div class=\"model-orbit-track\">\n              <div class=\"model-provider copilot\" style=\"--node-x:50%;--node-y:0%;--node-delay:500ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><strong>Copilot</strong><span>Experience</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:93.3%;--node-y:75%;--node-delay:580ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/openai.svg\" alt=\"\"><strong>OpenAI</strong><span>GPT</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:6.7%;--node-y:75%;--node-delay:660ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/anthropic.svg\" alt=\"\"><strong>Anthropic</strong><span>Claude</span></div></div>\n            </div></div>\n            <div class=\"model-orbit middle\"><div class=\"model-orbit-track\">\n              <div class=\"model-provider\" style=\"--node-x:85.4%;--node-y:14.6%;--node-delay:740ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/google.svg\" alt=\"\"><strong>Google</strong><span>Gemini</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:85.4%;--node-y:85.4%;--node-delay:820ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/mistralai.svg\" alt=\"\"><strong>Mistral</strong><span>Mistral</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:14.6%;--node-y:85.4%;--node-delay:900ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/meta.svg\" alt=\"\"><strong>Meta</strong><span>Llama</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:14.6%;--node-y:14.6%;--node-delay:980ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/microsoft.svg\" alt=\"\"><strong>Microsoft</strong><span>Phi</span></div></div>\n            </div></div>\n            <div class=\"model-orbit inner\"><div class=\"model-orbit-track\">\n              <div class=\"model-provider\" style=\"--node-x:50%;--node-y:0%;--node-delay:1060ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/deepseek.svg\" alt=\"\"><strong>DeepSeek</strong><span>DeepSeek</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:92.9%;--node-y:75%;--node-delay:1140ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/huggingface.svg\" alt=\"\"><strong>Hugging Face</strong><span>Open hub</span></div></div>\n              <div class=\"model-provider\" style=\"--node-x:7.1%;--node-y:75%;--node-delay:1220ms\"><div class=\"model-provider-content\"><img src=\"assets/logos-and-icons/ibm.svg\" alt=\"\"><strong>IBM</strong><span>Granite</span></div></div>\n            </div></div>\n            <div class=\"model-core\"><strong>ROUTE</strong><span>Governed model selection</span></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "model-orchestration",
+      "enabled": false,
+      "className": "scene scene-orchestration",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-orchestration\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"scene-content\">\n          <div class=\"orchestration-heading\">\n            <p class=\"scene-kicker\">From selection to orchestration</p>\n            <h2 class=\"compact-title\">Model choice becomes a <span class=\"accent\">system decision.</span></h2>\n          </div>\n          <div class=\"orchestration-flow\">\n            <div class=\"orchestration-step\"><strong>Human chooses</strong><p>One task. One model. Manual judgment.</p></div>\n            <div class=\"orchestration-step\"><strong>Platform routes</strong><p>Cost, capability, policy and context.</p></div>\n            <div class=\"orchestration-step\"><strong>Models collaborate</strong><p>Specialized intelligence works as a system.</p></div>\n          </div>\n        </div>\n      </section>"
+    },
+    {
+      "id": "agent-sprawl",
+      "enabled": true,
+      "className": "scene scene-agent-sprawl",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent-sprawl\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header><h2>Agents are multiplying faster than lifecycle governance can scale</h2></header><figure class=\"agent-sprawl-chart\" aria-label=\"Agent creation rises rapidly while manual governance lags behind\"><div class=\"agent-sprawl-y\">Number of agents</div><div class=\"agent-sprawl-plot\"><svg viewBox=\"0 0 1000 420\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><defs><linearGradient id=\"agent-sprawl-fill\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"currentColor\" stop-opacity=\".16\"/><stop offset=\"1\" stop-color=\"currentColor\" stop-opacity=\".03\"/></linearGradient></defs><path class=\"agent-sprawl-area\" d=\"M12 400 C170 370 305 330 430 275 S685 180 988 14 L988 400 Z\"/><path class=\"agent-sprawl-line\" d=\"M12 400 C170 370 305 330 430 275 S685 180 988 14\"/></svg><div class=\"agent-sprawl-track\" aria-hidden=\"true\"><span style=\"--x:8%;--y:87%;--delay:300ms\"></span><span style=\"--x:17%;--y:78%;--delay:430ms\"></span><span style=\"--x:26%;--y:68%;--delay:560ms\"></span><span style=\"--x:35%;--y:58%;--delay:690ms\"></span><span style=\"--x:44%;--y:47%;--delay:820ms\"></span><span style=\"--x:53%;--y:37%;--delay:950ms\"></span><span style=\"--x:63%;--y:27%;--delay:1080ms\"></span><span style=\"--x:73%;--y:18%;--delay:1210ms\"></span><span style=\"--x:84%;--y:8%;--delay:1340ms\"></span><span style=\"--x:96%;--y:0%;--delay:1470ms\"></span></div><strong class=\"agent-sprawl-speed\">Agent created in seconds</strong><div class=\"agent-risk ownerless\"><i aria-hidden=\"true\">&lt;/&gt;</i><span>Ownerless agent</span></div><div class=\"agent-risk inactive\"><i aria-hidden=\"true\">&lt;/&gt;</i><span>Inactive agent</span></div><div class=\"agent-risk permissions\"><i aria-hidden=\"true\">&lt;/&gt;</i><span>Over-permissioned<br>agent</span></div><div class=\"agent-sprawl-axis\"><span>Time</span><strong>Manual governance</strong></div></div></figure><p class=\"agent-sprawl-takeaway\">The gap between how fast agents are created and how fast you can govern them is where risk grows</p></div></section>"
+    },
+    {
+      "id": "agent365-lifecycle",
+      "enabled": true,
+      "className": "scene scene-agent365-lifecycle",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-lifecycle\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header><h2>Agent 365 can govern agent usage, access and tools throughout agent lifecycle</h2></header><div class=\"agent365-lifecycle-board\" aria-label=\"Agent lifecycle from development through identity, registry, IT governance, and security\"><div class=\"lifecycle-rail\" aria-hidden=\"true\"></div><div class=\"lifecycle-node lifecycle-developer\"><div class=\"lifecycle-orb\"><span class=\"lifecycle-cloud\">☁</span><span class=\"lifecycle-code\">▣</span></div><div class=\"lifecycle-copy\"><strong>Developers create agents in:</strong><span>• Foundry</span><span>• Copilot Studio</span><span>• Any platform via Agent 365 SDK</span></div></div><article class=\"lifecycle-card lifecycle-identity\"><strong>Agents assigned an<br>Entra Agent ID</strong></article><div class=\"lifecycle-badge lifecycle-shield\" aria-label=\"Entra Agent ID\">◆</div><div class=\"lifecycle-center\"><div class=\"lifecycle-registry-icon\"><span></span><span></span><span></span></div><article class=\"lifecycle-card lifecycle-registry\"><strong>Agents auto-populate in the<br>Agent 365 Registry</strong></article></div><article class=\"lifecycle-card lifecycle-it\"><strong>IT observes, governs,<br>and applies security</strong></article><div class=\"lifecycle-admin\"><span>A</span><small>M365 Admin<br>Center</small></div><div class=\"lifecycle-lock\" aria-label=\"Security controls\">▣</div><article class=\"lifecycle-card lifecycle-security\"><strong>Security can manage agent<br>access, lifecycle governance</strong><span>Conditional Access<br>Optimization Agent</span></article><div class=\"lifecycle-entra\"><img src=\"assets/logos-and-icons/azure.png\" alt=\"\"><small>Microsoft<br>Entra</small></div></div></div></section>"
+    },
+    {
+      "id": "agent365-identity-access",
+      "enabled": true,
+      "className": "scene scene-agent365-identity-access",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-identity-access\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"identity-access-heading\"><p class=\"scene-kicker\">Agent 365: Secure</p><h2>Controlling agent access starts with <span class=\"accent\">identity</span></h2><p>Identity unlocks the controls that secure agent access</p></header><div class=\"identity-access-board\" aria-label=\"Continuous agent access control across identity, authentication, authorization, and risk assessment\"><div class=\"identity-loop\" aria-hidden=\"true\"><span class=\"loop-arrow top one\">→</span><span class=\"loop-arrow top two\">→</span><span class=\"loop-arrow top three\">→</span><span class=\"loop-arrow bottom one\">←</span><span class=\"loop-arrow bottom two\">←</span><span class=\"loop-arrow bottom three\">←</span></div><article class=\"identity-access-card identity\"><span class=\"identity-access-icon\"><svg viewBox=\"0 0 44 44\"><rect x=\"7\" y=\"10\" width=\"30\" height=\"24\" rx=\"4\"/><circle cx=\"16\" cy=\"21\" r=\"4\"/><path d=\"M11 30c1-4 3-6 5-6s4 2 5 6M25 18h7M25 24h7\"/></svg></span><strong>Identity</strong><p>Agents need a first-class identity like users and apps</p></article><article class=\"identity-access-card authorization\"><span class=\"identity-access-icon\"><svg viewBox=\"0 0 44 44\"><path d=\"M22 5 35 11v9c0 9-6 15-13 18-7-3-13-9-13-18v-9L22 5Z\"/><path d=\"m16 21 4 4 8-9\"/></svg></span><strong>Authorization</strong><p>Only grant permissions for required tasks</p></article><article class=\"identity-access-card authentication\"><span class=\"identity-access-icon\"><svg viewBox=\"0 0 44 44\"><path d=\"M14 34c-5-8-4-19 5-24 7-4 16 0 18 7M18 35c-5-6-4-15 2-19 5-3 11 0 12 5M23 35c-3-4-2-10 2-12 3-1 6 1 6 4 0 5-2 9-5 12M12 22c-1 5 0 10 3 14\"/></svg></span><strong>Authentication</strong><p>Every agent proves its identity before acting</p></article><div class=\"continuous-risk\"><span class=\"risk-shield\"></span><span class=\"risk-search\"></span><strong>Continuous risk assessment</strong></div></div></div></section>"
+    },
+    {
+      "id": "agent365-trusted-identity",
+      "enabled": true,
+      "className": "scene scene-agent365-trusted-identity",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent365-trusted-identity\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"trusted-identity-heading\"><p class=\"scene-kicker\">Agent 365: Secure</p><h2>A trusted identity, <span class=\"accent\">verified in real time</span></h2><p>Continuous risk assessment decides, session by session, what each agent can reach</p></header><div class=\"trusted-identity-board\" aria-label=\"Agents receive governed access through Microsoft Entra continuous risk assessment and conditional access\"><div class=\"trusted-flow-line\" aria-hidden=\"true\"></div><div class=\"trusted-step agents\"><span class=\"trusted-node\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><strong>Agents</strong><p>Agents assigned Entra Agent ID to make them uniquely identifiable, governable, and auditable</p></div><div class=\"trusted-step governed\"><span class=\"trusted-node\"><svg viewBox=\"0 0 44 44\"><rect x=\"7\" y=\"10\" width=\"30\" height=\"24\" rx=\"4\"/><circle cx=\"16\" cy=\"21\" r=\"4\"/><path d=\"M11 30c1-4 3-6 5-6s4 2 5 6M25 18h7M25 24h7\"/></svg></span><strong>Governed<br>access</strong></div><div class=\"trusted-step signals\"><span class=\"trusted-node\"><svg viewBox=\"0 0 44 44\"><path d=\"M12 28c6-3 6-9 0-12M19 33c10-6 10-18 0-24M27 38c14-9 14-27 0-36\"/></svg></span><strong>Entra risk<br>signals</strong><p>Anomalous agent activities contribute to the agent being flagged for risk</p></div><div class=\"entra-risk-core\"><div class=\"entra-risk-ring\"><svg class=\"ring-copy\" viewBox=\"0 0 200 200\" aria-hidden=\"true\"><defs><path id=\"risk-label-top\" d=\"M28 92 A74 74 0 0 1 172 92\"/><path id=\"risk-label-bottom\" d=\"M30 139 A78 78 0 0 0 170 139\"/></defs><text><textPath href=\"#risk-label-top\" startOffset=\"50%\">Continuous risk assessment</textPath></text><text><textPath href=\"#risk-label-bottom\" startOffset=\"50%\">Conditional Access</textPath></text></svg><span class=\"ring-arrow one\"></span><span class=\"ring-arrow two\"></span><span class=\"ring-arrow three\"></span><span class=\"ring-arrow four\"></span></div><img src=\"assets/logos-and-icons/azure.png\" alt=\"\"><strong>Microsoft<br>Entra</strong></div><div class=\"access-decision\"><p>Conditional Access policies determine whether access is allowed or blocked</p><span class=\"allow\"><i>✓</i>Allow</span><span class=\"block\"><i>⊘</i>Block</span></div><div class=\"resource-gate\" aria-hidden=\"true\"></div><div class=\"trusted-resources\"><div class=\"resource-cluster\" aria-hidden=\"true\"><span class=\"person\"><svg viewBox=\"0 0 36 36\"><circle cx=\"18\" cy=\"11\" r=\"5\"/><path d=\"M8 30c1-8 5-12 10-12s9 4 10 12\"/></svg></span><span class=\"globe\">◎</span><span class=\"agent\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><span class=\"cloud\">☁</span><span class=\"app\">▦</span></div><strong>Resources</strong></div></div></div></section>"
+    },
+    {
+      "id": "chapter-three-last-mile",
+      "enabled": true,
+      "className": "scene scene-chapter scene-chapter-three",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-chapter scene-chapter-three\" data-state=\"future\" aria-hidden=\"true\"><div class=\"chapter-stage\"><span class=\"chapter-watermark\" aria-hidden=\"true\">03</span><header class=\"chapter-copy\"><p class=\"chapter-label\"><span>Chapter</span><strong>03</strong></p><h2>The <span>Last Mile</span></h2><div class=\"chapter-rule\" aria-hidden=\"true\"></div><p class=\"chapter-prompt\">Where intelligence meets the systems that run the enterprise.</p></header><div class=\"chapter-spotlight\" aria-hidden=\"true\"></div></div></section>"
+    },
+    {
+      "id": "agent-operational-challenge",
+      "enabled": true,
+      "className": "scene scene-agent-challenge",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-agent-challenge\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><p class=\"scene-kicker\">A New Operational Challenge Emerges</p><h2 class=\"challenge-question\"><span class=\"challenge-setup\">How do agents operate</span><span class=\"challenge-pivot\">in systems that were <span class=\"accent\">never designed for them?</span></span></h2><p class=\"challenge-instruction\">One agent. Four environments. Each built around human interaction.</p><div class=\"challenge-horizon\" aria-label=\"An autonomous agent crossing enterprise systems designed for human interaction\"><span class=\"challenge-signal\" aria-hidden=\"true\"></span><div class=\"challenge-choice\"><span class=\"challenge-node agent\"><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><strong>Autonomous<br>agent</strong></div><div class=\"challenge-choice\"><span class=\"challenge-node\">ERP</span><strong>Rigid<br>workflows</strong></div><div class=\"challenge-choice\"><span class=\"challenge-node\">MF</span><strong>Legacy<br>mainframe</strong></div><div class=\"challenge-choice\"><span class=\"challenge-node\">SaaS</span><strong>Human<br>sessions</strong></div>      <div class=\"challenge-choice\"><span class=\"challenge-node\">UI</span><strong>Visual<br>controls</strong></div><span class=\"challenge-direction d1\" aria-hidden=\"true\"></span><span class=\"challenge-direction d2\" aria-hidden=\"true\"></span><span class=\"challenge-direction d3\" aria-hidden=\"true\"></span><span class=\"challenge-direction d4\" aria-hidden=\"true\"></span></div></div></section>"
+    },
+    {
+      "id": "last-mile-problem",
+      "enabled": true,
+      "className": "scene scene-last-mile-problem",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-last-mile-problem\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"last-mile-heading\"><h2>The <span class=\"accent\">Last Mile</span> Problem</h2><p>Intelligence can decide what to do. The last mile is making it happen.</p></header><div class=\"last-mile-stage\" aria-label=\"An agent can reason, plan, and decide, but a gap separates that intelligence from enterprise systems\"><div class=\"last-mile-agent\"><span><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><strong>Agent</strong></div><div class=\"last-mile-thinking\"><small>Agent intelligence</small><span>Reason</span><span>Plan</span><span>Decide</span></div><div class=\"last-mile-gap\"><span aria-hidden=\"true\">×</span><strong>GAP</strong><small>Execution</small></div><div class=\"last-mile-systems\"><small>Systems where work happens</small><span>ERP</span><span>PLM</span><span>Custom Apps</span><span>Legacy Systems</span></div></div></div></section>"
+    },
+    {
+      "id": "computer-use-reach",
+      "enabled": true,
+      "className": "scene scene-computer-use-reach",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-computer-use-reach\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"last-mile-heading\"><h2>Computer Use <span class=\"accent\">Extends Agent Reach</span></h2><p>Agents can act through the interfaces people already use.</p></header><div class=\"last-mile-stage computer-use-stage\" aria-label=\"Computer use connects agent reasoning, planning, and decisions to enterprise systems\"><div class=\"last-mile-agent\"><span><img src=\"assets/logos-and-icons/agent-icon.svg\" alt=\"\"></span><strong>Agent</strong></div><div class=\"last-mile-thinking\"><small>Agent intelligence</small><span>Reason</span><span>Plan</span><span>Decide</span></div><div class=\"computer-use-bridge\"><span aria-hidden=\"true\"><svg viewBox=\"0 0 48 48\"><rect x=\"6\" y=\"8\" width=\"36\" height=\"27\" rx=\"3\"/><path d=\"M18 41h12M24 35v6\"/><path d=\"m20 17 9 6-9 6Z\"/></svg></span><strong>Computer Use</strong><small>Interface action</small></div><div class=\"last-mile-systems\"><small>Systems where work happens</small><span>ERP</span><span>PLM</span><span>Custom Apps</span><span>Legacy Systems</span></div></div></div></section>"
+    },
+    {
+      "id": "computer-use-execution",
+      "enabled": true,
+      "className": "scene scene-computer-use-execution",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-computer-use-execution\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"cua-heading\"><h2>Execution of a <span class=\"accent\">Computer Using Agent</span></h2><p>How CUA executes automations</p></header><div class=\"cua-frame\" aria-label=\"Computer using agent execution from user prompt through screen observation to computer action\"><strong class=\"cua-frame-label\">How CUA works</strong><div class=\"cua-flow\"><article class=\"cua-step prompt\"><span class=\"cua-icon\"><svg viewBox=\"0 0 48 48\"><circle cx=\"17\" cy=\"17\" r=\"6\"/><path d=\"M6 37c1-9 5-13 11-13s10 4 11 13\"/><path d=\"M29 11h13v12H31l-5 5v-5\"/></svg></span><p>User enters a<br>prompt</p></article><span class=\"cua-arrow\" aria-hidden=\"true\"></span><article class=\"cua-step observe\"><span class=\"cua-icon\"><svg viewBox=\"0 0 48 48\"><rect x=\"13\" y=\"15\" width=\"22\" height=\"18\" rx=\"3\"/><circle cx=\"24\" cy=\"24\" r=\"5\"/><path d=\"M18 15l2-4h8l2 4M8 21a17 17 0 0 1 29-10M40 27a17 17 0 0 1-29 10\"/><path d=\"m35 8 3 3-4 2M13 40l-3-3 4-2\"/></svg></span><p>CUA takes a screenshot and determines an action based on the prompt and state of the screen</p></article><span class=\"cua-arrow\" aria-hidden=\"true\"></span><article class=\"cua-step action\"><span class=\"cua-icon\"><svg viewBox=\"0 0 48 48\"><rect x=\"7\" y=\"10\" width=\"25\" height=\"20\" rx=\"2\"/><path d=\"M14 37h12M20 30v7\"/><circle cx=\"37\" cy=\"17\" r=\"5\"/><path d=\"M37 8v3M37 23v3M28 17h3M43 17h3M31 11l2 2M41 21l2 2M43 11l-2 2M33 21l-2 2\"/></svg></span><p>Action executed on<br>the computer</p></article><svg class=\"cua-loop\" viewBox=\"0 0 420 82\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M392 12 C350 72 145 72 88 18\"/><path d=\"m88 18 19 1M88 18l5 18\"/></svg></div></div></div></section>"
+    },
+    {
+      "id": "computer-use-portfolio",
+      "enabled": true,
+      "className": "scene scene-computer-use-portfolio",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-computer-use-portfolio\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"portfolio-heading\"><h2>Microsoft <span class=\"accent\">Computer Use Portfolio</span></h2></header><div class=\"portfolio-cards\" aria-label=\"Microsoft computer use portfolio across Copilot, Copilot Studio, and Microsoft Foundry\"><article class=\"portfolio-card copilot\"><div class=\"portfolio-brand\"><img src=\"assets/logos-and-icons/Copilot-icon.svg\" alt=\"\"><span>Microsoft Copilot</span></div><h3>Researcher with<br>Computer Use</h3><ul><li>Research and knowledge work</li><li>Secure temporary environment</li><li>User confirmation for sensitive actions</li></ul><strong class=\"portfolio-status\">Frontier</strong></article><article class=\"portfolio-card studio\"><div class=\"portfolio-brand\"><img src=\"assets/logos-and-icons/copilot-studio.svg\" alt=\"\"><span>Copilot Studio</span></div><h3>Business process<br>automation</h3><ul><li>Web and desktop applications</li><li>Natural-language task instructions</li><li>Autonomous or conversational agents</li></ul><strong class=\"portfolio-status\">Computer Use available</strong></article><article class=\"portfolio-card foundry\"><div class=\"portfolio-brand\"><img src=\"assets/logos-and-icons/foundry.svg\" alt=\"\"><span>Microsoft Foundry</span></div><h3>Custom agent<br>solutions</h3><ul><li>Developer-owned runtime and controls</li><li>Model and tool orchestration</li><li>Enterprise integration</li></ul><strong class=\"portfolio-status\">Preview</strong></article></div><div class=\"portfolio-foundation\"><span class=\"windows-mark\" aria-hidden=\"true\"><i></i><i></i><i></i><i></i></span><div><strong>Windows 365 for Agents</strong><span>Managed, scalable Cloud PCs for agent workloads</span></div></div></div></section>"
+    },
+    {
+      "id": "trustworthy-computer-use",
+      "enabled": true,
+      "className": "scene scene-trustworthy-computer-use",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-trustworthy-computer-use\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"trustworthy-heading\"><p class=\"scene-kicker\">Computer Use: Trust by Design</p><h2><span class=\"accent\">Trustworthy</span> Computer Use</h2><p>Expand agent reach without expanding risk.</p></header><div class=\"trustworthy-grid\" aria-label=\"Eight controls for trustworthy computer use\"><article class=\"trust-control\" data-index=\"01\"><h3>Isolate the runtime</h3><p>Use a dedicated VM, Cloud PC pool, or temporary hosted environment.</p></article><article class=\"trust-control\" data-index=\"02\"><h3>Apply least privilege</h3><p>Give the agent only the account and access required for that scenario.</p></article><article class=\"trust-control\" data-index=\"03\"><h3>Restrict destinations</h3><p>Allow only approved websites, applications, and domains.</p></article><article class=\"trust-control\" data-index=\"04\"><h3>Separate duties</h3><p>Do not combine broad data access and high-impact actions in one unrestricted runtime.</p></article><article class=\"trust-control\" data-index=\"05\"><h3>Require approval</h3><p>Insert human confirmation before authentication, submission, deletion, external communication, financial activity, or other consequential actions.</p></article><article class=\"trust-control\" data-index=\"06\"><h3>Record evidence</h3><p>Retain action traces, outcomes, failures, and approval events according to policy.</p></article><article class=\"trust-control\" data-index=\"07\"><h3>Test adversarially</h3><p>Include misleading buttons, changed layouts, unexpected pop-ups, injected webpage instructions, and expired sessions.</p></article><article class=\"trust-control\" data-index=\"08\"><h3>Provide a kill switch</h3><p>Ensure an operator can stop or take over the session.</p></article></div><div class=\"trustworthy-takeaway\"><span class=\"trust-shield\" aria-hidden=\"true\"></span><div><strong>Trust is what makes scale possible.</strong><p>Start constrained. Observe everything. Expand with evidence.</p></div></div></div></section>"
+    },
+    {
+      "id": "procure-to-pay-example",
+      "enabled": false,
+      "className": "scene scene-procure-to-pay-example",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-procure-to-pay-example\" data-state=\"future\" aria-hidden=\"true\"><div class=\"scene-content\"><header class=\"p2p-heading\"><p class=\"scene-kicker\">Computer Use Example</p><h2>Procure to Pay: <span class=\"accent\">“As-Is” Process Example</span></h2></header><div class=\"p2p-board\" aria-label=\"Five-stage manual procure-to-pay process from requisition intake through invoice posting\"><article class=\"p2p-stage intake\"><h3>Requisition<br>Intake</h3><p>Requests submitted<br>via email</p><div class=\"p2p-visual\"><img src=\"assets/logos-and-icons/outlook-official.svg\" alt=\"Microsoft Outlook\"></div><small>Back-and-forth emails until the vendor is selected</small></article><article class=\"p2p-stage sourcing\"><h3>Sourcing &amp;<br>Supplier Selection</h3><p>Human validates information, uses the vendor tool, and sends options to the requester</p><div class=\"p2p-visual person\"><span class=\"person-icon\" aria-hidden=\"true\"></span></div><small>Vendor selected</small></article><article class=\"p2p-stage approvals\"><h3>PO Creation &amp;<br>Approvals</h3><p>A human creates the PO and initiates approvals</p><div class=\"p2p-visual approval-thread\"><span class=\"person-icon\" aria-hidden=\"true\"></span><img src=\"assets/logos-and-icons/outlook-official.svg\" alt=\"\"><i></i><i></i><i></i></div><small>Email threads with approvers</small></article><article class=\"p2p-stage verification\"><h3>Invoice<br>Verification</h3><p>Human compares the invoice to the purchase order and resolves discrepancies</p><div class=\"p2p-visual person\"><span class=\"person-icon\" aria-hidden=\"true\"></span></div><small>Invoice verified</small></article><article class=\"p2p-stage posting\"><h3>Invoice Posting</h3><p>Human posts the invoice into the legacy system</p><div class=\"p2p-visual posting-flow\"><span class=\"person-icon\" aria-hidden=\"true\"></span><span class=\"database-icon\" aria-hidden=\"true\"></span></div><small>Invoice posted to ERP AP</small></article></div></div></section>"
+    },
+    {
+      "id": "chapter-four-saab",
+      "enabled": true,
+      "className": "scene scene-chapter scene-chapter-four",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-chapter scene-chapter-four\" data-state=\"future\" aria-hidden=\"true\"><div class=\"chapter-stage\"><span class=\"chapter-watermark\" aria-hidden=\"true\">04</span><header class=\"chapter-copy\"><p class=\"chapter-label\"><span>Chapter</span><strong>04</strong></p><h2>What Does This Mean <span>for Saab?</span></h2><div class=\"chapter-rule\" aria-hidden=\"true\"></div><p class=\"chapter-prompt\">Turning the agentic shift into a trusted Saab advantage.</p></header><div class=\"chapter-spotlight\" aria-hidden=\"true\"></div></div></section>"
+    },
+    {
+      "id": "thanks-linkedin",
+      "enabled": true,
+      "className": "scene scene-thanks scene-thanks-linkedin",
+      "videoConfig": null,
+      "builds": 0,
+      "markup": "<section class=\"scene scene-thanks scene-thanks-linkedin\" data-state=\"future\" aria-hidden=\"true\">\n        <div class=\"thanks-copy\">\n          <p class=\"scene-kicker\">Usman Afzal</p>\n          <h2>Thank <span class=\"accent\">you.</span></h2>\n          <p>Keep the conversation going.</p>\n          <div class=\"closing-qr-links\" aria-label=\"Continue online\">\n            <div class=\"closing-qr-item linkedin\"><div class=\"closing-qr-code\"><img src=\"assets/images/usman-afzal/usman-linkedin-qr.png\" alt=\"QR code for Usman's LinkedIn\"><span class=\"linkedin-mark\" aria-hidden=\"true\">in</span></div><div class=\"closing-qr-copy\"><strong>LinkedIn</strong><span>aka.ms/usman</span></div></div>\n          </div>\n        </div>\n        <div class=\"thanks-ring\" aria-hidden=\"true\"></div>\n              <img class=\"thanks-portrait\" src=\"assets/images/usman-afzal/intro_usman_01.png\" alt=\"Usman Afzal\">\n      </section>"
+    }
+  ]
+}
