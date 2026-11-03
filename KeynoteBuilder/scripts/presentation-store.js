@@ -4,8 +4,27 @@
   const sourceConfig = global.PRESENTATION_SOURCE || {};
   const STORAGE_KEY = sourceConfig.storageKey || "keynoteBuilder.presentation.v1";
   const SCHEMA_VERSION = 1;
+  const PROJECT_ROOT = new URL("../", document.currentScript.src);
   const DATA_URL = sourceConfig.dataUrl || "data/masterstory.json";
   const USE_OVERRIDE = sourceConfig.useOverride !== false;
+
+  function resolveUrl(value) {
+    return new URL(value, PROJECT_ROOT).href;
+  }
+
+  function resolveMarkup(markup) {
+    const template = document.createElement("template");
+    template.innerHTML = markup;
+    template.content.querySelectorAll("[src], [href], [poster]").forEach((element) => {
+      ["src", "href", "poster"].forEach((attribute) => {
+        const value = element.getAttribute(attribute);
+        if (value && /^(assets|styles)\//.test(value)) {
+          element.setAttribute(attribute, resolveUrl(value));
+        }
+      });
+    });
+    return template.innerHTML;
+  }
 
   function clone(value) {
     return typeof structuredClone === "function"
@@ -129,9 +148,9 @@
     if (global.location.protocol === "file:" && sourceConfig.localDataUrl) {
       await new Promise((resolve, reject) => {
         const script = document.createElement("script");
-        script.src = sourceConfig.localDataUrl;
+        script.src = resolveUrl(sourceConfig.localDataUrl);
         script.onload = resolve;
-        script.onerror = () => reject(new Error(`Unable to load local presentation data: ${sourceConfig.localDataUrl}. Keep the data folder alongside the HTML file.`));
+        script.onerror = () => reject(new Error(`Unable to load local presentation data: ${script.src}. Keep the project's data folder in place.`));
         document.head.append(script);
       });
       if (!isRecord(global.PRESENTATION_LOCAL_DATA)) {
@@ -140,7 +159,7 @@
       return global.PRESENTATION_LOCAL_DATA;
     }
 
-    const response = await fetch(DATA_URL, { cache: "no-store" });
+    const response = await fetch(resolveUrl(DATA_URL), { cache: "no-store" });
     if (!response.ok) throw new Error(`Unable to load presentation data: ${response.status}`);
     return response.json();
   }
@@ -180,6 +199,8 @@
     clone,
     exportText: (presentation) => `${JSON.stringify(presentation, null, 2)}\n`,
     load,
+    resolveMarkup,
+    resolveUrl,
     save,
     validate
   });

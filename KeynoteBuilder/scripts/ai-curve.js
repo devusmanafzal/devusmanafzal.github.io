@@ -2,7 +2,8 @@
   "use strict";
 
   const deck = window.KEYNOTE_DECK || {};
-  const dataUrl = deck.dataUrl || window.PRESENTATION_SOURCE?.dataUrl || "data/ai-curve.json";
+  const projectRoot = new URL("../", document.currentScript.src);
+  const dataUrl = new URL(deck.dataUrl || window.PRESENTATION_SOURCE?.dataUrl || "data/ai-curve.json", projectRoot);
   const stage = document.querySelector("#stage");
   const tooltip = document.querySelector("#chart-tooltip");
   const overview = document.querySelector("#overview");
@@ -23,7 +24,7 @@
   function bindCanonical(data) {
     const scenes = data.scenes.filter((scene) => scene.enabled).map((scene) => {
       const template = document.createElement("template");
-      template.innerHTML = scene.markup.trim();
+      template.innerHTML = window.PresentationStore.resolveMarkup(scene.markup.trim());
       const root = template.content.firstElementChild;
       root.className = scene.className;
       root.dataset.state = "active";

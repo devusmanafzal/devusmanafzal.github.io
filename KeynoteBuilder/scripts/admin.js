@@ -236,7 +236,7 @@
     if (!frame) return;
     const scene = draft.scenes[selectedSceneIndex];
     const template = document.createElement("template");
-    template.innerHTML = scene.markup.trim();
+    template.innerHTML = window.PresentationStore.resolveMarkup(scene.markup.trim());
     const root = template.content.firstElementChild;
     if (root) {
       root.className = scene.className;
@@ -250,7 +250,7 @@
       const video = root.querySelector("video");
       const settings = draft.videos[root.dataset.videoConfig];
       if (video && settings) {
-        video.setAttribute("src", settings.src);
+        video.setAttribute("src", settings.src ? window.PresentationStore.resolveUrl(settings.src) : "");
         video.style.objectFit = settings.fit;
         const caption = root.querySelector(".video-caption");
         if (caption) caption.textContent = settings.caption;
@@ -269,8 +269,8 @@
     previewDocument.documentElement.lang = draft.meta.language;
     previewDocument.head.append(
       makeElement("meta", { charset: "utf-8" }),
-      makeElement("link", { rel: "stylesheet", href: "styles/keynote.css" }),
-      makeElement("link", { rel: "stylesheet", href: "styles/agentstory.css" }),
+      makeElement("link", { rel: "stylesheet", href: window.PresentationStore.resolveUrl("styles/keynote.css") }),
+      makeElement("link", { rel: "stylesheet", href: window.PresentationStore.resolveUrl("styles/agentstory.css") }),
       makeElement("style", {}, "*, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }")
     );
     previewDocument.body.innerHTML = `<main class="cinema merged-cinema"><div class="cinema-vignette"></div><div class="cinema-stage">${markup}</div></main>`;

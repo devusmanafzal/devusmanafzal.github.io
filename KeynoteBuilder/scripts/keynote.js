@@ -12,7 +12,7 @@ async function initializePresentation() {
     document.querySelector(".cinema").setAttribute("aria-label", presentation.meta.ariaLabel);
     document.querySelector(".control-hint").textContent = presentation.controls.hint;
     document.querySelector(".cinema-stage").innerHTML = enabledScenes
-      .map((scene) => scene.markup.replace("<section ", `<section data-scene-id="${scene.id}" data-section="${scene.section || "enterprise"}" data-chapter="${scene.chapter || ""}" `))
+      .map((scene) => window.PresentationStore.resolveMarkup(scene.markup).replace("<section ", `<section data-scene-id="${scene.id}" data-section="${scene.section || "enterprise"}" data-chapter="${scene.chapter || ""}" `))
       .join("\n");
     const workforceScene = document.querySelector(".scene-workforce-org");
     workforceScene?.querySelectorAll(".agent-capabilities").forEach((tooltip) => {
@@ -152,7 +152,7 @@ async function initializePresentation() {
       const fallbackSource = configKey === "scoutIntroAfterScene2"
         ? "assets/videos/scout-intro.mp4"
         : "assets/videos/open-the-door-web.mp4";
-      video.src = settings?.src || fallbackSource;
+      video.src = window.PresentationStore.resolveUrl(settings?.src || fallbackSource);
       video.style.objectFit = settings?.fit === "contain" ? "contain" : "cover";
       const startsMuted = Boolean(settings?.muted);
       video.muted = startsMuted;
@@ -667,7 +667,7 @@ async function initializePresentation() {
       pageMorph.classList.add("cover");
       const theme = document.documentElement.dataset.theme || "dark";
       const palette = document.documentElement.dataset.palette || "keynote";
-      window.setTimeout(() => { window.location.href = `agency.html?scoutTheme=${theme}&palette=${palette}`; }, 700);
+      window.setTimeout(() => { window.location.href = window.PresentationStore.resolveUrl(`keynotes/ref/agency.html?scoutTheme=${theme}&palette=${palette}`); }, 700);
     });
 }
 

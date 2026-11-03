@@ -11,9 +11,9 @@ The timing is scoped to `trelleborg.html` in `../styles/agentstory.css`.
 
 ## Saab Digital Agency: opening directly
 
-Double-click `../saab-agency.html` to open it without a local web server.
-Keep the `data`, `scripts`, `styles`, and `assets` folders alongside the HTML
-file. Local files load the generated `saabagency.js` through a classic script
+Double-click `../keynotes/saab/saab-agency.html` to open it without a local web server.
+Keep the `data`, `scripts`, `styles`, and `assets` folders at the project root.
+Local files load the generated `saabagency.js` through a classic script
 instead of fetching JSON, which browsers block on `file://` URLs.
 HTTP/HTTPS continues to load `saabagency.json` directly.
 
@@ -31,7 +31,7 @@ local script copy as well. External integrations still need internet access.
 
 ## Why AI. Why now.
 
-Open `../why-ai-why-now.html` over HTTP. Its separate scene data is
+Open `../keynotes/ref/why-ai-why-now.html` over HTTP. Its separate scene data is
 `why-ai-why-now.json`. The 24 scenes cover all 22 source slides; source slides 9
 and 14 each receive an additional scene for the 10/20/70 heuristic and the
 three operating modes. Every scene records `sourceSlide`, commentary and a
@@ -60,7 +60,7 @@ legal timing is not presented as compliance guidance.
 
 ## The AI Curve
 
-Open `../ai-curve.html` over HTTP. Its content is in `ai-curve.json`; rendering and
+Open `../keynotes/ref/ai-curve.html` over HTTP. Its content is in `ai-curve.json`; rendering and
 desktop controls are isolated in `../scripts/ai-curve.js` and `../styles/ai-curve.css`.
 The existing presentations and admin defaults are unchanged.
 
