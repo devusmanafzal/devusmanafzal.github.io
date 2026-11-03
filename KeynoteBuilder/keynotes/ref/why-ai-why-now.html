@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Why AI. Why now. A visual executive keynote about moving from AI possibility to business value.">
+  <title>Why AI. Why now.</title>
+  <link rel="icon" href="data:,">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles/ai-curve.css">
+  <link rel="stylesheet" href="styles/why-ai-why-now.css">
+  <script src="scripts/why-ai-why-now.js" defer></script>
+  <script src="scripts/ai-curve.js" defer></script>
+</head>
+<body class="why-keynote">
+  <canvas id="atmosphere" aria-hidden="true"></canvas>
+  <header class="masthead">
+    <a class="wordmark" href="why-ai-why-now.html" aria-label="Why AI, Why now, first scene">WHY AI. WHY NOW.<span> / FROM POSSIBILITY TO VALUE</span></a>
+    <button id="overview-toggle" type="button" aria-expanded="false" aria-controls="overview">Scene index <span aria-hidden="true">+</span></button>
+  </header>
+  <main id="stage" aria-label="Why AI, Why now keynote" tabindex="-1"></main>
+  <div id="chart-tooltip" role="status" hidden></div>
+  <section id="overview" class="overlay" role="dialog" aria-modal="true" aria-labelledby="overview-title" hidden>
+    <div class="overlay-head"><div><p class="eyebrow">SIX ACTS / SIXTEEN IDEAS</p><h2 id="overview-title">Choose your moment.</h2></div><button class="close-button" data-close type="button" aria-label="Close scene index">&times;</button></div>
+    <nav id="scene-index" aria-label="Scenes"></nav>
+  </section>
+  <section id="notes" class="overlay notes-overlay" role="dialog" aria-modal="true" aria-labelledby="notes-title" hidden>
+    <div class="overlay-head"><p class="eyebrow">PRESENTER COMMENTARY</p><button class="close-button" data-close type="button" aria-label="Close commentary">&times;</button></div>
+    <div id="notes-content"></div>
+  </section>
+  <section id="load-error" role="alert" hidden><h1>The story could not load.</h1><p></p><button type="button" onclick="location.reload()">Try again</button></section>
+  <footer class="transport">
+    <div class="scene-position"><span id="current-number">01</span><span class="divider">/</span><span id="total-number">24</span><span id="chapter-name"></span></div>
+    <div class="transport-actions">
+      <button id="notes-toggle" type="button" title="Presenter commentary (C)" aria-controls="notes" aria-expanded="false">Commentary</button>
+      <button id="replay" type="button" title="Replay animation (R)" aria-label="Replay scene animation">&#8635;</button>
+      <button id="theme-toggle" type="button" title="Toggle light / dark (T)" aria-label="Toggle light or dark theme">&#9680;</button>
+      <button id="fullscreen" type="button" title="Fullscreen (F)" aria-label="Toggle fullscreen">&#9974;</button>
+      <span class="key-hint">ARROWS TO EXPLORE</span>
+      <button id="previous" type="button" title="Previous scene" aria-label="Previous scene">&#8592;</button>
+      <button id="next" type="button" title="Next scene" aria-label="Next scene">&#8594;</button>
+    </div>
+  </footer>
+  <div class="progress-track" aria-hidden="true"><div id="progress"></div></div>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
+</body>
+</html>

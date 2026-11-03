@@ -125,10 +125,28 @@
     }
   }
 
-  async function load() {
+  async function loadDefaults() {
+    if (global.location.protocol === "file:" && sourceConfig.localDataUrl) {
+      await new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = sourceConfig.localDataUrl;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Unable to load local presentation data: ${sourceConfig.localDataUrl}. Keep the data folder alongside the HTML file.`));
+        document.head.append(script);
+      });
+      if (!isRecord(global.PRESENTATION_LOCAL_DATA)) {
+        throw new Error(`Local presentation data is missing from ${sourceConfig.localDataUrl}.`);
+      }
+      return global.PRESENTATION_LOCAL_DATA;
+    }
+
     const response = await fetch(DATA_URL, { cache: "no-store" });
     if (!response.ok) throw new Error(`Unable to load presentation data: ${response.status}`);
-    const defaults = await response.json();
+    return response.json();
+  }
+
+  async function load() {
+    const defaults = await loadDefaults();
     const defaultValidation = validate(defaults);
     if (!defaultValidation.valid) throw new Error(defaultValidation.errors.join("\n"));
 

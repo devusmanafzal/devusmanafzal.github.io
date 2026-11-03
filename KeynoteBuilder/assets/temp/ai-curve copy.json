@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "title": "The AI Curve",
+    "subtitle": "Thirteen ideas. Four chapters. One direction.",
+    "presenter": "Usman Afzal",
+    "role": "Sr Cloud Solution Architect, Microsoft",
+    "edition": "October 2026",
+    "source": "assets/temp/The AI Curve - Keynote Trend Lines.pptx",
+    "dataNote": "Figures and claims are transcribed from the supplied October 2026 deck, not independently reverified. Intermediate values recovered from plotted geometry are rounded. Smooth connecting curves are visual guides, not additional observations or forecasts."
+  },
+  "chapters": [
+    { "number": "01", "title": "A different kind of wave.", "subtitle": "Capability & economics", "sceneIds": ["task-horizon", "intelligence-price"] },
+    { "number": "02", "title": "Follow the investment.", "subtitle": "Infrastructure & demand", "sceneIds": ["build-out", "annual-capex", "cloud-revenue", "azure-growth"] },
+    { "number": "03", "title": "From novelty to normal.", "subtitle": "Adoption & diffusion", "sceneIds": ["billion-users", "daily-habit", "business-chasm", "nordic-lead", "diffusion-race"] },
+    { "number": "04", "title": "Redesign the work.", "subtitle": "Delegation & the frontier", "sceneIds": ["delegation", "beyond-it", "github-frontier", "copilot-frontier", "foundry-frontier"] }
+  ],
+  "scenes": [
+    {
+      "id": "opening", "type": "hero", "sourceSlide": 1, "chapter": "The opening",
+      "eyebrow": "EXECUTIVE KEYNOTE / OCTOBER 2026",
+      "title": "The AI|curve.",
+      "description": "A new shape of possibility.\nTold through the lines that matter.",
+      "notes": ["This is a story about direction, not a catalogue of products. Capability is rising, the cost of intelligence is falling, and adoption is moving from experimentation into everyday work.", "Read each curve as a leadership question: what becomes possible for our organization when this trend continues?"],
+      "takeaway": "Plan for the curve, not the snapshot."
+    },
+    {
+      "id": "idea-map", "type": "map", "sourceSlide": 2, "chapter": "The idea map",
+      "eyebrow": "13 IDEAS / FOUR CHAPTERS",
+      "title": "One story.|Four movements.",
+      "description": "From what AI can do, to what we choose to do with it.",
+      "notes": ["Start with the underlying economics and capability shift. Follow the investment and demand signal. Then move from adoption to the redesign of work.", "The source deck's two demand charts and three platform panels each have their own scene here, so every visual has room to breathe."],
+      "takeaway": "Capability. Investment. Adoption. Reinvention."
+    },
+    {
+      "id": "task-horizon", "type": "line", "variant": "spotlight", "sourceSlide": 3, "chapter": "01 / A different kind of wave",
+      "eyebrow": "IDEA 01 / CAPABILITY",
+      "title": "AI's working day|is getting longer.",
+      "description": "From minutes of work to hours of autonomy.",
+      "metric": "89", "metricLabel": "days to double task length, since 2024",
+      "insightTitle": "Design for the next model.", "insight": "Keep people on direction and judgement. Prepare workflows for longer, bounded delegation.",
+      "chart": { "title": "Length of task AI completes independently", "subtitle": "Human-expert minutes · 50% success rate · logarithmic scale", "xDomain": [2023, 2026.1], "yDomain": [1, 600], "log": true, "xTicks": [[2023,"2023"],[2024,"2024"],[2025,"2025"],[2026,"2026"]], "yTicks": [[1,"1 min"],[10,"10 min"],[60,"1 hour"],[480,"8 hours"]], "area": true, "series": [{ "name": "Frontier task horizon", "style": "accent", "points": [[2023.17,3.5,"GPT-4 · 3.5 minutes"],[2025.08,60,"60 minutes"],[2025.25,121,"121 minutes"],[2025.58,214,"214 minutes"],[2025.83,318,"Opus 4.5 · 5.3 hours"]], "endLabel": "5.3 hours" }] },
+      "source": "METR · Time Horizon 1.1 (29 Jan 2026); Measuring AI Ability to Complete Long Tasks (Mar 2025).",
+      "caveat": "Benchmark tasks at 50% success, not a guarantee of reliable autonomous work. Log scale.",
+      "notes": ["The measured horizon is the length of a task, expressed in the time a human expert would need, that a model completes with 50% probability. It is not the time the model runs, and not a promise of production reliability.", "The deck reports a doubling time of about 89 days since 2024. The leadership implication is to design adaptable workflows, not to assume every task can already be delegated."],
+      "takeaway": "Plan for the curve, with explicit reliability gates."
+    },
+    {
+      "id": "intelligence-price", "type": "line", "sourceSlide": 4, "chapter": "01 / A different kind of wave",
+      "eyebrow": "IDEA 02 / ECONOMICS", "title": "Intelligence is becoming|radically cheaper.",
+      "description": "The same capability. A very different price.",
+      "metric": "312×", "metricLabel": "lower GPT-4-level inference price in the source comparison",
+      "insightTitle": "Reopen the rejected use cases.", "insight": "Yesterday's unit economics should not set tomorrow's ambition.",
+      "chart": { "title": "Cheapest price for a fixed capability", "subtitle": "USD per million tokens · logarithmic scale", "xDomain": [2023,2025.5], "yDomain": [0.05,50], "log": true, "xTicks": [[2023,"2023"],[2024,"2024"],[2025,"2025"]], "yTicks": [[0.1,"$0.10"],[1,"$1"],[10,"$10"],[50,"$50"]], "series": [{ "name": "GPT-4 level", "style": "accent", "points": [[2023.42,37.5,"$37.50"],[2024.08,15,"$15"],[2024.33,6,"$6"],[2024.42,0.5,"$0.50"],[2024.58,0.13,"$0.13"],[2025.17,0.12,"$0.12"]], "endLabel": "$0.12" },{ "name": "GPT-3.5 level", "style": "soft", "dashed": true, "points": [[2023.08,20,"$20"],[2023.42,2,"$2"],[2024.08,0.75,"$0.75"],[2024.42,0.5,"$0.50"],[2024.58,0.13,"$0.13"],[2024.75,0.1,"$0.10"],[2025,0.07,"$0.07"]], "endLabel": "$0.07" }] },
+      "source": "Epoch AI · LLM inference price trends (Mar 2025); Stanford HAI AI Index 2025; a16z · LLMflation.",
+      "caveat": "Fixed-capability inference pricing, not total solution cost. Intermediate plotted values rounded.",
+      "notes": ["The source compares the cheapest available inference price at a fixed capability level, rather than the price of one unchanged model. Its GPT-4-level endpoints are $37.50 and $0.12 per million tokens.", "That is about a 312-fold reduction. Governance, integration, evaluation and human oversight still cost money; lower inference cost is not the same as a free implementation."],
+      "takeaway": "Revisit the economics. Keep the operating costs in view."
+    },
+    {
+      "id": "build-out", "type": "comparison", "variant": "wide", "sourceSlide": 5, "chapter": "02 / Follow the investment",
+      "eyebrow": "IDEA 03 / INFRASTRUCTURE", "title": "This is infrastructure.|Not just a software cycle.",
+      "description": "A build-out measured in years, against projects measured in decades.",
+      "metric": "$1.92T", "metricLabel": "cumulative capex, including 2026 guidance",
+      "insightTitle": "The infrastructure is being built. Your advantage is what you build on it.",
+      "insight": "Data, processes and people become the differentiators.",
+      "chart": { "title": "AI build-out versus historic megaprojects", "subtitle": "Cumulative USD billions · years since start", "unit": "B", "valuePrefix": "$", "xDomain": [0,75], "yDomain": [0,2100], "xTicks": [[0,"0"],[10,"10"],[20,"20"],[30,"30"],[40,"40"],[50,"50"],[60,"60"],[70,"70 years"]], "yTicks": [[0,"$0"],[500,"$500B"],[1000,"$1T"],[1500,"$1.5T"],[2000,"$2T"]], "series": [{ "name": "Big Tech", "style": "accent", "points": [[0,0],[1,99],[2,228],[3,384],[4,542],[5,781],[6,1192,"2025 · $1.19T"],[7,1925,"2026 guidance · $1.92T"]], "forecastFrom": 6, "endLabel": "Big Tech" },{ "name": "Apollo", "style": "text", "points": [[0,0],[14,257,"$257B · 14 years"]], "endLabel": "Apollo" },{ "name": "ISS", "style": "muted", "points": [[0,0],[27,150,"$150B · 27 years"]], "endLabel": "ISS" },{ "name": "Interstate highways", "style": "soft", "points": [[0,0],[37,620,"$620B · 37 years"]], "endLabel": "Interstate" },{ "name": "US railroads", "style": "faint", "dashed": true, "points": [[0,0],[71,550,"$550B · 71 years"]], "endLabel": "US railroads" }] },
+      "source": "Company 10-Ks via CRE42; F. Moorhouse / Forethought megaproject compilation via GIGAZINE (May 2026).",
+      "caveat": "Big Tech includes all capex, not AI alone. Historical totals inflation-adjusted; grey paths show average pace. 2026 is guidance.",
+      "notes": ["These are not like-for-like project budgets. The source compares nominal Big Tech capital expenditure with inflation-adjusted historic megaproject totals, using straight lines for the historic average pace.", "The cumulative Big Tech trajectory follows the supplied source chart, starting from a zero origin. The dashed terminal segment includes guidance, not completed expenditure. Treat the comparison as a sense of scale, not a precise economic ranking."],
+      "takeaway": "The strategic question moves from infrastructure availability to organizational readiness."
+    },
+    {
+      "id": "annual-capex", "type": "bars", "sourceSlide": 6, "chapter": "02 / Follow the investment",
+      "eyebrow": "IDEA 04 / THE INVESTMENT SIGNAL", "title": "Ten times the investment.|Seven years.",
+      "description": "The annual commitment behind the curve.",
+      "metric": "10.2×", "metricLabel": "2019 expenditure to 2026 guidance",
+      "insightTitle": "Build skills before the capacity arrives.", "insight": "Platform choices, data foundations and people need a head start.",
+      "chart": { "title": "Alphabet + Amazon + Meta + Microsoft", "subtitle": "Annual capital expenditure · USD billions, nominal", "xDomain": [2018.5,2026.5], "yDomain": [0,800], "xTicks": [[2019,"2019"],[2020,"2020"],[2021,"2021"],[2022,"2022"],[2023,"2023"],[2024,"2024"],[2025,"2025"],[2026,"2026 G"]], "yTicks": [[0,"$0"],[200,"$200B"],[400,"$400B"],[600,"$600B"],[800,"$800B"]], "series": [{ "name": "Annual capex", "style": "accent", "points": [[2019,72,"$72B"],[2020,99,"$99B"],[2021,129,"$129B"],[2022,156,"$156B"],[2023,158,"$158B"],[2024,239,"$239B"],[2025,411,"$411B"],[2026,733,"$733B · guidance"]], "forecastFrom": 6 }] },
+      "source": "Company 10-K filings via CRE42 · Alphabet, Amazon, Meta, Microsoft.",
+      "caveat": "All capital expenditure, not AI-only spending. G = guidance, not an actual result.",
+      "notes": ["The source reports $72 billion in 2019 and $733 billion guided for 2026. The ratio is just over ten times.", "This includes the companies' entire capital expenditure. It should not be described as a pure measure of AI investment or proof of a return on that investment."],
+      "takeaway": "The scale of commitment is clear. The return still has to be earned."
+    },
+    {
+      "id": "cloud-revenue", "type": "line", "variant": "spotlight", "sourceSlide": 7, "chapter": "02 / Follow the investment",
+      "eyebrow": "IDEA 05 / DEMAND, PART I", "title": "Demand is moving|into production.",
+      "description": "Microsoft Cloud revenue has more than doubled.",
+      "metric": "$63.9B", "metricLabel": "Microsoft Cloud revenue in Q1 FY27",
+      "insightTitle": "Scale what is already working.", "insight": "Move the conversation from the number of pilots to the outcomes in production.",
+      "chart": { "title": "Microsoft Cloud revenue", "subtitle": "USD billions per quarter · fiscal quarters", "xDomain": [0,13], "yDomain": [0,80], "xTicks": [[0,"Q4 FY23"],[4,"Q4 FY24"],[8,"Q4 FY25"],[12,"Q4 FY26"],[13,"Q1 FY27"]], "yTicks": [[0,"$0"],[20,"$20B"],[40,"$40B"],[60,"$60B"],[80,"$80B"]], "area": true, "series": [{ "name": "Microsoft Cloud", "style": "accent", "points": [[0,30.3,"Q4 FY23 · $30.3B"],[1,31.8,"Q1 FY24 · $31.8B"],[2,33.7,"Q2 FY24 · $33.7B"],[3,35.1,"Q3 FY24 · $35.1B"],[4,36.8,"Q4 FY24 · $36.8B"],[5,38.9,"Q1 FY25 · $38.9B"],[6,40.9,"Q2 FY25 · $40.9B"],[7,42.4,"Q3 FY25 · $42.4B"],[8,46.7,"Q4 FY25 · $46.7B"],[9,49.1,"Q1 FY26 · $49.1B"],[10,51.5,"Q2 FY26 · $51.5B"],[11,54.5,"Q3 FY26 · $54.5B"],[12,59.3,"Q4 FY26 · $59.3B"],[13,63.9,"Q1 FY27 · $63.9B"]], "endLabel": "$63.9B" }] },
+      "source": "Microsoft Investor Relations · quarterly metrics FY24 Q4, FY25 Q4, FY27 Q1, as cited in the deck.",
+      "caveat": "Cloud revenue is broader than AI revenue. Intermediate values recovered from the source chart.",
+      "notes": ["This is the first of two visuals on source slide 7. It shows Microsoft Cloud quarterly revenue, not revenue attributable only to AI.", "The source endpoints are $30.3 billion and $63.9 billion. Intermediate plotted values have been recovered from the original chart geometry and rounded to one decimal."],
+      "takeaway": "Growing demand is a signal to scale proven outcomes, not to skip evaluation."
+    },
+    {
+      "id": "azure-growth", "type": "line", "sourceSlide": 7, "chapter": "02 / Follow the investment",
+      "eyebrow": "IDEA 05 / DEMAND, PART II", "title": "Bigger.|And accelerating.",
+      "description": "A separate lens: Azure's year-on-year growth rate.",
+      "metric": "48%", "metricLabel": "Azure year-on-year growth in Q1 FY27",
+      "insightTitle": "Growth on a growing base.", "insight": "Read the revenue curve and the growth curve together, without conflating them.",
+      "chart": { "title": "Azure revenue growth", "subtitle": "Year-on-year percentage · fiscal quarters", "xDomain": [0,12], "yDomain": [0,60], "xTicks": [[0,"Q1 FY24"],[4,"Q1 FY25"],[8,"Q1 FY26"],[12,"Q1 FY27"]], "yTicks": [[0,"0%"],[15,"15%"],[30,"30%"],[45,"45%"],[60,"60%"]], "area": true, "series": [{ "name": "Azure growth", "style": "accent", "points": [[0,31,"Q1 FY24 · 31%"],[1,33,"Q2 FY24 · 33%"],[2,35,"Q3 FY24 · 35%"],[3,34,"Q4 FY24 · 34%"],[4,33,"Q1 FY25 · 33%"],[5,31,"Q2 FY25 · 31%"],[6,33,"Q3 FY25 · 33%"],[7,39,"Q4 FY25 · 39%"],[8,40,"Q1 FY26 · 40%"],[9,39,"Q2 FY26 · 39%"],[10,40,"Q3 FY26 · 40%"],[11,42,"Q4 FY26 · 42%"],[12,48,"Q1 FY27 · 48%"]], "endLabel": "48%" }] },
+      "source": "Microsoft Investor Relations; CNBC for restated FY24 Q1-Q3 Azure metrics, as cited in the deck.",
+      "caveat": "Year-on-year Azure growth, not Microsoft Cloud growth. Source chart transcription; not independently verified.",
+      "notes": ["This is the second visual on source slide 7, separated to make the distinction legible. Azure year-on-year growth and Microsoft Cloud absolute revenue are different measures.", "The curve is not uninterrupted acceleration: it dips and recovers. The source shows a rise to 48% at the final point."],
+      "takeaway": "A stronger demand signal. Not a substitute for your own business case."
+    },
+    {
+      "id": "billion-users", "type": "line", "variant": "spotlight", "sourceSlide": 8, "chapter": "03 / From novelty to normal",
+      "eyebrow": "IDEA 06 / CONSUMER ADOPTION", "title": "One billion people.|Every week.",
+      "description": "A consumer habit is becoming a workplace expectation.",
+      "metric": "1B+", "metricLabel": "ChatGPT weekly active users in the source deck",
+      "insightTitle": "Your people are already here.", "insight": "Give them a governed way to bring that capability into work.",
+      "chart": { "title": "ChatGPT weekly active users", "subtitle": "Millions · as reported by OpenAI", "xDomain": [2023.8,2026.7], "yDomain": [0,1100], "xTicks": [[2024,"2024"],[2025,"2025"],[2026,"2026"]], "yTicks": [[0,"0"],[250,"250M"],[500,"500M"],[750,"750M"],[1000,"1B"]], "area": true, "series": [{ "name": "Weekly active users", "style": "accent", "points": [[2023.83,100,"Nov 2023 · 100M"],[2024.58,200,"Aug 2024 · 200M"],[2024.92,300,"Dec 2024 · 300M"],[2025.08,400,"Feb 2025 · 400M"],[2025.17,500,"Mar 2025 · 500M"],[2025.5,700,"Jul 2025 · 700M"],[2025.75,800,"Oct 2025 · 800M"],[2026.08,900,"Feb 2026 · 900M"],[2026.58,1000,"Aug 2026 · 1B+"]], "endLabel": "1B+" }] },
+      "source": "OpenAI statements via TechCrunch (Feb 2026) and press (Aug 2026); NBER w34255; Reuters / UBS.",
+      "caveat": "Weekly active users; do not confuse with the 100M monthly-user launch milestone.",
+      "notes": ["The line shows weekly active users, as presented in the supplied deck. The commonly quoted 100 million users in two months is a different launch-era monthly-user measure and is deliberately not plotted as a weekly data point.", "The organizational opportunity is not just access. It is approved tools, clear boundaries, training and a way to turn individual experimentation into repeatable value."],
+      "takeaway": "Make governed work AI at least as usable as personal AI."
+    },
+    {
+      "id": "daily-habit", "type": "line", "variant": "wide", "sourceSlide": 9, "chapter": "03 / From novelty to normal",
+      "eyebrow": "IDEA 07 / THE HABIT CURVE", "title": "A licence is not a habit.|Daily use is.",
+      "description": "Adoption gets deeper, not just wider.",
+      "metric": "52%", "metricLabel": "of US employees report some AI use",
+      "insightTitle": "Measure active behaviour, not provisioned seats.", "insight": "Invest in managers and champions who turn occasional use into confident habits.",
+      "chart": { "title": "US employees using AI at work", "subtitle": "Percentage of employees · frequency groups overlap, they are not additive", "xDomain": [2023,2026.5], "yDomain": [0,60], "xTicks": [[2023,"2023"],[2025.83,"Nov 2025"],[2026.42,"May 2026"]], "yTicks": [[0,"0%"],[15,"15%"],[30,"30%"],[45,"45%"],[60,"60%"]], "series": [{ "name": "Any use", "style": "accent", "points": [[2023,21,"2023 · 21%"],[2025.83,46,"Nov 2025 · 46%"],[2026.08,50,"Early 2026 · 50%"],[2026.42,52,"May 2026 · 52%"]], "endLabel": "Any use 52%" },{ "name": "Weekly or more", "style": "text", "points": [[2025.83,25,"Nov 2025 · about 25%"],[2026.08,28,"Early 2026 · 28%"],[2026.42,30,"May 2026 · 30%"]], "endLabel": "Weekly+ 30%" },{ "name": "Daily", "style": "soft", "dashed": true, "points": [[2025.83,12,"Nov 2025 · 12%"],[2026.08,13,"Early 2026 · 13%"],[2026.42,15,"May 2026 · 15%"]], "endLabel": "Daily 15%" }] },
+      "source": "Gallup · AI in the Workplace indicator (2023-May 2026); Federal Reserve Bank of St. Louis (Mar 2026).",
+      "caveat": "US employee survey, not enterprise adoption. Daily users are included in weekly and any-use groups.",
+      "notes": ["The nested frequency groups should never be stacked or summed. Fifteen percent daily users sit within thirty percent weekly-or-more users, which sit within fifty-two percent any-use employees.", "This is why a line comparison is more honest than a stacked area. The strategic question is what helps occasional use become a useful, safe working habit."],
+      "takeaway": "The useful KPI is sustained, outcome-producing use."
+    },
+    {
+      "id": "business-chasm", "type": "line", "sourceSlide": 10, "chapter": "03 / From novelty to normal",
+      "eyebrow": "IDEA 08 / ENTERPRISE ADOPTION", "title": "The early majority|is arriving.",
+      "description": "But a changing survey question matters to the story.",
+      "metric": "19.8%", "metricLabel": "US firms using AI, under the broader question",
+      "insightTitle": "Move beyond proving it works.", "insight": "Build the capabilities that make it work better for your business.",
+      "chart": { "title": "US firms reporting AI use", "subtitle": "Census BTOS · percent of firms · last two weeks", "xDomain": [2023.65,2026.5], "yDomain": [0,25], "xTicks": [[2024,"2024"],[2025,"2025"],[2026,"2026"]], "yTicks": [[0,"0%"],[5,"5%"],[10,"10%"],[15,"15%"],[20,"20%"],[25,"25%"]], "breakAt": 2025.83, "breakLabel": "Nov 2025: broader question", "series": [{ "name": "Original definition", "style": "soft", "points": [[2023.67,3.7,"2023 · 3.7%"],[2024.08,5.4,"2024 · 5.4%"],[2025.58,9.7,"2025 · 9.7%; source placement before Nov break"]], "endLabel": "9.7%" },{ "name": "Broader business-function definition", "style": "accent", "points": [[2026.33,19.8,"2026 · 19.8%; broader question"]], "breakConnection": true, "endLabel": "19.8%" }] },
+      "source": "US Census Bureau · BTOS, CES-WP-24-16R; Census story (May 2026); Anthropic Economic Index.",
+      "caveat": "Nov 2025 question broadened to any business function. The break is intentional: not a clean like-for-like growth series.",
+      "notes": ["The original source places its 9.7% point before the November 2025 question change, then 19.8% after it. This adaptation deliberately does not connect those points across the definition break.", "The source's rhetorical increase from one in thirty to one in five mixes survey definitions. We preserve the reported values but make the comparability limit visible rather than implying an uninterrupted adoption curve."],
+      "takeaway": "Enterprise use is spreading. Compare definitions before comparing growth."
+    },
+    {
+      "id": "nordic-lead", "type": "race", "variant": "wide", "sourceSlide": 11, "chapter": "03 / From novelty to normal",
+      "eyebrow": "IDEA 09 / THE NORDIC LEAD", "title": "A head start.|Not a finish line.",
+      "description": "Nordic enterprises are setting Europe's adoption pace.",
+      "metric": "42%", "metricLabel": "of Danish enterprises use AI",
+      "insightTitle": "Convert the regional lead into scaled value.", "insight": "A lead in adoption only matters if it changes business outcomes.",
+      "chart": { "title": "Enterprises using AI technologies", "subtitle": "Percent of enterprises with 10+ employees · timeline trails + 2025 ranking", "xDomain": [2021,2025], "yDomain": [0,50], "xTicks": [[2021,"2021"],[2023,"2023"],[2024,"2024"],[2025,"2025"]], "yTicks": [[0,"0%"],[25,"25%"],[50,"50%"]], "series": [{ "name": "Denmark", "style": "accent", "points": [[2023,15.2,"2023 · 15.2% (derived in source)"],[2024,27.6,"2024 · 27.6%"],[2025,42,"2025 · 42.0%"]], "endLabel": "42.0%" },{ "name": "Finland", "style": "text", "points": [[2024,24.4,"2024 · 24.4%"],[2025,37.8,"2025 · 37.8%"]], "endLabel": "37.8%" },{ "name": "Sweden", "style": "soft", "points": [[2023,10.4,"2023 · 10.4% (derived in source)"],[2024,25.1,"2024 · 25.1%"],[2025,35,"2025 · 35.0%"]], "endLabel": "35.0%" },{ "name": "EU", "style": "muted", "dashed": true, "points": [[2021,7.7,"2021 · 7.7%"],[2023,8.1,"2023 · 8.1%"],[2024,13.5,"2024 · 13.5%"],[2025,20,"2025 · 20.0%"]], "endLabel": "20.0%" }] },
+      "source": "Eurostat · Use of AI in enterprises (Jan 2025 and Dec 2025 releases).",
+      "caveat": "Enterprises with 10+ employees. Denmark / Sweden 2023 values derived in the source; no missing years invented.",
+      "notes": ["These are enterprise adoption percentages, not population use. The underlying population is businesses with at least ten employees.", "Denmark and Sweden's 2023 values were derived in the source from reported year-on-year changes. Finland's trail begins in 2024 because the supplied graph does not plot an earlier observation."],
+      "takeaway": "Turn adoption advantage into operating advantage."
+    },
+    {
+      "id": "diffusion-race", "type": "slope", "variant": "wide", "sourceSlide": 12, "chapter": "03 / From novelty to normal",
+      "eyebrow": "IDEA 10 / DIFFUSION", "title": "Value follows diffusion.|Not just invention.",
+      "description": "The advantage goes to those who spread capability.",
+      "metric": "18.8%", "metricLabel": "global working-age population using generative AI",
+      "insightTitle": "Make broad, skilled adoption a strategy.", "insight": "Access is the beginning. Confident use is the multiplier.",
+      "chart": { "title": "Working-age population using generative AI", "subtitle": "Percent of people aged 15-64 · reporting periods, not equally spaced dates", "xDomain": [0,3], "yDomain": [0,80], "xTicks": [[0,"H1 2025"],[1,"H2 2025"],[2,"Q1 2026"],[3,"Q2 2026"]], "yTicks": [[0,"0%"],[20,"20%"],[40,"40%"],[60,"60%"],[80,"80%"]], "series": [{ "name": "UAE", "style": "text", "points": [[0,59.4],[1,64],[2,70.1],[3,73.3,"Q2 2026 · 73.3%"]], "endLabel": "UAE 73.3%" },{ "name": "Norway", "style": "accent", "points": [[0,45.3],[1,46.4],[2,48.6],[3,49.4,"Q2 2026 · 49.4%"]], "endLabel": "Norway 49.4%" },{ "name": "Sweden", "style": "soft", "points": [[1,33.3],[2,36.1],[3,37.3,"Q2 2026 · 37.3%"]], "endLabel": "Sweden 37.3%" },{ "name": "US", "style": "faint", "dashed": true, "points": [[1,28.3],[2,31.3],[3,33,"Q2 2026 · 33.0%"]], "endLabel": "US 33.0%" },{ "name": "World", "style": "muted", "dashed": true, "points": [[0,15.1],[1,16.3],[2,17.8],[3,18.8,"Q2 2026 · 18.8%"]], "endLabel": "World 18.8%" }] },
+      "source": "Microsoft AI Economy Institute · AI Diffusion Reports (Jan, May, Sep 2026).",
+      "caveat": "Population adoption estimates, not enterprise penetration. Missing country-period values are not backfilled.",
+      "notes": ["The chart switches from enterprise adoption to working-age population diffusion. These measures are deliberately kept separate.", "Sweden and the US begin at H2 2025 because no H1 observation is shown for them in the source graph. The periods have unequal duration, so this is a period comparison, not a growth-rate calculation."],
+      "takeaway": "Spread capability widely enough for the economy of work to change."
+    },
+    {
+      "id": "delegation", "type": "line", "variant": "wide", "sourceSlide": 13, "chapter": "04 / Redesign the work",
+      "eyebrow": "IDEA 11 / FROM HELPING TO DOING", "title": "The crossing point|is not the whole story.",
+      "description": "Delegation rises. Collaboration remains essential.",
+      "metric": "77%", "metricLabel": "automation in business API use, Aug 2025",
+      "insightTitle": "Redesign processes, not just individual tasks.", "insight": "Keep judgement and oversight central as delegation grows.",
+      "chart": { "title": "How people use Claude", "subtitle": "Percent of Claude.ai conversations · separate API statistic uses a different population", "xDomain": [0,2], "yDomain": [0,70], "xTicks": [[0,"Dec 2024-Jan 2025"],[1,"Aug 2025"],[2,"Nov 2025"]], "yTicks": [[0,"0%"],[20,"20%"],[40,"40%"],[60,"60%"]], "series": [{ "name": "Automation", "style": "accent", "points": [[0,41,"41%"],[1,49,"49%"],[2,45,"45%"]], "endLabel": "Automation 45%" },{ "name": "Augmentation", "style": "text", "points": [[0,56,"56%"],[1,47,"47%"],[2,52,"52%"]], "endLabel": "Augmentation 52%" },{ "name": "Directive", "style": "soft", "dashed": true, "points": [[0,27,"27%"],[1,39,"39%"],[2,32,"32%"]], "endLabel": "Directive 32%" }] },
+      "source": "Anthropic Economic Index · Feb 2025, Sep 2025, Jan 2026 reports.",
+      "caveat": "Automation overtook augmentation in Aug 2025, but not Nov 2025. Directive is a subtype, not an additive category.",
+      "notes": ["The important nuance is visible in the final data point: augmentation returns to 52%, versus 45% automation, in November. The deck's crossing-point story should not be presented as an irreversible takeover.", "The 77% business API figure is a separate population from Claude.ai conversations. Directive usage is a subtype and must not be added to the other lines."],
+      "takeaway": "Design for both collaboration and bounded delegation."
+    },
+    {
+      "id": "beyond-it", "type": "line", "sourceSlide": 14, "chapter": "04 / Redesign the work",
+      "eyebrow": "IDEA 12 / A BUSINESS-WIDE CAPABILITY", "title": "AI is leaving|the IT department.",
+      "description": "Coding started the wave. Other functions are joining it.",
+      "metric": "15%", "metricLabel": "education's share of Claude.ai tasks in the source's latest education observation",
+      "insightTitle": "Put an owner in every function.", "insight": "Look for value in service, sales, finance, HR and the work between them.",
+      "chart": { "title": "Share of Claude.ai tasks by occupation group", "subtitle": "Percent of conversations · each line ends at its last supplied observation", "xDomain": [2025,2026.3], "yDomain": [0,45], "xTicks": [[2025,"Jan 2025"],[2025.58,"Aug 2025"],[2026.17,"Mar 2026"]], "yTicks": [[0,"0%"],[15,"15%"],[30,"30%"],[45,"45%"]], "series": [{ "name": "Computer & math", "style": "text", "points": [[2025.08,37.2],[2025.25,40],[2025.67,36],[2025.92,34],[2026.17,35,"35%"]], "endLabel": "Computer & math 35%" },{ "name": "Education", "style": "accent", "points": [[2025.08,9,"9%"],[2025.67,12,"12%"],[2025.92,15,"15%"]], "endLabel": "Education 15%" },{ "name": "Management", "style": "soft", "dashed": true, "points": [[2025.08,3,"3%"],[2026.17,5,"5%"]], "endLabel": "Management 5%" }] },
+      "source": "Anthropic Economic Index · Feb, Mar, Sep 2025; Jan, Mar 2026. BCG Applied AI Index 2026 also cited by the deck.",
+      "caveat": "Share of observed Claude.ai conversations, not market share or total spending. Observation dates differ by series.",
+      "notes": ["Computer and mathematical tasks remain the largest of the shown groups, while education and management gain share.", "The education series stops before the others in the original visual. It is not extrapolated. The source's separate statement about spending outside enterprise IT is not encoded as conversation-share data."],
+      "takeaway": "AI ownership belongs across the business, not in one department."
+    },
+    {
+      "id": "github-frontier", "type": "platform", "variant": "spotlight", "sourceSlide": 15, "chapter": "04 / Redesign the work",
+      "eyebrow": "IDEA 13 / THE FRONTIER, PART I", "title": "The developer frontier|is compounding.",
+      "description": "Start where the working habit is already changing.",
+      "metric": "50M", "metricLabel": "GitHub Copilot users reported in the source",
+      "insightTitle": "From a tool to a working system.", "insight": "Connect individual assistance to repeatable engineering outcomes.",
+      "chart": { "title": "GitHub Copilot users", "subtitle": "Millions · source earnings-call disclosures · zero baseline", "xDomain": [0,6], "yDomain": [0,60], "xTicks": [[0,"2025"],[5,"2026"]], "yTicks": [[0,"0"],[15,"15M"],[30,"30M"],[45,"45M"],[60,"60M"]], "area": true, "series": [{ "name": "GitHub Copilot users", "style": "accent", "points": [[0,15,"2025 · 15M"],[1,20,"2025 · 20M"],[2,26,"2025 · 26M"],[5,50,"2026 · 50M"]], "endLabel": "50M" }] },
+      "source": "Microsoft earnings calls FY25 Q3-FY27 Q1 (Apr 2025-Oct 2026); some interim figures via third-party transcripts.",
+      "caveat": "Users, not paid seats. Source point spacing retained; exact interim dates not specified in this adaptation.",
+      "notes": ["The source's first platform panel uses GitHub Copilot users. It grows from fifteen to fifty million across the shown disclosures.", "Do not compare this absolute number directly with paid seats or customer organizations in the next panels. Each is a different population with its own zero-based scale."],
+      "takeaway": "Move from adoption volume to engineering impact."
+    },
+    {
+      "id": "copilot-frontier", "type": "bars", "sourceSlide": 15, "chapter": "04 / Redesign the work",
+      "eyebrow": "IDEA 13 / THE FRONTIER, PART II", "title": "The knowledge-work|frontier is scaling.",
+      "description": "Paid seats tell a different part of the adoption story.",
+      "metric": "2×", "metricLabel": "increase from 15M to 30M paid seats",
+      "insightTitle": "Seats create access. Habits create value.", "insight": "Tie rollout to role-specific workflows, evaluation and measurable outcomes.",
+      "chart": { "title": "Microsoft 365 Copilot paid seats", "subtitle": "Millions · source earnings-call disclosures · zero baseline", "xDomain": [-0.5,2.5], "yDomain": [0,40], "xTicks": [[0,"Disclosure 1"],[1,"Disclosure 2"],[2,"Disclosure 3"]], "yTicks": [[0,"0"],[10,"10M"],[20,"20M"],[30,"30M"],[40,"40M"]], "series": [{ "name": "Paid seats", "style": "accent", "points": [[0,15,"15M paid seats"],[1,20,"20M paid seats"],[2,30,"30M paid seats"]], "endLabel": "30M" }] },
+      "source": "Microsoft earnings calls FY25 Q3-FY27 Q1 (Apr 2025-Oct 2026), as cited in the source deck.",
+      "caveat": "Paid seats, not active users. Disclosure order retained; the source panel labels 2025-2026.",
+      "notes": ["This is the source's second platform panel, separated from users and customer counts. The source reports paid seats rising from fifteen to thirty million.", "Paid seats are an access measure. They should not be described as daily active usage, realized productivity or a verified business return."],
+      "takeaway": "Turn access into a habit, and the habit into a measurable outcome."
+    },
+    {
+      "id": "foundry-frontier", "type": "platform", "variant": "spotlight", "sourceSlide": 15, "chapter": "04 / Redesign the work",
+      "eyebrow": "IDEA 13 / THE FRONTIER, PART III", "title": "The builder frontier|is widening.",
+      "description": "More organizations are building on the platform.",
+      "metric": "120K", "metricLabel": "Foundry customer organizations in the source",
+      "insightTitle": "Connect copilots, agents and data.", "insight": "The destination is one governed operating model, not disconnected experiments.",
+      "chart": { "title": "Foundry customers", "subtitle": "Thousands · source earnings-call disclosures · zero baseline", "xDomain": [0,6.5], "yDomain": [0,150], "xTicks": [[0,"2025"],[5,"2026"]], "yTicks": [[0,"0"],[50,"50K"],[100,"100K"],[150,"150K"]], "area": true, "series": [{ "name": "Foundry customers", "style": "accent", "points": [[0,70,"70K customers"],[5,100,"100K customers"],[6,120,"120K customers"]], "endLabel": "120K" }] },
+      "source": "Microsoft earnings calls FY25 Q3-FY27 Q1 (Apr 2025-Oct 2026), as cited in the source deck.",
+      "caveat": "Customer organizations, not users or seats. Platform panels use different units and independent scales.",
+      "notes": ["This is the source's third platform panel, measured in customer organizations. Seventy, one hundred and one hundred twenty thousand are the three plotted disclosures.", "The broader Frontier Firm story connects platforms to data, governance and redesigned workflows. Platform growth alone does not demonstrate that every customer has achieved that operating model."],
+      "takeaway": "Build an operating capability, not a collection of pilots."
+    },
+    {
+      "id": "close", "type": "close", "sourceSlide": 16, "chapter": "The leadership question",
+      "eyebrow": "THE CURVES ARE MOVING",
+      "title": "Where will you sit|on the curve?",
+      "description": "Capability up. Cost down. Adoption up.\nThe next move is an organizational choice.",
+      "notes": ["Every trend in the source deck points to a larger set of possibilities, but no curve makes the leadership decision for us.", "Choose one valuable workflow, set a measurable outcome, establish boundaries and ownership, and build the organizational muscle to learn from the result."],
+      "takeaway": "Start with one outcome. Build for the curve."
+    },
+    {
+      "id": "references", "type": "references", "sourceSlide": 17, "chapter": "The evidence",
+      "eyebrow": "BEHIND EVERY LINE", "title": "A story with|its sources attached.",
+      "description": "Original references from the supplied deck. Figures are source-deck claims, not independently verified live statistics.",
+      "notes": ["These are the references provided by the author of the source deck. Refer to the scene-specific source and caveat for the population, metric, timeframe and comparability limits.", "Smooth curves are visual guides between source observations. They are not forecasts. Guidance is explicitly dashed and survey breaks are not joined."],
+      "takeaway": "Keep the evidence and its limits in the story."
+    }
+  ],
+  "references": [
+    { "label": "METR / Time Horizon 1.1", "detail": "Capability", "url": "https://metr.org/blog/2026-01-29-time-horizon-1-1/" },
+    { "label": "Epoch AI / Inference price trends", "detail": "Economics", "url": "https://epoch.ai/data-insights/llm-inference-price-trends" },
+    { "label": "CRE42 / Data-center capital spending", "detail": "Infrastructure", "url": "https://cre42.com/data-centers-capital-spending.html" },
+    { "label": "GIGAZINE / AI and megaprojects", "detail": "Infrastructure", "url": "https://gigazine.net/gsc_news/en/20260510-ai-datacenter-megaprojects/" },
+    { "label": "Microsoft Investor Relations", "detail": "Demand & platforms", "url": "https://www.microsoft.com/en-us/investor" },
+    { "label": "TechCrunch / ChatGPT weekly users", "detail": "Consumer adoption", "url": "https://techcrunch.com/2026/02/27/chatgpt-reaches-900m-weekly-active-users/" },
+    { "label": "Gallup / AI in the Workplace", "detail": "Workplace habits", "url": "https://www.gallup.com/699797/indicator-artificial-intelligence.aspx" },
+    { "label": "US Census / AI use by businesses", "detail": "Enterprise adoption", "url": "https://www.census.gov/library/stories/2026/05/ai-use-businesses.html" },
+    { "label": "Eurostat / AI use in enterprises", "detail": "Nordic adoption", "url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20251211-2" },
+    { "label": "Microsoft / AI Diffusion Report Q2 2026", "detail": "Population diffusion", "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/09/Microsoft-AI-Diffusion-Report-2026-Q2.pdf" },
+    { "label": "Anthropic / Economic Index, Sep 2025", "detail": "Delegation & work", "url": "https://www.anthropic.com/research/anthropic-economic-index-september-2025-report" },
+    { "label": "Anthropic / Economic Index, Jan 2026", "detail": "Delegation & work", "url": "https://www.anthropic.com/research/anthropic-economic-index-january-2026-report" },
+    { "label": "St. Louis Fed / Mind the Gap", "detail": "Europe & US", "url": "https://www.stlouisfed.org/on-the-economy/2026/mar/mind-gap-ai-adoption-europe-us" },
+    { "label": "BCG / The Formula for Agentic AI Value", "detail": "Business-wide AI", "url": "https://www.bcg.com/publications/2026/the-formula-for-agentic-ai-value" }
+  ]
+}

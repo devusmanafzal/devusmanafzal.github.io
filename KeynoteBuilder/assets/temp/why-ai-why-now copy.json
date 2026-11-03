@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "title": "Why AI. Why now.",
+    "presenter": "Usman Afzal",
+    "role": "Sr Cloud Solution Architect, Microsoft",
+    "edition": "EXECUTIVE KEYNOTE / OCTOBER 2026",
+    "dataNote": "Adapted from Why AI, Why Now - Executive Keynote Ideas. Figures and links are transcribed from the supplied deck, not independently reverified. Forecasts, survey populations and study outcomes are distinguished."
+  },
+  "chapters": [
+    {"number":"01","title":"A different wave","subtitle":"Capability + economics","sceneIds":["task-horizon","cheap-intelligence"]},
+    {"number":"02","title":"The timing","subtitle":"Adoption + investment","sceneIds":["adoption","spending","nordic-lead"]},
+    {"number":"03","title":"The value gap","subtitle":"Usage is not impact","sceneIds":["value-gap","leaders","seventy-percent"]},
+    {"number":"04","title":"Beyond productivity","subtitle":"Evidence + growth + agents","sceneIds":["productivity","growth","agents"]},
+    {"number":"05","title":"The frontier firm","subtitle":"Capacity + new operating models","sceneIds":["capacity","frontier","operating-model","platform-scale","customer-zero"]},
+    {"number":"06","title":"Lead the change","subtitle":"Skills + foundations","sceneIds":["jobs","foundations"]}
+  ],
+  "scenes": [
+    {
+      "id":"opening","type":"why-hero","chapter":"Opening","sourceSlide":1,
+      "eyebrow":"SIX ACTS / SIXTEEN EXECUTIVE IDEAS","title":"Why AI.|Why now.",
+      "description":"The technology is moving. The real question is how we turn possibility into value.",
+      "visual":{"center":"VALUE","orbitLabels":["Capability","Economics","Adoption","Work","People","Leadership"],"action":"Explore the story","edition":"16 IDEAS / 24 SCENES"},
+      "notes":["Open with a leadership question, not a product demo: what would we redesign if intelligence were no longer the scarce resource?","This adaptation preserves the source deck's 16 ideas and six-act structure. Data is as supplied in the October 2026 deck, not independently verified."],
+      "takeaway":"Move from using AI to redesigning work."
+    },
+    {
+      "id":"story-map","type":"why-map","chapter":"The story","sourceSlide":2,
+      "eyebrow":"THE EXECUTIVE ARC","title":"Six acts.|One leadership choice.",
+      "description":"Follow the whole argument, or select an act to jump into the conversation.",
+      "visual":{},
+      "notes":["The first two acts explain why this wave is different and why timing matters. The middle acts separate usage from value and productivity from growth.","The final acts turn the frontier-firm idea into an operating model, then focus leadership on skills, data and governance."],
+      "takeaway":"Capability creates possibility. Organization turns it into value."
+    },
+    {
+      "id":"task-horizon","type":"horizon","chapter":"01 / A different wave","sourceSlide":3,
+      "eyebrow":"IDEA 01 / CAPABILITY","title":"From a few minutes|to a meaningful workflow.",
+      "description":"The benchmark task horizon is stretching. The unit of ambition can stretch with it.",
+      "visual":{"unit":"Task duration in minutes / 50% success","max":360,"items":[
+        {"label":"GPT-4","date":"MAR 2023","value":3.5,"display":"3.5 min"},
+        {"label":"Claude 3.7","date":"FEB 2025","value":60,"display":"60 min"},
+        {"label":"o3","date":"APR 2025","value":121,"display":"121 min"},
+        {"label":"GPT-5","date":"AUG 2025","value":214,"display":"214 min"},
+        {"label":"Opus 4.5","date":"NOV 2025","value":320,"display":"320 min"}]},
+      "metric":"89 days","metricLabel":"source-reported doubling time since 2024",
+      "insightTitle":"Scope the workflow.","insight":"Ask which multi-step outcome is becoming feasible, not which isolated task can be automated.",
+      "source":"METR, Jan 2026 / source-deck task-horizon series",
+      "caveat":"50% benchmark success is not reliable production autonomy. Milestones are evenly spaced categories, not a time axis.",
+      "notes":["The chart shows the duration of tasks a model can complete at a 50% success threshold: 3.5, 60, 121, 214 and 320 minutes at the five stated milestones.","The deck reports an 89-day doubling time since 2024 versus roughly seven months historically. Its separate Terminal-Bench comparison, 20% to 77.3%, measures something different and is not placed on this axis.","Treat this as a signal to revisit workflow scope. Production systems still need evaluation, supervision, access controls and failure handling."],
+      "takeaway":"Redesign workflows as capability improves; do not confuse a benchmark with a service-level guarantee."
+    },
+    {
+      "id":"cheap-intelligence","type":"price","chapter":"01 / A different wave","sourceSlide":4,
+      "eyebrow":"IDEA 02 / ECONOMICS","title":"When intelligence gets cheaper,|the opportunity set changes.",
+      "description":"A GPT-3.5-level capability moved from a premium input toward a commodity input.",
+      "visual":{"unit":"US dollars per million tokens","items":[{"label":"NOV 2022","value":20,"display":"$20"},{"label":"OCT 2024","value":0.07,"display":"$0.07"}],"annotation":"Same capability threshold. Very different economics."},
+      "metric":"~280×","metricLabel":"cheaper, as summarized in the source",
+      "insightTitle":"Reopen the rejected use cases.","insight":"A use case that failed the business case yesterday may deserve another look today.",
+      "source":"Stanford AI Index 2025",
+      "caveat":"The stated dates span about 23 months. Inference price is not the total cost of an AI solution.",
+      "notes":["The source compares $20 per million tokens in November 2022 with $0.07 in October 2024 at a GPT-3.5-level capability threshold.","The deck calls this roughly 280-fold cheaper. The values imply about 286-fold; the visual retains the source's approximate headline. Its '18 months' wording is not repeated because the stated dates span roughly 23 months.","The source also reports a 142-fold smaller model for the same MMLU level, hardware cost declining 30% annually and energy efficiency improving 40%. These are different measures, not extra reductions to multiply together."],
+      "takeaway":"Recalculate economics, including integration, governance, evaluation and operating costs."
+    },
+    {
+      "id":"adoption","type":"adoption","chapter":"02 / The timing","sourceSlide":5,
+      "eyebrow":"IDEA 03 / ADOPTION","title":"People did not wait|for the enterprise roadmap.",
+      "description":"Early US adult adoption of generative AI outpaced these earlier technology comparisons.",
+      "visual":{"unit":"US adults adopting / early adoption comparison","max":100,"items":[{"label":"Generative AI","value":39.4,"display":"39.4%","period":"After 2 years"},{"label":"Internet","value":20,"display":"~20%","period":"After 2 years"},{"label":"Personal computer","value":20,"display":"~20%","period":"After 3 years"}]},
+      "metric":"39.4%","metricLabel":"US adult GenAI adoption after two years",
+      "insightTitle":"Make adoption governable.","insight":"Meet employees where they already are, with approved tools and a clear way to learn.",
+      "source":"Federal Reserve Bank of St. Louis, Sep 2024",
+      "caveat":"Different exposure periods: PC is at three years. This is not a global-population comparison.",
+      "notes":["The relevant comparison is 39.4% for generative AI after two years, roughly 20% for the internet after two years, and roughly 20% for PCs after three years.","The source also mentions ChatGPT reaching 100 million users in two months, 900 million weekly users in February 2026 and a separate global adoption estimate. Those figures have different populations, periods and definitions and are not combined.","The leadership response is not to equate usage with value. It is to provide a safe route from individual experimentation to useful, measured work."],
+      "takeaway":"Govern workforce adoption without suppressing useful experimentation."
+    },
+    {
+      "id":"spending","type":"spending","chapter":"02 / The timing","sourceSlide":6,
+      "eyebrow":"IDEA 04 / CAPITAL","title":"Rent the frontier.|Own the differentiation.",
+      "description":"The source's worldwide AI spending series signals a large infrastructure and market build-out.",
+      "visual":{"unit":"Worldwide AI spending / US$ trillions","max":4,"items":[{"label":"2025","value":1.79,"display":"$1.79T","forecast":false},{"label":"2026 F","value":2.67,"display":"$2.67T","forecast":true},{"label":"2027 F","value":3.64,"display":"$3.64T","forecast":true}]},
+      "metric":"$2.67T","metricLabel":"Gartner's 2026 worldwide spending forecast",
+      "insightTitle":"Invest where you are different.","insight":"Use shared frontier infrastructure. Build advantage in your data, workflows, people and customer experience.",
+      "source":"Gartner forecast series, Sep 16 2026",
+      "caveat":"2026 and 2027 are forecasts, not completed spending. Spending is not a measure of realized business value.",
+      "notes":["The source series is $1.79 trillion in 2025, $2.67 trillion in 2026 and $3.64 trillion in 2027. Forecast years are outlined and explicitly marked F.","Separate source figures for corporate investment, $581.7 billion in 2025, and private investment, $344.7 billion, are different categories. They are not added to worldwide spending here.","The leadership question is where your organization should own differentiation rather than replicate a frontier infrastructure race."],
+      "takeaway":"Rent scale; invest in the parts of the business that make you distinctive."
+    },
+    {
+      "id":"nordic-lead","type":"nordic","chapter":"02 / The timing","sourceSlide":7,
+      "eyebrow":"IDEA 05 / THE NORDIC ADVANTAGE","title":"A regional head start|is not a permanent lead.",
+      "description":"Nordic enterprise AI adoption is ahead of the EU benchmark. Now convert breadth into depth.",
+      "visual":{"unit":"Enterprises with 10+ employees using AI / 2025","max":50,"benchmark":20,"items":[{"label":"Denmark","value":42,"display":"42.0%"},{"label":"Finland","value":37.8,"display":"37.8%"},{"label":"Sweden","value":35,"display":"35.0%"},{"label":"EU","value":20,"display":"20.0%"}]},
+      "metric":"+22 pp","metricLabel":"Denmark above the EU benchmark",
+      "insightTitle":"Move from access to intensity.","insight":"How much of a valuable workflow has changed, not just how many firms have tried AI?",
+      "source":"Eurostat, Dec 2025",
+      "caveat":"Enterprise adoption is not worker adoption, usage intensity or economic impact.",
+      "notes":["The 2025 enterprise comparison is Denmark 42.0%, Finland 37.8%, Sweden 35.0% and the EU 20.0%. The denominator is enterprises with at least ten employees.","The deck's additional comparisons of US versus European worker adoption and output per hour use other populations and periods. They are not overlaid on this chart.","A 22-percentage-point adoption lead for Denmark is a useful starting position, not evidence that business transformation has already happened."],
+      "takeaway":"Convert a regional adoption advantage into workflow intensity and measured value."
+    },
+    {
+      "id":"value-gap","type":"value-gap","chapter":"03 / The value gap","sourceSlide":8,
+      "eyebrow":"IDEA 06 / THE TENSION","title":"Usage is widespread.|Value is much less so.",
+      "description":"Five survey signals reveal the distance between experimentation and enterprise performance.",
+      "visual":{"unit":"Organization survey snapshots / not sequential conversion stages","max":100,"items":[{"label":"Regular AI use","value":90,"display":"~90%"},{"label":"Individual productivity improved","value":80,"display":"80%"},{"label":"Scaling across the enterprise","value":44,"display":"44%"},{"label":"Some EBIT impact","value":37,"display":"37%"},{"label":"High performers","value":6,"display":"~6%"}]},
+      "metric":"~6%","metricLabel":"classified as high performers",
+      "insightTitle":"Start with three workflows.","insight":"Name the P&L-relevant outcomes, redesign the work, and hold the transformation to a measurable result.",
+      "source":"McKinsey State of AI, Aug 2026 / 1,719 respondents, 97 countries",
+      "caveat":"Survey snapshots are not a measured funnel or a common cohort's conversion rate.",
+      "notes":["The source reports roughly 90% regular use, 80% individual productivity improvement, 44% enterprise scaling, 37% some EBIT impact and around 6% high performers.","These percentages are shown as separate survey indicators. The graphic does not imply that one group progresses sequentially through all five stages.","The source also contrasts workflow redesign among high performers, about 75%, with about 25% among others. This association supports a redesign discussion, not a causal guarantee."],
+      "takeaway":"Do not stop at adoption. Redesign three workflows with accountable economic outcomes."
+    },
+    {
+      "id":"leaders","type":"leaders","chapter":"03 / The value gap","sourceSlide":9,
+      "eyebrow":"IDEA 07 / THE PERFORMANCE DIVIDE","title":"The leaders are not just|using more technology.",
+      "description":"BCG's future-built organizations outperform laggards across three different outcome measures.",
+      "visual":{"unit":"Outcome index / laggards = 1.0×","max":3.2,"benchmark":1,"items":[{"label":"Shareholder return","value":2.3,"display":"2.3×"},{"label":"Revenue growth","value":2.4,"display":"2.4×"},{"label":"EBITDA growth","value":2.8,"display":"2.8×"}]},
+      "metric":"11 months","metricLabel":"source-reported leader time to impact, versus 17",
+      "insightTitle":"The operating model matters.","insight":"The performance story points toward people, processes and organization, not algorithms alone.",
+      "source":"BCG, Sep 30 2026 / 1,330 CxOs",
+      "caveat":"Different outcome metrics are not additive. Observational comparisons do not establish AI causation.",
+      "notes":["BCG's comparison indexes laggards at 1.0. Future-built organizations show 2.3 times shareholder return, 2.4 times revenue growth and 2.8 times EBITDA growth.","These are separate performance comparisons, not a combined return and not proof that installing a tool causes the difference.","The source reports time to impact around eleven months for leaders versus seventeen for others. The next scene isolates the deck's 10/20/70 leadership heuristic."],
+      "takeaway":"Build an operating-model advantage, not just a larger tool portfolio."
+    },
+    {
+      "id":"seventy-percent","type":"allocation","chapter":"03 / The value gap","sourceSlide":9,
+      "eyebrow":"IDEA 07 / THE 10–20–70 HEURISTIC","title":"Fund the part|that changes the work.",
+      "description":"A technology program becomes a business transformation when the organization changes with it.",
+      "visual":{"unit":"BCG's transformation effort heuristic / not measured budget shares","items":[{"label":"Algorithms","value":10,"detail":"Model choices and tuning"},{"label":"Technology + data","value":20,"detail":"Platforms and integration"},{"label":"People + organization + process","value":70,"detail":"Skills, incentives and workflow redesign"}]},
+      "metric":"70%","metricLabel":"people, organization and process",
+      "insightTitle":"This is a change program.","insight":"Assign ownership for redesigned work, not only ownership for deploying the technology.",
+      "source":"BCG / source slide 9",
+      "caveat":"10/20/70 is a leadership heuristic, not a universal or empirically measured budget allocation.",
+      "notes":["The deck's 10/20/70 frame allocates ten parts of transformation attention to algorithms, twenty to technology and data, and seventy to people, organization and process.","This is a heuristic for emphasis. It should not be presented as a measured budget survey or a mandatory spending formula.","Use the large 70% segment to ask who owns skills, incentives, adoption, process controls and new ways of working."],
+      "takeaway":"Fund the people-and-process work with the same seriousness as the platform."
+    },
+    {
+      "id":"productivity","type":"evidence","chapter":"04 / Beyond productivity","sourceSlide":10,
+      "eyebrow":"IDEA 08 / THE EVIDENCE","title":"The gains are real.|The measures are different.",
+      "description":"Controlled studies show meaningful gains in specific settings, not one universal productivity uplift.",
+      "visual":{"unit":"Reported study improvements / heterogeneous outcomes","max":60,"items":[{"label":"Developers","value":55.8,"display":"+55.8%","measure":"Faster task completion","study":"GitHub Copilot experiment / arXiv 2302.06590"},{"label":"Novice support","value":34,"display":"+34%","measure":"Issues resolved / hour","study":"NBER w31161 / QJE 2025"},{"label":"Consultants","value":25.1,"display":"+25.1%","measure":"Task speed","study":"HBS working paper 24-013"},{"label":"Consultants","value":12.2,"display":"+12.2%","measure":"Tasks completed","study":"HBS working paper 24-013"},{"label":"All support","value":14,"display":"+14%","measure":"Issues resolved / hour","study":"NBER w31161 / QJE 2025"}]},
+      "notes":["The five bars intentionally retain their own outcome definitions. Faster task completion, task speed, completed tasks and issues per hour are not interchangeable measures.","The reported 55.8% faster developer task completion is not treated as a 55.8% time reduction or a universal increase in output. The novice and all-agent support figures come from the same support study, not independent additive gains.","The deck also mentions modeled Anthropic productivity estimates and a P&G team experiment. Those are different evidence types and are not averaged into the controlled-study results."],
+      "takeaway":"Use evidence to design your own controlled, workflow-specific evaluation.",
+      "source":"NBER w31161 / HBS 24-013 / arXiv 2302.06590",
+      "caveat":"Different studies, tasks and outcome definitions. Do not average or sum these percentages."
+    },
+    {
+      "id":"growth","type":"growth","chapter":"04 / Beyond productivity","sourceSlide":11,
+      "eyebrow":"IDEA 09 / THE GROWTH QUESTION","title":"Efficiency is the entry point.|Growth is the next question.",
+      "description":"Nordic executives report efficiency far more often than realized revenue growth.",
+      "visual":{"unit":"Nordic executive survey / separate, nonexclusive outcomes","items":[{"label":"Efficiency benefits","value":79,"display":"79%","status":"REPORTED"},{"label":"Revenue growth realized","value":18,"display":"18%","status":"REALIZED"},{"label":"Revenue impact expected","value":75,"display":"75%","status":"EXPECTED","forecast":true}],"redesign":"Only 16% report extensive work redesign."},
+      "notes":["Deloitte's Nordic survey of 170 executives reports 79% efficiency benefits, 18% realized revenue growth and 75% expecting revenue impact.","The third ring is explicitly an expectation. These are nonexclusive survey responses and are not parts of a single 100% whole.","The source also reports extensive work redesign at 16%. Its PwC comparison of revenue per employee growth, 27% versus 9% in exposed industries, is an association rather than causal proof."],
+      "takeaway":"Ask where AI can change products, services, markets and customer value, not just cost.",
+      "source":"Deloitte, State of AI in the Nordics / Apr 2026 / 170 executives",
+      "caveat":"Realized benefits and expectations are different measures. Survey responses are nonexclusive."
+    },
+    {
+      "id":"agents","type":"delegation","chapter":"04 / Beyond productivity","sourceSlide":12,
+      "eyebrow":"IDEA 10 / FROM ASSISTANCE TO DELEGATION","title":"Give agents a process.|Keep humans in command.",
+      "description":"The source projects a growing agentic share of AI value. The operating model must evolve with it.",
+      "visual":{"unit":"Agentic share of total AI value / source estimates and forecast","items":[{"label":"2025","year":2025,"value":17,"display":"17%"},{"label":"2026","year":2026,"value":22,"display":"22%"},{"label":"2030 F","year":2030,"value":39,"display":"39%","forecast":true}],"steps":[{"label":"Set direction","owner":"HUMAN"},{"label":"Plan + execute","owner":"AGENT"},{"label":"Review + control","owner":"HUMAN"}]},
+      "notes":["The source's agentic share series is 17% in 2025, 22% in 2026 and a forecast 39% in 2030. The timeline uses real year spacing, not three equally spaced observations.","A separate Gartner forecast says agents may make 15% of daily decisions in 2028 versus 0% in 2024. The Claude API automation share is another distinct measure. Neither is placed on the value-share axis.","A process that delegates execution still needs clear human direction, permissions, review, escalation and rollback."],
+      "takeaway":"Design human-directed agent processes, not unbounded automation.",
+      "source":"BCG agentic AI value / source slide 12",
+      "caveat":"2030 is a forecast. AI value share is not the share of workers, tasks or decisions automated."
+    },
+    {
+      "id":"capacity","type":"capacity","chapter":"05 / The frontier firm","sourceSlide":13,
+      "eyebrow":"IDEA 11 / THE CAPACITY GAP","title":"More output.|Not more hours.",
+      "description":"Leaders want higher productivity while workers report too little time and energy.",
+      "visual":{"items":[{"label":"Leaders demanding higher productivity","value":53,"display":"53%","group":"LEADERS"},{"label":"Workers lacking time or energy","value":80,"display":"80%","group":"WORKFORCE"}],"confidence":{"value":82,"display":"82%","label":"of leaders expect to use digital labor within 12–18 months"}},
+      "notes":["The Work Trend Index compares 53% of leaders demanding higher productivity with 80% of workers lacking time or energy to do their work.","The two dot fields represent different respondent groups. The graphic does not subtract the percentages or claim a 27-percentage-point capacity deficit.","82% of leaders express confidence about digital labor within twelve to eighteen months. The deck's 275 interruptions per day statistic applies to the heaviest 20% by ping volume, not all workers."],
+      "takeaway":"Create capacity through better work design, not by stretching the working day.",
+      "source":"Microsoft Work Trend Index 2025 / 31,000 workers, 31 countries",
+      "caveat":"Different respondent groups. Percentages cannot be subtracted to measure a capacity gap."
+    },
+    {
+      "id":"frontier","type":"frontier","chapter":"05 / The frontier firm","sourceSlide":14,
+      "eyebrow":"IDEA 12 / THE FRONTIER FIRM","title":"A different experience|of work is possible.",
+      "description":"Frontier leaders and global workers report different experiences. This is an association, not a causal trial.",
+      "visual":{"unit":"Self-reported share / percent","max":100,"groups":["Global workers","Frontier leaders"],"items":[{"label":"Thriving at work","before":39,"after":71},{"label":"Can take on more work","before":25,"after":55},{"label":"Work feels meaningful","before":77,"after":90},{"label":"Optimistic about work","before":80,"after":93},{"label":"Fear AI job loss","before":43,"after":21,"lowerBetter":true}]},
+      "notes":["The five paired comparisons are thriving 39% versus 71%, ability to take on more work 25% versus 55%, meaningful work 77% versus 90%, optimism 80% versus 93%, and fear of AI job loss 43% versus 21%.","Global workers and Frontier leaders are different populations. Their self-reports do not prove that AI caused these differences.","The final row has reversed polarity: a lower fear percentage is favorable. The graphic explicitly marks that direction rather than treating every larger number as better."],
+      "takeaway":"Design for agency, meaningful work and capacity, not just tool usage.",
+      "source":"Microsoft Work Trend Index / source slide 14",
+      "caveat":"Different populations, self-reported outcomes. Final row: lower is better."
+    },
+    {
+      "id":"operating-model","type":"phases","chapter":"05 / The frontier firm","sourceSlide":14,
+      "eyebrow":"IDEA 12 / THE OPERATING MODEL","title":"The unit of change|is how work gets done.",
+      "description":"Three modes can coexist. The leadership move is to design deliberately for each one.",
+      "visual":{"items":[{"label":"AI as assistant","human":"Human does the work","agent":"AI helps the person","detail":"Individual leverage","nodes":["H","A"]},{"label":"Digital colleagues","human":"Human delegates + reviews","agent":"Agents execute tasks","detail":"Team-level capacity","nodes":["H","A","A"]},{"label":"Agent-run processes","human":"Human sets direction + controls","agent":"Agents operate the workflow","detail":"Organization-level redesign","nodes":["H","A","A","A"]}]},
+      "notes":["Phase one is a human doing work with an AI assistant. Phase two introduces agents as digital colleagues executing delegated tasks. Phase three has humans directing and governing agent-operated processes.","These modes are not an inevitable linear maturity ladder and do not require every process to become autonomous. All three can coexist in one organization.","The source highlights organization-level factors, 67%, versus individual factors, 32%, as a reminder that operating-model decisions matter. The diagram does not treat those rounded figures as an exhaustive allocation."],
+      "takeaway":"Design the work, the decision rights and the controls together.",
+      "source":"Microsoft Work Trend Index 2025 / 2026",
+      "caveat":"Conceptual operating modes, not measured adoption shares or a mandatory maturity sequence."
+    },
+    {
+      "id":"platform-scale","type":"constellation","chapter":"05 / The frontier firm","sourceSlide":15,
+      "eyebrow":"IDEA 13 / PLATFORM SIGNALS","title":"The platform is scaling.|The responsibility stays yours.",
+      "description":"Six different signals show reach and momentum, not one comparable measure of adoption.",
+      "visual":{"center":{"display":"50M+","label":"agents registered","detail":"Agent 365 registry / Oct 2026. Registered does not mean active."},"items":[{"display":"15×","label":"active M365 agents / YoY","detail":"Year-over-year growth in active Microsoft 365 agents."},{"display":"30M+","label":"paid Copilot seats","detail":"Microsoft 365 Copilot seats / Jul 2026."},{"display":"120K+","label":"Foundry customers","detail":"Azure AI Foundry customers / Oct 2026."},{"display":"1 in 3","label":"GitHub PRs","detail":"Share of pull requests opened by agents, not merged or accepted."},{"display":"5×","label":"daily Copilot users / YoY","detail":"Year-over-year daily-user growth."}]},
+      "notes":["The source's platform signals are 50 million-plus registered agents, 15-fold annual active M365 agent growth, 30 million-plus paid M365 Copilot seats, 120,000-plus Foundry customers, one in three GitHub pull requests opened by agents, and fivefold daily Copilot user growth.","The registry grew from 40 million in July to more than 50 million in October according to the deck. Registered agents, active agents, seats, customers and pull requests are distinct units.","These numbers are not a basis for saying platform risk is gone. Security, reliability, access controls, observability and business accountability still matter."],
+      "takeaway":"Use platform scale as an enabler, not a substitute for governance and evaluation.",
+      "source":"Microsoft FY26 Q4 / FY27 Q1 materials; Work Trend Index 2026",
+      "caveat":"Source-deck figures. Distinct units; node sizes are decorative, not quantitative. Registration is not active use."
+    },
+    {
+      "id":"customer-zero","type":"before-after","chapter":"05 / The frontier firm","sourceSlide":16,
+      "eyebrow":"IDEA 14 / MEASURABLE PROOF","title":"A clear before.|A better after.",
+      "description":"Case studies make the ambition concrete. Each result keeps its own baseline and scope.",
+      "visual":{"unit":"Each row normalized to its own baseline / lower is better","items":[{"label":"Human-handled network tickets","before":70000,"after":27000,"beforeDisplay":"70,000","afterDisplay":"~27,000","detail":"Microsoft network operations / approximate after count."},{"label":"Support interaction time","before":1200,"after":30,"beforeDisplay":"20 min","afterDisplay":"30 sec","detail":"Source case comparison. Values normalized in seconds: 1,200 to 30."},{"label":"Council / tenant reviews","before":133,"after":40,"beforeDisplay":"133 days","afterDisplay":"40 days","detail":"Source review-process case; retain this process-specific baseline."},{"label":"Daily Azure alerts / Ecolab","before":30,"after":10,"beforeDisplay":"30–40","afterDisplay":"<10","bounded":true,"detail":"Baseline is a 30–40 range; after is below 10. Dashed bar is an upper bound of one-third, not an exact result."}]},
+      "notes":["The four comparisons show approximately 70,000 to 27,000 human-handled network tickets, twenty minutes to thirty seconds for a support interaction, 133 to forty days for a review process, and thirty to forty daily Azure alerts falling below ten at Ecolab.","Interaction time is normalized using seconds, so thirty seconds is 2.5% of twenty minutes. The Ecolab comparison preserves both its starting range and ending bound; the after bar is less than one-third of the minimum baseline, not a fabricated exact percentage.","These are separate case studies, including an external Ecolab example, not all one Microsoft internal program. The deck also mentions Smart DRI saving around 600 engineering hours monthly, tier-one tickets down 50% and onboarding down 90%."],
+      "takeaway":"Choose a 90-day proof with a named baseline, accountable owner and measurable result.",
+      "source":"Microsoft Inside Track, 2026 / Ecolab customer story",
+      "caveat":"Separate case studies, not controlled causal estimates. Ecolab after-bar is a bound, not an exact observation."
+    },
+    {
+      "id":"jobs","type":"jobs","chapter":"06 / Lead the change","sourceSlide":17,
+      "eyebrow":"IDEA 15 / JOBS + SKILLS","title":"Net job growth.|A very different skills mix.",
+      "description":"The World Economic Forum projects substantial job creation and displacement by 2030.",
+      "visual":{"unit":"Projected global jobs by 2030 / millions / all macrotrends","created":170,"displaced":92,"net":78,"skills":"~40%","skillsLabel":"of skills expected to change by 2030","items":[{"label":"Jobs created","value":170,"display":"+170M"},{"label":"Jobs displaced","value":92,"display":"−92M"},{"label":"Net change","value":78,"display":"+78M"}]},
+      "metric":"~40%","metricLabel":"of skills expected to change by 2030",
+      "insightTitle":"Make reskilling an operating priority.","insight":"Protect the learning pathways that build tomorrow's expertise, including entry-level experience.",
+      "notes":["The WEF Future of Jobs Report projects 170 million jobs created and 92 million displaced, a net increase of 78 million, by 2030.","This projection covers structural macrotrends, including technology, demographic, economic and green-transition changes. It must not be presented as jobs caused by AI alone.","The source's AI wage premium and early-career employment comparisons are observational associations. They strengthen the case for deliberate reskilling but do not prove a single AI-caused employment effect."],
+      "takeaway":"Invest in skills and entry-level learning before the new operating model needs them.",
+      "source":"WEF Future of Jobs Report 2025",
+      "caveat":"2030 projection across all macrotrends, not an AI-only job forecast."
+    },
+    {
+      "id":"foundations","type":"foundations","chapter":"06 / Lead the change","sourceSlide":18,
+      "eyebrow":"IDEA 16 / FOUNDATIONS ARE ACCELERATORS","title":"Build the foundations.|Then compound the value.",
+      "description":"Data, identity and governance turn promising experiments into systems the business can trust.",
+      "visual":{"layers":["AI-ready data","Identity + access","Observability + lifecycle","Governance + skills"],"readiness":[{"display":"43%","label":"Nordic firms strategically prepared","detail":"Deloitte 2026; source says down from 61%."},{"display":"5%","label":"have full agent controls","detail":"BCG 2026 / source-deck readiness measure."},{"display":"3%","label":"Nordic firms fully EU AI Act ready","detail":"Tieto 2026 / source-deck survey."}],"risks":[{"display":"60%","label":"AI projects at risk without AI-ready data","detail":"Gartner forecast of abandonment through 2026, conditional on lack of AI-ready data."},{"display":"40%+","label":"agentic projects forecast canceled by end-2027","detail":"Gartner forecast, June 2025. Different scope and denominator from the data-readiness forecast."}]},
+      "notes":["The source presents five different signals: a forecast that 60% of projects without AI-ready data are abandoned through 2026; a forecast that more than 40% of agentic projects are canceled by end-2027; 43% strategic preparedness among Nordic firms; 5% with full agent controls; and 3% fully ready for the EU AI Act in a Nordic survey.","These are distinct populations, dates and definitions. The visual separates reported readiness from forecast risk rather than pretending they form a single funnel or probability model.","The source mentions a December 2027 legal timetable based on a July 2026 legal update. That claim has not been independently verified and is not reproduced as compliance guidance. Confirm applicable requirements and current law with qualified counsel."],
+      "takeaway":"Put AI-ready data and agent governance before broad scaling.",
+      "source":"Gartner 2025 / Deloitte, BCG and Tieto 2026 / source slide 18",
+      "caveat":"Separate studies and forecasts, not a combined risk score. Verify current legal requirements independently."
+    },
+    {
+      "id":"keynote-arc","type":"arc","chapter":"The 25-minute arc","sourceSlide":19,
+      "eyebrow":"PRESENTER'S RUN OF SHOW","title":"Twenty-five minutes.|Three commitments.",
+      "description":"A suggested executive conversation. Select an act below to rehearse its opening scene.",
+      "visual":{"total":25,"items":[{"label":"Hook","start":0,"end":3,"ideas":"01 + 02","sceneId":"task-horizon"},{"label":"Urgency","start":3,"end":7,"ideas":"03 + 05","sceneId":"adoption"},{"label":"Tension","start":7,"end":12,"ideas":"06 + 07","sceneId":"value-gap"},{"label":"Reframe","start":12,"end":17,"ideas":"08 + 09 + 10","sceneId":"productivity"},{"label":"Vision","start":17,"end":22,"ideas":"12 + 14","sceneId":"frontier"},{"label":"Lead","start":22,"end":25,"ideas":"16 + 15","sceneId":"foundations"}],"asks":[{"label":"Name three workflows","detail":"P&L-relevant outcomes to redesign with agents."},{"label":"Fund the 70%","detail":"People, process and organization, not just technology."},{"label":"Build before scaling","detail":"AI-ready data and agent governance first."}]},
+      "notes":["This is the source's suggested twenty-five-minute executive arc: three minutes for the hook, four for urgency, five for tension, five for the reframe, five for vision and three for the call to action.","The six time segments use proportional lengths. Selecting a rehearsal card jumps to the opening scene of that segment; this is not an autoplay timer.","Close with three decisions: name three P&L workflows, fund the people-and-process work, and establish data readiness and agent governance before scaling."],
+      "takeaway":"Leave the room with commitments, not just enthusiasm."
+    },
+    {
+      "id":"closing","type":"why-close","chapter":"The leadership choice","sourceSlide":20,
+      "eyebrow":"FROM POSSIBILITY TO VALUE","title":"The next move|is yours.",
+      "description":"Usage is everywhere. Value is not. Redesign the work that matters.",
+      "visual":{"items":[{"value":"03","label":"Workflows","detail":"Name the outcomes. Assign the owners."},{"value":"70%","label":"Change effort","detail":"People. Process. Organization."},{"value":"01","label":"Trusted foundation","detail":"Data readiness. Agent governance."}],"closing":"Start with one measurable outcome. Build for the organization you want to become."},
+      "notes":["The source closes with 'The question is no longer whether. It is how fast.' Use that urgency with judgment: the real decision is where to create measurable value responsibly.","Bring the conversation back to the three commitments: redesign three workflows, fund the organizational change and put trustworthy foundations in place.","The visual numbers are commitments and the source's heuristic, not three new research statistics. The single foundation means an integrated capability, not one product."],
+      "takeaway":"Turn the AI conversation into a small number of accountable leadership decisions."
+    },
+    {
+      "id":"references-business","type":"why-references","chapter":"Sources / 1 of 2","sourceSlide":21,
+      "eyebrow":"SOURCE NOTES / 01","title":"The evidence|behind the argument.",
+      "description":"Business value, adoption, economics and readiness. Original links supplied in the source deck.",
+      "visual":{"from":0,"count":15},
+      "notes":["These are the first fifteen source-deck references. They are preserved as supplied; URLs, dates and claims have not been independently reverified.","The deck mixes forecasts, survey findings, observational comparisons and controlled studies. Those distinctions are retained in each relevant scene."],
+      "takeaway":"Check the original definition, population and publication date before reusing a claim."
+    },
+    {
+      "id":"references-work","type":"why-references","chapter":"Sources / 2 of 2","sourceSlide":22,
+      "eyebrow":"SOURCE NOTES / 02","title":"The research|behind the work.",
+      "description":"Jobs, productivity, Frontier Firms and case studies. Links retained from the supplied presentation.",
+      "visual":{"from":15,"count":15},
+      "notes":["These are the remaining fifteen references from the source deck, including productivity studies, labor-market research, Work Trend Index material and operational case studies.","The legal update is retained for source traceability, not endorsed as current compliance advice. Verify current law and applicability independently."],
+      "takeaway":"Keep forecasts, case studies and causal evidence in their own lanes."
+    }
+  ],
+  "references": [
+    {"label":"McKinsey / State of AI","detail":"Usage, scaling and enterprise value","url":"https://mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai"},
+    {"label":"BCG / Agentic AI value","detail":"Value creation and agentic share","url":"https://bcg.com/publications/2026/the-formula-for-agentic-ai-value"},
+    {"label":"BCG / AI starting to pay off","detail":"Future-built versus laggard outcomes","url":"https://bcg.com/press/30september2026-ai-starting-to-pay-off-companies-generate-value"},
+    {"label":"Gartner / Worldwide AI spending","detail":"September 2026 forecast","url":"https://gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026"},
+    {"label":"Gartner / Agentic project cancellations","detail":"Forecast through end-2027","url":"https://gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"},
+    {"label":"Gartner / AI-ready data","detail":"Conditional project-risk forecast","url":"https://gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk"},
+    {"label":"METR / Task time horizon","detail":"January 2026 methodology update","url":"https://metr.org/blog/2026-01-29-time-horizon-1-1/"},
+    {"label":"Stanford / AI Index 2025","detail":"Capability and inference economics","url":"https://hai.stanford.edu/news/ai-index-2025-state-of-ai-in-10-charts"},
+    {"label":"Stanford / AI Index 2026","detail":"Source-deck overview reference","url":"https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report"},
+    {"label":"St. Louis Fed / Rapid adoption","detail":"Early US adult technology comparisons","url":"https://stlouisfed.org/on-the-economy/2024/sep/rapid-adoption-generative-ai"},
+    {"label":"St. Louis Fed / Europe–US adoption","detail":"Worker adoption comparison","url":"https://stlouisfed.org/on-the-economy/2026/mar/mind-gap-ai-adoption-europe-us"},
+    {"label":"Eurostat / Enterprise AI use","detail":"Enterprises with 10+ employees / PDF","url":"https://ec.europa.eu/eurostat/statistics-explained/SEPDF/cache/106920.pdf"},
+    {"label":"Deloitte / AI in the Nordics","detail":"Benefits, expectations and preparedness","url":"https://deloitte.com/dk/en/Industries/technology/research/state-of-ai-in-the-nordics.html"},
+    {"label":"Tieto / Nordic AI survey","detail":"2026 readiness survey","url":"https://tieto.com/en/campaigns/nordic-ai-survey-2026/"},
+    {"label":"PwC / AI and productivity","detail":"Industry-level observational comparisons","url":"https://pwc.com/gx/en/news-room/press-releases/2025/ai-linked-to-a-fourfold-increase-in-productivity-growth.html"},
+    {"label":"WEF / Future of Jobs 2025","detail":"All-macrotrend employment projections","url":"https://weforum.org/press/2025/01/future-of-jobs-report-2025-78-million-new-job-opportunities-by-2030-but-urgent-upskilling-needed-to-prepare-workforces/"},
+    {"label":"Stanford / Canaries in the coal mine","detail":"Early-career employment associations","url":"https://digitaleconomy.stanford.edu/publications/canaries-in-the-coal-mine/"},
+    {"label":"Anthropic / Economic Index","detail":"January 2026 report","url":"https://anthropic.com/research/anthropic-economic-index-january-2026-report"},
+    {"label":"Anthropic / Productivity estimates","detail":"Modeled gains, not a controlled trial","url":"https://anthropic.com/research/estimating-productivity-gains"},
+    {"label":"NBER / Generative AI at work","detail":"Support-agent productivity / w31161","url":"https://nber.org/papers/w31161"},
+    {"label":"HBS / Jagged technological frontier","detail":"Consultant experiment / 24-013","url":"https://hbs.edu/faculty/Pages/item.aspx?num=64700"},
+    {"label":"GitHub Copilot experiment","detail":"Developer task completion / arXiv","url":"https://arxiv.org/abs/2302.06590"},
+    {"label":"Microsoft / WTI 2025","detail":"The Frontier Firm is born","url":"https://microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born"},
+    {"label":"Microsoft / WTI 2026","detail":"Agents and human agency","url":"https://microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization"},
+    {"label":"Microsoft / FY26 Q4 transcript","detail":"Platform-scale signals","url":"https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/TranscriptFY26Q4"},
+    {"label":"Inside Track / Network operations","detail":"From alerts to action","url":"https://microsoft.com/insidetrack/blog/from-alerts-to-action-how-ai-agents-are-reshaping-network-operations-at-microsoft/"},
+    {"label":"Inside Track / Enterprise IT","detail":"AI at scale / case studies","url":"https://microsoft.com/insidetrack/blog/ai-at-scale-how-were-transforming-our-enterprise-it-operations-at-microsoft/"},
+    {"label":"Inside Track / Smart DRI","detail":"Engineering operations case study","url":"https://microsoft.com/insidetrack/blog/automating-engineering-operations-at-microsoft-with-a-smart-dri-agent/"},
+    {"label":"Ecolab / Azure customer story","detail":"External operational case study","url":"https://microsoft.com/en/customers/story/25633-ecolab-azure"},
+    {"label":"Orrick / Source-deck legal update","detail":"Verify current law; not compliance advice","url":"https://orrick.com/en/Insights/2026/07/EU-AI-Act-Update-Digital-Omnibus-Finalizes-8-Compliance-Changes"}
+  ]
+}

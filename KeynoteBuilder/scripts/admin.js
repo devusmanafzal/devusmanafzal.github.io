@@ -20,6 +20,7 @@
     sceneNavCount: document.querySelector("#sceneNavCount"),
     sceneSearch: document.querySelector("#sceneSearch"),
     sceneSummary: document.querySelector("#sceneSummary"),
+    sidebarToggle: document.querySelector("#sidebarToggle"),
     validationBar: document.querySelector("#validationBar"),
     validationMessage: document.querySelector("#validationMessage"),
     videoList: document.querySelector("#videoList")
@@ -29,6 +30,12 @@
   let defaults = null;
   let selectedSceneIndex = 0;
   let hasInvalidChanges = false;
+  let draggedSceneIndex = null;
+  const previewObserver = new ResizeObserver(() => {
+    const frame = elements.sceneEditor.querySelector("#scenePreview");
+    const viewport = elements.sceneEditor.querySelector(".preview-viewport");
+    if (frame && viewport) frame.style.transform = `scale(${viewport.clientWidth / 1600})`;
+  });
 
   function makeElement(tagName, attributes = {}, text = "") {
     const element = document.createElement(tagName);
@@ -124,7 +131,7 @@
       field("Presentation title", ["meta", "title"], draft.meta.title),
       field("Language", ["meta", "language"], draft.meta.language, { help: "Use a language tag such as en or en-GB." }),
       field("Accessibility label", ["meta", "ariaLabel"], draft.meta.ariaLabel, { full: true }),
-      field("Default palette", ["meta", "defaultPalette"], draft.meta.defaultPalette, { type: "select", choices: [["keynote", "Keynote"], ["workscape", "Workscape"]] }),
+      field("Default palette", ["meta", "defaultPalette"], draft.meta.defaultPalette, { type: "select", choices: [["keynote", "Keynote"], ["workscape", "Workscape"], ["blue", "Blue"]] }),
       field("Live reactions script", ["meta", "liveReactionsScript"], draft.meta.liveReactionsScript || "", { full: true, help: "Leave blank to disable the external reactions integration." })
     );
   }
@@ -197,6 +204,7 @@
       const row = makeElement("div", { className: "scene-item", "data-selected": String(index === selectedSceneIndex) });
       row.dataset.sceneIndex = String(index);
       const number = makeElement("span", { className: "scene-index" }, String(index + 1).padStart(2, "0"));
+      const handle = makeElement("span", { className: "scene-drag-handle", draggable: "true", title: "Drag to reorder (or use the move buttons)", "aria-hidden": "true" }, "\u283f");
       const toggle = makeElement("input", { className: "scene-item-toggle", type: "checkbox", checked: scene.enabled, "aria-label": `${scene.enabled ? "Disable" : "Enable"} ${scene.id}` });
       toggle.dataset.sceneAction = "toggle";
       const main = makeElement("button", { className: "scene-item-main", type: "button" });
@@ -207,7 +215,7 @@
         sceneAction("↑", "Move scene up", "up", index === 0),
         sceneAction("↓", "Move scene down", "down", index === draft.scenes.length - 1)
       );
-      row.append(number, toggle, main, actions);
+      row.append(handle, number, toggle, main, actions);
       return row;
     });
     elements.sceneList.replaceChildren(...rows);
@@ -231,15 +239,46 @@
     template.innerHTML = scene.markup.trim();
     const root = template.content.firstElementChild;
     if (root) {
+      root.className = scene.className;
+      root.dataset.sceneId = scene.id;
+      root.dataset.section = scene.section || "enterprise";
+      root.dataset.chapter = scene.chapter || "";
       root.dataset.state = "active";
       root.dataset.build = root.dataset.builds || "0";
+      root.removeAttribute("data-disabled");
       root.setAttribute("aria-hidden", "false");
+      const video = root.querySelector("video");
+      const settings = draft.videos[root.dataset.videoConfig];
+      if (video && settings) {
+        video.setAttribute("src", settings.src);
+        video.style.objectFit = settings.fit;
+        const caption = root.querySelector(".video-caption");
+        if (caption) caption.textContent = settings.caption;
+      }
+      if (video) {
+        video.removeAttribute("autoplay");
+        video.setAttribute("controls", "");
+        video.setAttribute("preload", "metadata");
+        video.setAttribute("muted", "");
+      }
     }
     const markup = root ? root.outerHTML : "";
-    frame.srcdoc = `<!doctype html><html data-theme="dark" data-palette="${draft.meta.defaultPalette}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="styles/keynote.css"></head><body><main class="cinema"><div class="cinema-stage">${markup}</div></main></body></html>`;
+    const previewDocument = document.implementation.createHTMLDocument("Scene preview");
+    previewDocument.documentElement.dataset.theme = "dark";
+    previewDocument.documentElement.dataset.palette = draft.meta.defaultPalette;
+    previewDocument.documentElement.lang = draft.meta.language;
+    previewDocument.head.append(
+      makeElement("meta", { charset: "utf-8" }),
+      makeElement("link", { rel: "stylesheet", href: "styles/keynote.css" }),
+      makeElement("link", { rel: "stylesheet", href: "styles/agentstory.css" }),
+      makeElement("style", {}, "*, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }")
+    );
+    previewDocument.body.innerHTML = `<main class="cinema merged-cinema"><div class="cinema-vignette"></div><div class="cinema-stage">${markup}</div></main>`;
+    frame.srcdoc = `<!doctype html>${previewDocument.documentElement.outerHTML}`;
   }
 
   function renderSceneEditor() {
+    previewObserver.disconnect();
     const scene = draft.scenes[selectedSceneIndex];
     if (!scene) {
       elements.sceneEditor.replaceChildren(makeElement("div", { className: "empty-state" }, "Select a scene to edit."));
@@ -251,7 +290,11 @@
     const actions = makeElement("div", { className: "editor-actions" });
     const duplicateButton = makeElement("button", { className: "button secondary", type: "button" }, "Duplicate");
     duplicateButton.dataset.editorAction = "duplicate";
-    actions.append(duplicateButton);
+    const deleteButton = makeElement("button", { className: "button secondary danger", type: "button" }, "Delete scene");
+    deleteButton.dataset.editorAction = "delete";
+    deleteButton.disabled = !canDeleteScene();
+    if (deleteButton.disabled) deleteButton.title = "Keep at least one enabled scene.";
+    actions.append(duplicateButton, deleteButton);
     header.append(heading, actions);
 
     const fields = makeElement("div", { className: "scene-fields" });
@@ -259,20 +302,28 @@
       field("Scene ID", ["scenes", selectedSceneIndex, "id"], scene.id),
       field("CSS classes", ["scenes", selectedSceneIndex, "className"], scene.className),
       field("Section", ["scenes", selectedSceneIndex, "section"], scene.section || ""),
-      field("Chapter", ["scenes", selectedSceneIndex, "chapter"], scene.chapter || ""),
-      field("Scene markup", ["scenes", selectedSceneIndex, "markup"], scene.markup, { type: "textarea", full: true })
+      field("Chapter", ["scenes", selectedSceneIndex, "chapter"], scene.chapter || "")
     );
     const enabledWrapper = makeElement("div", { className: "switch-row" });
     enabledWrapper.append(switchControl("Include this scene in the keynote", ["scenes", selectedSceneIndex, "enabled"], scene.enabled));
-    fields.insertBefore(enabledWrapper, fields.lastElementChild);
+    fields.append(enabledWrapper);
+    const markupDetails = makeElement("details", { className: "markup-field" });
+    markupDetails.append(
+      makeElement("summary", {}, "Scene markup"),
+      field("Scene markup", ["scenes", selectedSceneIndex, "markup"], scene.markup, { type: "textarea", full: true })
+    );
+    fields.append(markupDetails);
     const preview = makeElement("div", { className: "preview-wrap" });
     const previewHead = makeElement("div", { className: "preview-head" });
     const refreshButton = makeElement("button", { className: "icon-button", id: "refreshPreview", type: "button", title: "Refresh preview", "aria-label": "Refresh preview" }, "↻");
     previewHead.append(makeElement("strong", {}, "Scene preview"), refreshButton);
-    preview.append(previewHead, makeElement("iframe", { className: "scene-preview", id: "scenePreview", title: `Preview of ${scene.id}`, sandbox: "" }));
+    const viewport = makeElement("div", { className: "preview-viewport" });
+    viewport.append(makeElement("iframe", { className: "scene-preview", id: "scenePreview", title: `Preview of ${scene.id}`, sandbox: "" }));
+    preview.append(previewHead, viewport);
     fields.append(preview);
     elements.sceneEditor.replaceChildren(header, fields);
     refreshPreview();
+    previewObserver.observe(viewport);
   }
 
   function selectScene(index) {
@@ -290,6 +341,32 @@
     updateSaveState();
     renderSceneList();
     renderSceneEditor();
+  }
+
+  function canDeleteScene() {
+    return draft.scenes.some((scene, index) => index !== selectedSceneIndex && scene.enabled);
+  }
+
+  function deleteScene() {
+    if (!canDeleteScene()) {
+      window.alert("Keep at least one enabled scene.");
+      return;
+    }
+    const scene = draft.scenes[selectedSceneIndex];
+    if (!window.confirm(`Delete scene "${scene.id}"? This removes it from the browser draft. Export to update the JSON file.`)) return;
+    draft.scenes.splice(selectedSceneIndex, 1);
+    selectedSceneIndex = Math.min(selectedSceneIndex, draft.scenes.length - 1);
+    updateSaveState();
+    renderSceneList();
+    renderSceneEditor();
+  }
+
+  function clearSceneDrag() {
+    draggedSceneIndex = null;
+    elements.sceneList.querySelectorAll("[data-dragging], [data-drop-position]").forEach((row) => {
+      delete row.dataset.dragging;
+      delete row.dataset.dropPosition;
+    });
   }
 
   function duplicateScene() {
@@ -356,12 +433,57 @@
     bindForm(elements.controlsForm);
     bindForm(elements.videoList);
     bindForm(elements.sceneEditor);
+    elements.sidebarToggle.addEventListener("click", () => {
+      const app = document.querySelector(".admin-app");
+      const collapsed = app.dataset.sidebarCollapsed !== "true";
+      app.dataset.sidebarCollapsed = String(collapsed);
+      elements.sidebarToggle.setAttribute("aria-expanded", String(!collapsed));
+      const label = collapsed ? "Expand navigation" : "Collapse navigation";
+      elements.sidebarToggle.setAttribute("aria-label", label);
+      elements.sidebarToggle.title = label;
+      elements.sidebarToggle.textContent = collapsed ? "\u00bb" : "\u00ab";
+    });
     document.querySelector(".admin-nav").addEventListener("click", (event) => {
       const button = event.target.closest("[data-panel]");
       if (button) showPanel(button.dataset.panel);
     });
     elements.sceneSearch.addEventListener("input", renderSceneList);
     elements.sceneFilter.addEventListener("change", renderSceneList);
+    elements.sceneList.addEventListener("dragstart", (event) => {
+      const handle = event.target.closest(".scene-drag-handle");
+      if (!handle) return;
+      const row = handle.closest("[data-scene-index]");
+      draggedSceneIndex = Number(row.dataset.sceneIndex);
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", draft.scenes[draggedSceneIndex].id);
+      event.dataTransfer.setDragImage(row, 20, 20);
+      row.dataset.dragging = "true";
+    });
+    elements.sceneList.addEventListener("dragover", (event) => {
+      const row = event.target.closest("[data-scene-index]");
+      if (draggedSceneIndex === null || !row) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+      elements.sceneList.querySelectorAll("[data-drop-position]").forEach((item) => { delete item.dataset.dropPosition; });
+      const bounds = row.getBoundingClientRect();
+      row.dataset.dropPosition = event.clientY < bounds.top + bounds.height / 2 ? "before" : "after";
+    });
+    elements.sceneList.addEventListener("drop", (event) => {
+      const row = event.target.closest("[data-scene-index]");
+      if (draggedSceneIndex === null || !row) return;
+      event.preventDefault();
+      const source = draggedSceneIndex;
+      const bounds = row.getBoundingClientRect();
+      let destination = Number(row.dataset.sceneIndex) + (event.clientY >= bounds.top + bounds.height / 2 ? 1 : 0);
+      if (source < destination) destination -= 1;
+      clearSceneDrag();
+      moveScene(source, destination - source);
+    });
+    elements.sceneList.addEventListener("dragend", clearSceneDrag);
+    elements.sceneList.addEventListener("dragleave", (event) => {
+      if (elements.sceneList.contains(event.relatedTarget)) return;
+      elements.sceneList.querySelectorAll("[data-drop-position]").forEach((row) => { delete row.dataset.dropPosition; });
+    });
     elements.sceneList.addEventListener("click", (event) => {
       const action = event.target.closest("[data-scene-action]");
       const row = event.target.closest("[data-scene-index]");
@@ -383,9 +505,14 @@
       if (!event.target.matches("[data-path]")) return;
       const heading = elements.sceneEditor.querySelector("h2");
       if (heading) heading.textContent = draft.scenes[selectedSceneIndex].id || "Untitled scene";
+      renderSceneList();
+      const deleteButton = elements.sceneEditor.querySelector("[data-editor-action='delete']");
+      deleteButton.disabled = !canDeleteScene();
+      refreshPreview();
     });
     elements.sceneEditor.addEventListener("click", (event) => {
       if (event.target.closest("[data-editor-action='duplicate']")) duplicateScene();
+      if (event.target.closest("[data-editor-action='delete']")) deleteScene();
       if (event.target.closest("#refreshPreview")) refreshPreview();
     });
     elements.importButton.addEventListener("click", () => elements.importFile.click());

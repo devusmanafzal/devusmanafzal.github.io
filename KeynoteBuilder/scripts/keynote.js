@@ -493,6 +493,14 @@ async function initializePresentation() {
     const interactiveSelector = "a, button, input, select, textarea, video, [role='button'], [role='dialog']";
     scrollCue.addEventListener("click", stepForward);
     document.querySelectorAll(".home-begin").forEach((button) => button.addEventListener("click", stepForward));
+    document.querySelectorAll(".ai-curve-scene [data-scene]").forEach((button) => {
+      const index = scenes.findIndex((scene) => scene.dataset.sceneId === button.dataset.scene);
+      button.disabled = index < 0;
+      if (index >= 0) {
+        button.querySelector("span").textContent = String(index + 1).padStart(2, "0");
+        button.addEventListener("click", () => showScene(index));
+      }
+    });
     document.querySelector(".cinema-stage").addEventListener("click", (event) => {
       if (!event.target.closest(interactiveSelector)) stepForward();
     });
@@ -519,8 +527,9 @@ async function initializePresentation() {
       if (event.key === "End") showScene(scenes.length - 1);
       if (event.key.toLowerCase() === "f") requestFullscreen();
       if (event.key.toLowerCase() === "t") {
+        const palettes = ["keynote", "workscape", "blue"];
         const currentPalette = document.documentElement.dataset.palette;
-        document.documentElement.dataset.palette = currentPalette === "workscape" ? "keynote" : "workscape";
+        document.documentElement.dataset.palette = palettes[(palettes.indexOf(currentPalette) + 1) % palettes.length];
       }
       if (event.key.toLowerCase() === "c") {
         event.preventDefault();
