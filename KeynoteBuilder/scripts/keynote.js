@@ -185,6 +185,38 @@ async function initializePresentation() {
     if (homeOrgBackdrop && orgChart) homeOrgBackdrop.append(orgChart.cloneNode(true));
 
     const scenes = [...document.querySelectorAll('.scene:not([data-disabled="true"])')];
+    const detourConfig = window.PRESENTATION_DETOUR;
+    const detourScenes = detourConfig
+      ? detourConfig.sceneIds.map((id) => scenes.find((scene) => scene.dataset.sceneId === id))
+      : [];
+    const detourTrigger = detourConfig ? document.querySelector(detourConfig.triggerSelector) : null;
+    if (detourConfig && (!detourTrigger || !detourScenes.length || detourScenes.some((scene) => !scene))) {
+      throw new Error("Presentation detour must have a trigger and enabled destination scenes.");
+    }
+    const detourSceneSet = new Set(detourScenes);
+    const detourSource = detourTrigger?.closest(".scene");
+    const detourSourceIndex = scenes.indexOf(detourSource);
+    let detourOpen = false;
+    let detourButton = null;
+    detourScenes.forEach((scene) => { scene.hidden = true; });
+    if (detourTrigger) {
+      detourButton = document.createElement("button");
+      detourButton.type = "button";
+      detourButton.className = detourTrigger.className;
+      detourButton.setAttribute("aria-label", "Explore Agent 365");
+      detourButton.setAttribute("aria-expanded", "false");
+      detourButton.append(...detourTrigger.childNodes);
+      detourTrigger.parentElement.removeAttribute("aria-hidden");
+      detourTrigger.replaceWith(detourButton);
+      detourButton.addEventListener("click", () => {
+        if (scenes[currentScene] !== detourSource) return;
+        detourOpen = true;
+        detourScenes.forEach((scene) => { scene.hidden = false; });
+        detourButton.setAttribute("aria-expanded", "true");
+        detourButton.blur();
+        showScene(scenes.indexOf(detourScenes[0]));
+      });
+    }
     const cinema = document.querySelector(".cinema");
     const storyChapter = document.querySelector(".story-chapter");
     const sceneCount = document.querySelector(".scene-count");
@@ -195,7 +227,8 @@ async function initializePresentation() {
     const evolutionScene = scenes.find((scene) => scene.classList.contains("scene-three"));
     const autoBuildScenes = new Set([
       evolutionScene,
-      ...scenes.filter((scene) => scene.classList.contains("scene-ms-approach"))
+      ...scenes.filter((scene) => scene.classList.contains("scene-ms-approach")),
+      ...scenes.filter((scene) => scene.dataset.autoBuildMs)
     ]);
     const autoAdvanceScene = scenes.find((scene) => scene.classList.contains("scene-event"));
     const commentaryShell = document.querySelector(".commentary-shell");
@@ -263,8 +296,34 @@ async function initializePresentation() {
       return Number.parseInt(scene?.dataset.builds || "0", 10);
     }
 
+    // "human ambition" lifts out of the title and lands as the first cell of the bar
+    function morphHumanAmbition(scene) {
+      const em = scene.querySelector(".kc-head h2 em");
+      const bar = scene.querySelector(".it-bar");
+      const human = scene.querySelector(".it-human");
+      const from = em.getBoundingClientRect();
+      const fromStyle = window.getComputedStyle(em);
+      scene.dataset.build = "1";
+      const barBox = bar.getBoundingClientRect();
+      const toSize = Number.parseFloat(window.getComputedStyle(human).fontSize);
+      const scale = toSize / Number.parseFloat(fromStyle.fontSize);
+      const ghost = document.createElement("span");
+      ghost.className = "scene-it-ghost";
+      ghost.textContent = em.textContent;
+      Object.assign(ghost.style, { left: `${from.left}px`, top: `${from.top}px`, width: `${from.width}px`, height: `${from.height}px`, font: fromStyle.font, letterSpacing: fromStyle.letterSpacing, color: fromStyle.color, lineHeight: fromStyle.lineHeight });
+      scene.appendChild(ghost);
+      const targetLeft = barBox.left + barBox.width / 6 - (from.width * scale) / 2;
+      const targetTop = barBox.top + barBox.height / 2 - (from.height * scale) / 2;
+      const flight = ghost.animate([
+        { transform: "translate3d(0, 0, 0) scale(1)", color: fromStyle.color },
+        { transform: `translate3d(${targetLeft - from.left}px, ${targetTop - from.top}px, 0) scale(${scale})`, color: "#fff" }
+      ], { duration: 1300, easing: "cubic-bezier(.65, 0, .2, 1)", fill: "forwards" });
+      bar.animate([{ gridTemplateColumns: "0fr 1fr 1fr" }, { gridTemplateColumns: "1fr 1fr 1fr" }], { duration: 1300, easing: "cubic-bezier(.65, 0, .2, 1)" });
+      flight.finished.finally(() => ghost.remove());
+    }
+
     function setBuild(scene, build) {
-      const nextBuild = Math.max(0, Math.min(buildCount(scene), build));
+      const nextBuild = scene.dataset.fixedBuild ? Number.parseInt(scene.dataset.fixedBuild, 10) : Math.max(0, Math.min(buildCount(scene), build));
       const currentBuild = Number.parseInt(scene.dataset.build || "0", 10);
       const title = scene === evolutionScene
         ? scene.querySelector(".journey-title")
@@ -275,8 +334,37 @@ async function initializePresentation() {
       const shouldResetTitle = title && currentBuild === 1 && nextBuild === 0;
       const startBox = shouldAnimateTitle ? title.getBoundingClientRect() : null;
 
+      if (scene.classList.contains("scene-it") && currentBuild === 0 && nextBuild === 1 && scene.dataset.state === "active" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        morphHumanAmbition(scene);
+        return;
+      }
       if (shouldAnimateTitle || shouldResetTitle) title.classList.add("flip-moving");
+      if (scene.classList.contains("scene-agent365-pillars") && scene.dataset.state === "active" && !scene.dataset.a365Ready && (currentBuild === 0) !== (nextBuild === 0) && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        scene.dataset.a365Ready = "1";
+        scene.classList.add("a365-prep");
+        window.setTimeout(() => { scene.classList.remove("a365-prep"); setBuild(scene, build); delete scene.dataset.a365Ready; }, 650);
+        return;
+      }
+      const a365Flip = scene.classList.contains("scene-agent365-pillars") && scene.dataset.state === "active" && (currentBuild === 0) !== (nextBuild === 0) && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const a365Items = a365Flip ? [...scene.querySelectorAll(".agent365-pillar, .agent365-pillars-heading")] : [];
+      const a365Before = a365Items.map((item) => item.getBoundingClientRect());
       scene.dataset.build = String(nextBuild);
+      scene.querySelectorAll(".a365-orig").forEach((panel, index) => {
+        const shown = nextBuild === index + 1;
+        if (shown && panel.dataset.state !== "active") { panel.dataset.state = "future"; void panel.offsetWidth; panel.dataset.state = "active"; }
+        else if (!shown) panel.dataset.state = "future";
+      });
+      if (a365Flip) {
+        a365Items.forEach((item, index) => {
+          const from = a365Before[index];
+          const to = item.getBoundingClientRect();
+          const isPillar = item.classList.contains("agent365-pillar");
+          const first = { transform: `translate(${from.left - to.left}px, ${from.top - to.top}px)` };
+          const last = { transform: "translate(0, 0)" };
+          if (isPillar) { first.width = `${from.width}px`; first.height = `${from.height}px`; last.width = `${to.width}px`; last.height = `${to.height}px`; }
+          item.animate([first, last], { duration: 1500, delay: isPillar ? index * 120 : 0, easing: "cubic-bezier(.65, 0, .2, 1)", fill: "backwards" });
+        });
+      }
 
       if (shouldResetTitle) {
         window.requestAnimationFrame(() => title.classList.remove("flip-moving"));
@@ -321,17 +409,96 @@ async function initializePresentation() {
       autoBuildTimer = window.setTimeout(() => {
         if (scenes[currentScene] === scene && scene.dataset.build === "0") setBuild(scene, 1);
         autoBuildTimer = 0;
-      }, presentation.controls.autoBuildDelayMs);
+      }, Number.parseInt(scene.dataset.autoBuildMs || "", 10) || presentation.controls.autoBuildDelayMs);
+    }
+
+    // Generic shared-element morph: elements in neighbouring scenes that share a
+    // data-morph key (space separated, first match wins) glide from one layout to the next.
+    const morphDuration = 1350;
+    const morphEasing = "cubic-bezier(.65, 0, .2, 1)";
+
+    function captureMorph(scene) {
+      const sources = new Map();
+      if (!scene || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return sources;
+      scene.querySelectorAll("[data-morph]").forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const info = { element, rect, text: element.textContent.trim(), radius: cornerRadius(element, rect) };
+        element.dataset.morph.split(/\s+/).forEach((key) => { if (key && !sources.has(key)) sources.set(key, info); });
+      });
+      return sources;
+    }
+
+    function cornerRadius(element, rect) {
+      const value = getComputedStyle(element).borderTopLeftRadius;
+      const amount = Number.parseFloat(value) || 0;
+      return value.endsWith("%") ? (amount / 100) * Math.min(rect.width, rect.height) : amount;
+    }
+
+    function playMorph(incoming, sources) {
+      if (!sources.size) return;
+      const pairs = [];
+      const used = new Set();
+      incoming.querySelectorAll("[data-morph]").forEach((element) => {
+        const key = element.dataset.morph.split(/\s+/).find((token) => sources.has(token) && !used.has(sources.get(token).element));
+        if (!key) return;
+        const from = sources.get(key);
+        used.add(from.element);
+        element.classList.add("fx-morphed");
+        pairs.push({ element, from });
+      });
+      if (!pairs.length) return;
+      const measured = pairs.map((pair) => ({ ...pair, end: pair.element.getBoundingClientRect(), endRadius: 0 }));
+      measured.forEach((pair) => { pair.endRadius = cornerRadius(pair.element, pair.end); });
+      measured.forEach(({ element, from, end, endRadius }) => {
+        if (!end.width || !end.height) return;
+        from.element.style.visibility = "hidden";
+        const textMode = element.dataset.morphMode === "text";
+        const scaleX = from.rect.width / end.width;
+        const scaleY = from.rect.height / end.height;
+        const uniform = (scaleX + scaleY) / 2;
+        const startX = textMode ? uniform : scaleX;
+        const startY = textMode ? uniform : scaleY;
+        const dx = textMode ? (from.rect.left + from.rect.width / 2) - (end.left + end.width / 2) : from.rect.left - end.left;
+        const dy = textMode ? (from.rect.top + from.rect.height / 2) - (end.top + end.height / 2) : from.rect.top - end.top;
+        const origin = textMode ? "50% 50%" : "0 0";
+        const keyframes = [
+          { transformOrigin: origin, transform: `translate(${dx}px, ${dy}px) scale(${startX}, ${startY})` },
+          { transformOrigin: origin, transform: "translate(0, 0) scale(1, 1)" }
+        ];
+        if (!textMode && (from.radius || endRadius)) {
+          keyframes[0].borderRadius = `${from.radius / startX}px / ${from.radius / startY}px`;
+          keyframes[1].borderRadius = `${endRadius}px`;
+        }
+        const changed = from.text !== element.textContent.trim();
+        const delay = Number.parseInt(element.dataset.morphDelay || "0", 10);
+        const motion = element.animate(keyframes, { duration: morphDuration, delay, easing: morphEasing, fill: "backwards" });
+        if (changed) element.animate([{ opacity: 0 }, { opacity: 0, offset: .4 }, { opacity: 1 }], { duration: morphDuration, delay, easing: "ease-out", fill: "backwards" });
+        motion.finished.finally(() => from.element.style.removeProperty("visibility")).catch(() => {});
+      });
     }
 
     function showScene(nextScene) {
       clearAutoBuild();
       clearAutoAdvance();
-      const boundedScene = Math.max(0, Math.min(scenes.length - 1, nextScene));
+      let boundedScene = Math.max(0, Math.min(scenes.length - 1, nextScene));
+      const returningFromDetour = detourOpen && !detourSceneSet.has(scenes[boundedScene]);
+      if (!detourOpen && detourSceneSet.has(scenes[boundedScene])) {
+        const direction = boundedScene < currentScene ? -1 : 1;
+        while (detourSceneSet.has(scenes[boundedScene])) boundedScene += direction;
+        boundedScene = Math.max(0, Math.min(scenes.length - 1, boundedScene));
+      }
+      if (returningFromDetour) {
+        detourOpen = false;
+        detourScenes.forEach((scene) => { scene.hidden = true; });
+        detourButton.setAttribute("aria-expanded", "false");
+        boundedScene = detourSourceIndex;
+      }
       if (boundedScene === currentScene) return;
       const previousScene = currentScene;
       const outgoingScene = scenes[previousScene];
       const incomingScene = scenes[boundedScene];
+      const morphSources = captureMorph(outgoingScene);
       const founderMorph = outgoingScene?.dataset.sceneId === "organization" && incomingScene?.dataset.sceneId === "personal-opening";
       const founderSource = founderMorph ? outgoingScene.querySelector(".keynote-person.you .keynote-portrait") : null;
       const founderStart = founderSource?.getBoundingClientRect();
@@ -352,7 +519,12 @@ async function initializePresentation() {
         scene.dataset.state = state;
         scene.setAttribute("aria-hidden", String(index !== currentScene));
       });
+      if (returningFromDetour) detourButton.focus({ preventScroll: true });
       setBuild(scenes[currentScene], previousScene >= 0 && currentScene < previousScene ? buildCount(scenes[currentScene]) : 0);
+      playMorph(incomingScene, morphSources);
+      if (outgoingScene) window.setTimeout(() => {
+        if (outgoingScene.dataset.state !== "active") outgoingScene.querySelectorAll(".fx-morphed").forEach((element) => element.classList.remove("fx-morphed"));
+      }, 1000);
       if (founderStart && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         const founderTarget = incomingScene.querySelector(".personal-founder-backdrop");
         const founderEnd = founderTarget?.getBoundingClientRect();
@@ -438,8 +610,10 @@ async function initializePresentation() {
       storyChapter.textContent = chapter;
       storyChapter.dataset.visible = String(Boolean(chapter));
       storyChapter.setAttribute("aria-hidden", String(!chapter));
-      sceneCount.textContent = `${String(currentScene + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`;
-      progressFill.style.width = `${((currentScene + 1) / scenes.length) * 100}%`;
+      const navigationScenes = detourOpen ? detourScenes : scenes.filter((scene) => !detourSceneSet.has(scene));
+      const navigationIndex = navigationScenes.indexOf(incomingScene);
+      sceneCount.textContent = `${String(navigationIndex + 1).padStart(2, "0")} / ${String(navigationScenes.length).padStart(2, "0")}`;
+      progressFill.style.width = `${((navigationIndex + 1) / navigationScenes.length) * 100}%`;
       controlHint.dataset.hidden = "true";
       const isFinalScene = currentScene === scenes.length - 1;
       const usesDedicatedNavigation = scenes[currentScene].classList.contains("scene-home");
@@ -470,6 +644,10 @@ async function initializePresentation() {
         setBuild(scene, currentBuild + 1);
         return;
       }
+      if (detourOpen && scene === detourScenes[detourScenes.length - 1]) {
+        showScene(detourSourceIndex);
+        return;
+      }
       showScene(currentScene + 1);
     }
 
@@ -480,6 +658,10 @@ async function initializePresentation() {
       const currentBuild = Number.parseInt(scene.dataset.build || "0", 10);
       if (currentBuild > 0) {
         setBuild(scene, currentBuild - 1);
+        return;
+      }
+      if (detourOpen && scene === detourScenes[0]) {
+        showScene(detourSourceIndex);
         return;
       }
       showScene(currentScene - 1);
@@ -501,6 +683,21 @@ async function initializePresentation() {
         button.addEventListener("click", () => showScene(index));
       }
     });
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest(".it-ring-link");
+      if (!link) return;
+      event.preventDefault();
+      const back = new URL(window.location.href);
+      back.searchParams.set("scene", String(currentScene + 1));
+      window.location.href = `${link.getAttribute("href")}?back=${encodeURIComponent(back.href)}`;
+    }, true);
+    document.querySelector(".cinema-stage").addEventListener("click", (event) => {
+      const pillar = event.target.closest(".scene-agent365-pillars[data-builds] .agent365-pillar");
+      if (!pillar || scenes[currentScene] !== pillar.closest(".scene")) return;
+      event.stopImmediatePropagation();
+      clearAutoBuild();
+      setBuild(scenes[currentScene], [...pillar.parentElement.children].indexOf(pillar) + 1);
+    }, true);
     document.querySelector(".cinema-stage").addEventListener("click", (event) => {
       if (!event.target.closest(interactiveSelector)) stepForward();
     });
@@ -515,6 +712,7 @@ async function initializePresentation() {
     }, { passive: false });
 
     document.addEventListener("keydown", (event) => {
+      if (event.target === detourButton && (event.key === "Enter" || event.key === " ")) return;
       if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(event.key)) {
         event.preventDefault();
         stepForward();
@@ -542,7 +740,10 @@ async function initializePresentation() {
         sceneCount.dataset.visible = String(developerSceneIndicatorVisible);
         sceneCount.setAttribute("aria-hidden", String(!developerSceneIndicatorVisible));
       }
-      if (event.key === "Escape") setCommentaryOpen(false);
+      if (event.key === "Escape") {
+        setCommentaryOpen(false);
+        if (detourOpen) showScene(detourSourceIndex);
+      }
       if (event.key.toLowerCase() === "m") {
         const video = scenes[currentScene].querySelector("video");
         if (video) video.muted = !video.muted;
@@ -615,7 +816,8 @@ async function initializePresentation() {
     resizeCanvas();
     drawField();
     window.addEventListener("resize", resizeCanvas);
-    showScene(Number.isNaN(requestedScene) ? 0 : requestedScene);
+    const initialScene = Number.isNaN(requestedScene) ? 0 : requestedScene;
+    showScene(detourSceneSet.has(scenes[initialScene]) ? detourSourceIndex : initialScene);
 
     const lightbox = document.querySelector(".lightbox");
     const lightboxStage = document.querySelector(".lightbox-stage");
