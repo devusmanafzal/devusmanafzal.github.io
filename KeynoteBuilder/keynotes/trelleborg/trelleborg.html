@@ -15,17 +15,32 @@
       dataUrl: "data/trelleborg.json",
       useOverride: false
     };
+    window.PRESENTATION_DETOUR = {
+      triggerSelector: ".scene-governance .govern-agent-badge",
+      sceneIds: [
+        "agent365-control-plane",
+        "agent365-control-pillars",
+        "agent-operational-challenge",
+        "last-mile-problem",
+        "computer-use-reach",
+        "computer-use-execution"
+      ]
+    };
   </script>
   <link rel="stylesheet" href="../../styles/keynote.css?v=20261102i">
   <link rel="stylesheet" href="../../styles/agentstory.css?v=20261102b">
-  <link rel="stylesheet" href="../../styles/trelleborg-curves.css?v=26">
+  <link rel="stylesheet" href="../../styles/trelleborg-curves.css?v=80">
+  <link rel="stylesheet" href="../../styles/frontier-scenes.css?v=5">
   <style>
     .merged-cinema .cinema-stage > .scene {
       background: transparent !important;
     }
+    .cinema-stage > .scene[hidden] { display: none !important; }
+    button.govern-agent-badge { font: inherit; cursor: pointer; }
+    button.govern-agent-badge:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 5px; }
   </style>
   <script src="../../scripts/presentation-store.js" defer></script>
-  <script src="../../scripts/keynote.js?v=20260929c" defer></script>
+  <script src="../../scripts/keynote.js?v=20261104i" defer></script>
 </head>
 <body class="trelleborg-presentation">
   <main class="cinema merged-cinema" aria-label="The Digital Agency conference keynote">

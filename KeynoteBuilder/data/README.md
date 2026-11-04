@@ -1,5 +1,29 @@
 # Presentation Data
 
+## Trelleborg scene sequence
+
+The former scenes 23-27 (`frontier-copilot`, `frontier-iq`,
+`frontier-iq-stack`, `frontier-trust-platform`, and `frontier-architecture`)
+are disabled in `trelleborg.json`, removing them from navigation and numbering.
+The subsequent scenes 23, 26, and 27 (`agent-capability-continuum`,
+`multimodal`, and `ai-architecture`) are also disabled.
+Scene 28 (`closing-choice`) in the subsequent 35-scene sequence is also disabled.
+The resulting sequence has 34 enabled scenes; `closing-question` is followed by
+`agent365-control-plane`.
+Disabled scene content remains available in the data.
+
+### Agent 365 detour
+
+In `../keynotes/trelleborg/trelleborg.html`, the Agent 365 badge on the governance
+scene opens the optional scenes formerly numbered 28-33. These six enabled
+scenes are hidden from normal navigation, leaving 28 main-sequence scenes.
+The detour has its own six-scene counter. Completing it, going backward from its
+first build, pressing Escape, Home, or End returns to governance and hides it
+again. The badge supports mouse, Enter, and Space activation. Direct links to
+hidden detour scenes return to governance rather than bypassing the badge.
+The page configures stable destination scene IDs through `PRESENTATION_DETOUR`;
+other presentations retain their existing navigation.
+
 ## Trelleborg workforce question
 
 In `trelleborg.json`, the `workforce-2030-question` scene is headed

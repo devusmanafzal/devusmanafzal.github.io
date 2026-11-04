@@ -48,6 +48,8 @@ For temporary testing, open `http://localhost:4173/?palette=workscape` or `http:
 
 ## Presenter-supplied media
 
+`images/usman-afzal/work-iq-avatar.jpg` is the presenter-supplied photo used as the circular centre avatar in `keynotes/ref/usman-workIQ.html`. The canvas crops the upper centre of the photo to frame the face.
+
 The presenter supplied the speaker portraits, Storyals photograph, human-oversight images, agent-evolution artwork, Microsoft AI approach image, organization portraits, QR codes, and configured videos used by the current runtime. These assets are identified separately from externally licensed media in `credits.json`.
 
 ## Technology evolution timeline
