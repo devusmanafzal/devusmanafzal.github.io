@@ -105,7 +105,7 @@ body:not(.guide) #guide{display:none}
 #guide svg{width:130px;height:205px;overflow:visible;transform-origin:65px 130px}
 #guide .tagname{position:absolute;bottom:-22px;left:0;font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(14,22,52,.9);border:1px solid rgba(25,195,255,.5);white-space:nowrap}#guide.R .tagname{left:auto;right:0}
 #guide .leg,#guide .arm2{transform-box:view-box}
-#guide.walk .leg.l{animation:legL .5s infinite alternate ease-in-out;transform-origin:51px 118px}#guide.walk .leg.r{animation:legR .5s infinite alternate ease-in-out;transform-origin:69px 118px}
+#guide.walk .leg.l{animation:legL .5s infinite alternate ease-in-out;transform-origin:43px 112px}#guide.walk .leg.r{animation:legR .5s infinite alternate ease-in-out;transform-origin:57px 112px}
 @keyframes legL{from{transform:rotate(-20deg)}to{transform:rotate(20deg)}}@keyframes legR{from{transform:rotate(20deg)}to{transform:rotate(-20deg)}}
 #guide.walk svg{animation:bob .5s infinite alternate ease-in-out}@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-5px)}}
 #guide .parm{transform-origin:80px 78px;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
@@ -133,7 +133,7 @@ body.act2 #hud,body.act2 #steps,body.act2 #feed,body.act2 #srcs,body.act2 #lanes
 #chat header{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);flex:none}
 #chat header b{font-size:15px;display:flex;align-items:center;gap:8px}#chat header b i{font-style:normal;font-size:18px}
 #chat header button.hb{padding:6px 12px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:12.5px}#chat header button.hb:hover{background:rgba(25,195,255,.22)}
-.sw{margin-left:auto;display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;user-select:none}
+.sw{white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:9px;font-size:13px;cursor:pointer;user-select:none}
 .sw input{display:none}.sw .tg{width:40px;height:22px;border-radius:11px;background:#475569;position:relative;transition:.25s}.sw .tg:after{content:"";position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.25s}
 .sw input:checked+.tg{background:#19c3ff}.sw input:checked+.tg:after{left:21px}
 #msgs{flex:1;overflow-y:auto;padding:18px 20px;scrollbar-width:thin}
@@ -183,7 +183,7 @@ body.act2 #hud,body.act2 #steps,body.act2 #feed,body.act2 #srcs,body.act2 #lanes
 #chat.home header{position:fixed;left:24px;right:24px;top:20px;border:0;padding:0;z-index:12}#chat.home header b,#chat.home #a2new{display:none}
 #chat.home #msgs{overflow:visible;padding:0}#chat.home footer{display:none}
 #hello{text-align:center}#hello h1{font-size:40px;margin:0;font-weight:600;background:linear-gradient(90deg,#7dd3fc,#a78bfa 55%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.01em}
-#hello h2{font-size:21px;margin:6px 0 22px;font-weight:400;color:#c7d4f2}
+#hello h2{font-size:20px;margin:8px auto 22px;max-width:640px;line-height:1.35;font-weight:400;color:#c7d4f2}
 #hbox{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 20px;border-radius:30px;border:1px solid rgba(125,211,252,.45);background:rgba(15,22,50,.85);box-shadow:0 0 40px rgba(25,195,255,.18),0 12px 40px rgba(0,0,0,.4);min-height:62px;max-width:720px;margin:0 auto}
 #hbox .sp2{font-size:20px;color:#a78bfa}#hinp{flex:1;text-align:left;color:#7f8db0;font-size:16px}#hinp.has{color:var(--ink)}
 #hsend{width:42px;height:42px;border-radius:50%;border:0;background:#475569;color:#fff;font-size:17px;transition:.2s}#hsend.go{background:var(--accent);color:#04101f;box-shadow:0 0 20px rgba(25,195,255,.7)}
@@ -196,7 +196,7 @@ body.act2 #hud,body.act2 #steps,body.act2 #feed,body.act2 #srcs,body.act2 #lanes
 #views{position:fixed;left:22px;top:16px;z-index:30;display:flex;gap:4px;padding:4px;border-radius:14px}
 #views button{padding:8px 14px;border-radius:10px;border:1px solid transparent;background:none;font-size:13px;color:var(--muted);white-space:nowrap}
 #views button:hover{color:#fff}#views button.on{background:rgba(25,195,255,.22);border-color:rgba(25,195,255,.7);color:#fff;font-weight:600}
-#chat header{padding-left:300px!important}#chat.home header{padding-left:300px!important}#chat header b{display:none!important}
+#chat header{padding-left:396px!important;gap:8px!important}#chat.home header{padding-left:396px!important}#chat header b{display:none!important}
 #find{top:70px!important}
 .more{margin-top:16px;padding-top:12px;border-top:1px dashed var(--line)}.more .cap2{margin-bottom:8px}
 .more .mt{display:grid;grid-template-columns:1fr 1fr;gap:8px}.more button{text-align:left;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:12.5px;line-height:1.35;color:var(--ink)}.more button:hover{background:rgba(25,195,255,.18);border-color:rgba(25,195,255,.6)}.more button b{display:block;font-size:12px;color:#7dd3fc;margin-bottom:2px}
@@ -204,6 +204,122 @@ body.act2 #hud,body.act2 #steps,body.act2 #feed,body.act2 #srcs,body.act2 #lanes
 .phd{display:flex;gap:12px;align-items:center;margin-right:22px}.phd .av2{width:60px;height:60px;border:2px solid var(--c);box-shadow:0 0 16px var(--c)}
 .faces{margin-left:8px;display:inline-flex;vertical-align:middle}.faces .av2{margin-left:-7px}.faces .av2:first-child{margin-left:0}
 .ev .ic.ph{padding:0;overflow:hidden;background:none}.ev .ic.ph img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+#guide svg{filter:drop-shadow(0 8px 10px rgba(0,0,0,.45))}#guide .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}#guide .ant{filter:drop-shadow(0 0 5px #7df9ff);animation:antp 1.6s infinite alternate}@keyframes antp{from{opacity:.5}to{opacity:1}}#guide.talk .eye{animation:talk .5s infinite alternate}@keyframes talk{from{transform:scaleY(1)}to{transform:scaleY(.75)}}
+#learn{position:fixed;right:16px;top:64px;bottom:16px;width:490px;max-width:calc(100vw - 32px);z-index:40;display:flex;flex-direction:column;border-radius:18px;transform:translateX(115%);transition:transform .5s cubic-bezier(.3,.9,.3,1);background:rgba(8,13,34,.96)}
+#learn.on{transform:none}
+#learn .lh{display:flex;align-items:center;gap:10px;padding:14px 16px 8px}#learn .lh b{font-size:15px}#learn .lh button{margin-left:auto;width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:16px;color:var(--ink)}
+#ltabs{display:flex;flex-wrap:wrap;gap:6px;padding:4px 16px 10px;border-bottom:1px solid var(--line)}
+#ltabs button{padding:5px 10px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.05);font-size:12px;color:#c3d0ee}#ltabs button:hover{background:rgba(25,195,255,.2)}#ltabs button.on{background:rgba(25,195,255,.28);border-color:#19c3ff;color:#fff}
+#lbody{flex:1;overflow-y:auto;padding:14px 18px 18px;scrollbar-width:thin;font-size:13.5px;line-height:1.55;color:#dbe5fb}
+#lbody h3{margin:0 0 4px;font-size:20px}#lbody .ll{margin:0 0 12px;color:#9fb2dc;font-size:13.5px}
+#lbody ul{margin:0;padding:0 0 0 18px}#lbody li{margin:0 0 9px}#lbody sup a{color:#7dd3fc;text-decoration:none;font-weight:700;margin-left:2px}
+.lslide{width:100%;border-radius:12px;border:1px solid var(--line);margin:0 0 12px;background:#fff}
+.lsrc{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);font-size:12px}.lsrc div{display:grid;grid-template-columns:18px 1fr;gap:0 6px;margin-bottom:7px}.lsrc b{color:#7dd3fc}.lsrc a{color:#bfe9ff}.lsrc span{grid-column:2;color:#8fa0c8}
+.lnote{margin:14px 0 0;font-size:11.5px;color:#8fa0c8;line-height:1.45}
+#views .lv{margin-left:6px;border-left:1px solid var(--line)!important;border-radius:0 10px 10px 0}
+#paths{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:740px;margin:0 auto;text-align:left}
+#paths button{padding:18px 20px;border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid var(--line);transition:.2s;display:flex;flex-direction:column;gap:7px;align-items:flex-start;min-height:150px;text-align:left}
+#paths button:hover{border-color:rgba(125,211,252,.7);transform:translateY(-2px);box-shadow:0 10px 30px rgba(25,195,255,.18)}
+#paths .ti{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:rgba(125,211,252,.15)}#paths b{font-size:16px}#paths span{font-size:13px;color:#aebbdc;line-height:1.4}
+#paths em{font-style:normal;margin-top:auto;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#7dd3fc;font-weight:600}
+body.explore #guide,body.explore #cap{display:none!important}
+#chat header button.hb{white-space:nowrap}
+.lnk{position:absolute;right:14px;bottom:10px;padding:5px 11px;border-radius:12px;border:1px solid rgba(125,211,252,.5);background:rgba(25,195,255,.12);font-size:12px;color:#bfe9ff}.lnk:hover{background:rgba(25,195,255,.3)}
+#paths{max-width:1040px;grid-template-columns:repeat(3,1fr)}#paths button{min-height:210px;padding:22px 24px}#paths .ti{width:46px;height:46px;font-size:24px}#paths b{font-size:19px}#paths span{font-size:14px}
+#paths2{display:flex;gap:12px;justify-content:center;margin-top:16px}#paths2 button{padding:10px 18px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13.5px;color:#c9d6f3}#paths2 button:hover{background:rgba(25,195,255,.18);border-color:rgba(125,211,252,.6);color:#fff}
+#chat.paths .sw{display:none}
+.lb{background:linear-gradient(135deg,rgba(250,204,21,.28),rgba(25,195,255,.22))!important;border-color:rgba(250,204,21,.65)!important;color:#fff!important;font-weight:600}.lb:hover,.lb.on{box-shadow:0 0 18px rgba(250,204,21,.5)}
+#chat.paths #lbtn2{margin-left:auto}
+.orb{transform-origin:15px 15px;animation:orbit 9s linear infinite}@keyframes orbit{to{transform:rotate(360deg)}}
+body.landing #views{display:none!important}
+#paths button{align-items:center!important;text-align:center!important}#paths button span,#paths button b{text-align:center}
+#a2paths{display:none!important}
+:root{--hh:46px}
+#hdr{position:fixed;left:0;right:0;top:0;height:var(--hh);z-index:31;display:flex;align-items:center;gap:14px;padding:0 18px;background:linear-gradient(180deg,rgba(5,8,22,.96),rgba(5,8,22,.82));border-bottom:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#hdr #brand{display:flex;align-items:center;gap:9px;background:none;border:0;color:var(--ink);padding:6px 10px;border-radius:10px}#hdr #brand:hover{background:rgba(25,195,255,.16)}
+#brand .bi{font-size:18px;color:#7dd3fc}#brand b{font-size:15px;letter-spacing:.01em}#brand em{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:9px}
+#hdrc{flex:1;display:flex;justify-content:center}#hdr #views{position:static;background:none;border:0;box-shadow:none;backdrop-filter:none;padding:0}
+#hdrr{display:flex;gap:8px}#hdr #lbtn{padding:6px 14px;border-radius:10px;font-size:13px;border:1px solid;cursor:pointer}
+#lbtn2{display:none!important}
+#steps{top:calc(18px + var(--hh))}#hud{top:calc(18px + var(--hh))!important}
+.side{top:calc(124px + var(--hh))!important;max-height:calc(100vh - 210px - var(--hh))!important}
+#find{top:calc(12px + var(--hh))!important}#feed{top:calc(80px + var(--hh))}
+#learn{top:calc(var(--hh) + 8px)}#chat.home header{top:calc(var(--hh) + 8px)}
+#chat header{padding-left:16px!important}#chat.home header{padding-left:0!important}
+body.landing #views{display:none!important}
+/* ===== phone mode: every rule is scoped to body.mobile ===== */
+body.mobile{--hh:44px}
+body.mobile canvas{touch-action:none}
+body.mobile #hdr{padding:0 8px;gap:6px}body.mobile #brand em{display:none}body.mobile #hdrc{display:none}body.mobile #hdr #lbtn{margin-left:auto;padding:6px 11px}
+body.mobile #hdrr{margin-left:auto}
+body.mobile #find,body.mobile #gbtn,body.mobile #guide,body.mobile #badges,body.mobile #zoomc,body.mobile #ctl,body.mobile #skipnote{display:none!important}
+body.mobile #hud{left:8px!important;right:8px!important;top:calc(var(--hh) + 6px)!important;width:auto!important;padding:8px 12px;display:flex;align-items:center;gap:10px;border-radius:14px}
+body.mobile #hud h4,body.mobile #hud #rows,body.mobile #hud .dash,body.mobile #hud #wk{display:none}
+body.mobile #hud #tot{margin:0;font-size:24px}body.mobile #hud #wlab{margin:0 0 0 auto;font-size:11px;text-align:right;max-width:46%}
+body.mobile #hud #clock{position:static;margin-left:auto;font-size:15px}
+body.mobile #feed{left:8px!important;right:8px;width:auto!important;top:auto!important;bottom:calc(var(--sheet,230px) + 8px);height:auto;max-height:64px;-webkit-mask-image:none;mask-image:none;display:block;overflow:visible}
+body.mobile #feed .ev{display:none}body.mobile #feed .ev:last-child{display:flex;padding:7px 10px}body.mobile #feed .ev .s{display:none}
+body.mobile #srcs{display:none!important}
+body.mobile #steps{top:auto!important;bottom:calc(8px + env(safe-area-inset-bottom));left:8px;right:8px;transform:none;min-width:0!important;width:auto;padding:8px 10px!important;gap:8px!important;z-index:35}
+body.mobile #steps #stepc{flex:1;min-width:0}body.mobile #steps #ck{font-size:10px;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+body.mobile #steps>button{padding:9px 12px}
+body.mobile #steps #more{top:auto;bottom:calc(100% + 8px);right:0}
+body.mobile #cap{display:block!important;left:8px;right:8px;bottom:calc(76px + env(safe-area-inset-bottom));transform:none;width:auto;max-width:none;padding:11px 14px;z-index:6}
+body.mobile #cap .k{display:none}body.mobile #cap h2{display:block!important;font-size:16px;margin:0 0 3px}body.mobile #cap p{display:block!important;font-size:12.5px;line-height:1.42;min-height:0;max-height:96px;overflow-y:auto}
+body.mobile #memP,body.mobile #skP{height:auto;max-height:170px!important}body.mobile #memrows .card:not(:last-child),body.mobile #skrows .card:not(:last-child){display:none}body.mobile #memP .card,body.mobile #skP .card{margin:4px 0}
+body.mobile #lanes,body.mobile #classes{max-height:132px!important;overflow:hidden}
+body.mobile .side,body.mobile #lanes,body.mobile #classes{left:8px!important;right:8px!important;width:auto!important;top:auto!important;bottom:calc(var(--sheet,230px) + 8px)!important;padding:10px 12px;transform:translateY(20px)}
+body.mobile .side.on,body.mobile #lanes.on,body.mobile #classes.on{transform:none}
+body.mobile .side h3{font-size:14px}body.mobile .side p.sub{display:none}
+body.mobile #lanes h4,body.mobile #classes h4{margin-bottom:4px!important}
+body.mobile #lanes #lanesrows,body.mobile #classes #classrows{display:flex;flex-wrap:wrap;gap:2px 14px}body.mobile #lanes .row,body.mobile #classes .row{margin:2px 0;font-size:12px}body.mobile #lanes .row .n,body.mobile #classes .row .n{margin-left:6px}
+body.mobile #pop{left:8px!important;right:8px;width:auto;top:auto!important;bottom:calc(76px + env(safe-area-inset-bottom));max-height:44vh;z-index:34}
+body.mobile #learn{left:0;right:0;top:var(--hh);bottom:0;width:auto;max-width:none;border-radius:16px 16px 0 0;z-index:50}
+body.mobile #ltabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}body.mobile #ltabs button{white-space:nowrap;flex:none}
+body.mobile #lbody{font-size:14px}
+body.mobile #tip{display:none}
+/* landing on phone */
+body.mobile #chat.home{left:12px!important;right:12px;width:auto!important}
+body.mobile #chat.home header{left:12px;right:12px}
+body.mobile #hello h1{font-size:30px}body.mobile #hello h2{font-size:16px;margin:6px auto 16px}
+body.mobile #paths{grid-template-columns:1fr;gap:10px}body.mobile #paths button{min-height:0;padding:16px 16px}body.mobile #paths .ti{width:40px;height:40px}body.mobile #paths b{font-size:17px}body.mobile #paths span{font-size:13px}
+body.mobile.act2 #cap,body.mobile.explore #cap{display:none!important}
+body.mobile #steps #dots{gap:4px}body.mobile #steps #dots i{width:9px;height:5px}
+body.mobile #pipe{overflow-x:auto;scrollbar-width:none;gap:4px;padding:6px;z-index:36}body.mobile #pipe::-webkit-scrollbar{display:none}body.mobile #pipe .pc{flex:none;padding:6px 9px}body.mobile #pipe .pb{flex:none;width:30px;height:30px}
+body.mobile #dcard{overflow-y:auto;padding:11px 14px;z-index:36}body.mobile #dcard h4{font-size:14px;margin-bottom:6px}body.mobile #dcard .row2{flex-direction:column;gap:8px}body.mobile #dcard .big{font-size:24px}body.mobile #dcard .lnk{position:static;margin-top:8px;display:inline-block}
+body.mobile #dcard .how{grid-template-columns:70px 1fr;font-size:12px}
+body.mobile #chat:not(.home){z-index:9}body.mobile #chat:not(.home) header{padding:8px 10px!important;gap:8px!important}body.mobile #msgs{padding:12px 12px}
+body.mobile .act{display:none}body.mobile .ans{font-size:14px}body.mobile .more .mt{grid-template-columns:1fr}
+body.mobile #tiles{grid-template-columns:1fr;gap:8px}body.mobile #tiles button{min-height:0;padding:9px 12px;gap:1px 10px;display:grid;grid-template-columns:34px 1fr;align-items:center;border-radius:16px}body.mobile #tiles .ti{grid-row:1/3;width:34px;height:34px;font-size:17px}body.mobile #tiles b{font-size:14px}body.mobile #tiles span{font-size:12px;line-height:1.3}
+body.mobile #chat:not(.home) footer{display:none}
+body.mobile #pipe .pctl{position:sticky;left:0;margin-left:-6px;padding-left:6px;z-index:2;display:flex;gap:4px;flex:none;order:-1;padding-right:8px;background:rgba(14,22,52,.99);box-shadow:8px 0 8px rgba(14,22,52,.99)}
+body.mobile #hbox{min-height:54px;padding:8px 8px 8px 14px}body.mobile #hinp{font-size:14px}
+body.mobile #chat.home.paths .sw{display:none}
+body.mobile #paths button.soon{opacity:.55;pointer-events:none}
+body.mobile #paths2{flex-wrap:wrap}body.mobile #hnote{font-size:11.5px}
+#pipe .pctl{display:contents}body.mobile #pipe .pctl{display:flex}
+#pline,#blip,#a2close{display:none}
+body.mobile.act2 #pline.on{display:flex}body.mobile.act2 #blip.on{display:flex}
+body.mobile #pline{position:fixed;left:8px;right:8px;top:calc(var(--hh) + 6px);height:34px;align-items:center;gap:8px;padding:0 6px 0 12px;border-radius:17px;background:rgba(14,22,52,.9);border:1px solid var(--line);z-index:37;font-size:12.5px;color:#d6e0f7}
+body.mobile #pline #plt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.mobile #pline button{flex:none;padding:5px 10px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.07);font-size:12px;color:var(--ink)}
+body.mobile #blip{position:fixed;left:50%;transform:translateX(-50%);height:30px;align-items:center;gap:9px;padding:0 16px;border-radius:16px;background:rgba(25,195,255,.16);border:1px solid rgba(125,211,252,.7);color:#d9f3ff;font-size:12.5px;font-weight:600;z-index:37;white-space:nowrap;box-shadow:0 0 18px rgba(25,195,255,.35)}
+body.mobile #blip i{width:9px;height:9px;border-radius:50%;background:#7dd3fc;animation:blp 1s infinite}@keyframes blp{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1.2);opacity:1}}
+body.mobile #blip.ready{background:#19c3ff;color:#04101f;border-color:#19c3ff}body.mobile #blip.ready i{background:#04101f;animation:none}
+body.mobile #chat.msheet{left:0!important;right:0!important;width:auto!important;border-radius:20px 20px 0 0;transform:translateY(108%);transition:transform .55s cubic-bezier(.3,.9,.3,1)!important;z-index:45;box-shadow:0 -14px 50px rgba(0,0,0,.6)}
+body.mobile #chat.msheet.sheet-open{transform:none}
+body.mobile #chat.msheet:before{content:"";position:absolute;left:50%;top:7px;width:42px;height:4px;margin-left:-21px;border-radius:2px;background:rgba(255,255,255,.3);z-index:2}
+body.mobile #chat.msheet header{padding:16px 12px 8px!important}body.mobile #chat.msheet #a2close{display:inline-block;width:34px;padding:6px 0;text-align:center}
+.lihow{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(255,209,102,.5);font-size:12px;color:#d6e0f7}.lihow .how{margin-top:0;padding-top:0;border:0}
+body.mobile #paths{grid-template-columns:1fr}
+body.explore #views,body.explore #steps,body.explore #hud,body.explore #feed,body.explore #srcs{display:none!important}
+#xhint{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);padding:9px 18px;border-radius:20px;z-index:30;font-size:13px;color:#d6e6ff;opacity:0;transition:opacity .8s;pointer-events:none;white-space:nowrap}#xhint.on{opacity:1}body.mobile #xhint{white-space:normal;text-align:center;width:calc(100% - 32px);bottom:20px;font-size:12px}
+#avbtn{width:34px;height:34px;padding:0;border-radius:50%;border:2px solid var(--accent);overflow:hidden;background:#fff;cursor:pointer;flex:none}#avbtn img{width:100%;height:100%;object-fit:cover;object-position:48% 12%;transform:scale(1.9) translate(-1%,8%)}#avbtn:hover,#avbtn.on{box-shadow:0 0 14px rgba(25,195,255,.8)}
+#hdrr{align-items:center}
+.abt .who{display:flex;gap:14px;align-items:center;margin-bottom:12px}.abt .who img{width:76px;height:76px;border-radius:50%;object-fit:cover;object-position:48% 12%;transform:none;border:3px solid var(--accent);background:#fff}.abt .who b{font-size:18px;display:block}.abt .who span{font-size:12.5px;color:#9fb2dc}
+.abt h4{margin:16px 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7dd3fc}.abt ul{margin:0;padding-left:18px}.abt li{margin:0 0 6px}
+.abt .disc{margin-top:18px;padding:12px 14px;border-radius:12px;border:1px solid rgba(250,204,21,.5);background:rgba(250,204,21,.08);font-size:12.5px;line-height:1.5;color:#f6e7b4}.abt .disc b{display:block;margin-bottom:4px;color:#ffd166;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.abt .tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11px;margin:0 6px 4px 0;border:1px solid var(--line);background:rgba(255,255,255,.06)}
 </style></head><body>
 <canvas id="c"></canvas>
 <div id="me" class="glass"><img id="av" src="assets/images/portraits/you.jpg" alt="Usman"><div><b>Usman Afzal</b><span>Cloud solution architect</span></div><div id="clock">08:15<small>Day 1</small></div></div>
@@ -216,31 +332,48 @@ body.act2 #hud,body.act2 #steps,body.act2 #feed,body.act2 #srcs,body.act2 #lanes
 <div id="memP" class="side glass"><h3>Memory</h3><p class="sub">What stood out, and when. Built from the signal curves, not written by hand.</p><div id="memrows"></div></div>
 <div id="skP" class="side glass"><h3>How I work</h3><p class="sub">Patterns that repeat become things Work IQ can reuse for me.</p><div id="skrows"></div></div>
 <div id="badges"></div>
-<div id="views" class="glass"><button data-v="story">🧱 How it's built</button><button data-v="ask">✨ Ask Work IQ</button></div>
+<header id="hdr"><button id="brand" title="Back to the start (H)"><span class="bi">⌂</span><b>Work IQ</b><em>illustrated</em></button><div id="hdrc"></div><div id="hdrr"></div></header>
+<div id="views" class="glass"><button data-v="story">🧱 How it's built</button><button data-v="ask">⚡ Work IQ in action</button></div>
+<div id="learn" class="glass"><div class="lh"><b id="ltitle">💡 Work IQ explained</b><button id="lclose" aria-label="Close">×</button></div><div id="ltabs"></div><div id="lbody"></div></div>
 <div id="a2">
  <section id="chat" class="glass">
-  <header><b><i>✦</i>Copilot</b><button class="hb" id="a2new" style="display:none">⟲ New prompt</button>
-   <label class="sw" title="Switch Work IQ on or off for this answer"><span>Work IQ</span><input type="checkbox" id="wiqSw" checked><span class="tg"></span></label></header>
+  <header><b><i>✦</i>Copilot</b><button class="hb" id="a2close" aria-label="Close answer">✕</button><button class="hb" id="a2paths" style="display:none">‹ Paths</button><button class="hb" id="a2new" style="display:none">⟲ New prompt</button>
+   <label class="sw" title="Switch Work IQ on or off for this answer"><span>Work IQ</span><input type="checkbox" id="wiqSw" checked><span class="tg"></span></label><button class="hb lb" id="lbtn2" title="Work IQ explained: official Microsoft documentation (L)">💡 Explain</button></header>
   <div id="msgs"><div id="hello"><h1>What can I help you with?</h1><p>Pick a prompt, press send, then watch Work IQ build the answer.</p><div id="chips"></div></div></div>
   <footer><div id="inp"><span id="inpt">Choose a prompt above…</span><button id="send" aria-label="Send">➤</button></div></footer>
  </section>
+ <div id="pline"><span id="plt"></span><button id="plb" title="Choose another prompt">⟲ Prompts</button></div>
+ <div id="blip"><i></i><span id="blt">Response is in the making</span></div>
  <div id="pipe" class="glass" style="display:none"></div>
  <div id="dcard" class="glass" style="display:none"></div>
 </div>
 
 <div id="guide"><div class="cloud off" id="gcloud"><span class="tag">thinking</span><div class="tx"><span class="full" id="gfull"></span><span class="typed" id="gtyped"></span></div></div><i class="trail t1"></i><i class="trail t2"></i><i class="trail t3"></i>
-<div class="char"><svg id="gsvg" viewBox="0 0 100 158" aria-hidden="true"><defs><linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#19c3ff"/><stop offset="1" stop-color="#5b6dff"/></linearGradient><clipPath id="hc"><circle cx="50" cy="32" r="29"/></clipPath></defs>
-<g class="leg l"><rect x="36" y="112" width="13" height="38" rx="6.5" fill="#26345f"/><ellipse cx="41" cy="152" rx="11" ry="5" fill="#0d1530"/></g>
-<g class="leg r"><rect x="51" y="112" width="13" height="38" rx="6.5" fill="#26345f"/><ellipse cx="59" cy="152" rx="11" ry="5" fill="#0d1530"/></g>
-<rect x="21" y="68" width="10" height="42" rx="5" fill="#2f9fe8"/><circle cx="26" cy="112" r="5.5" fill="#f1c9a5"/>
-<rect x="30" y="60" width="40" height="58" rx="16" fill="url(#shirt)"/><circle cx="50" cy="86" r="8.5" fill="#fff" opacity=".92"/><text x="50" y="89.5" text-anchor="middle" font-size="9" font-weight="800" fill="#0b5cff" font-family="Segoe UI,Arial">IQ</text>
-<rect x="44" y="52" width="12" height="12" rx="4" fill="#f1c9a5"/>
-<g class="parm" id="garm"><rect x="68" y="64" width="10" height="42" rx="5" fill="#2f9fe8"/><circle cx="73" cy="108" r="5.5" fill="#f1c9a5"/></g><circle id="gsh" cx="73" cy="69" r="1" fill="none"/>
-<circle class="ring" cx="50" cy="32" r="34"/><g clip-path="url(#hc)"><svg x="21" y="3" width="58" height="58" viewBox="420 10 480 480"><image href="assets/images/portraits/you.jpg" width="1346" height="897"/></svg></g>
-<path d="M22 32a28 28 0 0 1 56 0" fill="none" stroke="#0d1530" stroke-width="5" stroke-linecap="round"/><rect x="17" y="28" width="8" height="15" rx="4" fill="#19c3ff"/><rect x="75" y="28" width="8" height="15" rx="4" fill="#19c3ff"/><path d="M79 42q0 10-14 11" fill="none" stroke="#19c3ff" stroke-width="2.5" stroke-linecap="round"/><circle cx="64" cy="53" r="3" fill="#ffd166"/></svg></div></div><div id="pring"></div>
+<div class="char"><svg id="gsvg" viewBox="0 0 100 158" aria-hidden="true"><defs>
+<radialGradient id="bg1" cx=".32" cy=".28" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#d4e5ff"/><stop offset="1" stop-color="#6f93d1"/></radialGradient>
+<linearGradient id="bv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a5e"/><stop offset="1" stop-color="#070d24"/></linearGradient>
+<radialGradient id="bd" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#4a5f9a"/><stop offset="1" stop-color="#141d44"/></radialGradient>
+<radialGradient id="be" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#e8ffff"/><stop offset=".5" stop-color="#52e1ff"/><stop offset="1" stop-color="#19a8e8"/></radialGradient>
+<radialGradient id="bs" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="50" cy="156" rx="30" ry="4.5" fill="url(#bs)"/>
+<g class="leg l"><rect x="37" y="108" width="12" height="38" rx="6" fill="url(#bd)"/><ellipse cx="43" cy="148" rx="11" ry="5.5" fill="url(#bg1)"/></g>
+<g class="leg r"><rect x="51" y="108" width="12" height="38" rx="6" fill="url(#bd)"/><ellipse cx="57" cy="148" rx="11" ry="5.5" fill="url(#bg1)"/></g>
+<rect x="17" y="64" width="11" height="40" rx="5.5" fill="url(#bg1)"/><circle cx="22.5" cy="106" r="6" fill="url(#bd)"/>
+<rect x="29" y="56" width="42" height="56" rx="20" fill="url(#bg1)"/><ellipse cx="40" cy="68" rx="9" ry="5" fill="#fff" opacity=".45"/>
+<circle cx="50" cy="86" r="11" fill="url(#bv)" stroke="#52e1ff" stroke-width="1.6"/><text x="50" y="90" text-anchor="middle" font-size="11" font-weight="800" fill="#7df9ff" font-family="Segoe UI,Arial">IQ</text>
+<rect x="43" y="50" width="14" height="9" rx="4" fill="url(#bd)"/>
+<g class="parm" id="garm"><rect x="68" y="64" width="10" height="42" rx="5" fill="url(#bg1)"/><circle cx="73" cy="108" r="6" fill="url(#bd)"/></g><circle id="gsh" cx="73" cy="69" r="1" fill="none"/>
+<circle cx="19" cy="30" r="8" fill="url(#bd)"/><circle cx="19" cy="30" r="4.5" fill="none" stroke="#52e1ff" stroke-width="1.6"/><circle cx="81" cy="30" r="8" fill="url(#bd)"/><circle cx="81" cy="30" r="4.5" fill="none" stroke="#52e1ff" stroke-width="1.6"/>
+<ellipse cx="50" cy="30" rx="31" ry="27" fill="url(#bg1)"/>
+<rect x="24" y="17" width="52" height="25" rx="12.5" fill="url(#bv)"/><path d="M30 21q20-5 40 0" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="2.4" stroke-linecap="round"/>
+<ellipse class="eye" cx="39" cy="30" rx="5" ry="6" fill="url(#be)"/><ellipse class="eye" cx="61" cy="30" rx="5" ry="6" fill="url(#be)"/>
+<path d="M44 37q6 4 12 0" fill="none" stroke="#52e1ff" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="50" y1="4" x2="50" y2="-6" stroke="#8aa4d6" stroke-width="2.4" stroke-linecap="round"/><circle class="ant" cx="50" cy="-8" r="4" fill="#7df9ff"/>
+</svg></div></div><div id="pring"></div>
 <div id="find"><input id="fq" placeholder="Find a customer, person or topic" autocomplete="off"><div id="fres" class="glass"></div></div>
 <div id="pop" class="glass"></div>
 <div id="zoomc" class="glass"><button id="zOut" title="Zoom out (-)">−</button><span id="zPct">100%</span><button id="zIn" title="Zoom in (+)">+</button><button id="zRe" title="Reset view (0)">⟲</button></div>
+<div id="xhint" class="glass">Drag to rotate · scroll or pinch to zoom · click a node to drill in · ⌂ to go back</div>
 <div id="tip" class="glass"></div>
 <div id="cap" class="glass"><div class="k" id="ck"></div><h2 id="ct"></h2><p id="cp"></p>
 <div id="ctl"><button id="bPrev">◀ Back</button><button id="bNext" class="pri">Next ▶</button><button id="bAuto">▶ Auto-play</button><button id="bRe">↺ Restart</button><button id="gbtn" class="on" title="Switch between my avatar commentary and the classic caption (G)">🧑 Guide</button><span id="skipnote">Drag the sphere to rotate · scroll to zoom · Space / → next · ← back · A auto · R restart</span><div id="dots"></div></div></div>
@@ -248,6 +381,9 @@ body.act2 #hud,body.act2 #steps,body.act2 #feed,body.act2 #srcs,body.act2 #lanes
 var CFG={"weeks": ["3 Aug", "10 Aug", "17 Aug", "24 Aug", "31 Aug", "7 Sep", "14 Sep", "21 Sep", "28 Sep", "5 Oct", "12 Oct", "19 Oct", "26 Oct", "2 Nov"], "signals": {"vol": {"mail_in": [139, 173, 284, 281, 375, 274, 333, 318, 336, 313, 309, 327, 285, 11], "mail_out": [0, 9, 54, 45, 65, 56, 49, 35, 46, 46, 23, 47, 30, 0], "meet": [30, 28, 49, 60, 63, 67, 77, 76, 89, 84, 82, 85, 82, 70], "files": [1, 1, 6, 13, 18, 9, 13, 29, 17, 13, 6, 13, 14, 0]}, "grid": {"sig1": [0, 1, 1, 32, 87, 8, 12, 2, 7, 9, 19, 1, 18, 0], "sig2": [2, 6, 22, 20, 9, 12, 23, 25, 22, 26, 13, 9, 14, 7], "sig3": [1, 4, 10, 24, 34, 7, 9, 5, 11, 4, 2, 5, 1, 3], "sig4": [1, 20, 32, 42, 8, 9, 31, 15, 11, 24, 8, 3, 16, 1], "sig5": [1, 1, 2, 8, 3, 4, 6, 14, 11, 23, 20, 29, 7, 3], "sig6": [0, 1, 10, 7, 4, 13, 6, 13, 16, 22, 6, 18, 5, 2], "sig7": [0, 1, 0, 5, 0, 3, 0, 3, 4, 0, 0, 4, 1, 0], "sig8": [0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 1, 4, 2], "sig9": [0, 0, 5, 5, 17, 6, 0, 1, 7, 2, 0, 0, 0, 1], "sig10": [0, 0, 3, 2, 11, 9, 7, 3, 0, 0, 0, 3, 0, 0], "sig11": [5, 26, 42, 56, 142, 34, 28, 29, 43, 62, 31, 14, 22, 5], "sig12": [4, 9, 18, 12, 32, 22, 13, 5, 12, 40, 4, 7, 3, 2], "sig13": [2, 2, 6, 3, 7, 6, 8, 3, 1, 1, 2, 13, 5, 1], "sig14": [18, 25, 13, 14, 18, 20, 28, 16, 25, 26, 52, 28, 34, 15], "sig15": [2, 4, 37, 20, 10, 23, 37, 22, 27, 18, 26, 30, 16, 6], "sig16": [11, 10, 7, 4, 3, 3, 4, 16, 22, 12, 8, 5, 12, 2], "sig17": [1, 0, 9, 0, 2, 0, 4, 4, 9, 0, 1, 3, 5, 0], "sig18": [6, 10, 9, 4, 5, 10, 16, 8, 12, 14, 16, 9, 9, 5], "sig19": [13, 27, 60, 69, 42, 58, 60, 63, 64, 43, 54, 42, 45, 12], "sig20": [9, 3, 8, 14, 14, 16, 50, 37, 52, 28, 12, 22, 17, 5], "sig21": [6, 7, 1, 2, 8, 9, 15, 3, 8, 0, 3, 8, 6, 3], "sig22": [2, 1, 2, 6, 9, 9, 3, 4, 6, 3, 8, 1, 1, 0], "sig23": [0, 0, 0, 0, 1, 0, 0, 12, 33, 0, 0, 3, 3, 0], "sig24": [4, 3, 5, 4, 7, 9, 3, 15, 10, 6, 12, 12, 5, 2], "sig25": [1, 3, 1, 6, 6, 1, 1, 5, 9, 12, 8, 15, 16, 2]}, "chats": 176}, "text": {"exampleChain": "{org2} raises the {theme_release}, escalated as {esc1}, worked through in the {prog_goplus} with {person2}."}, "lanes": [{"key": "sig11", "name": "Product roadmap", "color": "#19c3ff"}, {"key": "sig20", "name": "Copilot Cowork", "color": "#8a6cff"}, {"key": "sig14", "name": "Office hours", "color": "#ffb900"}, {"key": "sig12", "name": "AI readiness", "color": "#16c60c"}, {"key": "sig16", "name": "Go Plus programme", "color": "#ff6b6b"}, {"key": "sig21", "name": "Copilot Studio", "color": "#00b7c3"}, {"key": "sig13", "name": "AI upskilling", "color": "#e3008c"}, {"key": "sig22", "name": "Agent 365", "color": "#c7a4ff"}], "memory": [{"text": "<b>Product roadmap</b> peaked in the week of 31 Aug: 142 signals, against about 33 in a usual week.", "lane": 0, "week": 4}, {"text": "<b>Copilot Cowork</b> rose about 5x from August to mid September (50 in the week of 14 Sep).", "lane": 1, "week": 6}, {"text": "<b>Office hours</b> came up every week: 332 signals, never below 13 a week.", "lane": 2, "week": 10}, {"text": "<b>AI readiness</b> spiked in the week of 5 Oct (40 signals, against a usual 12).", "lane": 3, "week": 9}, {"text": "<b>The Go Plus programme</b> picked up in late September (16 and 22 a week, from about 4).", "lane": 4, "week": 8}], "entities": [{"id": "me", "cls": "hub", "safe": "Me", "detail": "Cloud solution architect helping customers adopt Microsoft 365 Copilot, Cowork and agents.", "signal": null}, {"id": "org1", "cls": "customer", "safe": "Retail Customer A", "detail": "Product roadmap sessions for their digital workplace team. Across the last three months: 37 contacts on their side, 138 mails exchanged, 12 meetings in my calendar.", "signal": "sig1", "st": {"t": 197, "x": 3.6, "e": [138, 12, 0, 0, 0, 197], "b": [4, 87]}}, {"id": "org2", "cls": "customer", "safe": "Automotive Customer B", "detail": "Cowork pilot, Copilot features and roadmap governance. Across the last three months: 41 contacts on their side, 47 mails exchanged, 44 meetings in my calendar.", "signal": "sig2", "st": {"t": 210, "x": 3.8, "e": [47, 44, 0, 0, 0, 210], "b": [9, 26]}}, {"id": "org3", "cls": "customer", "safe": "Fashion Customer C", "detail": "Product roadmap and a regular digital workplace check-in. Across the last three months: 27 contacts on their side, 64 mails exchanged, 14 meetings in my calendar.", "signal": "sig3", "st": {"t": 120, "x": 2.2, "e": [64, 14, 0, 0, 0, 120], "b": [4, 34]}}, {"id": "org4", "cls": "customer", "safe": "Energy Customer D", "detail": "Roadmap updates, Copilot and agents syncs, champions sessions. Across the last three months: 46 contacts on their side, 53 mails exchanged, 12 meetings in my calendar.", "signal": "sig4", "st": {"t": 221, "x": 4.0, "e": [75, 25, 0, 0, 0, 221], "b": [3, 42]}}, {"id": "org5", "cls": "customer", "safe": "Telecom Customer E", "detail": "Bi-weekly Copilot sync and an AI hackathon in planning. Across the last three months: 14 contacts on their side, 26 mails exchanged, 10 meetings in my calendar.", "signal": "sig5", "st": {"t": 132, "x": 2.4, "e": [26, 10, 0, 0, 0, 132], "b": [11, 29]}}, {"id": "org6", "cls": "customer", "safe": "Appliances Customer F", "detail": "New Copilot features and Agent 365 scoping. Across the last three months: 1,370 contacts on their side, 31 mails exchanged, 10 meetings in my calendar.", "signal": "sig7", "st": {"t": 21, "x": 0.4, "e": [31, 10, 0, 0, 0, 21], "b": [3, 5]}}, {"id": "org7", "cls": "customer", "safe": "Fashion Customer G", "detail": "AI upskilling sessions for their teams. Across the last three months: 65 contacts on their side, 18 mails exchanged, 5 meetings in my calendar.", "signal": "sig10", "st": {"t": 38, "x": 0.7, "e": [18, 5, 0, 0, 0, 38], "b": [4, 11]}}, {"id": "org8", "cls": "customer", "safe": "Hygiene Customer H", "detail": "Product roadmap and AI readiness. Across the last three months: 28 contacts on their side, 18 mails exchanged, 4 meetings in my calendar.", "signal": "sig8", "st": {"t": 11, "x": 0.2, "e": [18, 4, 0, 0, 0, 11], "b": [12, 4]}}, {"id": "org9", "cls": "customer", "safe": "Fashion Customer I", "detail": "Agentathon prep sessions and recap meetings. Across the last three months: 3 contacts on their side, 16 mails exchanged, 2 meetings in my calendar.", "signal": null, "st": {"t": 18, "x": 0.3, "e": [16, 2, 0, 0, 0, 0], "b": [12, 6]}}, {"id": "org10", "cls": "customer", "safe": "Transport Customer J", "detail": "Roadmap session and AI readiness. Across the last three months: 11 contacts on their side, 7 mails exchanged, 4 meetings in my calendar.", "signal": null, "st": {"t": 11, "x": 0.2, "e": [7, 4, 0, 0, 0, 0], "b": [2, 6]}}, {"id": "org11", "cls": "customer", "safe": "Banking Customer K", "detail": "Urgent support on Copilot features. Across the last three months: 2 contacts on their side, 10 mails exchanged, 0 meetings in my calendar.", "signal": null, "st": {"t": 10, "x": 0.2, "e": [10, 0, 0, 0, 0, 0], "b": [1, 5]}}, {"id": "org12", "cls": "customer", "safe": "Engineering Customer L", "detail": "Roadmap session and an account rhythm of business. Across the last three months: 10 contacts on their side, 5 mails exchanged, 4 meetings in my calendar.", "signal": "sig6", "st": {"t": 123, "x": 2.2, "e": [5, 4, 0, 0, 0, 123], "b": [9, 22]}}, {"id": "org13", "cls": "customer", "safe": "Banking Customer M", "detail": "Foundations roadmap, AI readiness and adoption score. Across the last three months: 9 contacts on their side, 4 mails exchanged, 3 meetings in my calendar.", "signal": "sig9", "st": {"t": 44, "x": 0.8, "e": [4, 3, 0, 0, 0, 44], "b": [4, 17]}}, {"id": "org14", "cls": "customer", "safe": "Services Customer N", "detail": "Hands-on Copilot sessions. Across the last three months: 2 contacts on their side, 3 mails exchanged, 1 meeting in my calendar.", "signal": null, "st": {"t": 4, "x": 0.1, "e": [3, 1, 0, 0, 0, 0], "b": [10, 3]}}, {"id": "org15", "cls": "customer", "safe": "Defence Customer O", "detail": "Copilot Studio check-ins. Across the last three months: 13 contacts on their side, 0 mails exchanged, 1 meeting in my calendar.", "signal": null, "st": {"t": 1, "x": 0.0, "e": [0, 1, 0, 0, 0, 0], "b": [8, 1]}}, {"id": "org16", "cls": "customer", "safe": "Public Sector Customer P", "detail": "Roadmap session and AI readiness. Across the last three months: 9 contacts on their side, 0 mails exchanged, 2 meetings in my calendar.", "signal": null, "st": {"t": 2, "x": 0.0, "e": [0, 2, 0, 0, 0, 0], "b": [2, 1]}}, {"id": "person1", "cls": "person", "safe": "My manager", "detail": "49 emails and 81 calendar events together in the last three months.", "signal": null, "st": {"t": 130, "x": 2.3, "e": [49, 81, 0, 0, 0, 0], "b": [10, 18]}}, {"id": "person2", "cls": "person", "safe": "Colleague A", "detail": "32 emails and 57 calendar events together in the last three months.", "signal": null, "st": {"t": 89, "x": 1.6, "e": [32, 57, 0, 0, 0, 0], "b": [8, 13]}}, {"id": "person3", "cls": "person", "safe": "Colleague B", "detail": "21 emails and 54 calendar events together in the last three months.", "signal": null, "st": {"t": 75, "x": 1.4, "e": [21, 54, 0, 0, 0, 0], "b": [10, 12]}}, {"id": "person4", "cls": "person", "safe": "Colleague C", "detail": "15 emails and 44 calendar events together in the last three months.", "signal": null, "st": {"t": 59, "x": 1.1, "e": [15, 44, 0, 0, 0, 0], "b": [4, 8]}}, {"id": "person5", "cls": "person", "safe": "Colleague D", "detail": "40 emails and 70 calendar events together in the last three months.", "signal": null, "st": {"t": 110, "x": 2.0, "e": [40, 70, 0, 0, 0, 0], "b": [11, 18]}}, {"id": "person6", "cls": "person", "safe": "Colleague E", "detail": "15 emails and 83 calendar events together in the last three months.", "signal": null, "st": {"t": 98, "x": 1.8, "e": [15, 83, 0, 0, 0, 0], "b": [4, 14]}}, {"id": "person7", "cls": "person", "safe": "Colleague F", "detail": "10 emails and 86 calendar events together in the last three months.", "signal": null, "st": {"t": 96, "x": 1.7, "e": [10, 86, 0, 0, 0, 0], "b": [6, 16]}}, {"id": "person8", "cls": "person", "safe": "Colleague G", "detail": "4 emails and 59 calendar events together in the last three months.", "signal": null, "st": {"t": 63, "x": 1.1, "e": [4, 59, 0, 0, 0, 0], "b": [6, 8]}}, {"id": "person9", "cls": "person", "safe": "Colleague H", "detail": "9 emails and 42 calendar events together in the last three months.", "signal": null, "st": {"t": 51, "x": 0.9, "e": [9, 42, 0, 0, 0, 0], "b": [12, 7]}}, {"id": "person10", "cls": "person", "safe": "Colleague I", "detail": "37 emails and 42 calendar events together in the last three months.", "signal": null, "st": {"t": 79, "x": 1.4, "e": [37, 42, 0, 0, 0, 0], "b": [9, 14]}}, {"id": "person11", "cls": "person", "safe": "Colleague J", "detail": "0 emails and 83 calendar events together in the last three months.", "signal": null, "st": {"t": 83, "x": 1.5, "e": [0, 83, 0, 0, 0, 0], "b": [11, 10]}}, {"id": "esc1", "cls": "uat", "safe": "Escalation 1", "detail": "Power Platform external models setting for Cowork model enablement: 10 mentions, last on 23 Oct.", "signal": null, "st": {"t": 10, "x": 0.2, "e": [0, 0, 0, 0, 10, 0], "b": [8, 7]}}, {"id": "prog_roadmap", "cls": "programme", "safe": null, "detail": "Roadmap sessions I run for customers: 539 signals in the last three months.", "signal": "sig11", "real": "Product roadmap briefings", "st": {"t": 539, "x": 9.7, "e": [61, 0, 0, 0, 0, 539], "b": [4, 142]}}, {"id": "prog_goplus", "cls": "programme", "safe": null, "detail": "Go Plus office hours and the weekly Cowork support cadence: 119 signals in the last three months.", "signal": "sig16", "real": "Cowork Go Plus programme", "st": {"t": 119, "x": 2.2, "e": [15, 36, 0, 0, 0, 119], "b": [8, 22]}}, {"id": "item1", "cls": "programme", "safe": "AI transformation project", "detail": "Weekly stakeholder update: 13 calls in the last three months.", "signal": null, "st": {"t": 13, "x": 0.2, "e": [0, 13, 0, 0, 0, 0], "b": [0, 1]}}, {"id": "item2", "cls": "programme", "safe": "Copilots and agents RoB", "detail": "Rhythm of business on Copilots and agents: 7 sessions in the last three months.", "signal": null, "st": {"t": 12, "x": 0.2, "e": [0, 12, 0, 0, 0, 0], "b": [5, 2]}}, {"id": "item3", "cls": "programme", "safe": "Champions community sessions", "detail": "Monthly community sessions for Copilot champions: 38 signals in the last three months.", "signal": "sig17", "st": {"t": 38, "x": 0.7, "e": [0, 0, 0, 2, 0, 38], "b": [2, 9]}}, {"id": "prog_upskilling", "cls": "programme", "safe": null, "detail": "Hands-on Copilot sessions and prompt practice: 60 signals in the last three months.", "signal": "sig13", "real": "AI upskilling sessions", "st": {"t": 60, "x": 1.1, "e": [11, 0, 0, 0, 0, 60], "b": [11, 13]}}, {"id": "item4", "cls": "programme", "safe": "Joint AI hackathon", "detail": "Joint AI hackathon being planned in a group chat, last active 27 Oct.", "signal": null, "st": {"t": 1, "x": 0.0, "e": [0, 0, 1, 0, 0, 0], "b": [12, 1]}}, {"id": "theme_readiness", "cls": "theme", "safe": null, "detail": "How ready customers are for Copilot and agents: 183 signals in the last three months.", "signal": "sig12", "real": "AI readiness", "st": {"t": 183, "x": 3.3, "e": [0, 0, 0, 0, 122, 183], "b": [9, 40]}}, {"id": "theme_officehours", "cls": "theme", "safe": null, "detail": "Office hours I join or host: 332 signals in the last three months.", "signal": "sig14", "real": "Office hours and enablement", "st": {"t": 332, "x": 6.0, "e": [0, 0, 0, 0, 313, 332], "b": [10, 52]}}, {"id": "theme_alignment", "cls": "theme", "safe": null, "detail": "Check-ins and syncs with customers and account teams: 278 signals in the last three months.", "signal": "sig15", "real": "Alignment and syncs", "st": {"t": 278, "x": 5.0, "e": [0, 0, 0, 0, 190, 278], "b": [2, 37]}}, {"id": "theme_security", "cls": "theme", "safe": null, "detail": "Security questions around Copilot and agents: 133 signals in the last three months.", "signal": "sig18", "real": "Security", "st": {"t": 133, "x": 2.4, "e": [0, 0, 0, 0, 120, 133], "b": [6, 16]}}, {"id": "theme_release", "cls": "theme", "safe": null, "detail": "A model setting in Power Platform blocking a Cowork production release: 16 emails.", "signal": null, "real": "Cowork production release blocker", "st": {"t": 16, "x": 0.3, "e": [16, 0, 0, 0, 0, 0], "b": [8, 16]}}, {"id": "prod_copilot", "cls": "product", "safe": null, "detail": "652 signals in the last three months, busiest in the week of 24 Aug.", "signal": "sig19", "real": "Microsoft 365 Copilot", "st": {"t": 652, "x": 11.8, "e": [0, 0, 0, 0, 151, 652], "b": [3, 69]}}, {"id": "prod_cowork", "cls": "product", "safe": null, "detail": "287 signals in the last three months, busiest in the week of 28 Sep.", "signal": "sig20", "real": "Copilot Cowork", "st": {"t": 287, "x": 5.2, "e": [0, 0, 0, 0, 257, 287], "b": [8, 52]}}, {"id": "prod_studio", "cls": "product", "safe": null, "detail": "79 signals in the last three months, busiest in the week of 14 Sep.", "signal": "sig21", "real": "Copilot Studio", "st": {"t": 79, "x": 1.4, "e": [0, 0, 0, 0, 85, 79], "b": [6, 15]}}, {"id": "prod_agent365", "cls": "product", "safe": null, "detail": "55 signals in the last three months, busiest in the week of 31 Aug.", "signal": "sig22", "real": "Agent 365", "st": {"t": 55, "x": 1.0, "e": [0, 0, 0, 0, 0, 55], "b": [4, 9]}}, {"id": "prod_pp", "cls": "product", "safe": null, "detail": "52 signals in the last three months, busiest in the week of 28 Sep.", "signal": "sig23", "real": "Power Platform", "st": {"t": 52, "x": 0.9, "e": [0, 0, 0, 0, 0, 52], "b": [8, 33]}}, {"id": "prod_azure", "cls": "product", "safe": null, "detail": "97 signals in the last three months, busiest in the week of 21 Sep.", "signal": "sig24", "real": "Azure", "st": {"t": 97, "x": 1.8, "e": [0, 0, 0, 0, 97, 97], "b": [7, 15]}}, {"id": "prod_teams", "cls": "product", "safe": null, "detail": "86 signals in the last three months, busiest in the week of 26 Oct.", "signal": "sig25", "real": "Microsoft Teams", "st": {"t": 86, "x": 1.6, "e": [0, 0, 0, 0, 86, 86], "b": [12, 16]}}, {"id": "item5", "cls": "asset", "safe": "Monthly roadmap updates", "detail": "Sent 12 times in the last three months.", "signal": null, "st": {"t": 12, "x": 0.2, "e": [12, 0, 0, 0, 0, 0], "b": [1, 3]}}, {"id": "asset_copilotupdates", "cls": "asset", "safe": null, "detail": "My own update mail: sent 5 times in the last three months.", "signal": null, "real": "Latest Copilot updates", "st": {"t": 5, "x": 0.1, "e": [5, 0, 0, 0, 0, 0], "b": [3, 1]}}, {"id": "item6", "cls": "asset", "safe": "Cowork overview decks", "detail": "Overview decks for end users, last edited 25 Sep.", "signal": null, "st": {"t": 2, "x": 0.0, "e": [0, 0, 0, 2, 0, 0], "b": [7, 1]}}, {"id": "item7", "cls": "asset", "safe": "Agent offer packages", "detail": "Packaged offers for sellers, last edited 20 Oct.", "signal": null, "st": {"t": 2, "x": 0.0, "e": [0, 0, 0, 2, 0, 0], "b": [11, 2]}}, {"id": "item8", "cls": "asset", "safe": "Executive AI keynote", "detail": "Executive keynote on AI trend lines, last edited 29 Oct.", "signal": null, "st": {"t": 2, "x": 0.0, "e": [0, 0, 0, 2, 0, 0], "b": [12, 2]}}, {"id": "asset_studio", "cls": "asset", "safe": null, "detail": "Guidance mail sent 4 times in the last three months.", "signal": null, "real": "Copilot Studio structure", "st": {"t": 4, "x": 0.1, "e": [4, 0, 0, 0, 0, 0], "b": [11, 2]}}], "relations": [["prog_roadmap", "org1", "runs at"], ["prog_roadmap", "org3", "runs at"], ["prog_roadmap", "org4", "runs at"], ["prog_roadmap", "org12", "runs at"], ["prog_roadmap", "org13", "runs at"], ["prog_roadmap", "org8", "runs at"], ["prog_roadmap", "org10", "runs at"], ["prog_roadmap", "org16", "runs at"], ["prog_roadmap", "org2", "runs at"], ["me", "prog_roadmap", "leads"], ["me", "prog_goplus", "supports"], ["prog_goplus", "org2", "runs at"], ["me", "item1", "supports"], ["item1", "org5", "for"], ["item4", "org5", "for"], ["me", "item4", "supports"], ["item2", "org12", "runs at"], ["me", "item2", "supports"], ["item3", "org4", "for"], ["me", "item3", "leads"], ["prog_upskilling", "org7", "for"], ["prog_upskilling", "org14", "for"], ["me", "prog_upskilling", "leads"], ["org2", "theme_release", "raises"], ["theme_release", "esc1", "escalates"], ["esc1", "prod_pp", "for"], ["esc1", "prod_cowork", "for"], ["person2", "org2", "supports"], ["person9", "org2", "supports"], ["person8", "prog_goplus", "supports"], ["person1", "me", "manages"], ["person3", "org1", "supports"], ["person4", "org3", "supports"], ["person5", "org12", "supports"], ["person11", "org5", "supports"], ["person10", "org5", "supports"], ["person6", "me", "co-sells with"], ["person7", "me", "co-sells with"], ["org1", "theme_readiness", "raises"], ["org13", "theme_readiness", "raises"], ["org8", "theme_readiness", "raises"], ["org11", "prod_copilot", "adopts"], ["org15", "prod_studio", "adopts"], ["org6", "prod_agent365", "adopts"], ["org9", "prog_upskilling", "for"], ["org2", "prod_cowork", "adopts"], ["org3", "prod_copilot", "adopts"], ["item5", "org4", "prepared for"], ["me", "asset_copilotupdates", "edits"], ["item6", "prod_cowork", "evidences"], ["item7", "prod_studio", "evidences"], ["me", "item8", "edits"], ["asset_studio", "prod_studio", "evidences"], ["theme_officehours", "prod_cowork", "for"], ["theme_alignment", "org2", "for"], ["theme_security", "prod_copilot", "for"], ["prod_azure", "org12", "for"], ["prod_teams", "org5", "for"]]};
 (function(){
 "use strict";
+function isMob(){return window.matchMedia&&matchMedia("(max-width:760px)").matches&&innerHeight>innerWidth*0.9;}
+var MOB=isMob();if(MOB)document.body.classList.add("mobile");
+var _rz;addEventListener("resize",function(){clearTimeout(_rz);_rz=setTimeout(function(){if(isMob()!==MOB)location.reload();},400);});
 var $=function(i){return document.getElementById(i);};
 var cv=$('c'),g=cv.getContext('2d'),W=0,H=0,DPR=1;
 var byId={};CFG.entities.forEach(function(e){byId[e.id]=e;});
@@ -320,8 +456,8 @@ function clearTimers(){timers.forEach(clearTimeout);timers=[];}
 /* ---------- resize / draw ---------- */
 function resize(){DPR=Math.min(2,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;g.setTransform(DPR,0,0,DPR,0,0);}
 addEventListener('resize',resize);resize();
-var img=new Image();img.src='assets/images/portraits/you.jpg';
-var drag=null,lastInter=0,vel=0,ZOOM=1,ZT=1,BLK=[];var A2on=false,A2={hl:null,lanes:[],edges:[],hold:false};
+var img=new Image();img.src='assets/images/portraits/anna.jpg';
+var drag=null,lastInter=0,vel=0,ZOOM=1,ZT=1,BLK=[],MX=0;var A2on=false,A2={hl:null,lanes:[],edges:[],hold:false};
 var flyers=[],R=200,CX=0,CY=0,PITCH=.32;
 function proj(v,k){var c=Math.cos(S.yaw),s=Math.sin(S.yaw),x=v[0]*c+v[2]*s,z=-v[0]*s+v[2]*c,y=v[1];
  var cp=Math.cos(PITCH),sp=Math.sin(PITCH),y2=y*cp-z*sp,z2=y*sp+z*cp,sc=1/(1-z2*.18);
@@ -334,6 +470,7 @@ function draw(now){
  S.cx=lerp(S.cx,S.cxT,.05);S.cy=lerp(S.cy,S.cyT,.05);
  g.clearRect(0,0,W,H);
  ZOOM+=(ZT-ZOOM)*.15;R=Math.min(W*.8,H)*.285*ZOOM;CX=W*S.cx;CY=H*S.cy;
+ if(MOB){var sh=parseFloat(document.body.style.getPropertyValue('--sheet'))||230;if(A2on){if(A.mode==='run'){var tb=sheetOpen?A2L.open:A2L.bot;A2L.cur+=(tb-A2L.cur)*.12;R=Math.min(W*.28,(A2L.cur-A2L.top)/2/1.5);CX=W/2;CY=(A2L.top+A2L.cur)/2;}else{R=W*.11;CX=W/2;CY=96;}}else{var xt=0;if($('memP').classList.contains('on')||$('skP').classList.contains('on'))xt=150;else if($('lanes').classList.contains('on')||$('classes').classList.contains('on'))xt=134;MX+=(xt-MX)*.12;var topY=100,botY=H-sh-6-MX;if($('pop').classList.contains('on')){botY=Math.min(botY,H-76-$('pop').offsetHeight-12);}CY=(topY+botY)/2+6;R=Math.min(W*.27,(botY-topY)/2/1.5)*ZOOM;CX=W/2;}}
  /* glow */
  var gr=g.createRadialGradient(CX,CY,R*.2,CX,CY,R*1.7);gr.addColorStop(0,'rgba(25,120,255,'+(.10+.1*Math.min(1,S.reveal/N))+')');gr.addColorStop(1,'rgba(5,8,22,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);
  g.strokeStyle='rgba(120,170,255,.10)';g.lineWidth=1;g.beginPath();g.arc(CX,CY,R,0,6.283);g.stroke();
@@ -375,18 +512,18 @@ function draw(now){
  var vs=NODES.filter(function(n){return n.vis>.01;}).sort(function(a,b){return b.sz-a.sz;});
  vs.forEach(function(n){var on=hl[n.id]&&dimA>.05,isS=S.sel===n,al=n.vis*(on?1:1-.7*dimA)*clamp(.6-n.sz*.4,.3,1);var rad=(n.cls==='customer'?7:n.cls==='uat'?8:5.5)*n.sc*(R/230)*(.4+.6*n.vis)*(on?1.5:1)*(isS?1.4:1);
   g.globalAlpha=al;g.shadowColor=n.col;g.shadowBlur=on?24:12;g.fillStyle=n.col;g.beginPath();g.arc(n.sx,n.sy,rad,0,6.283);g.fill();g.shadowBlur=0;
-  var pim=PIMG[n.id],fr=0;if(pim&&pim.complete&&pim.width&&(on||isS||n===hover||ZOOM>1.6)){fr=Math.max(15,rad*2.2);g.save();g.globalAlpha=al;g.beginPath();g.arc(n.sx,n.sy,fr,0,6.283);g.clip();var pw=pim.width;g.drawImage(pim,pw*.12,pw*.02,pw*.76,pw*.76,n.sx-fr,n.sy-fr,fr*2,fr*2);g.restore();g.save();g.globalAlpha=al;g.strokeStyle=n.col;g.lineWidth=2.5;g.shadowColor=n.col;g.shadowBlur=12;g.beginPath();g.arc(n.sx,n.sy,fr,0,6.283);g.stroke();g.restore();}
+  var pim=PIMG[n.id],fr=0;if(pim&&pim.complete&&pim.width&&(on||isS||n===hover||ZOOM>1.6)){fr=MOB&&A2on?Math.max(10,rad*1.5):Math.max(15,rad*2.2);g.save();g.globalAlpha=al;g.beginPath();g.arc(n.sx,n.sy,fr,0,6.283);g.clip();var pw=pim.width;g.drawImage(pim,pw*.12,pw*.02,pw*.76,pw*.76,n.sx-fr,n.sy-fr,fr*2,fr*2);g.restore();g.save();g.globalAlpha=al;g.strokeStyle=n.col;g.lineWidth=2.5;g.shadowColor=n.col;g.shadowBlur=12;g.beginPath();g.arc(n.sx,n.sy,fr,0,6.283);g.stroke();g.restore();}
   if(isS){g.strokeStyle='#fff';g.lineWidth=2;g.beginPath();g.arc(n.sx,n.sy,Math.max(rad,fr)+5,0,6.283);g.stroke();}
-  if(n.cls==='customer'&&n.sz<.2&&dimA<.05&&!A2on||on||n===hover){g.globalAlpha=al*(on||n===hover?1:.75);g.fillStyle='#eaf2ff';g.font=(on?'600 13px':'11.5px')+' Segoe UI,system-ui,sans-serif';g.fillText(n.name,n.sx+Math.max(rad,fr)+6,n.sy+4);}
+  if(n.cls==='customer'&&n.sz<.2&&dimA<.05&&!A2on&&!MOB||on||n===hover){g.globalAlpha=al*(on||n===hover?1:.75);g.fillStyle='#eaf2ff';g.font=(on?(MOB&&A2on?'600 10.5px':'600 13px'):'11.5px')+' Segoe UI,system-ui,sans-serif';g.fillText(n.name,n.sx+Math.max(rad,fr)+6,n.sy+4);}
   g.globalAlpha=1;});
- labels.forEach(function(l){g.font='600 12px Segoe UI,system-ui,sans-serif';var w=g.measureText(l[0]).width+14,x=l[1]-w/2,y=l[2]-10;g.fillStyle='rgba(5,8,22,.88)';g.strokeStyle='rgba(255,209,102,.7)';g.lineWidth=1;g.beginPath();g.roundRect(x,y,w,20,10);g.fill();g.stroke();g.fillStyle='#ffe08a';g.fillText(l[0],x+7,y+14);});
+ labels.forEach(function(l){g.font=(MOB&&A2on?'600 10px':'600 12px')+' Segoe UI,system-ui,sans-serif';var w=g.measureText(l[0]).width+14,x=l[1]-w/2,y=l[2]-10;g.fillStyle='rgba(5,8,22,.88)';g.strokeStyle='rgba(255,209,102,.7)';g.lineWidth=1;g.beginPath();g.roundRect(x,y,w,20,10);g.fill();g.stroke();g.fillStyle='#ffe08a';g.fillText(l[0],x+7,y+14);});
  /* flyers */
  flyers=flyers.filter(function(f){var k=(now-f.t0)/f.dur;if(k<0)return true;if(k>=1){if(f.n){var pi=Math.floor(S.reveal);if(pi<N&&f.s!=null)P[pi].s=f.s;S.reveal=Math.min(N,S.reveal+f.n);}if(f.sig&&dayMode){cnt[['mail','cal','chat','file'][f.s]||'mail']+=f.sig;setHud();}return false;}
   var e=ease(k),mx=(f.x0+CX)/2,my=Math.min(f.y0,CY)-90,x=(1-e)*(1-e)*f.x0+2*(1-e)*e*mx+e*e*CX,y=(1-e)*(1-e)*f.y0+2*(1-e)*e*my+e*e*CY;
   g.globalCompositeOperation='lighter';g.fillStyle=f.c;g.shadowColor=f.c;g.shadowBlur=14;g.globalAlpha=1-.4*k;g.beginPath();g.arc(x,y,(4+3*(1-k))*(f.sm||1),0,6.283);g.fill();g.shadowBlur=0;g.globalAlpha=1;g.globalCompositeOperation='source-over';return true;});
  /* avatar at the core */
  if(S.avatar>0&&img.complete){var ar=R*.2;g.save();g.shadowColor='#19c3ff';g.shadowBlur=26;g.beginPath();g.arc(CX,CY,ar+3,0,6.283);g.fillStyle='#19c3ff';g.fill();g.restore();
-  g.save();g.beginPath();g.arc(CX,CY,ar,0,6.283);g.clip();g.fillStyle='#fff';g.fillRect(CX-ar,CY-ar,ar*2,ar*2);g.drawImage(img,420,10,480,480,CX-ar,CY-ar,ar*2,ar*2);g.restore();}
+  g.save();g.beginPath();g.arc(CX,CY,ar,0,6.283);g.clip();g.fillStyle='#fff';g.fillRect(CX-ar,CY-ar,ar*2,ar*2);var iw=img.width||1;g.drawImage(img,iw*.12,iw*.02,iw*.76,iw*.76,CX-ar,CY-ar,ar*2,ar*2);g.restore();}
  if(S.shell>.05){var sr2=R*1.46*lerp(1.15,1,S.shell);
   /* things that are not allowed bounce off the shell */
   if(S.shell>.6&&BLK.length<14&&Math.random()<.06)BLK.push({a:Math.random()*6.283,r:2.5,v:-.011-Math.random()*.006,hit:0});
@@ -396,8 +533,8 @@ function draw(now){
   var wob=Math.sin(now/2500)*.1;
   if(!A2on)BADGES.forEach(function(bd,i){var al=clamp(S.shell*5-i*.8,0,1);if(al<=0)return;var ang=bd[2]*Math.PI/180+wob*(i%2?1:-1),px=CX+Math.cos(ang)*sr2,py=CY+Math.sin(ang)*sr2;
    g.save();g.globalAlpha=al;g.shadowColor='#34d399';g.shadowBlur=16;g.fillStyle='#34d399';g.beginPath();g.arc(px,py,6,0,6.283);g.fill();g.shadowBlur=0;
-   g.font='600 14px Segoe UI,system-ui,sans-serif';var txt=bd[0]+'  '+bd[1],w=g.measureText(txt).width+26,h=34,x=px-w/2,y=py-h/2;
-   g.fillStyle='rgba(8,30,28,.94)';g.strokeStyle='#34d399';g.lineWidth=1.5;g.beginPath();g.roundRect(x,y,w,h,17);g.fill();g.stroke();g.fillStyle='#d9fff0';g.fillText(txt,x+13,y+22);g.restore();});}
+   g.font=(MOB?'600 18px':'600 14px')+' Segoe UI,system-ui,sans-serif';var txt=MOB?bd[0]:bd[0]+'  '+bd[1],w=MOB?36:g.measureText(txt).width+26,h=MOB?36:34,x=px-w/2,y=py-h/2;
+   g.fillStyle='rgba(8,30,28,.94)';g.strokeStyle='#34d399';g.lineWidth=1.5;g.beginPath();g.roundRect(x,y,w,h,17);g.fill();g.stroke();g.fillStyle='#d9fff0';g.fillText(txt,MOB?x+8:x+13,MOB?y+25:y+22);g.restore();});}
  requestAnimationFrame(draw);
 }
 /* hover */
@@ -423,8 +560,8 @@ function tabMemory(n,rl){var out=[],seen={},lane=laneOf(n);
  if(lane>=0)CFG.memory.forEach(function(m,i){if(m.lane===lane){seen[i]=1;out.push(memCard(m,''));}});
  rl.forEach(function(r){var l=laneOf(r[1]);if(l<0)return;CFG.memory.forEach(function(m,i){if(m.lane===l&&!seen[i]){seen[i]=1;out.push(memCard(m,r[1].name));}});});
  return out.length?out.slice(0,3).join(''):'<div class="ds">Nothing notable remembered here yet. Memory only keeps what stands out against the usual pattern.</div>';}
-function tabAsk(n){return '<div class="ds" style="margin-bottom:8px">Prompts that Work IQ can ground in this node. Open Ask Work IQ to run one of them.</div>'+ASK[n.cls].map(function(q){return '<div class="ask"><small>Try</small>“'+q.replace('{n}',n.name)+'”</div>';}).join('');}
-var TABS=[['Overview',tabOverview],['Links',tabLinks],['Memory',tabMemory],['Ask',tabAsk]];
+function tabAsk(n){return '<div class="ds" style="margin-bottom:8px">Prompts that Work IQ can ground in this node. Open Work IQ in action to run one of them.</div>'+ASK[n.cls].map(function(q){return '<div class="ask"><small>Try</small>“'+q.replace('{n}',n.name)+'”</div>';}).join('');}
+var TABS=[['Overview',tabOverview],['Links',tabLinks],['Memory',tabMemory],['Prompts',tabAsk]];
 function selectNode(n,keepTab){if(!n||n.vis<.5)return;S.sel=n;
  var phi=Math.atan2(n.p[0],n.p[2]),tgt=Math.PI-phi,d=tgt-S.yaw;d=d-Math.round(d/(2*Math.PI))*2*Math.PI;tween('yaw',S.yaw+d,1100);tween('sd',1,700);
  var rl=relsOf(n),tab=keepTab||0;
@@ -433,14 +570,18 @@ function selectNode(n,keepTab){if(!n||n.vis<.5)return;S.sel=n;
   Array.prototype.forEach.call(el.querySelectorAll('.ch button'),function(b){b.onclick=function(){selectNode(rl[+b.getAttribute('data-i')][1],i);};});}
  Array.prototype.forEach.call(pop.querySelectorAll('.tabs button'),function(b){b.onclick=function(){paint(+b.getAttribute('data-t'));};});
  paint(tab);pop.style.setProperty('--c',n.col);pop.classList.add('on');
- pop.style.left='22px';pop.style.top='124px';if(S.cxPrev==null){S.cxPrev=S.cxT;S.cyPrev=S.cyT;}S.cxT=.6;var yy=n.p[1],zz=-Math.sqrt(Math.max(0,1-yy*yy)),cp=Math.cos(PITCH),sp=Math.sin(PITCH),y2=yy*cp-zz*sp,z2=yy*sp+zz*cp,dy=y2*R*n.r/(1-z2*n.r*.18*0+0);S.cyT=Math.max(.36,Math.min(.64,(H*.5-dy*(1/(1-z2*.18)))/H));show('classes',false);show('lanes',false);
+ pop.style.left='22px';pop.style.top='170px';if(S.cxPrev==null){S.cxPrev=S.cxT;S.cyPrev=S.cyT;}S.cxT=.6;var yy=n.p[1],zz=-Math.sqrt(Math.max(0,1-yy*yy)),cp=Math.cos(PITCH),sp=Math.sin(PITCH),y2=yy*cp-zz*sp,z2=yy*sp+zz*cp,dy=y2*R*n.r/(1-z2*n.r*.18*0+0);S.cyT=Math.max(.36,Math.min(.64,(H*.5-dy*(1/(1-z2*.18)))/H));show('classes',false);show('lanes',false);
  pop.querySelector('.x').onclick=closeSel;if(guideOn)placeGuide();}
 function closeSel(){if(S.sel&&S.cxPrev!=null){S.cxT=S.cxPrev;S.cyT=S.cyPrev;if(cur===4)show('classes',true);}S.cxPrev=null;S.sel=null;if(guideOn&&typeof placeGuide==='function')setTimeout(placeGuide,50);tween('sd',0,400);pop.classList.remove('on');}
-function pickClick(ev){if(A2on)return;var b=null,bd=20;NODES.forEach(function(n){if(n.vis<.5)return;var d=Math.hypot(n.sx-ev.clientX,n.sy-ev.clientY);if(d<bd){bd=d;b=n;}});if(b)selectNode(b);else if(S.sel)closeSel();}
+function pickClick(ev){if(A2on)return;var b=null,bd=MOB?30:20;NODES.forEach(function(n){if(n.vis<.5)return;var d=Math.hypot(n.sx-ev.clientX,n.sy-ev.clientY);if(d<bd){bd=d;b=n;}});if(b)selectNode(b);else if(S.sel)closeSel();}
 cv.style.cursor='grab';
 cv.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,moved:0};vel=0;cv.style.cursor='grabbing';try{cv.setPointerCapture(e.pointerId);}catch(_){}tweens=tweens.filter(function(t){return t.key!=='yaw';});});
 cv.addEventListener('pointermove',function(e){if(!drag)return;var dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;drag.moved+=Math.abs(dx)+Math.abs(dy);S.yaw+=dx*.006;PITCH=clamp(PITCH-dy*.004,-1.2,1.2);vel=dx*.006;lastInter=performance.now();});
 function endDrag(e){if(!drag)return;var mv=drag.moved;drag=null;cv.style.cursor='grab';lastInter=performance.now();if(mv<5)pickClick(e);}
+if(MOB){var ptrs={},pd0=0,zt0=1;function pdist(){var k=Object.keys(ptrs);return k.length<2?0:Math.hypot(ptrs[k[0]].x-ptrs[k[1]].x,ptrs[k[0]].y-ptrs[k[1]].y);}
+ cv.addEventListener('pointerdown',function(e){ptrs[e.pointerId]={x:e.clientX,y:e.clientY};if(Object.keys(ptrs).length===2){pd0=pdist();zt0=ZT;drag=null;}});
+ cv.addEventListener('pointermove',function(e){if(!ptrs[e.pointerId])return;ptrs[e.pointerId]={x:e.clientX,y:e.clientY};if(Object.keys(ptrs).length===2&&pd0>10){drag=null;ZT=clamp(zt0*pdist()/pd0,.7,2.8);lastInter=performance.now();}});
+ var pe=function(e){delete ptrs[e.pointerId];};cv.addEventListener('pointerup',pe);cv.addEventListener('pointercancel',pe);}
 cv.addEventListener('pointerup',endDrag);cv.addEventListener('pointercancel',function(){drag=null;});
 cv.addEventListener('wheel',function(e){e.preventDefault();ZT=clamp(ZT*(1-e.deltaY*(e.ctrlKey?.012:.0015)),.5,3.2);lastInter=performance.now();},{passive:false});
 cv.addEventListener('dblclick',function(){ZT=1;PITCH=.32;});
@@ -531,7 +672,7 @@ var SKILLS=[
 var BADGES=[['🔐','Respects my permissions',-130],['🏷️','Sensitivity labels travel with data',-50],['🏢','Stays inside my tenant',130],['🧾','Audited and compliant',50]];
 var bd=$('badges');BADGES.forEach(function(b){var d=document.createElement('div');d.className='badge';d.textContent=b[0]+'  '+b[1];bd.appendChild(d);});
 function setBadges(on){Array.prototype.forEach.call(bd.children,function(d,i){var b=BADGES[i];d.style.left=(b[2]*100)+'%';d.style.top=(b[3]*100)+'%';if(on)later(function(){d.classList.add('on');},400+i*500);else d.classList.remove('on');});}
-function show(id,on){if(on&&(id==='lanes'||id==='classes'))$(id).style.top=Math.round($('hud').getBoundingClientRect().bottom+12)+'px';$(id).classList[on?'add':'remove']('on');}
+function show(id,on){if(on&&(id==='lanes'||id==='classes'))$(id).style.top=Math.max(Math.round($('hud').getBoundingClientRect().bottom+12),document.body.classList.contains('explore')?66:0)+'px';$(id).classList[on?'add':'remove']('on');}
 var STAGES=[
 {layer:-1,k:'Start',t:'It starts with a person doing their job',p:'This is me. Work IQ doesn\'t begin with a database or a setup project. It begins with a normal working day, in the tools I already use.',dur:9,
  start:function(){S.cxT=.5;S.avatar=1;},end:function(){}},
@@ -555,13 +696,13 @@ var STAGES=[
  end:function(){show('memP',false);S.cxT=.5;show('skP',true);$('skrows').innerHTML=SKILLS.map(function(s){return '<div class="card sk" style="--c:'+s.c+'"><div class="x">'+s.x+'</div><div><b>'+s.h+'</b><span>'+s.s+'</span></div></div>';}).join('');}},
 {layer:4,k:'Guardrails · built in',t:'All of it stays protected',p:'Work IQ only sees and shows what I am already allowed to see. Permissions, sensitivity labels and the tenant boundary apply to every signal, node and memory.',dur:14,
  start:function(){show('skP',false);S.cxT=.5;tween('shell',1,2500);setBadges(true);},end:function(){show('skP',false);S.cxT=.5;S.shell=1;setBadges(false);Array.prototype.forEach.call(bd.children,function(d){d.classList.add('on');});}},
-{layer:5,k:'Next · Ask Work IQ',t:'Now let\'s use it',p:'Everything you just saw is what sits behind a Copilot or agent prompt. Next: ask a question, and watch Work IQ pull signals, context and memory together, one piece at a time.',dur:99,
+{layer:5,k:'Next · Work IQ in action',t:'Now let\'s use it',p:'Everything you just saw is what sits behind a Copilot or agent prompt. Next: ask a question, and watch Work IQ pull signals, context and memory together, one piece at a time.',dur:99,
  start:function(){},end:function(){}}];
 var LAYERS=[['📡','Signals'],['🕸️','Context'],['🧠','Memory'],['🛠️','Skills'],['🛡️','Guardrails']];
 var rail=$('rail');LAYERS.forEach(function(l){var d=document.createElement('div');d.innerHTML='<i>'+l[0]+'</i>'+l[1];rail.appendChild(d);});
 var dots=$('dots');STAGES.forEach(function(s,i){var d=document.createElement('i');d.title=s.t;d.onclick=function(){go(i);};dots.appendChild(d);});
 (function(){var m=document.createElement('div');m.id='more';m.className='glass';['bAuto','bRe','gbtn'].forEach(function(i){m.appendChild($(i));});var b=document.createElement('button');b.id='bMore';b.textContent='⋯';b.title='More: auto-play, restart, guide';$('ctl').insertBefore(b,$('skipnote'));$('ctl').appendChild(m);b.onclick=function(e){e.stopPropagation();m.classList.toggle('on');};document.addEventListener('click',function(e){if(!m.contains(e.target))m.classList.remove('on');});})();
-$('hud').appendChild($('clock'));(function(){var st=$('steps'),c=document.createElement('div');c.id='stepc';c.appendChild($('ck'));c.appendChild($('dots'));st.appendChild($('bPrev'));st.appendChild(c);st.appendChild($('bNext'));st.appendChild($('bMore'));st.appendChild($('more'));})();
+$('hud').appendChild($('clock'));(function(){var st=$('steps'),c=document.createElement('div');c.id='stepc';c.appendChild($('ck'));c.appendChild($('dots'));st.appendChild($('bPrev'));st.appendChild(c);st.appendChild($('bNext'));st.appendChild($('bMore'));st.appendChild($('more'));var lb=document.createElement('button');lb.id='lbtn';lb.className='lb';lb.title='Work IQ explained: official Microsoft documentation (L)';lb.innerHTML='💡 Explain';$('hdrr').appendChild(lb);var avb=document.createElement('button');avb.id='avbtn';avb.title='About this demo and its creator';avb.setAttribute('aria-label','About this demo and its creator');avb.innerHTML='<img src="assets/images/portraits/you.jpg" alt="">';$('hdrr').appendChild(avb);$('hdrc').appendChild($('views'));})();
 var cur=-1,auto=true,autoT=null;
 /* ---------- roaming guide ---------- */
 var BEATS=[
@@ -607,21 +748,22 @@ function hardView(cx,cy,z){tweens=[];S.cx=S.cxT=cx;S.cy=S.cyT=cy;ZOOM=ZT=z;PITCH
 function resetAll(){S.cxT=.5;S.cyT=.55;S.ln=0;S.ea=0;A2on=false;A2.hl=null;A2.lanes=[];A2.edges=[];A2.hold=false;ZOOM=ZT=1;PITCH=.32;feed.classList.remove('fast');S.sd=0;show('find',false);emitOn=false;emitAcc=0;show('srcs',false);closeSel();$('hud').classList.remove('mini');clearTimers();flyers=[];tweens=[];dayMode=false;S.reveal=0;S.mix=0;S.cm=0;S.nodeP=0;S.edgeP=0;S.dim=0;S.chain=0;S.shell=0;S.wk=-2;lapse=false;cnt={mail:0,cal:0,chat:0,file:0};
  feed.innerHTML='';feed.classList.remove('hide');$('clock').style.opacity=0;$('hud').style.opacity=0;['lanes','classes','memP','skP'].forEach(function(i){show(i,false);});setBadges(false);
  Array.prototype.forEach.call(wkEl.children,function(b){b.className='';b.style.height='6%';});$('wlab').textContent='';P.forEach(function(p){p.born=-1e9;});}
+function sheetH(){if(!MOB)return;var c=$('cap');document.body.style.setProperty('--sheet',(76+c.offsetHeight+8)+'px');}
 function go(i){i=clamp(i,0,STAGES.length-1);resetAll();clearTimeout(autoT);
  for(var k=0;k<i;k++){STAGES[k].end();}
  P.forEach(function(p){p.born=-1e9;});
  cur=i;var s=STAGES[i];if(i>=2)$('hud').style.opacity=1;if(i===1)$('hud').style.opacity=1;
- $('ck').textContent='Step '+(i+1)+' of '+STAGES.length+' · '+s.k;$('ct').textContent=s.t;$('cp').textContent=s.p;
+ $('ck').textContent='Step '+(i+1)+' of '+STAGES.length+' · '+s.k;$('ct').textContent=s.t;$('cp').textContent=s.p;sheetH();
  Array.prototype.forEach.call(rail.children,function(d,j){d.className=j===s.layer?'on':(j<s.layer?'done':'');});
  Array.prototype.forEach.call(dots.children,function(d,j){d.className=j===i?'c':(j<i?'d':'');});
- $('bNext').textContent=i===STAGES.length-1?'Ask Work IQ ▶':'Next ▶';
+ $('bNext').textContent=i===STAGES.length-1?'See it in action ▶':'Next ▶';
  if(i>=4)show('find',true);if(i>=3||i===2){lapse=true;} if(i===6||i===7)$('hud').classList.add('mini'); s.start();if(guideOn)guideSay(i);
  if(auto&&i<STAGES.length-1)autoT=setTimeout(function(){go(cur+1);},s.dur*1000);}
-$('bNext').onclick=function(){if(cur<STAGES.length-1)go(cur+1);else startAct2();};
+$('bNext').onclick=function(){if(cur<STAGES.length-1)go(cur+1);else startAct2(true);};
 $('bPrev').onclick=function(){go(cur-1);};
 $('bRe').onclick=function(){go(0);};
 $('bAuto').onclick=function(){auto=!auto;this.classList.toggle('on',auto);this.textContent=auto?'⏸ Auto-play on':'▶ Auto-play';clearTimeout(autoT);if(auto&&cur<STAGES.length-1)autoT=setTimeout(function(){go(cur+1);},STAGES[cur].dur*1000);};
-addEventListener('keydown',function(e){if(A2on)return;if((e.key==='ArrowRight'||e.key===' ')&&document.activeElement!==$('fq')){e.preventDefault();$('bNext').click();}else if(document.activeElement===$('fq')){}else if(e.key==='ArrowLeft')$('bPrev').click();else if(e.key==='g'||e.key==='G')$('gbtn').click();else if(e.key==='+'||e.key==='=')$('zIn').click();else if(e.key==='-')$('zOut').click();else if(e.key==='0')$('zRe').click();else if(e.key==='a'||e.key==='A')$('bAuto').click();else if(e.key==='r'||e.key==='R')$('bRe').click();});
+addEventListener('keydown',function(e){if(A2on||document.body.classList.contains('explore'))return;if((e.key==='ArrowRight'||e.key===' ')&&document.activeElement!==$('fq')){e.preventDefault();$('bNext').click();}else if(document.activeElement===$('fq')){}else if(e.key==='ArrowLeft')$('bPrev').click();else if(e.key==='g'||e.key==='G')$('gbtn').click();else if(e.key==='+'||e.key==='=')$('zIn').click();else if(e.key==='-')$('zOut').click();else if(e.key==='0')$('zRe').click();else if(e.key==='a'||e.key==='A')$('bAuto').click();else if(e.key==='r'||e.key==='R')$('bRe').click();});
 $('zIn').onclick=function(){ZT=clamp(ZT*1.25,.5,3.2);};$('zOut').onclick=function(){ZT=clamp(ZT/1.25,.5,3.2);};$('zRe').onclick=function(){ZT=1;PITCH=.32;};setInterval(function(){$('zPct').textContent=Math.round(ZT*100)+'%';},120);
 /* ================= ACT 2: prompt execution ================= */
 var STG=[['Understand','🧭'],['Signals','📡'],['Context','🕸️'],['Memory','🧠'],['Permissions','🛡️'],['Assemble','🧩'],['Generate','✨']];
@@ -674,35 +816,42 @@ function aLater(fn,ms){var id=setTimeout(fn,ms);A.timers.push(id);return id;}
 function aClear(){A.timers.forEach(clearTimeout);A.timers=[];}
 var chatEl=$('chat'),msgsEl=$('msgs'),inpt=$('inpt'),sendB=$('send'),pipeEl=$('pipe'),dcardEl=$('dcard');
 function paneGeom(){var cw=Math.min(620,Math.round(W*.43)),pl=cw+24+24,pw=W-24-pl;return {cw:cw,pl:pl,pw:pw};}
-function chatPre(){var w=Math.min(760,W-40),top=Math.round(H*.25);chatEl.style.left=((W-w)/2)+'px';chatEl.style.top=top+'px';chatEl.style.width=w+'px';chatEl.style.height=(H-top-20)+'px';}
-function chatRun(){var g=paneGeom();chatEl.style.left='24px';chatEl.style.top='24px';chatEl.style.width=g.cw+'px';chatEl.style.height=(H-48)+'px';
- pipeEl.style.left=g.pl+'px';pipeEl.style.top='24px';pipeEl.style.right='24px';pipeEl.style.display='flex';
+function chatPre(){var w=Math.min(760,W-40),top=Math.round(MOB?H*.2:H*.31);chatEl.style.left=((W-w)/2)+'px';chatEl.style.top=top+'px';chatEl.style.width=w+'px';chatEl.style.height=(H-top-20)+'px';}
+var A2L={cy:140,R:50,top:90,bot:500,open:380,cur:500,dh:280,ct:380},sheetOpen=false;
+function mobLayout(){var dh=Math.round(H*.34),ct=Math.round(H*.45);A2L.top=90;A2L.bot=H-60-dh-8-34;A2L.open=ct-8;A2L.dh=dh;A2L.ct=ct;return {dh:dh,ct:ct};}
+function chatRun(){if(MOB){var m=mobLayout();chatEl.style.top=m.ct+'px';chatEl.style.height=(H-m.ct)+'px';pipeEl.style.left='8px';pipeEl.style.right='8px';pipeEl.style.top='auto';pipeEl.style.bottom='8px';pipeEl.style.display='flex';dcardEl.style.left='8px';dcardEl.style.right='8px';dcardEl.style.top='auto';dcardEl.style.bottom='60px';dcardEl.style.height=m.dh+'px';dcardEl.style.display='block';return;}
+ var g=paneGeom();chatEl.style.left='24px';chatEl.style.top='60px';chatEl.style.width=g.cw+'px';chatEl.style.height=(H-84)+'px';
+ pipeEl.style.left=g.pl+'px';pipeEl.style.top='60px';pipeEl.style.right='24px';pipeEl.style.display='flex';
  dcardEl.style.left=g.pl+'px';dcardEl.style.right='24px';dcardEl.style.top=(H-24-222)+'px';dcardEl.style.height='222px';dcardEl.style.display='block';
- var r0=Math.min(W*.8,H)*.285,avail=Math.min(g.pw-30,H-24-222-70-30),zt=Math.min(.95,avail/2/1.46/r0);
- S.cxT=(g.pl+g.pw/2)/W;S.cyT=(70+(H-24-222-70)/2)/H;ZT=Math.max(.4,zt);}
+ var r0=Math.min(W*.8,H)*.285,avail=Math.min(g.pw-30,H-24-222-100-30),zt=Math.min(.95,avail/2/1.46/r0);
+ S.cxT=(g.pl+g.pw/2)/W;S.cyT=(102+(H-24-222-102)/2)/H;ZT=Math.max(.4,zt);}
 function a2Sphere(hl,lanes,edges,dim){A2.hl=hl;A2.lanes=lanes||[];A2.edges=edges||[];tween('dim',dim==null?.85:dim,700);tween('ln',(lanes&&lanes.length)?1:0,700);tween('ea',(edges&&edges.length)?1:0,1400);}
 function faceNodes(ids){var x=0,y=0,z=0,c=0;ids.forEach(function(i){var n=NID[i];if(n){x+=n.p[0];y+=n.p[1];z+=n.p[2];c++;}});if(!c)return;var phi=Math.atan2(x,z),d=Math.PI-phi-S.yaw;d=d-Math.round(d/(2*Math.PI))*2*Math.PI;tween('yaw',S.yaw+d,1400);}
 function mapOf(ids){var o={};ids.forEach(function(i){o[i]=1;});return o;}
-function startAct2(){aClear();clearTimeout(autoT);gClear();closeSel();clearTimers();hardView(.5,.14,.3);dayMode=false;emitOn=false;document.body.classList.add('act2');A2on=true;A2.hold=true;
+function startAct2(direct){document.body.classList.remove('explore');aClear();clearTimeout(autoT);gClear();closeSel();clearTimers();hardView(.5,.17,.24);dayMode=false;emitOn=false;document.body.classList.add('act2');A2on=true;A2.hold=true;
  S.reveal=N;S.mix=1;S.cm=1;S.nodeP=1;S.edgeP=1;S.dim=0;S.chain=0;S.shell=0;S.ln=0;S.ea=0;S.sd=0;S.wk=-2;lapse=true;
  ['lanes','classes','memP','skP'].forEach(function(i){show(i,false);});feed.classList.add('hide');
- if(!PR.length)buildPrompts();A.wiq=true;$('wiqSw').checked=true;a2Home();setViews();}
+ if(!PR.length)buildPrompts();A.wiq=true;$('wiqSw').checked=true;if(direct===true)a2Prompts();else a2Paths();setViews();}
 var TILES=[['🗓️','Prepare for a meeting'],['📊','Get a status update'],['🏢','Understand a customer'],['📈','See how my work changed']];
-function a2Home(){aClear();A.mode='pre';A.k=-1;A.stage=-1;pipeEl.style.display='none';dcardEl.style.display='none';$('a2new').style.display='none';
- msgsEl.innerHTML='<div id="hello"><h1>Hello, Usman</h1><h2>What would you like to work on?</h2><div id="hbox"><span class="sp2">✦</span><span id="hinp">Pick a suggestion below, then press send</span><button id="hsend" aria-label="Send">➤</button></div><div id="hnote">Answers are grounded in my mail, meetings, chats and files through Work IQ</div><div id="tiles"></div></div>';
+function a2Prompts(){aClear();sheetOpen=false;chatEl.classList.remove('msheet','sheet-open');if(MOB){chatEl.style.right='';chatEl.style.bottom='';pipeEl.style.bottom='';pipeEl.style.top='';$('pline').classList.remove('on');$('blip').classList.remove('on');}A.mode='pre';A.k=-1;A.stage=-1;pipeEl.style.display='none';dcardEl.style.display='none';$('a2new').style.display='none';
+ msgsEl.innerHTML='<div id="hello"><h1>Hello</h1><h2>How would you like to understand Work IQ? Pick a prompt below to start.</h2><div id="hbox"><span class="sp2">✦</span><span id="hinp">Pick a suggestion below, then press send</span><button id="hsend" aria-label="Send">➤</button></div><div id="hnote">Answers are grounded in my mail, meetings, chats and files through Work IQ</div><div id="tiles"></div></div>';
  var ch=$('tiles');PR.forEach(function(p,i){var b=document.createElement('button');b.innerHTML='<div class="ti">'+TILES[i][0]+'</div><b>'+TILES[i][1]+'</b><span>'+fill(p.q)+'</span>';b.onclick=function(){pick(i);};ch.appendChild(b);});
- $('hsend').onclick=send;chatEl.classList.add('home');chatPre();
- S.cxT=.5;S.cyT=.14;ZT=.3;A2.hl=null;A2.lanes=[];A2.edges=[];tween('dim',0,600);tween('ln',0,400);tween('ea',0,400);tween('shell',0,400);}
+ $('hsend').onclick=send;$('a2paths').style.display='';chatEl.classList.remove('paths');document.body.classList.remove('landing');chatEl.classList.add('home');chatPre();
+ S.cxT=.5;S.cyT=.17;ZT=.24;A2.hl=null;A2.lanes=[];A2.edges=[];tween('dim',0,600);tween('ln',0,400);tween('ea',0,400);tween('shell',0,400);}
 var typeT=null;
+function openSheet(){if(!MOB)return;sheetOpen=true;chatEl.classList.add('sheet-open');$('blip').classList.remove('on');}
+function closeSheet(){if(!MOB)return;sheetOpen=false;chatEl.classList.remove('sheet-open');updBlip();}
+function updBlip(){if(!MOB)return;var b=$('blip');if(A.mode!=='run'||sheetOpen){b.classList.remove('on');return;}b.style.bottom=(60+A2L.dh+6)+'px';b.classList.add('on');if(A.stage>=6&&A.ansReady){b.classList.add('ready');$('blt').textContent='✨ View the answer';}else{b.classList.remove('ready');$('blt').textContent=A.stage>=6?'Writing the answer…':'Response is in the making · '+(A.seq.indexOf(A.stage)+1)+'/'+A.seq.length;}}
+$('a2close').onclick=closeSheet;$('blip').onclick=function(){if($('blip').classList.contains('ready'))openSheet();};$('plb').onclick=function(){a2Prompts();};
 function pick(i){if(A.mode!=='pre')return;A.k=i;var h=$('hinp'),txt=fill(PR[i].q),k=0;Array.prototype.forEach.call($('tiles').children,function(b,j){b.className=j===i?'sel':'';});clearInterval(typeT);h.className='has';h.textContent='';$('hsend').className='';
  typeT=setInterval(function(){k+=2;h.textContent=txt.slice(0,k);if(k>=txt.length){clearInterval(typeT);h.textContent=txt;$('hsend').className='go';}},16);}
 function send(){if(A.mode!=='pre'||A.k<0||$('hsend').className!=='go')return;runPrompt();}
-function runPrompt(){aClear();var p=PR[A.k];A.mode='run';A.wiq=$('wiqSw').checked;A.seq=A.wiq?[0,1,2,3,4,5,6]:[0,6];A.stage=-1;A.paused=false;
- chatEl.classList.remove('home');chatRun();$('a2new').style.display='';$('a2new').textContent='⟲ All prompts';
+function runPrompt(){aClear();var p=PR[A.k];A.ansReady=false;sheetOpen=false;if(MOB){chatEl.classList.remove('sheet-open');chatEl.classList.add('msheet');$('pline').classList.add('on');$('plt').textContent='💬 '+fill(p.q);}A.mode='run';A.wiq=$('wiqSw').checked;A.seq=A.wiq?[0,1,2,3,4,5,6]:[0,6];A.stage=-1;A.paused=false;
+ chatEl.classList.remove('home');$('a2paths').style.display='none';chatRun();$('a2new').style.display='';$('a2new').textContent='⟲ All prompts';
  msgsEl.innerHTML='<div class="um">'+fill(p.q)+'</div><div class="as"><div class="act"><div class="ah"><span>⚡ Work IQ activity</span><em id="actst">working…</em></div><ol id="steps2">'+STG.map(function(s,i){return '<li id="st'+i+'"><i></i><div><b>'+s[0]+'</b><span></span></div></li>';}).join('')+'</ol></div><div class="ans" id="ans"></div></div>';
  inpt.textContent='Ask anything about my work…';inpt.className='';sendB.className='';
  buildPipe();aLater(function(){goStage(0);},900);}
-function buildPipe(){pipeEl.innerHTML=STG.map(function(s,i){return '<div class="pc" data-i="'+i+'"><i>'+(i+1)+'</i>'+s[0]+'</div>';}).join('')+'<button class="pb" id="pPrev" title="Previous (←)">◀</button><button class="pb" id="pPause" title="Pause or resume (Space)">⏸</button><button class="pb" id="pNext" title="Next (→)">▶</button>';
+function buildPipe(){pipeEl.innerHTML=STG.map(function(s,i){return '<div class="pc" data-i="'+i+'"><i>'+(i+1)+'</i>'+s[0]+'</div>';}).join('')+'<div class="pctl"><button class="pb" id="pPrev" title="Previous (←)">◀</button><button class="pb" id="pPause" title="Pause or resume (Space)">⏸</button><button class="pb" id="pNext" title="Next (→)">▶</button></div>';
  Array.prototype.forEach.call(pipeEl.querySelectorAll('.pc'),function(d){d.onclick=function(){var i=+d.getAttribute('data-i');if(A.seq.indexOf(i)>=0)goStage(i,true);};});
  $('pPrev').onclick=function(){stepBy(-1);};$('pNext').onclick=function(){stepBy(1);};$('pPause').onclick=togglePause;}
 function togglePause(){A.paused=!A.paused;$('pPause').textContent=A.paused?'▶':'⏸';if(!A.paused)schedNext();else aClear2();}
@@ -713,7 +862,7 @@ function schedNext(){aClear2();if(A.paused)return;var i=A.seq.indexOf(A.stage);i
 function pill(txt,col,small,delay){return '<span class="pill" style="animation-delay:'+(delay||0)+'ms">'+(col?'<i class="d" style="background:'+col+'"></i>':'')+txt+(small?' <small>'+small+'</small>':'')+'</span>';}
 function setSteps(k){var p=PR[A.k];STG.forEach(function(s,i){var li=$('st'+i);if(!li)return;var skipped=A.seq.indexOf(i)<0,state=skipped?'skip':(i<k&&A.seq.indexOf(i)<A.seq.indexOf(k)?'done':(i===k?'on':''));if(A.seq.indexOf(i)>=0&&A.seq.indexOf(i)<A.seq.indexOf(k))state='done';li.className=state;
   var sub=li.querySelector('span'),txt='';if(skipped)txt='Skipped: Work IQ is off';else if(state==='done'||state==='on'){txt=stageSub(i,p);}sub.textContent=txt;});
- Array.prototype.forEach.call(pipeEl.querySelectorAll('.pc'),function(d){var i=+d.getAttribute('data-i'),skipped=A.seq.indexOf(i)<0;d.className='pc'+(skipped?' skip':(i===k?' on':(A.seq.indexOf(i)<A.seq.indexOf(k)?' done':'')));});}
+ Array.prototype.forEach.call(pipeEl.querySelectorAll('.pc'),function(d){var i=+d.getAttribute('data-i'),skipped=A.seq.indexOf(i)<0;d.className='pc'+(skipped?' skip':(i===k?' on':(A.seq.indexOf(i)<A.seq.indexOf(k)?' done':'')));if(MOB&&i===k)pipeEl.scrollTo({left:Math.max(0,d.offsetLeft-90),behavior:'smooth'});});}
 function stageSub(i,p){var sig=p.sig;
  if(i===0)return p.intent+' · '+nm(p.main);
  if(i===1)return A.wiq?(sig.t+' of '+TOTAL.toLocaleString('en-GB')+' signals are relevant'):'';
@@ -722,7 +871,7 @@ function stageSub(i,p){var sig=p.sig;
  if(i===4)return p.skip.length+' items trimmed (illustrative)';
  if(i===5)return A.wiq?'Grounded prompt ready':'Prompt only';
  return A.wiq?p.ans.length+' lines, each with a citation':'General answer, nothing about my work';}
-function goStage(k,manual){A.stage=k;aClear2();var p=PR[A.k];setSteps(k);$('actst').textContent=k===6?'answering…':'working…';var o6=chatEl.querySelector('.act ol');if(o6)o6.style.display='';
+function goStage(k,manual){A.stage=k;aClear2();var p=PR[A.k];setSteps(k);if(MOB){if(k<6){A.ansReady=false;closeSheet();}updBlip();}$('actst').textContent=k===6?'answering…':'working…';var o6=chatEl.querySelector('.act ol');if(o6)o6.style.display='';
  var st=$('ans');if(k<6&&st)st.innerHTML='';
  dcardEl.style.opacity=1;if(k<6)schedNext();renderCard(k,p);sphereFor(k,p);
  if(k===6)aLater(function(){streamAnswer(p);},900);}
@@ -748,33 +897,147 @@ function renderCard(k,p){var h='',sig=p.sig;
  else if(k===5){var seg=[['System rules and guardrails',10,'#8aa4d6'],['My prompt',4,'#19c3ff'],['Signals',38,'#3b82f6'],['Context graph',20,'#f472b6'],['Memory',14,'#a78bfa'],['Room for the answer',14,'#334155']];
   h='<h4>6 · Assemble the grounded prompt<em>illustrative sizes</em></h4><div class="bar" style="height:22px">'+seg.map(function(s){return '<i style="width:0;background:'+s[2]+'" data-w="'+s[1]+'"></i>';}).join('')+'</div><div class="lg">'+seg.map(function(s){return '<span style="--c:'+s[2]+'">'+s[0]+'</span>';}).join('')+'</div>';
   aLater(function(){Array.prototype.forEach.call(dcardEl.querySelectorAll('.bar i'),function(i,n){setTimeout(function(){i.style.width=i.getAttribute('data-w')+'%';},n*260);});},60);}
- else{h=A.wiq?'<h4>7 · The model writes the answer</h4><div class="sec">Only this grounded context reaches the model. <b>Hover a citation</b> to see how each line was built.</div><div style="margin-top:10px">'+pill('<b>'+sig.t+'</b> signals','#3b82f6')+pill('<b>'+p.nodes.length+'</b> nodes, <b>'+p.edges.length+'</b> links','#f472b6')+pill('<b>'+p.mem.length+'</b> memories','#a78bfa')+pill('<b>'+p.skip.length+'</b> items trimmed','#34d399')+'</div><div id="how"></div>'
+ else{h=A.wiq?'<h4>7 · The model writes the answer</h4><div class="sec">Only this grounded context reaches the model. <b>'+(MOB?'Tap':'Hover')+' a citation</b> to see how each line was built.</div><div style="margin-top:10px">'+pill('<b>'+sig.t+'</b> signals','#3b82f6')+pill('<b>'+p.nodes.length+'</b> nodes, <b>'+p.edges.length+'</b> links','#f472b6')+pill('<b>'+p.mem.length+'</b> memories','#a78bfa')+pill('<b>'+p.skip.length+'</b> items trimmed','#34d399')+'</div><div id="how"></div>'
   :'<h4>The model writes the answer</h4><div class="sec">With Work IQ off, the model only has the words of the prompt. It knows nothing about my customers, meetings, files or history.</div>';}
- dcardEl.innerHTML=h;}
+ dcardEl.innerHTML=h;var lk=document.createElement('button');lk.className='lnk';lk.textContent='💡 Explain';lk.onclick=function(){openLearn(['prompt','data','context','memory','security','prompt','prompt'][k]);};dcardEl.appendChild(lk);}
 function countTo(el,to,ms){if(!el)return;var t0=performance.now();(function f(now){var k=Math.min(1,(now-t0)/ms);el.firstChild.nodeValue=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f);})(t0);}
-function streamAnswer(p){var st=$('ans');if(!st)return;st.innerHTML='';var actEl=chatEl.querySelector('.act');if(actEl&&!actEl.getAttribute('data-b')){actEl.setAttribute('data-b',1);actEl.querySelector('.ah').style.cursor='pointer';actEl.querySelector('.ah').onclick=function(){var o=actEl.querySelector('ol');o.style.display=o.style.display==='none'?'':'none';};}
+function streamAnswer(p){var st=$('ans');if(!st)return;if(MOB)openSheet();st.innerHTML='';var actEl=chatEl.querySelector('.act');if(actEl&&!actEl.getAttribute('data-b')){actEl.setAttribute('data-b',1);actEl.querySelector('.ah').style.cursor='pointer';actEl.querySelector('.ah').onclick=function(){var o=actEl.querySelector('ol');o.style.display=o.style.display==='none'?'':'none';};}
  if(actEl)actEl.querySelector('ol').style.display='none';var gen=!A.wiq,intro=document.createElement('p'),ul=document.createElement('ul');st.appendChild(intro);st.appendChild(ul);
  var items=gen?p.gen:p.ans.map(function(a){return a.t;}),introT=fill(gen?p.genIntro:p.intro),idx=0;
  function typeInto(el,txt,done){var w=fill(txt).split(' '),k=0;(function s(){k++;el.firstChild?el.firstChild.nodeValue=w.slice(0,k).join(' '):el.appendChild(document.createTextNode(w.slice(0,k).join(' ')));msgsEl.scrollTop=msgsEl.scrollHeight;if(k<w.length)aLater(s,28);else done();})();}
  typeInto(intro,introT,function nextLine(){if(idx>=items.length){finish();return;}var li=document.createElement('li');ul.appendChild(li);var i=idx++;
   typeInto(li,items[i],function(){if(!gen){var ids=(p.ans[i].t.match(/\{person\d+\}/g)||[]).map(function(s){return s.slice(1,-1);});if(ids.length){var fs=document.createElement('span');fs.className='faces';fs.innerHTML=ids.map(function(id){return av(id,24).replace('alt=""','alt="" title="'+nm(id)+'"');}).join('');li.appendChild(fs);}}if(!gen)p.ans[i].c.forEach(function(c,j){var s=document.createElement('span');s.className='cite';s.textContent=(j?'':'')+c.k+' ›';s.title=fill(c.l);s.onmouseenter=function(){showHow(p,i,j,li);};s.onclick=function(){showHow(p,i,j,li);};s.onmouseleave=function(){clearHow(li);};li.appendChild(s);});aLater(nextLine,250);});});
- function finish(){$('actst').textContent=gen?'show steps':'7 steps · show';setSteps(6);var li6=$('st6');if(li6)li6.className='done';
-  var n=document.createElement('div');if(gen){n.className='note';n.innerHTML='No names, no dates, no numbers. The answer could be written for anyone. Switch Work IQ on and run it again to compare.';}else{n.className='hint';n.textContent='Hover or click a citation to trace that line back through context, signals and memory.';}st.appendChild(n);var mo=document.createElement('div');mo.className='more';mo.innerHTML='<div class="cap2">Try another prompt</div><div class="mt"></div>';PR.forEach(function(q,qi){if(qi===A.k)return;var b=document.createElement('button');b.innerHTML='<b>'+TILES[qi][0]+' '+TILES[qi][1]+'</b>'+fill(q.q);b.onclick=function(){A.k=qi;runPrompt();};mo.querySelector('.mt').appendChild(b);});st.appendChild(mo);setTimeout(function(){msgsEl.scrollTop=msgsEl.scrollHeight;},50);}}
+ function finish(){A.ansReady=true;if(MOB)updBlip();$('actst').textContent=gen?'show steps':'7 steps · show';setSteps(6);var li6=$('st6');if(li6)li6.className='done';
+  var n=document.createElement('div');if(gen){n.className='note';n.innerHTML='No names, no dates, no numbers. The answer could be written for anyone. Switch Work IQ on and run it again to compare.';}else{n.className='hint';n.textContent=(MOB?'Tap':'Hover or click')+' a citation to trace that line back through context, signals and memory.';}st.appendChild(n);var mo=document.createElement('div');mo.className='more';mo.innerHTML='<div class="cap2">Try another prompt</div><div class="mt"></div>';PR.forEach(function(q,qi){if(qi===A.k)return;var b=document.createElement('button');b.innerHTML='<b>'+TILES[qi][0]+' '+TILES[qi][1]+'</b>'+fill(q.q);b.onclick=function(){A.k=qi;runPrompt();};mo.querySelector('.mt').appendChild(b);});st.appendChild(mo);setTimeout(function(){if(MOB){var ae=$('ans');msgsEl.scrollTo({top:Math.max(0,(ae?ae.offsetTop:0)-60),behavior:'smooth'});}else msgsEl.scrollTop=msgsEl.scrollHeight;},50);}}
 function showHow(p,i,j,li){var a=p.ans[i],c=a.c[j];li.className='hot';
  var ids=c.ids.slice();var edges=relatedEdges(ids);a2Sphere(mapOf(ids.length?ids:p.ents),c.lanes,edges,.9);if(ids.length)faceNodes(ids);
+ if(MOB){var lh=li.querySelector('.lihow');if(!lh){lh=document.createElement('div');lh.className='lihow';li.appendChild(lh);}lh.innerHTML='<div class="how"><b>Signals</b><span>'+fill(a.h[0])+'</span><b>Context</b><span>'+fill(a.h[1])+'</span><b>Memory</b><span>'+fill(a.h[2])+'</span></div>';}
  var how=$('how');if(how)how.innerHTML='<div class="how"><b>Signals</b><span>'+fill(a.h[0])+'</span><b>Context</b><span>'+fill(a.h[1])+'</span><b>Memory</b><span>'+fill(a.h[2])+'</span></div>';}
 function clearHow(li){li.className='';var p=PR[A.k];if(A.stage===6)a2Sphere(mapOf(p.nodes),[],p.edges,.85);}
 sendB.onclick=send;
 var lastStory=0;
-function setViews(){Array.prototype.forEach.call($('views').children,function(b){b.classList.toggle('on',(b.getAttribute('data-v')==='ask')===A2on);});}
-function leaveAsk(){aClear();A2on=false;A2.hold=false;A2.hl=null;A2.lanes=[];A2.edges=[];A.mode='idle';document.body.classList.remove('act2');hardView(.5,.55,1);go(0);setViews();}
-function toggleView(){if(A2on)leaveAsk();else startAct2();}
-$('views').children[0].onclick=function(){if(A2on)leaveAsk();};$('views').children[1].onclick=function(){if(!A2on)startAct2();};
-$('a2new').onclick=a2Home;
+function setViews(){Array.prototype.forEach.call($('views').children,function(b){if(b.id==='lbtn')return;b.classList.toggle('on',(b.getAttribute('data-v')==='ask')===A2on);});}
+function leaveAsk(){document.body.classList.remove('landing');aClear();A2on=false;A2.hold=false;A2.hl=null;A2.lanes=[];A2.edges=[];A.mode='idle';document.body.classList.remove('act2','explore');hardView(.5,.55,1);auto=true;$('bAuto').classList.add('on');$('bAuto').textContent='⏸ Auto-play on';go(0);setViews();}
+function toggleView(){if(A2on)leaveAsk();else startAct2(true);}
+$('views').children[0].onclick=function(){if(A2on)leaveAsk();else if(document.body.classList.contains('explore')){document.body.classList.remove('explore');auto=true;$('bAuto').classList.add('on');$('bAuto').textContent='⏸ Auto-play on';go(0);}};$('views').children[1].onclick=function(){if(!A2on)startAct2(true);};
+$('a2new').onclick=a2Prompts;$('a2paths').onclick=function(){a2Paths();};
 $('wiqSw').onchange=function(){if(A.mode==='run'){runPrompt();}};
-addEventListener('keydown',function(e){if(e.key==='v'||e.key==='V'){if(document.activeElement===$('fq'))return;toggleView();return;}if(!A2on)return;if(e.key===' '&&A.mode==='run'){e.preventDefault();togglePause();}else if(e.key==='ArrowRight'&&A.mode==='run')stepBy(1);else if(e.key==='ArrowLeft'&&A.mode==='run')stepBy(-1);else if(e.key==='Enter'&&A.mode==='pre')send();});
+addEventListener('keydown',function(e){if(e.key==='Escape'&&learnOpen){closeLearn();return;}if(document.body.classList.contains('explore')&&['ArrowRight','ArrowLeft',' ','a','A','r','R','g','G'].indexOf(e.key)>=0)return;if((e.key==='h'||e.key==='H')&&document.activeElement!==$('fq')){if(learnOpen)closeLearn();startAct2();return;}if((e.key==='l'||e.key==='L')&&document.activeElement!==$('fq')){learnOpen?closeLearn():openLearn();return;}if(e.key==='v'||e.key==='V'){if(document.activeElement===$('fq'))return;toggleView();return;}if(!A2on)return;if(e.key===' '&&A.mode==='run'){e.preventDefault();togglePause();}else if(e.key==='ArrowRight'&&A.mode==='run')stepBy(1);else if(e.key==='ArrowLeft'&&A.mode==='run')stepBy(-1);else if(e.key==='Enter'&&A.mode==='pre')send();});
 
-document.body.classList.add('guide');setViews();window.__go=go;
+/* ================= Learn drawer + path chooser ================= */
+var LSRC={
+ A:{t:'Microsoft Ignite 2025: Copilot and agents built to power the Frontier Firm',u:'https://www.microsoft.com/en-us/copilot/blog/2025/11/18/microsoft-ignite-2025-copilot-and-agents-built-to-power-the-frontier-firm/',d:'Microsoft Copilot blog, 18 Nov 2025'},
+ B:{t:'Work IQ overview',u:'https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/',d:'Microsoft Learn, updated 5 Nov 2026'},
+ C:{t:'Work IQ in Microsoft Copilot Studio',u:'https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/add-work-iq',d:'Microsoft Learn, 22 Oct 2026'},
+ D:{t:'What is Microsoft Copilot?',u:'https://learn.microsoft.com/en-us/copilot/plan/copilot-overview',d:'Microsoft Learn, 5 Nov 2026'},
+ E:{t:'Data, Privacy, and Security for Microsoft Copilot',u:'https://learn.microsoft.com/en-us/copilot/plan/microsoft-365-copilot-privacy',d:'Microsoft Learn, updated 4 Nov 2026'},
+ F:{t:'Microsoft Copilot data protection architecture',u:'https://learn.microsoft.com/en-us/copilot/plan/architecture-data-protection-auditing',d:'Microsoft Learn, updated 4 Nov 2026'},
+ G:{t:'Security for Microsoft Copilot',u:'https://learn.microsoft.com/en-us/copilot/plan/security-microsoft-copilot',d:'Microsoft Learn, updated 3 Nov 2026'},
+ H:{t:'Work IQ MCP overview',u:'https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/mcp/overview',d:'Microsoft Learn, updated 13 Oct 2026'},
+ I:{t:'Enable your tenant for Work IQ',u:'https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/enable-work-iq',d:'Microsoft Learn, 16 Jun 2026'},
+ J:{t:'Microsoft Work IQ CLI',u:'https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/cli',d:'Microsoft Learn, 25 Sep 2026'},
+ K:{t:'Microsoft Agent 365 overview',u:'https://learn.microsoft.com/en-us/microsoft-agent-365/overview',d:'Microsoft Learn, updated 23 Oct 2026'}};
+var LEARN=[
+ {id:'what',ico:'💡',t:'What is Work IQ',lead:'The intelligence layer that lets Copilot and agents know you, your job and your company.',
+  pts:[['Microsoft describes Work IQ as the intelligence layer behind Microsoft 365 Copilot and agents. It helps Copilot understand you, your job and your company.','A'],
+   ['Microsoft Learn defines it as a workplace intelligence layer that lets agents access and reason over organizational and business data, context and tools.','B'],
+   ['It continuously builds a semantic understanding across Microsoft 365 and external systems, with permission-aware governance built in.','B'],
+   ['It is woven into apps such as Word, Outlook and Teams, and works as a feedback loop in which Copilot keeps learning from the signal.','A'],
+   ['In Microsoft Copilot Studio it grounds Copilot and your agents in real-time, shared context across the organization.','C'],
+   ['Naming note: the Microsoft 365 Copilot app is now called Microsoft Copilot.','D']]},
+ {id:'slide',ico:'🖼️',t:'The Work IQ picture',lead:'The slide used in the original Work IQ visual: business data in, context, memory and skills out.',slide:true,
+  pts:[['Business data from Microsoft 365, connectors and business apps flows into Work IQ.',null],
+   ['Work IQ provides context, memory and skills to Copilot, Copilot Studio and custom agents and apps.',null],
+   ['Wording differs across Microsoft pages. This slide says Context, Memory and Skills. The Ignite blog and Copilot Studio docs describe three layers called Data, Memory and Inference.','A','C']]},
+ {id:'data',ico:'📡',t:'Data and signals',lead:'The raw material: how work leaves signals across the tools you already use.',
+  pts:[['Work IQ draws on your work data: the knowledge in emails, files, meetings and chats, which codifies how work gets done.','A'],
+   ['The data layer unifies signals from files, emails, meetings, chats and business applications across Microsoft 365.','C'],
+   ['It covers Microsoft 365 productivity data, plus business and workflow data from Dynamics 365 and Power Platform.','B'],
+   ['Microsoft Graph provides personalized organizational context: emails, files, meetings, calendars, teams and relationships.','D'],
+   ['Semantic indexing improves search relevance by applying lexical and semantic understanding to Microsoft Graph data.','D']]},
+ {id:'context',ico:'🕸️',t:'Context and relationships',lead:'Connecting people, projects and content so a question can be understood in context.',
+  pts:[['Microsoft puts it this way: it understands your org chart, and it understands your work chart.','A'],
+   ['Inference combines data and memory to make connections, unlock insights and predict the next best action.','A'],
+   ['The Context component assembles and grounds context internally, so agents do not have to build their own retrieval pipelines.','B'],
+   ['Copilot combines Graph content with working context such as the current meeting, recent email exchanges or last week\'s chats.','E']]},
+ {id:'memory',ico:'🧠',t:'Memory',lead:'What Work IQ keeps about how you and your teams work.',
+  pts:[['Memory covers your style, preferences, habits and workflows: the work patterns and relationships unique to you.','A'],
+   ['It builds a persistent understanding of how people and teams work, so agents stay consistent across tasks, apps and sessions.','C'],
+   ['In this demo, memories are derived from the weekly signal patterns. That is a teaching simplification, not Microsoft\'s implementation.',null],
+   ['Not covered here: how users view or manage memory. Check Microsoft Learn for the current Copilot memory documentation.',null]]},
+ {id:'skills',ico:'🛠️',t:'Inference, skills and tools',lead:'How agents reason and act on what Work IQ knows.',
+  pts:[['The inference layer brings together models, skills and tools, so agents can reason and take action using Work IQ MCP tools.','C'],
+   ['The Work IQ MCP collapses hundreds of operations into 10 generic tools covering mail, calendar, files, people, chat and sites.','B'],
+   ['Tool names include ask, retrieve, fetch, get_schema and search_paths. The retrieve tool is in public preview.','H'],
+   ['Agents can discover the structure of data at runtime, so each data source acts as a self-describing interface.','B']]},
+ {id:'prompt',ico:'✨',t:'How a prompt is answered',lead:'What Copilot does between your question and the grounded answer.',
+  pts:[['Copilot is a processing and orchestration engine that coordinates large language models, the Microsoft Graph content you can access, and the Microsoft 365 apps.','E'],
+   ['It accesses content and context through Microsoft Graph and combines it with working context from your current activity.','E'],
+   ['Responses are grounded in web and/or organizational data, listed as Microsoft Graph and Work IQ, scoped by user permissions.','D'],
+   ['Copilot stores the prompt and response, including citations to the information used to ground it, as your activity history.','E'],
+   ['Admins can switch Work IQ off. Responses are then not grounded in Microsoft Graph and Work IQ, which is the contrast shown by this demo\'s Work IQ switch.','D'],
+   ['Microsoft does not publish a numbered step-by-step flow. The seven stages in this demo are a teaching simplification.',null]]},
+ {id:'security',ico:'🛡️',t:'Security, privacy and compliance',lead:'Why the answer only contains what you are allowed to see.',
+  pts:[['Copilot only surfaces organizational data that the individual user has at least view permission to.','E'],
+   ['Prompts, responses and data accessed through Microsoft Graph are not used to train foundation models.','E'],
+   ['Copilot operates within the Microsoft 365 service boundary, and can only reference content the user is authorized to access.','F'],
+   ['Sensitivity labels can appear in responses, and newly generated content inherits the highest-priority label where supported.','F'],
+   ['Audit records capture prompts, responses and referenced content, and are available through Microsoft Purview for eDiscovery and retention.','F'],
+   ['For Work IQ itself, every request is scoped to the user, a policy engine evaluates it, and every tool invocation is logged.','B'],
+   ['Microsoft documents GDPR and EU Data Boundary compliance, and defense-in-depth security built on Zero Trust.','E','G']]},
+ {id:'agents',ico:'🤖',t:'Agents and developers',lead:'How custom agents and tools plug into Work IQ.',
+  pts:[['Work IQ is exposed through A2A, a remote MCP server and a REST API.','B'],
+   ['In Copilot Studio it is generally available, and is added by default to new agents that use the GitHub Copilot harness.','C'],
+   ['Work IQ is included with the Microsoft 365 Copilot license. The Work IQ API is a separate, usage-based offering.','D','B'],
+   ['The Work IQ CLI connects AI assistants to your Microsoft 365 Copilot data, as a command line (workiq ask) or as an MCP server.','J'],
+   ['Agent 365 is the control plane for agents: it helps you observe, govern and secure them.','K','A'],
+   ['A Global Administrator enables the tenant once for Work IQ.','I']]}];
+var learnEl=$('learn'),learnOpen=false,learnTopic='what',learnWas={auto:false,ask:false};
+function topicFor(){if(!A2on){return ['what','data','data','data','context','context','memory','skills','security','prompt'][Math.max(0,cur)]||'what';}
+ if(A.mode==='run')return ['prompt','data','context','memory','security','prompt','skills'][Math.max(0,A.stage)]||'prompt';return 'what';}
+function renderLearn(id){learnTopic=id;$('ltitle').textContent='💡 Work IQ explained';$('ltabs').style.display='';$('avbtn').classList.remove('on');var tp=LEARN.filter(function(x){return x.id===id;})[0];
+ $('ltabs').innerHTML=LEARN.map(function(x){return '<button data-id="'+x.id+'" class="'+(x.id===id?'on':'')+'">'+x.ico+' '+x.t+'</button>';}).join('');
+ var used=[];tp.pts.forEach(function(p){for(var i=1;i<p.length;i++)if(p[i]&&used.indexOf(p[i])<0)used.push(p[i]);});
+ var h='<h3>'+tp.ico+' '+tp.t+'</h3><p class="ll">'+tp.lead+'</p>';
+ if(tp.slide)h+='<img class="lslide" src="assets/images/workiq-slide.jpg" alt="Work IQ: workplace intelligence for Copilot and agents. Business data from Microsoft 365, connectors and business apps flows into Work IQ, which provides context, memory and skills to Copilot, Copilot Studio and custom agents and apps.">';
+ h+='<ul>'+tp.pts.map(function(p){var m='';for(var i=1;i<p.length;i++)if(p[i])m+='<sup><a href="#s_'+p[i]+'" data-s="'+p[i]+'">'+(used.indexOf(p[i])+1)+'</a></sup>';return '<li>'+p[0]+m+'</li>';}).join('')+'</ul>';
+ if(used.length)h+='<div class="lsrc"><div class="cap2">Sources</div>'+used.map(function(k,i){var s=LSRC[k];return '<div id="s_'+k+'"><b>'+(i+1)+'</b><a href="'+s.u+'" target="_blank" rel="noopener">'+s.t+'</a><span>'+s.d+'</span></div>';}).join('')+'</div>';
+ h+='<p class="lnote">Summarised from official Microsoft documentation, checked 8 Nov 2026. Statements without a source number describe this demo, not Microsoft. Pages change often, so confirm details on Microsoft Learn.</p>';
+ $('lbody').innerHTML=h;$('lbody').scrollTop=0;
+ Array.prototype.forEach.call($('ltabs').querySelectorAll('button'),function(b){b.onclick=function(){renderLearn(b.getAttribute('data-id'));};});}
+
+function renderAbout(){learnTopic='about';$('ltitle').textContent='👋 About this demo';$('ltabs').style.display='none';
+ $('lbody').innerHTML='<div class="abt"><div class="who"><img src="assets/images/portraits/you.jpg" alt="Usman Afzal"><div><b>Usman Afzal</b><span>Cloud solution architect · helping customers adopt Microsoft 365 Copilot, Cowork and agents</span></div></div>'+
+ '<h4>Why I built this</h4><p>When I explained Work IQ to customers, they liked seeing how it is put together: how signals link up and how memories build. What I could not show was how Work IQ, context and memory are actually used when a prompt runs. I built this to make that easy to see, step by step.</p>'+
+ '<h4>What you are looking at</h4><ul><li><b>Real data.</b> The sphere is built from my own Microsoft 365 activity between 3 Aug and 2 Nov 2026: mail, calendar, Teams chats and the files I worked on. The counts, peaks and trends are real.</li><li><b>Masked.</b> Customer and colleague names are replaced with generic labels such as "Retail Customer A" and "Colleague A". The portraits are AI-generated and do not show real colleagues.</li><li><b>Purpose.</b> To teach and to start conversations about Work IQ. It is not a product, and it does not connect to anyone\'s live data.</li></ul>'+
+ '<h4>What is illustrative</h4><ul><li>The workday events in the first step are examples that show how signals arise.</li><li>Memories come from simple rules over weekly signal patterns, and the skills list is my own reading of what repeats.</li><li>The permission trimming and the context-window sizes in "Work IQ in action" are illustrative. The stages themselves are a simplified teaching model, not Microsoft\'s implementation.</li><li>The definitions in <b>💡 Explain</b> are summarised from official Microsoft documentation, with links.</li></ul>'+
+ '<h4>How to use it</h4><ul><li><b>Explain it from the ground up:</b> run <i>See how Work IQ is built</i> with an audience, and pause on any step to talk through it.</li><li><b>Show it working:</b> in <i>Try Work IQ in action</i>, run a prompt, then flip the Work IQ switch off and run it again to show the difference grounding makes.</li><li><b>Let people explore:</b> <i>Explore the sphere yourself</i> lets them drag, search and click through the data on their own, on a laptop or a phone.</li><li><b>Go deeper:</b> open <i>Explain</i> at any time to read what Microsoft says, with sources.</li><li><b>Make your own:</b> the same idea could be rebuilt with your own masked data.</li></ul>'+
+ '<div class="disc"><b>Disclaimer</b>This is a personal, educational demo created by Usman Afzal. It is not an official Microsoft product or documentation, and it does not represent Microsoft\'s architecture, roadmap or commitments. It is a simplified model built from one person\'s activity, so figures describe that data only. Product details change often, so check Microsoft Learn for current, authoritative information. Names are masked, but the underlying counts come from real work activity, so please check your own organisation\'s guidance before sharing it outside your company. Views and content are my own.</div></div>';
+ $('lbody').scrollTop=0;}
+function openAbout(){if(learnOpen&&learnTopic==='about'){closeLearn();return;}openLearn('what');renderAbout();$('lbtn').classList.remove('on');$('avbtn').classList.add('on');}
+function openLearn(id){learnOpen=true;learnEl.classList.add('on');$('lbtn').classList.toggle('on',true);$('lbtn2').classList.add('on');renderLearn(id||topicFor());
+ learnWas.auto=auto&&!A2on;clearTimeout(autoT);if(A2on&&A.mode==='run'&&!A.paused){learnWas.ask=true;togglePause();}else learnWas.ask=false;}
+function closeLearn(){if(!learnOpen)return;learnOpen=false;learnEl.classList.remove('on');$('lbtn').classList.remove('on');$('lbtn2').classList.remove('on');$('avbtn').classList.remove('on');
+ if(learnWas.ask&&A2on&&A.paused)togglePause();if(learnWas.auto&&!A2on&&auto&&cur<STAGES.length-1)autoT=setTimeout(function(){go(cur+1);},4000);learnWas={auto:false,ask:false};}
+$('brand').onclick=function(){if(learnOpen)closeLearn();startAct2();};$('lbtn').onclick=$('lbtn2').onclick=function(){if(learnOpen&&learnTopic!=='about')closeLearn();else openLearn();};$('avbtn').onclick=openAbout;$('lclose').onclick=closeLearn;
+/* path chooser */
+var PATHS=[['<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><defs><radialGradient id="mg" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#d6f1ff"/><stop offset="1" stop-color="#2563eb"/></radialGradient></defs><circle cx="15" cy="15" r="8.5" fill="url(#mg)"/><g class="orb"><ellipse cx="15" cy="15" rx="13" ry="5" fill="none" stroke="#7dd3fc" stroke-width="1" transform="rotate(-25 15 15)"/><circle cx="26" cy="10.5" r="2.1" fill="#ffd166"/><circle cx="4.5" cy="19.5" r="1.7" fill="#f472b6"/><circle cx="20" cy="25.5" r="1.5" fill="#34d399"/></g></svg>','See how Work IQ is built','An illustrated walkthrough: watch an ordinary workday turn into signals, context, memory and skills on a living 3D sphere.','Illustrated story · about 4 min','build'],
+ ['⚡','Try Work IQ in action','Pick a prompt in Copilot and watch Work IQ work behind the scenes to ground the answer.','Hands-on demo · about 2 min','ask'],
+ ['🧭','Explore the sphere yourself','Rotate, zoom and search the finished sphere. Click any customer, colleague or topic to see how it connects.','Self-paced · at your own pace','explore']];
+function a2Paths(){aClear();sheetOpen=false;chatEl.classList.remove('msheet','sheet-open');if(MOB){pipeEl.style.bottom='';pipeEl.style.top='';$('pline').classList.remove('on');$('blip').classList.remove('on');}A.mode='paths';A.k=-1;A.stage=-1;pipeEl.style.display='none';dcardEl.style.display='none';$('a2new').style.display='none';$('a2paths').style.display='none';
+ msgsEl.innerHTML='<div id="hello"><h1>Hello</h1><h2>How would you like to understand Work IQ?</h2><div id="paths"></div><div id="hnote" style="margin-top:22px">New to Work IQ? Start with <b>See how Work IQ is built</b>, then <b>Try Work IQ in action</b>. Need definitions? Open <b>💡 Explain</b> at the top right.</div></div>';
+ var pe=$('paths');PATHS.forEach(function(p,i){var b=document.createElement('button');b.innerHTML='<div class="ti">'+p[0]+'</div><b>'+p[1]+'</b><span>'+p[2]+'</span><em>'+p[3]+'</em>';b.onclick=function(){choosePath(p[4]);};pe.appendChild(b);});
+ chatEl.classList.add('home','paths');document.body.classList.add('landing');if(!MOB){var lw=Math.min(1080,W-40);chatEl.style.width=lw+'px';chatEl.style.left=((W-lw)/2)+'px';}chatPre();S.cxT=.5;S.cyT=.17;ZT=.24;A2.hl=null;A2.lanes=[];A2.edges=[];tween('dim',0,600);tween('ln',0,400);tween('ea',0,400);tween('shell',0,400);}
+function enterExplore(){document.body.classList.remove('landing');aClear();clearTimeout(autoT);A2on=false;A2.hold=false;A2.hl=null;A2.lanes=[];A2.edges=[];A.mode='idle';document.body.classList.remove('act2');hardView(.5,.55,1);auto=false;$('bAuto').classList.remove('on');$('bAuto').textContent='▶ Auto-play';
+ go(4);clearTimers();document.body.classList.add('explore');tweens=[];S.reveal=N;S.mix=1;S.cm=1;S.nodeP=1;S.edgeP=1;if(MOB)document.body.style.setProperty('--sheet','64px');show('find',true);show('classes',true);gClear();setViews();
+ var xh=$('xhint');xh.classList.add('on');setTimeout(function(){xh.classList.remove('on');},7000);}
+function choosePath(k){
+ if(k==='ask')a2Prompts();
+ else if(k==='learn')openLearn('what');
+ else if(k==='build'){leaveAsk();auto=true;$('bAuto').classList.add('on');$('bAuto').textContent='⏸ Auto-play on';}
+ else if(k==='explore')enterExplore();}
+
+document.body.classList.add('guide');setViews();if(MOB)setGuide(false);window.__go=go;window.__sel=function(id){if(NID[id])selectNode(NID[id]);};
 $('bAuto').classList.add('on');$('bAuto').textContent='⏸ Auto-play on';
 lastStory=0;startAct2();requestAnimationFrame(draw);
 })();
