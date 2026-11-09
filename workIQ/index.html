@@ -282,7 +282,7 @@ body.mobile #tip{display:none}
 body.mobile #chat.home{left:12px!important;right:12px;width:auto!important}
 body.mobile #chat.home header{left:12px;right:12px}
 body.mobile #hello h1{font-size:30px}body.mobile #hello h2{font-size:16px;margin:6px auto 16px}
-body.mobile #paths{grid-template-columns:1fr;gap:10px}body.mobile #paths button{min-height:0;padding:16px 16px}body.mobile #paths .ti{width:40px;height:40px}body.mobile #paths b{font-size:17px}body.mobile #paths span{font-size:13px}
+body.mobile #paths{grid-template-columns:1fr;gap:10px}body.mobile #paths button{min-height:0;padding:12px 14px;gap:5px}body.mobile #paths .ti{width:40px;height:40px}body.mobile #paths b{font-size:17px}body.mobile #paths span{font-size:13px}
 body.mobile.act2 #cap,body.mobile.explore #cap{display:none!important}
 body.mobile #steps #dots{gap:4px}body.mobile #steps #dots i{width:9px;height:5px}
 body.mobile #pipe{overflow-x:auto;scrollbar-width:none;gap:4px;padding:6px;z-index:36}body.mobile #pipe::-webkit-scrollbar{display:none}body.mobile #pipe .pc{flex:none;padding:6px 9px}body.mobile #pipe .pb{flex:none;width:30px;height:30px}
@@ -295,6 +295,8 @@ body.mobile #chat:not(.home) footer{display:none}
 body.mobile #pipe .pctl{position:sticky;left:0;margin-left:-6px;padding-left:6px;z-index:2;display:flex;gap:4px;flex:none;order:-1;padding-right:8px;background:rgba(14,22,52,.99);box-shadow:8px 0 8px rgba(14,22,52,.99)}
 body.mobile #hbox{min-height:54px;padding:8px 8px 8px 14px}body.mobile #hinp{font-size:14px}
 body.mobile #chat.home.paths .sw{display:none}
+body.mobile #chat.home #msgs{overflow-y:auto!important;overflow-x:hidden;flex:1 1 auto;min-height:0;padding:0 0 48px!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y}
+body.mobile #chat.home{overflow:hidden;display:flex;flex-direction:column}
 body.mobile #paths button.soon{opacity:.55;pointer-events:none}
 body.mobile #paths2{flex-wrap:wrap}body.mobile #hnote{font-size:11.5px}
 #pipe .pctl{display:contents}body.mobile #pipe .pctl{display:flex}
@@ -320,6 +322,7 @@ body.explore #views,body.explore #steps,body.explore #hud,body.explore #feed,bod
 .abt h4{margin:16px 0 6px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7dd3fc}.abt ul{margin:0;padding-left:18px}.abt li{margin:0 0 6px}
 .abt .disc{margin-top:18px;padding:12px 14px;border-radius:12px;border:1px solid rgba(250,204,21,.5);background:rgba(250,204,21,.08);font-size:12.5px;line-height:1.5;color:#f6e7b4}.abt .disc b{display:block;margin-bottom:4px;color:#ffd166;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
 .abt .tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:11px;margin:0 6px 4px 0;border:1px solid var(--line);background:rgba(255,255,255,.06)}
+body.mobile #paths button{padding:12px 14px!important;gap:4px!important}body.mobile #paths .ti{width:34px!important;height:34px!important;font-size:18px!important}body.mobile #paths span{font-size:12.5px!important}
 </style></head><body>
 <canvas id="c"></canvas>
 <div id="me" class="glass"><img id="av" src="assets/images/portraits/you.jpg" alt="Usman"><div><b>Usman Afzal</b><span>Cloud solution architect</span></div><div id="clock">08:15<small>Day 1</small></div></div>
@@ -816,7 +819,7 @@ function aLater(fn,ms){var id=setTimeout(fn,ms);A.timers.push(id);return id;}
 function aClear(){A.timers.forEach(clearTimeout);A.timers=[];}
 var chatEl=$('chat'),msgsEl=$('msgs'),inpt=$('inpt'),sendB=$('send'),pipeEl=$('pipe'),dcardEl=$('dcard');
 function paneGeom(){var cw=Math.min(620,Math.round(W*.43)),pl=cw+24+24,pw=W-24-pl;return {cw:cw,pl:pl,pw:pw};}
-function chatPre(){var w=Math.min(760,W-40),top=Math.round(MOB?H*.2:H*.31);chatEl.style.left=((W-w)/2)+'px';chatEl.style.top=top+'px';chatEl.style.width=w+'px';chatEl.style.height=(H-top-20)+'px';}
+function chatPre(){var w=Math.min(760,W-40),top=Math.round(MOB?Math.max(172,H*.18):H*.31);chatEl.style.left=((W-w)/2)+'px';chatEl.style.top=top+'px';chatEl.style.width=w+'px';chatEl.style.height=(H-top-20)+'px';}
 var A2L={cy:140,R:50,top:90,bot:500,open:380,cur:500,dh:280,ct:380},sheetOpen=false;
 function mobLayout(){var dh=Math.round(H*.34),ct=Math.round(H*.45);A2L.top=90;A2L.bot=H-60-dh-8-34;A2L.open=ct-8;A2L.dh=dh;A2L.ct=ct;return {dh:dh,ct:ct};}
 function chatRun(){if(MOB){var m=mobLayout();chatEl.style.top=m.ct+'px';chatEl.style.height=(H-m.ct)+'px';pipeEl.style.left='8px';pipeEl.style.right='8px';pipeEl.style.top='auto';pipeEl.style.bottom='8px';pipeEl.style.display='flex';dcardEl.style.left='8px';dcardEl.style.right='8px';dcardEl.style.top='auto';dcardEl.style.bottom='60px';dcardEl.style.height=m.dh+'px';dcardEl.style.display='block';return;}
