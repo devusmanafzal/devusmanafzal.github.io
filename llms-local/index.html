@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Local Copilot Demo</title>
+  <style>
+    :root {
+      --bg: #262626;
+      --bg-soft: #2d2d2d;
+      --bg-card: #303030;
+      --line: #464646;
+      --line-soft: #3a3a3a;
+      --text: #e7e7e7;
+      --muted: #a6a6a6;
+      --accent: #8fd19e;
+      --danger: #f87171;
+      --ok: #5ee38c;
+      --radius: 24px;
+      --radius-sm: 14px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 50% -20%, #353535, var(--bg) 35%);
+      color: var(--text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: var(--text);
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 10px;
+    }
+
+    button { cursor: pointer; }
+    button:hover { border-color: #5a5a5a; }
+
+    .root {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .top {
+      position: absolute;
+      top: 18px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 30;
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 36px;
+      line-height: 1;
+      color: var(--muted);
+    }
+
+    .brand b {
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--muted);
+      background: rgba(48, 48, 48, 0.9);
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fbbf24;
+    }
+    .dot.ok { background: var(--ok); }
+    .dot.bad { background: var(--danger); }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      transition: opacity 360ms ease, transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 420ms ease;
+    }
+
+    .landing {
+      display: grid;
+      place-items: center;
+      padding: 120px 16px 24px;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+      z-index: 5;
+    }
+
+    .landing.hide {
+      opacity: 0;
+      transform: scale(1.18);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .landing-inner {
+      width: min(1120px, 95vw);
+      display: grid;
+      justify-items: start;
+      gap: 22px;
+    }
+
+    .hero {
+      font-size: clamp(42px, 4.8vw, 72px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-left: clamp(0px, 2vw, 20px);
+      text-wrap: balance;
+    }
+
+    .composer {
+      width: min(1100px, 95vw);
+      background: rgba(48, 48, 48, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .prompt {
+      border: 0;
+      padding: 8px 12px;
+      background: transparent;
+      font-size: clamp(26px, 2.4vw, 38px);
+      line-height: 1.2;
+      min-height: 76px;
+      max-height: 260px;
+      resize: vertical;
+      width: 100%;
+      outline: none;
+      color: var(--text);
+    }
+
+    .composer-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .left-tools, .right-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip-btn, .chip {
+      border: 1px solid var(--line);
+      background: #3a3a3a;
+      color: #ddd;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 15px;
+    }
+
+    .chip-btn.active {
+      border-color: #66b57d;
+      background: rgba(94, 227, 140, 0.15);
+    }
+
+    .send-btn {
+      background: rgba(143, 209, 158, 0.2);
+      border-color: #66b57d;
+      color: #d6f7df;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 8px 16px;
+    }
+
+    .files {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 20px;
+    }
+
+    .quick {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-left: 4px;
+    }
+
+    .quick button {
+      border-radius: 16px;
+      border: 1px solid #666;
+      background: transparent;
+      color: #d1d1d1;
+      font-size: 19px;
+      padding: 12px 18px;
+    }
+
+    .response {
+      opacity: 0;
+      transform: translateY(40px);
+      pointer-events: none;
+      z-index: 6;
+      padding: 84px 24px 26px;
+    }
+
+    .response.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .response-wrap {
+      max-width: 1050px;
+      margin: 0 auto;
+      height: calc(100vh - 120px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14px;
+    }
+
+    .query-pill {
+      border: 1px solid var(--line-soft);
+      background: rgba(54, 54, 54, 0.92);
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: #d0d0d0;
+      font-size: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .answer-card {
+      border: 1px solid var(--line);
+      background: rgba(44, 44, 44, 0.95);
+      border-radius: 22px;
+      padding: 18px;
+      overflow: auto;
+      box-shadow: var(--shadow);
+      font-size: 20px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .loader {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .loader-line {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: #3d3d3d;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .loader-line span {
+      display: block;
+      width: 36%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(94, 227, 140, 0.25), rgba(94, 227, 140, 0.9));
+      animation: progress 1.25s ease-in-out infinite;
+    }
+
+    @keyframes progress {
+      0% { transform: translateX(-130%); }
+      100% { transform: translateX(320%); }
+    }
+
+    .status-line {
+      color: #c8c8c8;
+      font-size: 15px;
+      min-height: 22px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .typing-dots {
+      display: inline-flex;
+      gap: 3px;
+    }
+    .typing-dots i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #8f8f8f;
+      display: inline-block;
+      animation: bounce 900ms infinite ease-in-out;
+    }
+    .typing-dots i:nth-child(2) { animation-delay: 120ms; }
+    .typing-dots i:nth-child(3) { animation-delay: 240ms; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .bottom-tools {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .telemetry-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(50, 50, 50, 0.95);
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(620px, 96vw);
+      height: 100vh;
+      background: #222;
+      border-left: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transform: translateX(100%);
+      transition: transform 220ms ease;
+      z-index: 80;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+    }
+
+    .drawer.open { transform: translateX(0); }
+
+    .drawer-head, .drawer-foot {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .drawer-foot {
+      border-bottom: 0;
+      border-top: 1px solid var(--line);
+      justify-content: flex-end;
+    }
+
+    .drawer-note {
+      color: var(--muted);
+      font-size: 13px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .drawer-body {
+      padding: 10px 12px;
+      overflow: auto;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #2a2a2a;
+    }
+    summary {
+      cursor: pointer;
+      padding: 10px;
+      font-weight: 600;
+    }
+    .panel {
+      border-top: 1px solid var(--line);
+      padding: 8px 10px 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .event {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #2f2f2f;
+      padding: 8px;
+      font-size: 12px;
+    }
+    .event .meta {
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    pre, code {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Consolas, "Courier New", Courier, monospace;
+      font-size: 11px;
+      color: #eee;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line-soft);
+      text-align: left;
+      padding: 6px;
+      vertical-align: top;
+    }
+    th { color: var(--muted); }
+
+    .hidden { display: none; }
+
+    @media (max-width: 900px) {
+      .hero { font-size: clamp(34px, 8vw, 52px); }
+      .prompt { font-size: clamp(22px, 4vw, 30px); }
+      .quick button { font-size: 16px; padding: 10px 14px; }
+      .answer-card { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="root">
+    <div class="top">
+      <div class="brand"><span>✦</span><b>Local Copilot</b></div>
+      <div class="top-controls">
+        <span class="status-pill"><i id="statusDot" class="dot"></i><span id="statusText">Checking server...</span></span>
+        <input id="serverUrl" value="http://127.0.0.1:1234" />
+        <button id="connectBtn">Connect</button>
+        <button id="detectBtn">Detect</button>
+      </div>
+    </div>
+
+    <section id="landing" class="scene landing">
+      <div class="landing-inner">
+        <div class="hero">Hi, what can I help you with?</div>
+
+        <div class="composer">
+          <textarea id="promptInput" class="prompt" placeholder="Message Local Copilot"></textarea>
+
+          <div class="files" id="files"></div>
+
+          <div class="composer-foot">
+            <div class="left-tools">
+              <button id="attachBtn" class="chip-btn">+ Attach document</button>
+              <input id="fileInput" class="hidden" type="file" multiple />
+              <button id="webBtn" class="chip-btn">Web mode: Off</button>
+              <button id="loadModelsBtn" class="chip-btn">Load models</button>
+              <select id="modelSelect">
+                <option value="">Model</option>
+              </select>
+            </div>
+            <div class="right-tools">
+              <span style="color:#9a9a9a;font-size:13px;">Enter to send</span>
+              <button id="sendBtn" class="send-btn">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick">
+          <button data-quick="Summarize this topic in 5 easy bullets.">Summarize fast</button>
+          <button data-quick="Give me an action plan for the next 30 minutes.">Make a quick plan</button>
+          <button data-quick="Teach me this like I'm a beginner.">Teach like beginner</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="response" class="scene response">
+      <div class="response-wrap">
+        <div id="queryPill" class="query-pill"></div>
+
+        <div id="answerCard" class="answer-card">
+          <div id="loader" class="loader">
+            <div class="loader-line"><span></span></div>
+            <div id="statusLine" class="status-line">
+              <span id="statusMessage">Connecting to local LM Studio...</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+            </div>
+          </div>
+          <div id="answerText"></div>
+        </div>
+
+        <div class="bottom-tools">
+          <button id="newChatBtn">New chat</button>
+          <div style="color:#a5a5a5;font-size:13px;">Tip: open telemetry to inspect all API calls</div>
+        </div>
+      </div>
+    </section>
+
+    <button id="telemetryBtn" class="telemetry-toggle">Telemetry & Learn</button>
+
+    <aside id="drawer" class="drawer">
+      <div class="drawer-head">
+        <strong>Telemetry</strong>
+        <button id="closeDrawerBtn">Close</button>
+      </div>
+      <div class="drawer-note">Use this panel for learning client-server behavior. Hidden by default during normal chat use.</div>
+      <div class="drawer-body">
+        <details open>
+          <summary id="callSummary">API Calls (0)</summary>
+          <div id="events" class="panel"></div>
+        </details>
+        <details>
+          <summary>Latest Request JSON</summary>
+          <div class="panel"><pre id="requestView">{}</pre></div>
+        </details>
+        <details>
+          <summary>Latest Response JSON</summary>
+          <div class="panel"><pre id="responseView">{}</pre></div>
+        </details>
+        <details>
+          <summary>API Reference</summary>
+          <div class="panel">
+            <table>
+              <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>GET</td><td><code>/v1/models</code></td><td>List available local models</td></tr>
+                <tr><td>POST</td><td><code>/v1/chat/completions</code></td><td>Chat with role messages</td></tr>
+                <tr><td>POST</td><td><code>/v1/embeddings</code></td><td>Create text embeddings</td></tr>
+                <tr><td>POST</td><td><code>/v1/completions</code></td><td>Legacy completion route</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+      <div class="drawer-foot">
+        <button id="copyTelemetryBtn">Copy JSON</button>
+        <button id="clearTelemetryBtn">Clear</button>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const state = {
+      history: [],
+      files: [],
+      telemetry: [],
+      webOn: false,
+      statusTimer: null,
+      connected: false
+    };
+
+    const el = {
+      statusDot: document.getElementById("statusDot"),
+      statusText: document.getElementById("statusText"),
+      serverUrl: document.getElementById("serverUrl"),
+      connectBtn: document.getElementById("connectBtn"),
+      detectBtn: document.getElementById("detectBtn"),
+      landing: document.getElementById("landing"),
+      response: document.getElementById("response"),
+      promptInput: document.getElementById("promptInput"),
+      attachBtn: document.getElementById("attachBtn"),
+      fileInput: document.getElementById("fileInput"),
+      files: document.getElementById("files"),
+      webBtn: document.getElementById("webBtn"),
+      loadModelsBtn: document.getElementById("loadModelsBtn"),
+      modelSelect: document.getElementById("modelSelect"),
+      sendBtn: document.getElementById("sendBtn"),
+      queryPill: document.getElementById("queryPill"),
+      loader: document.getElementById("loader"),
+      statusMessage: document.getElementById("statusMessage"),
+      answerText: document.getElementById("answerText"),
+      newChatBtn: document.getElementById("newChatBtn"),
+      telemetryBtn: document.getElementById("telemetryBtn"),
+      drawer: document.getElementById("drawer"),
+      closeDrawerBtn: document.getElementById("closeDrawerBtn"),
+      callSummary: document.getElementById("callSummary"),
+      events: document.getElementById("events"),
+      requestView: document.getElementById("requestView"),
+      responseView: document.getElementById("responseView"),
+      copyTelemetryBtn: document.getElementById("copyTelemetryBtn"),
+      clearTelemetryBtn: document.getElementById("clearTelemetryBtn")
+    };
+
+    function baseUrl() {
+      return el.serverUrl.value.trim().replace(/\/$/, "");
+    }
+
+    function setServerStatus(ok, text) {
+      state.connected = ok;
+      el.statusDot.className = "dot " + (ok ? "ok" : "bad");
+      el.statusText.textContent = text;
+    }
+
+    function drawFiles() {
+      el.files.innerHTML = "";
+      for (const file of state.files) {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = file.name;
+        el.files.appendChild(chip);
+      }
+    }
+
+    function setInspect(req, res) {
+      el.requestView.textContent = JSON.stringify(req, null, 2);
+      el.responseView.textContent = JSON.stringify(res, null, 2);
+    }
+
+    function drawTelemetry() {
+      el.callSummary.textContent = "API Calls (" + state.telemetry.length + ")";
+      el.events.innerHTML = "";
+      if (!state.telemetry.length) {
+        const empty = document.createElement("div");
+        empty.className = "event";
+        empty.textContent = "No API calls yet.";
+        el.events.appendChild(empty);
+        return;
+      }
+      for (const item of state.telemetry) {
+        const box = document.createElement("div");
+        box.className = "event";
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = item.time + " · " + item.method + " " + item.path + " · HTTP " + item.status + " · " + item.elapsedMs + "ms";
+        const pre = document.createElement("pre");
+        pre.textContent = JSON.stringify({ request: item.request, response: item.response }, null, 2);
+        box.appendChild(meta);
+        box.appendChild(pre);
+        el.events.appendChild(box);
+      }
+    }
+
+    function addTelemetry(entry) {
+      state.telemetry.unshift(entry);
+      if (state.telemetry.length > 50) state.telemetry.length = 50;
+      drawTelemetry();
+    }
+
+    async function probe(url, timeoutMs = 2200) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(url.replace(/\/$/, "") + "/v1/models", { signal: controller.signal });
+        if (!res.ok) return { ok: false };
+        const data = await res.json();
+        return { ok: true, count: Array.isArray(data.data) ? data.data.length : 0 };
+      } catch {
+        return { ok: false };
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function callApi(path, method, body) {
+      const req = {
+        baseUrl: baseUrl(),
+        method,
+        url: baseUrl() + path,
+        headers: { "Content-Type": "application/json" },
+        body: method === "POST" ? body : null
+      };
+      const started = performance.now();
+      const res = await fetch(baseUrl() + path, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: method === "POST" ? JSON.stringify(body) : undefined
+      });
+      const raw = await res.text();
+      let data;
+      try { data = JSON.parse(raw); } catch { data = { raw }; }
+      const elapsedMs = Math.round(performance.now() - started);
+      const wrapped = { httpStatus: res.status, elapsedMs, data };
+      setInspect(req, wrapped);
+      addTelemetry({
+        time: new Date().toLocaleTimeString(),
+        method,
+        path,
+        status: res.status,
+        elapsedMs,
+        request: req,
+        response: wrapped
+      });
+      if (!res.ok) throw new Error("HTTP " + res.status + " on " + path);
+      return data;
+    }
+
+    async function detectLocal() {
+      const candidates = [
+        baseUrl(),
+        "http://127.0.0.1:1234",
+        "http://127.0.0.1:1235",
+        "http://localhost:1234",
+        "http://localhost:1235",
+        "http://172.20.10.2:1235"
+      ];
+      for (const c of [...new Set(candidates)]) {
+        const p = await probe(c);
+        if (p.ok) {
+          el.serverUrl.value = c;
+          setServerStatus(true, "Connected · " + p.count + " model(s)");
+          return;
+        }
+      }
+      setServerStatus(false, "No local server found");
+    }
+
+    async function connectCurrent() {
+      const p = await probe(baseUrl());
+      if (!p.ok) {
+        setServerStatus(false, "Server unavailable");
+        return;
+      }
+      setServerStatus(true, "Connected · " + p.count + " model(s)");
+    }
+
+    async function loadModels() {
+      const data = await callApi("/v1/models", "GET", {});
+      const models = Array.isArray(data.data) ? data.data.map((m) => m.id) : [];
+      el.modelSelect.innerHTML = "";
+      const first = document.createElement("option");
+      first.value = "";
+      first.textContent = models.length ? "Model" : "No models";
+      el.modelSelect.appendChild(first);
+      for (const m of models) {
+        const option = document.createElement("option");
+        option.value = m;
+        option.textContent = m;
+        el.modelSelect.appendChild(option);
+      }
+      if (models.length) el.modelSelect.value = models[0];
+    }
+
+    function isTextFile(file) {
+      const n = file.name.toLowerCase();
+      return file.type.startsWith("text/") || n.endsWith(".md") || n.endsWith(".txt") || n.endsWith(".csv") || n.endsWith(".json");
+    }
+
+    async function buildFileContext() {
+      const chunks = [];
+      for (const file of state.files) {
+        if (isTextFile(file) && file.size <= 220000) {
+          const preview = (await file.text()).slice(0, 1200);
+          chunks.push("File: " + file.name + "\nPreview:\n" + preview);
+        } else {
+          chunks.push("File: " + file.name + " (binary or large)");
+        }
+      }
+      return chunks;
+    }
+
+    function startLoadingHints() {
+      const messages = [
+        "Connecting to local LM Studio...",
+        "Checking selected model...",
+        "Sending prompt payload...",
+        "Generating response tokens..."
+      ];
+      let i = 0;
+      el.statusMessage.textContent = messages[0];
+      clearInterval(state.statusTimer);
+      state.statusTimer = setInterval(() => {
+        i = (i + 1) % messages.length;
+        el.statusMessage.textContent = messages[i];
+      }, 1200);
+    }
+
+    function stopLoadingHints() {
+      clearInterval(state.statusTimer);
+      state.statusTimer = null;
+      el.loader.classList.add("hidden");
+    }
+
+    async function typewriter(text) {
+      el.answerText.textContent = "";
+      const chars = Array.from(text);
+      let out = "";
+      for (let i = 0; i < chars.length; i++) {
+        out += chars[i];
+        el.answerText.textContent = out;
+        const step = i < 120 ? 11 : i < 500 ? 7 : 4;
+        await new Promise((resolve) => setTimeout(resolve, step));
+      }
+    }
+
+    function transitionToResponse(prompt) {
+      el.queryPill.textContent = prompt;
+      el.answerText.textContent = "";
+      el.loader.classList.remove("hidden");
+      el.landing.classList.add("hide");
+      setTimeout(() => el.response.classList.add("show"), 220);
+    }
+
+    function backToLanding() {
+      el.response.classList.remove("show");
+      setTimeout(() => {
+        el.landing.classList.remove("hide");
+        el.promptInput.focus();
+      }, 220);
+    }
+
+    async function sendPrompt() {
+      const prompt = el.promptInput.value.trim();
+      if (!prompt) return;
+      const model = el.modelSelect.value;
+      if (!model) throw new Error("Load models and select a model first.");
+
+      transitionToResponse(prompt);
+      startLoadingHints();
+
+      const fileContext = await buildFileContext();
+      let content = prompt;
+      if (fileContext.length) content += "\n\nAttached context:\n" + fileContext.join("\n\n");
+
+      const payload = {
+        model,
+        messages: [
+          {
+            role: "system",
+            content: "You are a clear assistant. Web mode is " + (state.webOn ? "enabled" : "disabled") + "."
+          },
+          ...state.history,
+          { role: "user", content }
+        ],
+        temperature: 0.7,
+        max_tokens: 450
+      };
+
+      try {
+        const data = await callApi("/v1/chat/completions", "POST", payload);
+        const answer = data.choices?.[0]?.message?.content?.trim() || "(empty response)";
+        stopLoadingHints();
+        await typewriter(answer);
+        state.history.push({ role: "user", content });
+        state.history.push({ role: "assistant", content: answer });
+      } catch (err) {
+        stopLoadingHints();
+        await typewriter("I could not get a response from the local server.\n\n" + String(err.message || err));
+      }
+    }
+
+    el.connectBtn.addEventListener("click", () => connectCurrent().catch((e) => alert(e.message)));
+    el.detectBtn.addEventListener("click", () => detectLocal().catch((e) => alert(e.message)));
+    el.loadModelsBtn.addEventListener("click", () => loadModels().catch((e) => alert(e.message)));
+    el.attachBtn.addEventListener("click", () => el.fileInput.click());
+    el.fileInput.addEventListener("change", () => {
+      state.files = [...el.fileInput.files];
+      drawFiles();
+    });
+
+    el.webBtn.addEventListener("click", () => {
+      state.webOn = !state.webOn;
+      el.webBtn.textContent = "Web mode: " + (state.webOn ? "On" : "Off");
+      el.webBtn.classList.toggle("active", state.webOn);
+    });
+
+    el.sendBtn.addEventListener("click", () => sendPrompt().catch((e) => alert(e.message)));
+    el.promptInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendPrompt().catch((e) => alert(e.message));
+      }
+    });
+
+    document.querySelectorAll("[data-quick]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        el.promptInput.value = btn.getAttribute("data-quick") || "";
+        el.promptInput.focus();
+      });
+    });
+
+    el.newChatBtn.addEventListener("click", () => {
+      el.promptInput.value = "";
+      backToLanding();
+    });
+
+    el.telemetryBtn.addEventListener("click", () => el.drawer.classList.add("open"));
+    el.closeDrawerBtn.addEventListener("click", () => el.drawer.classList.remove("open"));
+    el.clearTelemetryBtn.addEventListener("click", () => {
+      state.telemetry = [];
+      drawTelemetry();
+    });
+    el.copyTelemetryBtn.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(JSON.stringify(state.telemetry, null, 2));
+      alert("Telemetry copied.");
+    });
+
+    drawTelemetry();
+    detectLocal().catch(() => setServerStatus(false, "No local server found"));
+  </script>
+</body>
+</html>
